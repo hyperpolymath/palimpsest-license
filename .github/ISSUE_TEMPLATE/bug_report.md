@@ -1,28 +1,38 @@
 ---
-name: Bug Report
-about: Report a bug (e.g., broken link, invalid syntax)
-title: "[Bug] "
-labels: "bug"
-assignees: ""
+name: Bug report
+about: Create a report to help us improve
+title: "[Bug]: "
+labels: 'bug, priority: unset, triage'
+assignees: ''
+
 ---
 
-## Describe the Bug
-A clear, concise description of what the bug is (e.g., "The Dutch translation of the AGI template has a typo").
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-## Steps to Reproduce
-1. Go to '...' (e.g., open `LICENSES/palimpsest-license-v0.3.nl.md`)
-2. Click/scroll to '...'
-3. See error: [describe what's wrong]
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-## Expected Behavior
-What you *expected* to happen (e.g., "The translation should match the English version").
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-## Screenshots
-If applicable, add screenshots to show the issue.
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
 
-## Environment
-- OS: [e.g., Windows 11, macOS Ventura]
-- Project version: [e.g., v0.3.0]
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
 
-## Additional Context
-Add any other details (e.g., "I noticed this when checking the license for my project").
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
+
+**Additional context**
+Add any other context about the problem here.
