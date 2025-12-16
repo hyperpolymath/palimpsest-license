@@ -1,19 +1,20 @@
 ---
-name: Feature Request
-about: Suggest a new feature (e.g., better AI compliance tooling)
-title: "[Feature] "
-labels: "enhancement"
-assignees: ""
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: 'enhancement, priority: unset, triage'
+assignees: ''
+
 ---
 
-## What Problem Does This Solve?
-Explain the problem you’re facing (e.g., "It’s hard to verify if an AI tool complies with the license").
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-## Proposed Solution
-Describe what you want to build (e.g., "A CLI tool to check if a model’s training data uses Palimpsest-licensed works").
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
 
-## Alternatives You’ve Considered
-Any other solutions you thought of (e.g., "I considered manual checks, but they’re too slow").
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
 
-## Additional Context
-Add examples, screenshots, or links to related work.
+**Additional context**
+Add any other context or screenshots about the feature request here.

@@ -1,6 +1,7 @@
-# Supported funding platforms
-github: [your-github-username]
-patreon: palimpsest-license
-open_collective: palimpsest-license
-ko_fi: your_ko_fi_username
-custom: ["https://palimpsestlicense.org/donate"] # Your custom donation link
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Funding platforms for hyperpolymath projects
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+
+github: hyperpolymath
+ko_fi: hyperpolymath
+liberapay: hyperpolymath
