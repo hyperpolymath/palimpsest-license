@@ -1,0 +1,221 @@
+// SPDX-License-Identifier: MPL-2.0
+= 6SCM Files Specification
+:toc:
+:toclevels: 3
+
+== Overview
+
+The 6SCM standard defines six machine-readable Scheme files that every RSR-compliant repository must contain. These files provide structured metadata for tooling, AI agents, and automation.
+
+== The Six Files
+
+[cols="1,2,3"]
+|===
+| File | Purpose | Media Type
+
+| `STATE.scm`
+| Current project state, progress, blockers
+| `application/state+scheme`
+
+| `META.scm`
+| Architecture decisions, development practices
+| `application/meta+scheme`
+
+| `ECOSYSTEM.scm`
+| Project positioning, relationships
+| `application/vnd.ecosystem+scm`
+
+| `PLAYBOOK.scm`
+| Operational procedures, runbooks
+| `application/playbook+scheme`
+
+| `AGENTIC.scm`
+| AI agent interaction patterns
+| `application/agentic+scheme`
+
+| `NEUROSYM.scm`
+| Neurosymbolic integration config
+| `application/neurosym+scheme`
+|===
+
+== File Specifications
+
+=== STATE.scm
+
+Tracks current project state. Updated frequently during development.
+
+[source,scheme]
+----
+;; SPDX-License-Identifier: MPL-2.0
+;; STATE.scm - Project state
+
+(state
+  (metadata
+    (version "0.1.0")
+    (schema-version "1.0")
+    (created "2025-01-03")
+    (updated "2025-01-03")
+    (project "project-name")
+    (repo "owner/repo"))
+
+  (project-context
+    (name "Project Name")
+    (tagline "Brief description")
+    (tech-stack "lang1" "lang2"))
+
+  (current-position
+    (phase "alpha|beta|stable")
+    (overall-completion 0-100)
+    (components
+      (component-name percentage)))
+
+  (route-to-mvp
+    (milestone "name"
+      (items
+        ("task" status))))
+
+  (critical-next-actions
+    (immediate ("action1" "action2"))))
+----
+
+=== META.scm
+
+Architecture decisions and development practices. Updated when major decisions change.
+
+[source,scheme]
+----
+;; SPDX-License-Identifier: MPL-2.0
+;; META.scm - Project metadata
+
+(define project-meta
+  `((version . "1.0.0")
+    (architecture-decisions
+      ((adr-001
+        (status . "proposed|accepted|deprecated|superseded|rejected")
+        (date . "YYYY-MM-DD")
+        (context . "Why this decision was needed")
+        (decision . "What was decided")
+        (consequences . "Impact of decision"))))
+    (development-practices
+      ((code-style . "formatter")
+       (security . "openssf-scorecard")
+       (testing . "test-framework")
+       (versioning . "semver")
+       (documentation . "asciidoc")
+       (branching . "trunk-based")))
+    (design-rationale
+      ((key . "explanation")))))
+----
+
+=== ECOSYSTEM.scm
+
+Project's position in the broader ecosystem. Updated when relationships change.
+
+[source,scheme]
+----
+;; SPDX-License-Identifier: MPL-2.0
+;; ECOSYSTEM.scm - Ecosystem positioning
+
+(ecosystem
+  ((version . "1.0.0")
+   (name . "project-name")
+   (type . "library|application|service|specification")
+   (purpose . "What this project does")
+   (position-in-ecosystem . "infrastructure|supporting|consumer")
+   (related-projects
+     ((project-name . "relationship-type")))
+   (what-this-is . ("description1" "description2"))
+   (what-this-is-not . ("anti-description1"))))
+----
+
+Relationship types: `sibling-standard`, `upstream-dependency`, `downstream-consumer`, `potential-consumer`, `inspiration`, `infrastructure`
+
+=== PLAYBOOK.scm
+
+Operational procedures and runbooks.
+
+[source,scheme]
+----
+;; SPDX-License-Identifier: MPL-2.0
+;; PLAYBOOK.scm - Operational runbook
+
+(define playbook
+  `((version . "1.0.0")
+    (procedures
+      ((build . (("step-name" . "command")))
+       (test . (("step-name" . "command")))
+       (deploy . (("step-name" . "command")))
+       (rollback . ())
+       (debug . ())))
+    (alerts . ((alert-name . "response")))
+    (contacts . ((role . "contact-info")))))
+----
+
+=== AGENTIC.scm
+
+AI agent interaction patterns and constraints.
+
+[source,scheme]
+----
+;; SPDX-License-Identifier: MPL-2.0
+;; AGENTIC.scm - AI agent config
+
+(define agentic-config
+  `((version . "1.0.0")
+    (claude-code
+      ((model . "claude-opus-4-5-20251101")
+       (tools . ("read" "edit" "bash" "grep" "glob"))
+       (permissions . "read-all")))
+    (patterns
+      ((code-review . "thorough|minimal")
+       (refactoring . "conservative|aggressive")
+       (testing . "comprehensive|minimal")))
+    (constraints
+      ((languages . ("allowed-lang1" "allowed-lang2"))
+       (banned . ("banned-lang1" "banned-lang2"))))))
+----
+
+=== NEUROSYM.scm
+
+Neurosymbolic integration configuration.
+
+[source,scheme]
+----
+;; SPDX-License-Identifier: MPL-2.0
+;; NEUROSYM.scm - Neurosymbolic config
+
+(define neurosym-config
+  `((version . "1.0.0")
+    (symbolic-layer
+      ((type . "scheme|prolog|datalog")
+       (reasoning . "deductive|inductive|abductive")
+       (verification . "formal|type-based|test-based")))
+    (neural-layer
+      ((embeddings . true|false)
+       (fine-tuning . true|false)))
+    (integration
+      ((feature . "description")))))
+----
+
+== Validation
+
+All 6SCM files must:
+
+1. Begin with `SPDX-License-Identifier` comment
+2. Use valid Scheme S-expression syntax
+3. Include `version` field
+4. Be parseable by Guile Scheme
+
+== Tooling
+
+RSR tooling validates 6SCM compliance:
+
+[source,bash]
+----
+just rsr-check
+----
+
+== References
+
+- RSR Specification: https://github.com/hyperpolymath/rhodium-standard-repositories
+- Palimpsest License: https://github.com/hyperpolymath/palimpsest-license
