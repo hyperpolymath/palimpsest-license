@@ -1,6 +1,7 @@
 = palimpsest-license
 
-image:https://img.shields.io/badge/license-AGPL--3.0-blue.svg[AGPL-3.0,link="https://www.gnu.org/licenses/agpl-3.0"] image:https://img.shields.io/badge/philosophy-Palimpsest-purple.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-licence"]
+image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
+image:https://img.shields.io/badge/Philosophy-Palimpsest-purple.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-license"]
 Jonathan D.A. Jewell <jonathan.jewell@gmail.com>
 :toc: macro
 :icons: font
@@ -14,7 +15,6 @@ Jonathan D.A. Jewell <jonathan.jewell@gmail.com>
 Multi-layered license framework with palimpsest semantics
 
 image:https://img.shields.io/badge/RSR-Certified-gold[RSR Certified,link=https://github.com/hyperpolymath/rhodium-standard-repositories]
-image:https://img.shields.io/badge/License-AGPL%20v3-blue[License]
 
 toc::[]
 
@@ -47,9 +47,9 @@ git clone {url-codeberg}
 
 == License
 
-Licensed under AGPL-3.0-or-later OR LicenseRef-Palimpsest-0.5.
+Licensed under *MPL-2.0* (Mozilla Public License 2.0) with the Palimpsest philosophy.
 
-See link:LICENSE[LICENSE] for details.
+See link:LICENSE.txt[LICENSE.txt] for details.
 
 == Contributing
 
