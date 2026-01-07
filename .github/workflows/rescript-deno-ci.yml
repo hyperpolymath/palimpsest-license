@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
       - uses: denoland/setup-deno@5fae568d37c3b73af83a7b2d7a470f665c7af640 # v2
         with:
           deno-version: v2.x
@@ -38,7 +38,7 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4
       - uses: denoland/setup-deno@5fae568d37c3b73af83a7b2d7a470f665c7af640 # v2
       - name: Check permissions
         run: |
