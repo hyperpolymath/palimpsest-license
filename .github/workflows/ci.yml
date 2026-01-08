@@ -9,7 +9,7 @@
 #   - test: Run test suites (Haskell, OCaml)
 #   - build: Verify everything compiles
 #
-# All jobs use actions/checkout@v6 (current stable version as of 2024)
+# All jobs use actions/checkout@v6.0.1 (current stable version as of 2024)
 # =============================================================================
 
 name: CI
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
 
       - name: Setup Deno
         uses: denoland/setup-deno@v2
@@ -70,7 +70,7 @@ jobs:
         working-directory: TOOLS/validation/haskell
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
 
       - name: Setup Haskell
         uses: haskell-actions/setup@v2
@@ -79,7 +79,7 @@ jobs:
           enable-stack: true
 
       - name: Cache Stack
-        uses: actions/cache@v5
+        uses: actions/cache@v5.0.1
         with:
           path: ~/.stack
           key: stack-${{ runner.os }}-${{ hashFiles('**/stack.yaml.lock', '**/package.yaml') }}
@@ -103,7 +103,7 @@ jobs:
         working-directory: ocaml
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
 
       - name: Setup OCaml
         uses: ocaml/setup-ocaml@v3
@@ -131,7 +131,7 @@ jobs:
     needs: [lint]  # Run after lint passes
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.1
 
       - name: Setup Node.js (for SCSS)
         uses: actions/setup-node@v6
