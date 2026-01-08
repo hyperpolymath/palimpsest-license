@@ -1,7 +1,7 @@
 # Palimpsest-MPL License
 
 [![License: PMPL-1.0](https://img.shields.io/badge/License-PMPL--1.0-blue.svg)](legal/PALIMPSEST-MPL-1.0.txt)
-[![License: MPL-2.0](https://img.shields.io/badge/Base-MPL--2.0-orange.svg)](https://www.mozilla.org/en-US/MPL/2.0/)
+[![License: MPL-2.0]()](https://www.mozilla.org/en-US/MPL/2.0/)
 
 **File-level copyleft with ethical use and quantum-safe provenance**
 
@@ -103,7 +103,3 @@ This repository is licensed under [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.
 - **Repository**: https://github.com/hyperpolymath/palimpsest-license
 - **Mirrors**: [GitLab](https://gitlab.com/hyperpolymath/palimpsest-license) | [Codeberg](https://codeberg.org/hyperpolymath/palimpsest-license)
 - **Contact**: Issues on GitHub
-
----
-
-> "This is a license born not just from copyright, but from care. From narrative debt. From cultural refusal. From emotional fidelity."
