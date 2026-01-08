@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: PMPL-1.0
+# SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+#
+# GitLoom integration configuration for PMPL compliance
+#
+# GitLoom is a multi-forge orchestration tool for mirrored repositories.
+# This configuration enables PMPL license compliance checking across
+# GitHub, GitLab, Codeberg, and other forges.
+#
+# Usage: Copy this file to .gitloom/compliance.toml in your repository
+
+[license]
+# License type
+type = "Palimpsest-MPL-1.0"
+
+# Active exhibits
+exhibits = ["ethical-use", "quantum-safe"]
+
+# SPDX identifier for headers
+spdx_id = "PMPL-1.0"
+
+# License file location
+file = "LICENSE"
+
+[checks]
+# Require SPDX headers on source files
+require_spdx_headers = true
+
+# File extensions to check for headers
+header_extensions = ["rs", "py", "js", "ts", "go", "java", "c", "cpp", "h", "hpp", "ex", "exs", "ada", "adb", "ads"]
+
+# Require quantum-safe provenance signatures
+require_signatures = false
+
+# Verify signatures on every commit (if require_signatures = true)
+verify_on_commit = true
+
+# Require signed commits (Git GPG/SSH signatures, separate from PMPL)
+require_signed_commits = false
+
+[provenance]
+# Default algorithm for new signatures
+algorithm = "ML-DSA-65"
+
+# Path to signing key
+key_path = "~/.pmpl/signing-key.pem"
+
+# Public key publication URL
+public_key_url = "https://keys.pmpl.dev"
+
+# Auto-sign on commit (requires key_path to be valid)
+auto_sign = false
+
+[audit]
+# Run audit on merge requests
+on_merge_request = true
+
+# Run audit on push to default branch
+on_push_default = true
+
+# Fail pipeline if audit fails
+fail_on_error = true
+
+# Output format (text, json, sarif)
+output_format = "json"
+
+# Upload audit report as artifact
+upload_report = true
+
+[notifications]
+# Notify on compliance failures
+notify_failures = true
+
+# Notification channels (email, slack, matrix)
+# channels = ["email:legal@example.com"]
+
+[exclusions]
+# Directories to skip during checks
+directories = [
+    "target",
+    "node_modules",
+    "vendor",
+    "_build",
+    ".git",
+    "dist",
+]
+
+# Files to skip (glob patterns)
+files = [
+    "*.lock",
+    "*.sum",
+    "Cargo.lock",
+    "package-lock.json",
+    "*.min.js",
+    "*.min.css",
+]
+
+# Skip files without code (generated, data, etc.)
+skip_non_code = true

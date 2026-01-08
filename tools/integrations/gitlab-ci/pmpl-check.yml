@@ -1,0 +1,83 @@
+# SPDX-License-Identifier: PMPL-1.0
+# SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+#
+# GitLab CI configuration for PMPL license compliance checking
+#
+# Usage: Include this in your .gitlab-ci.yml:
+#   include:
+#     - remote: 'https://raw.githubusercontent.com/hyperpolymath/palimpsest-license/main/tools/integrations/gitlab-ci/pmpl-check.yml'
+#
+# Or copy the jobs directly into your .gitlab-ci.yml
+
+stages:
+  - compliance
+
+variables:
+  PMPL_EXTENSIONS: "rs,py,js,ts,go,java,c,cpp,h,hpp"
+
+.pmpl-rust-base:
+  image: rust:1.75-slim
+  before_script:
+    - apt-get update && apt-get install -y git
+
+license-check:
+  stage: compliance
+  image: alpine:latest
+  script:
+    - |
+      if [ ! -f LICENSE ] && [ ! -f LICENSE.txt ] && [ ! -f LICENSE.md ]; then
+        echo "ERROR: No LICENSE file found"
+        exit 1
+      fi
+      echo "LICENSE file found"
+    - |
+      MISSING=0
+      for ext in $(echo $PMPL_EXTENSIONS | tr ',' ' '); do
+        for file in $(find . -name "*.$ext" -type f \
+          ! -path "./target/*" \
+          ! -path "./node_modules/*" \
+          ! -path "./vendor/*" \
+          ! -path "./.git/*"); do
+          if ! head -10 "$file" | grep -q "SPDX-License-Identifier"; then
+            echo "Missing SPDX header: $file"
+            MISSING=$((MISSING + 1))
+          fi
+        done
+      done
+      if [ $MISSING -gt 0 ]; then
+        echo "ERROR: $MISSING files missing SPDX headers"
+        exit 1
+      fi
+      echo "All source files have SPDX headers"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+provenance-verify:
+  extends: .pmpl-rust-base
+  stage: compliance
+  script:
+    - cargo install --git https://github.com/hyperpolymath/palimpsest-license pmpl-verify
+    - pmpl-verify --recursive src/ || true
+  allow_failure: true  # Signatures are optional by default
+  rules:
+    - if: '$PMPL_REQUIRE_SIGNATURES == "true"'
+      allow_failure: false
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+pmpl-audit:
+  extends: .pmpl-rust-base
+  stage: compliance
+  script:
+    - cargo install --git https://github.com/hyperpolymath/palimpsest-license pmpl-audit
+    - pmpl-audit --format json > audit-report.json
+    - cat audit-report.json
+  artifacts:
+    paths:
+      - audit-report.json
+    reports:
+      dotenv: audit-report.json
+    expire_in: 1 week
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

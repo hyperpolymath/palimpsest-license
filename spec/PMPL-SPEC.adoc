@@ -1,0 +1,189 @@
+// SPDX-License-Identifier: PMPL-1.0
+// SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+
+= Palimpsest-MPL License Specification
+:toc: left
+:toclevels: 3
+:icons: font
+:source-highlighter: rouge
+
+== Overview
+
+This document provides the formal specification for the Palimpsest-MPL License (PMPL-1.0), including normative requirements, machine-readable formats, and implementation guidelines.
+
+== License Structure
+
+=== Components
+
+The PMPL-1.0 license consists of:
+
+1. **Base License**: Mozilla Public License 2.0 (incorporated by reference)
+2. **Exhibit A**: Ethical Use Guidelines
+3. **Exhibit B**: Quantum-Safe Provenance Specification
+
+=== Normative References
+
+* https://www.mozilla.org/en-US/MPL/2.0/[Mozilla Public License 2.0]
+* https://csrc.nist.gov/pubs/fips/204/final[FIPS 204 (ML-DSA)]
+* https://csrc.nist.gov/pubs/fips/205/final[FIPS 205 (SLH-DSA)]
+* https://csrc.nist.gov/pubs/fips/206/final[FIPS 206 (FN-DSA)]
+* https://spdx.dev/specifications/[SPDX Specification]
+
+== SPDX Integration
+
+=== License Identifier
+
+----
+SPDX-License-Identifier: PMPL-1.0
+----
+
+=== Full Name
+
+----
+Palimpsest-MPL License Version 1.0
+----
+
+=== License Template
+
+[source]
+----
+SPDX-License-Identifier: PMPL-1.0
+SPDX-FileCopyrightText: <year> <copyright holder>
+----
+
+=== License Expression
+
+When combined with other licenses:
+
+----
+PMPL-1.0 AND MIT
+PMPL-1.0 OR Apache-2.0
+----
+
+== Machine-Readable Formats
+
+=== JSON-LD
+
+[source,json]
+----
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "license": {
+    "@type": "License",
+    "name": "Palimpsest-MPL License Version 1.0",
+    "identifier": "PMPL-1.0",
+    "url": "https://github.com/hyperpolymath/palimpsest-license/blob/main/legal/PALIMPSEST-MPL-1.0.txt"
+  }
+}
+----
+
+=== REUSE Compliance
+
+Directory structure for REUSE compliance:
+
+----
+project/
+├── LICENSES/
+│   └── PMPL-1.0.txt
+├── .reuse/
+│   └── dep5
+└── src/
+    └── main.rs  # Has SPDX header
+----
+
+== Provenance Specification
+
+=== Signature Block Format
+
+See Exhibit B for full specification. Summary:
+
+[source]
+----
+-----BEGIN PALIMPSEST SIGNATURE-----
+Version: PMPL-SIG/1.0
+Algorithm: <algorithm>
+Signer: <identity>
+Timestamp: <ISO-8601>
+Content-Hash: <sha3-256-hex>
+
+<base64-signature>
+-----END PALIMPSEST SIGNATURE-----
+----
+
+=== Provenance Chain Format
+
+[source]
+----
+-----BEGIN PALIMPSEST PROVENANCE-----
+Version: PMPL-PROV/1.0
+
+Contribution: <hash>
+Author: <identity>
+Date: <ISO-8601>
+Signature: <reference>
+
+Parent: <parent-hash>
+-----END PALIMPSEST PROVENANCE-----
+----
+
+== Compliance Levels
+
+=== Level 1: Basic
+
+* LICENSE file present with PMPL-1.0 text
+* SPDX headers on source files
+* Copyright notices preserved
+
+=== Level 2: Enhanced
+
+* Level 1 requirements
+* NOTICE file with contributor attribution
+* Provenance metadata preserved
+
+=== Level 3: Full
+
+* Level 2 requirements
+* Quantum-safe signatures on contributions
+* Provenance chain maintained
+* Emotional lineage documented
+
+== Versioning
+
+=== Version Format
+
+----
+PMPL-<major>.<minor>
+----
+
+=== Compatibility
+
+* PMPL-1.x versions are forward-compatible
+* Major version changes may introduce incompatibilities
+* Users may choose any version >= declared version
+
+== Governance
+
+=== Stewardship Council
+
+Composition:
+
+* 3 Creator Representatives
+* 2 Legal Experts
+* 1 Technologist
+* 1 Cultural Heritage Advocate
+
+=== Amendment Process
+
+1. Proposal via GitHub Issue
+2. 30-day community discussion
+3. Council vote (4/7 to draft)
+4. Working group drafts amendment
+5. Final vote (5/7 for minor, 6/7 for major)
+
+== References
+
+* link:ETHICAL-USE-SPEC.adoc[Exhibit A Specification]
+* link:QUANTUM-SAFE-SPEC.adoc[Exhibit B Specification]
+* link:../docs/GUIDE.md[User Guide]
+* link:../docs/FAQ.md[FAQ]
