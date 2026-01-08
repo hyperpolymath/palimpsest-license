@@ -1,0 +1,28 @@
+# SPDX-License-Identifier: PMPL-1.0
+# SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+
+[package]
+name = "pmpl-verify"
+version = "0.1.0"
+edition = "2021"
+description = "Verify quantum-safe provenance signatures"
+license = "PMPL-1.0"
+repository = "https://github.com/hyperpolymath/palimpsest-license"
+keywords = ["license", "signature", "post-quantum", "verification"]
+categories = ["command-line-utilities", "cryptography"]
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+anyhow = "1.0"
+sha3 = "0.10"
+base64 = "0.21"
+walkdir = "2.4"
+# Post-quantum crypto (placeholder)
+# pqcrypto-dilithium = "0.5"
+
+[dev-dependencies]
+tempfile = "3.8"
+
+[[bin]]
+name = "pmpl-verify"
+path = "src/main.rs"

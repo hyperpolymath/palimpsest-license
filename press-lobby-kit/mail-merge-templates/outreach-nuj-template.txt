@@ -1,6 +1,0 @@
-Dear <<RecipientName>>,  
-We are reaching out to <<Organization>> regarding symbolic licensing for narrative creators.  
-Palimpsest License v0.2 offers protection for indirect attribution, trauma reporting, and composite journalism.  
-
-Sincerely,  
-<<SenderName>>

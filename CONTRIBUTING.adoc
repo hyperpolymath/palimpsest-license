@@ -1,20 +1,63 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PMPL-1.0
+// SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+
 = Contributing Guide
 
 == Getting Started
 
 1. Fork the repository
 2. Create a feature branch from `main`
-3. Sign off commits (`git commit -s`)
-4. Submit a pull request
+3. Make your changes
+4. Run tests: `just test`
+5. Submit a pull request
+
+== Repository Structure
+
+----
+palimpsest-license/
+├── legal/          # License texts and exhibits
+├── docs/           # Documentation
+├── tools/          # Rust CLI tools
+├── spec/           # Formal specifications
+└── research/       # Papers and presentations
+----
 
 == Commit Guidelines
 
-* Conventional commits: `type(scope): description`
-* Sign all commits (DCO required)
-* Atomic, focused commits
+* Use conventional commits: `type(scope): description`
+* Sign commits if you have a GPG key
+* Keep commits atomic and focused
+
+== Adding SPDX Headers
+
+All source files must include SPDX headers:
+
+[source]
+----
+// SPDX-License-Identifier: PMPL-1.0
+// SPDX-FileCopyrightText: 2025 Your Name <email@example.com>
+----
+
+== Building Tools
+
+[source,bash]
+----
+# Build all tools
+just build
+
+# Run tests
+just test
+
+# Check compliance
+just validate
+----
 
 == License
 
-Contributions licensed under project license.
+Contributions are licensed under the project license (MPL-2.0 with Palimpsest philosophy).
 
+== Getting Help
+
+* Open an issue for questions
+* Join GitHub Discussions for broader topics
+* See link:docs/FAQ.md[FAQ] for common questions

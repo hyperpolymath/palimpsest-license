@@ -1,0 +1,100 @@
+# SPDX-License-Identifier: PMPL-1.0
+# SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+#
+# GitHub Actions workflow for PMPL license compliance checking
+#
+# Usage: Copy this file to .github/workflows/pmpl-check.yml in your repository
+
+name: PMPL License Compliance
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  license-check:
+    name: License Compliance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check LICENSE file exists
+        run: |
+          if [ ! -f LICENSE ] && [ ! -f LICENSE.txt ] && [ ! -f LICENSE.md ]; then
+            echo "ERROR: No LICENSE file found"
+            exit 1
+          fi
+          echo "LICENSE file found"
+
+      - name: Check SPDX headers
+        run: |
+          MISSING=0
+          for ext in rs py js ts go java c cpp h hpp; do
+            for file in $(find . -name "*.$ext" -type f \
+              ! -path "./target/*" \
+              ! -path "./node_modules/*" \
+              ! -path "./vendor/*" \
+              ! -path "./.git/*"); do
+              if ! head -10 "$file" | grep -q "SPDX-License-Identifier"; then
+                echo "Missing SPDX header: $file"
+                MISSING=$((MISSING + 1))
+              fi
+            done
+          done
+
+          if [ $MISSING -gt 0 ]; then
+            echo "ERROR: $MISSING files missing SPDX headers"
+            exit 1
+          fi
+          echo "All source files have SPDX headers"
+
+  provenance-verify:
+    name: Provenance Verification
+    runs-on: ubuntu-latest
+    # Optional - only run if signatures are required
+    if: ${{ github.event.repository.custom_properties.pmpl_require_signatures == 'true' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-action@stable
+
+      - name: Install pmpl-verify
+        run: |
+          cargo install --git https://github.com/hyperpolymath/palimpsest-license pmpl-verify
+
+      - name: Verify provenance signatures
+        run: |
+          pmpl-verify --recursive src/
+
+  audit:
+    name: Full Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-action@stable
+
+      - name: Install pmpl-audit
+        run: |
+          cargo install --git https://github.com/hyperpolymath/palimpsest-license pmpl-audit
+
+      - name: Run compliance audit
+        run: |
+          pmpl-audit --format json > audit-report.json
+          cat audit-report.json
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmpl-audit-report
+          path: audit-report.json

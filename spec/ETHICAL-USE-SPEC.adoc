@@ -1,0 +1,106 @@
+// SPDX-License-Identifier: PMPL-1.0
+// SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+
+= Ethical Use Specification (Exhibit A)
+:toc: left
+:toclevels: 3
+:icons: font
+
+== Overview
+
+This specification defines the normative requirements and guidance for the Ethical Use exhibit of the Palimpsest-MPL License.
+
+== Definitions
+
+Emotional Lineage::
+The narrative, cultural, symbolic, and contextual meaning embedded in creative works.
+
+Non-Interpretive System::
+An automated system that processes content without preserving or considering its Emotional Lineage.
+
+Ethical Use Declaration::
+An acknowledgment that a user has read and understood this exhibit.
+
+== Requirements
+
+=== MUST (Normative)
+
+1. **Metadata Preservation**
+   - MUST NOT strip provenance metadata from distributed works
+   - MUST preserve attribution information through processing pipelines
+
+2. **Non-Interpretive System Notice**
+   - MUST document use of covered works in AI/ML training
+   - MUST NOT claim AI outputs carry original work's creative authority
+
+3. **Commercial Acknowledgment**
+   - Commercial users MUST acknowledge ethical use guidelines
+
+=== SHOULD (Recommended)
+
+1. **Emotional Lineage**
+   - SHOULD preserve narrative context in derivative works
+   - SHOULD acknowledge cultural heritage where documented
+
+2. **Attribution**
+   - SHOULD provide meaningful attribution beyond legal minimum
+   - SHOULD link to original sources
+
+3. **Community Support**
+   - SHOULD contribute back to projects depended upon
+   - SHOULD support communities whose works enable products
+
+=== MAY (Optional)
+
+1. **Enhanced Attribution**
+   - MAY create LINEAGE.md documenting emotional context
+   - MAY include cultural background in derivative works
+
+2. **Community Engagement**
+   - MAY contact original creators about significant derivative works
+   - MAY seek guidance on culturally sensitive content
+
+== Enforcement
+
+=== Community Mechanisms
+
+* Public statements by Stewardship Council
+* Community awareness lists
+* Guidance to creators on responding to misuse
+
+=== Legal Remedies
+
+Serious violations may be actionable under:
+
+* Copyright infringement (if license terms violated)
+* Contract law (if commercial agreement exists)
+* Consumer protection law (if false claims made)
+
+== Documentation
+
+=== LINEAGE.md Template
+
+[source,markdown]
+----
+# Emotional Lineage
+
+## Origin Story
+[Describe the cultural/narrative origin of this work]
+
+## Cultural Context
+[Relevant cultural, historical, or community context]
+
+## Symbolic Meaning
+[Important symbols, metaphors, or representations]
+
+## Attribution
+[Contributors and their contributions to the emotional lineage]
+
+## Sensitivity Notes
+[Any content that requires particular cultural sensitivity]
+----
+
+== Related Specifications
+
+* link:PMPL-SPEC.adoc[Main License Specification]
+* link:QUANTUM-SAFE-SPEC.adoc[Quantum-Safe Provenance Specification]
