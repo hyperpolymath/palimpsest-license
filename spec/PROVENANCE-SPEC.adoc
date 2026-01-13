@@ -1,0 +1,105 @@
+= Provenance Specification (PMPL Provenance Layer)
+:toc: macro
+:toclevels: 3
+
+This document defines the provenance model used by the Palimpsest‑MPL License ecosystem.  
+It specifies how signatures, metadata, lineage, and auditability interact to create a reversible, trustworthy, and narratable provenance chain.
+
+toc::[]
+
+== 1. Purpose
+
+The provenance layer ensures:
+
+* authorship integrity  
+* emotional lineage preservation  
+* tamper‑evident artefacts  
+* verifiable signature chains  
+* cross‑repository traceability  
+* audit‑grade reproducibility  
+
+This specification defines the structure, semantics, and validation rules for provenance metadata.
+
+== 2. Core Concepts
+
+=== 2.1 Artefact
+Any file, document, or binary produced within a PMPL‑licensed project.
+
+=== 2.2 Signature
+A cryptographic assertion of authorship and integrity, created by `pmpl-sign`.
+
+=== 2.3 Provenance Metadata
+Structured metadata describing:
+
+* author identity  
+* creation time  
+* SPDX identifiers  
+* toolchain versions  
+* lineage references  
+* optional emotional lineage notes  
+
+=== 2.4 Provenance Chain
+A sequence of signatures and metadata entries that describe the evolution of an artefact.
+
+== 3. Signature Format
+
+A PMPL signature MUST include:
+
+* algorithm identifier  
+* signature bytes  
+* public key or key reference  
+* timestamp  
+* hash of artefact  
+* provenance metadata block  
+
+=== 3.1 Supported Algorithms
+
+* Classical: Ed25519  
+* PQ (Exhibit B): Dilithium2, Falcon512  
+
+== 4. Provenance Metadata Schema
+
+Metadata MUST be encoded as a structured block:
+
+----
+provenance:
+  version: 1
+  author:
+    name: "Full Name"
+    contact: "email@example.com"
+  spdx:
+    license: "PMPL-1.0-or-later"
+  lineage:
+    parent: "<hash or reference>"
+    notes: "Optional emotional lineage context"
+  toolchain:
+    pmpl-sign: "<version>"
+    rust: "<version>"
+----
+
+== 5. Verification Rules
+
+`pmpl-verify` MUST:
+
+* validate signature correctness  
+* confirm hash matches artefact  
+* validate metadata schema  
+* check SPDX identifiers  
+* reconstruct provenance chain  
+* detect tampering or missing links  
+
+== 6. Repository‑Level Audit
+
+`pmpl-audit` MUST:
+
+* scan all files for SPDX headers  
+* validate SCM manifests  
+* detect missing provenance metadata  
+* generate a compliance report  
+
+== 7. Future Extensions
+
+* multi‑author signatures  
+* cross‑repository lineage graphs  
+* machine‑verifiable provenance proofs  
+* PQ‑only mode  
