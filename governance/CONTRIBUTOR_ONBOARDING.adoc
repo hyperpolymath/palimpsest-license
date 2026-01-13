@@ -1,0 +1,106 @@
+// SPDX-License-Identifier: MPL-2.0
+= Contributor Onboarding Guide – Palimpsest‑MPL Ecosystem
+:toc: macro
+
+Welcome to the Palimpsest‑MPL ecosystem.  
+This guide provides a structured onboarding pathway for new contributors, ensuring clarity, provenance integrity, and alignment with the project’s governance model.
+
+toc::[]
+
+== 1. Core Principles
+
+Contributors are expected to uphold:
+
+* care and contextual integrity  
+* provenance preservation  
+* ethical‑use awareness  
+* narrative clarity  
+* respect for cultural and emotional lineage  
+
+These principles guide all contributions, whether legal, technical, or editorial.
+
+== 2. Getting Started
+
+=== 2.1 Install Git Hooks
+
+Run:
+
+----
+git config core.hooksPath .githooks
+----
+
+
+The hooks enforce:
+
+* SPDX headers  
+* provenance metadata  
+* commit message schema  
+* AsciiDoc validation  
+* exhibit lifecycle rules  
+
+=== 2.2 Review Key Documents
+
+* `PALIMPSEST-MPL-1.0.txt`  
+* `spec/PMPL-SPEC.adoc`  
+* `spec/PROVENANCE-SPEC.adoc`  
+* `GOVERNANCE.adoc`  
+* `CODE_OF_CONDUCT.adoc`  
+
+== 3. Contribution Types
+
+=== Legal Contributions
+Work on:
+* jurisdictional frameworks  
+* exhibits  
+* legal strategy  
+* annexes  
+
+=== Documentation Contributions
+Work on:
+* AsciiDoc structure  
+* cross‑link integrity  
+* onboarding materials  
+
+=== Technical Contributions
+Work on:
+* provenance tooling  
+* validation scripts  
+* governance automation  
+
+== 4. Workflow
+
+. Open an issue using the appropriate template  
+. Discuss the proposal with maintainers  
+. Draft changes in a feature branch  
+. Ensure `.githooks` checks pass  
+. Submit a pull request  
+. Address review feedback  
+. Await Council approval (if required)  
+
+== 5. Governance and Review
+
+Some contributions require Council review:
+
+* normative exhibit changes  
+* legal strategy updates  
+* governance modifications  
+* versioning changes  
+
+See `GOVERNANCE.adoc` for details.
+
+== 6. Community Expectations
+
+All contributors must follow:
+
+* `CODE_OF_CONDUCT.adoc`  
+* `CODE_OF_PRACTICE.adoc`  
+
+== 7. Getting Help
+
+Use GitHub Discussions:
+
+* Q&A  
+* Ideas  
+* Governance inquiries  
+
+Welcome aboard.
