@@ -1,0 +1,52 @@
+// SPDX-License-Identifier: MPL-2.0
+= Git Hooks – Palimpsest Governance Layer
+:toc: macro
+
+The `.githooks/` directory implements the minimal viable governance layer for the Palimpsest‑MPL License repository.  
+These hooks enforce provenance, SPDX compliance, narrative clarity, and cross‑repository auditability.
+
+toc::[]
+
+== Purpose
+
+The hooks ensure:
+
+* SPDX headers are present and correct  
+* AsciiDoc is used consistently  
+* provenance metadata is not lost  
+* commit messages follow governance conventions  
+* exhibits follow lifecycle rules  
+* cross‑links remain valid  
+* no deprecated Markdown files reappear  
+
+== Installation
+
+Run:
+
+----
+git config core.hooksPath .githooks
+----
+
+
+== Hooks Included
+
+* `pre-commit` – provenance, SPDX, formatting, file checks  
+* `commit-msg` – governance‑aligned commit message schema  
+* `prepare-commit-msg` – automatic provenance scaffolding  
+* `pre-push` – heavy validation (cross‑links, exhibits, SPDX)  
+
+== Optional Validators
+
+* `validate-exhibit` – checks exhibit structure  
+* `validate-provenance` – checks provenance manifests  
+* `validate-spdx` – checks SPDX headers  
+
+== Governance
+
+These hooks implement the governance rules defined in:
+
+* `GOVERNANCE.adoc`  
+* `VERSIONING.adoc`  
+* `spec/PMPL-SPEC.adoc`  
+* `spec/PROVENANCE-SPEC.adoc`  
+* `spec/EXHIBITS-SPEC.adoc`  
