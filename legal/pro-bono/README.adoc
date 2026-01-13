@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MPL-2.0
 = Pro Bono Legal Outreach – Overview
 :toc: macro
-:toclevels: 2
+:toclevels: 3
 
-This directory contains all materials related to pro bono legal outreach for the Palimpsest‑MPL License project.  
-It includes organisation profiles, contact databases, engagement letter templates, and outreach tracking tools.
+The `legal/pro-bono/` directory contains all materials required to coordinate pro bono legal outreach for the Palimpsest‑MPL License.  
+It includes organisation profiles, contact databases, outreach trackers, and engagement letter templates.
+
+This subsystem supports legal validation, academic engagement, and policy advocacy across multiple jurisdictions.
 
 toc::[]
 
-== Structure
+== Directory Structure
 
 ----
 pro-bono/
@@ -18,38 +20,59 @@ pro-bono/
 └── letters/
 ----
 
-=== organisations/
-Profiles of legal organisations across jurisdictions:
+== Organisations
 
-* UK
-* Scotland
+`organisations/` contains structured profiles of legal organisations across key jurisdictions:
+
 * Netherlands (primary jurisdiction)
+* United Kingdom (England & Wales)
+* Scotland
 * International (Creative Commons, EFF, UNESCO, etc.)
 
-=== contacts/
-* `master-database.adoc` — full contact database  
+Each profile includes:
+
+* mission and focus areas  
+* relevant expertise  
+* suitability for Palimpsest outreach  
+* contact pathways  
+
+== Contacts
+
+`contacts/` contains:
+
+* `master-database.adoc` — comprehensive list of 60+ organisations  
 * `priority-contacts.adoc` — Tier 1 outreach targets  
 * `outreach-tracker.adoc` — per‑organisation tracking template  
 
-=== letters/
-Engagement letter templates for:
+These files support coordinated outreach and follow‑up.
 
-* academic partnerships  
+== Letters
+
+`letters/` contains engagement letter templates for:
+
+* academic institutions  
 * law firms  
 * digital rights organisations  
 * Creative Commons  
 * general introductions  
-* IViR Amsterdam (priority outreach)
+* IViR Amsterdam (priority outreach)  
 
-== Workflow
+Each template is designed for customisation and includes:
+
+* purpose of engagement  
+* materials provided  
+* next steps  
+* Palimpsest context  
+
+== Outreach Workflow
 
 . Identify target organisation  
 . Review organisation profile  
 . Select appropriate letter template  
 . Customise template  
 . Send outreach email  
-. Track status in `contacts/master-database.adoc`  
-. Update follow‑ups in `outreach-tracker.adoc`  
+. Log outreach in `master-database.adoc`  
+. Track follow‑ups in `outreach-tracker.adoc`  
 
 == Confidentiality
 
@@ -57,10 +80,11 @@ Engagement letter templates for:
 * Letter templates → public  
 * Master database → internal  
 * Outreach status → internal  
-* Legal opinions → confidential (Council only)
+* Legal opinions → confidential (Council only)  
 
 == Related Documents
 
-* link:../strategy/legal-strategy-v0.4.md[Legal Strategy]
+* link:../strategy/legal-strategy-v0.4.adoc[Legal Strategy]
 * link:../frameworks/[Jurisdictional Frameworks]
+* link:../../spec/PMPL-SPEC.adoc[PMPL Specification]
 * link:../../spec/EXHIBITS-SPEC.adoc[Exhibits Specification]
