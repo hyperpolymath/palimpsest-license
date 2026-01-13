@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: MPL-2.0
+= Documentation Style Guide – Palimpsest‑MPL
+:toc: macro
+
+This guide defines the conventions for writing and maintaining documentation across the Palimpsest‑MPL ecosystem.
+
+toc::[]
+
+== 1. Format
+
+All narrative and conceptual documents must use **AsciiDoc**.  
+Exceptions:
+
+* GitHub Issue Templates → Markdown  
+* GitHub PR Templates → Markdown  
+* GitHub Discussions Templates → Markdown  
+
+== 2. Tone and Voice
+
+Documentation must be:
+
+* clear  
+* narratively coherent  
+* provenance‑aware  
+* agent‑friendly  
+* neutral and precise  
+
+Avoid marketing language.  
+Prefer conceptual clarity over verbosity.
+
+== 3. Structure
+
+Use:
+
+* `= Title`  
+* `== Section`  
+* `=== Subsection`  
+
+Always include:
+
