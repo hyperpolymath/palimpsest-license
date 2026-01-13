@@ -1,0 +1,214 @@
+= Palimpsest‑MPL License (PMPL‑1.0‑or‑later)
+:toc: macro
+:toclevels: 3
+
+A file‑level copyleft license rooted in ethical use, emotional lineage, and quantum‑safe provenance, built on the foundation of the Mozilla Public License 2.0.
+
+This repository is the canonical home of the Palimpsest‑MPL License and its governance, exhibits, legal resources, and tooling.
+
+toc::[]
+
+== Quick Start
+
+=== Apply PMPL to your project
+
+Download the canonical license text:
+
+----
+curl -O https://raw.githubusercontent.com/hyperpolymath/palimpsest-license/main/legal/PALIMPSEST-MPL-1.0.txt
+mv PALIMPSEST-MPL-1.0.txt LICENSE
+----
+
+Add SPDX headers to your source files:
+
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Your Name
+----
+
+PMPL is designed for:
+
+* open‑source software
+* creative works
+* research artefacts
+* datasets
+* machine‑learning training corpora
+* provenance‑sensitive cultural materials
+
+== Key Features
+
+=== MPL‑2.0 Foundation
+A proven, widely compatible file‑level copyleft license.
+
+=== Ethical Use Guidelines (Exhibit A)
+A structured framework for responsible use, including cultural, narrative, and community‑centred obligations.
+
+=== Quantum‑Safe Provenance (Exhibit B)
+Optional post‑quantum signatures for long‑term attribution and lineage integrity.
+
+=== Emotional Lineage
+Recognition that creative works carry cultural, symbolic, and narrative meaning beyond code.
+
+=== AI Training Permitted
+Clear guidance for machine‑learning use cases, including obligations for non‑interpretive systems.
+
+== Documentation
+
+|===
+| Document | Description
+
+| User Guide
+| How to apply PMPL to your project
+
+| Integration Guide
+| CI/CD, package managers, SPDX tooling
+
+| FAQ
+| Common questions and clarifications
+
+| Full License Text
+| The complete PMPL‑1.0 license
+
+| Legal Resources
+| Jurisdictional frameworks, pro bono contacts, strategy
+|===
+
+== Tools
+
+PMPL includes optional tooling for provenance and compliance:
+
+|===
+| Tool | Purpose
+
+| `pmpl-sign`
+| Sign files with quantum‑safe signatures
+
+| `pmpl-verify`
+| Verify provenance metadata
+
+| `pmpl-audit`
+| Audit repositories for PMPL compliance
+|===
+
+Build tools locally:
+
+----
+cd tools/pmpl-sign && cargo build --release
+cd tools/pmpl-verify && cargo build --release
+cd tools/pmpl-audit && cargo build --release
+----
+
+== Repository Structure
+
+----
+palimpsest-license/
+├── legal/
+│   ├── PALIMPSEST-MPL-1.0.txt
+│   ├── exhibits/
+│   │   ├── EXHIBIT-A-ETHICAL-USE.txt
+│   │   └── EXHIBIT-B-QUANTUM-SAFE.txt
+│   ├── historical/
+│   └── README.adoc
+├── docs/
+├── tools/
+├── research/
+├── spec/
+├── LICENSE
+└── Justfile
+----
+
+== SPDX Identifier
+
+The canonical SPDX identifier for this license is:
+
+----
+PMPL-1.0-or-later
+----
+
+A machine‑readable SPDX metadata file is provided under:
+
+----
+LICENSES/PMPL-1.0.json
+----
+
+== Compatibility
+
+PMPL‑1.0 is compatible with:
+
+* MIT
+* BSD‑2‑Clause / BSD‑3‑Clause
+* Apache‑2.0
+* MPL‑2.0
+* LGPL‑2.1+
+* GPL‑2.0+ (via secondary license mechanism)
+
+== Legal Resources
+
+PMPL is governed by *Dutch law* (primary jurisdiction), with supporting analysis for:
+
+* Netherlands
+* United Kingdom (England & Wales, Scotland)
+* European Union
+* United States
+
+The `legal/` directory includes:
+
+* pro bono organisation lists
+* engagement letter templates
+* jurisdictional frameworks
+* statutory references
+* legal strategy (v0.4)
+* honest broker candidates
+* translation resources
+
+== Governance
+
+PMPL is maintained by the *Palimpsest Stewardship Council*, composed of:
+
+* 3 Creator Representatives
+* 2 Legal Experts
+* 1 Technologist
+* 1 Cultural Heritage Advocate
+
+The Council oversees:
+
+* license evolution
+* interpretive guidance
+* dispute mediation
+* versioning and release process
+
+See `GOVERNANCE.adoc` and `VERSIONING.adoc`.
+
+== Contributing
+
+We welcome contributions to:
+
+* documentation
+* tooling
+* research
+* provenance specifications
+
+Before contributing:
+
+. Read `CONTRIBUTING.adoc`
+. Open an issue for proposals
+. Join discussions in GitHub Discussions
+
+Changes to the license text follow a formal review process.
+
+== License of This Repository
+
+This repository is licensed under:
+
+----
+SPDX-License-Identifier: PMPL-1.0-or-later
+----
+
+The full license text is included in `LICENSE`.
+
+== Links
+
+* Canonical Repository: https://github.com/hyperpolymath/palimpsest-license
+* Mirrors: GitLab | Codeberg
+* Issues: GitHub Issues
+* Legal Contact: Palimpsest Stewardship Council
