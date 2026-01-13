@@ -1,0 +1,98 @@
+// SPDX-License-Identifier: MPL-2.0
+= Legal Resources – Palimpsest‑MPL License
+:toc: macro
+:toclevels: 3
+
+The `legal/` directory contains the complete legal operations layer for the Palimpsest‑MPL License.  
+It supports legal validation, jurisdictional analysis, pro bono outreach, academic engagement, policy advocacy, and long‑term stewardship.
+
+Primary governing law: **Netherlands (Auteurswet)**  
+Secondary jurisdictions: **United Kingdom (England & Wales, Scotland), European Union, United States**
+
+toc::[]
+
+== Directory Overview
+
+----
+legal/
+├── README.adoc
+├── PALIMPSEST-MPL-1.0.txt
+├── MPL-2.0.txt
+├── exhibits/
+├── historical/
+├── pro-bono/
+├── strategy/
+├── frameworks/
+├── annexes/
+├── translations/
+└── reference-schemes/
+----
+
+Each subdirectory contains a distinct legal function.
+
+== Exhibits
+
+`legal/exhibits/` contains normative and informative exhibits that extend or contextualise the license.  
+See link:exhibits/README.adoc[exhibits/README.adoc].
+
+== Historical
+
+`legal/historical/` preserves superseded versions of the license, exhibits, and strategy documents.  
+See link:historical/README.adoc[historical/README.adoc].
+
+== Pro Bono Outreach
+
+`legal/pro-bono/` contains:
+
+* organisation profiles  
+* contact databases  
+* outreach trackers  
+* engagement letter templates  
+
+This is the operational hub for legal engagement.
+
+== Legal Strategy
+
+`legal/strategy/` contains:
+
+* the comprehensive legal strategy  
+* honest broker profiles  
+* policy one‑pagers  
+* test‑case development frameworks  
+
+== Jurisdictional Frameworks
+
+`legal/frameworks/` contains detailed analyses for:
+
+* Netherlands  
+* UK  
+* Scotland  
+
+These documents support legal interpretation and policy alignment.
+
+== Annexes
+
+`legal/annexes/` contains statutory references and supporting materials.
+
+== Translations
+
+`legal/translations/` contains:
+
+* Dutch–English legal lexicon  
+* Dutch translation brief  
+* future official translations  
+
+== Reference Schemes
+
+`legal/reference-schemes/` contains citation and reference guides.
+
+== Governance
+
+All normative changes to the legal layer require approval by the **Palimpsest Stewardship Council**.
+
+See:
+
+* `GOVERNANCE.adoc`
+* `VERSIONING.adoc`
+* `spec/PMPL-SPEC.adoc`
+* `spec/EXHIBITS-SPEC.adoc`
