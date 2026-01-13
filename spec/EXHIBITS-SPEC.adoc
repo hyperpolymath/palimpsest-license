@@ -1,0 +1,83 @@
+= Exhibit Specification (PMPL Exhibits Layer)
+:toc: macro
+:toclevels: 3
+
+This document defines the structure, semantics, and lifecycle of Exhibits within the Palimpsest‑MPL License.  
+Exhibits extend the license with normative or optional modules.
+
+toc::[]
+
+== 1. Purpose of Exhibits
+
+Exhibits allow the license to:
+
+* adapt to new domains  
+* incorporate jurisdictional guidance  
+* define optional modules (e.g., PQ cryptography)  
+* provide narrative or ethical clarifications  
+* evolve without destabilising the core license  
+
+== 2. Exhibit Types
+
+=== 2.1 Normative Exhibits
+Binding components that modify or extend the license.
+
+Examples:
+* Exhibit A — Definitions  
+* Exhibit B — Quantum‑Safe Cryptography  
+
+=== 2.2 Informative Exhibits
+Non‑binding clarifications, examples, or guidance.
+
+Examples:
+* Ethical Use Notes  
+* Cultural Context Notes  
+
+== 3. Exhibit Structure
+
+Each exhibit MUST include:
+
+* title  
+* version  
+* status (normative or informative)  
+* SPDX identifier  
+* change history  
+* canonical text  
+
+== 4. Versioning
+
+Exhibits follow the same versioning rules as the PMPL license:
+
+* `major.minor.patch`  
+* normative exhibits require Council approval  
+* informative exhibits may be updated more frequently  
+
+== 5. Referencing Exhibits
+
+Exhibits MUST be referenced using:
+
+----
+Exhibit-B:Quantum-Safe-Cryptography@1.0.0
+----
+
+== 6. Lifecycle
+
+=== 6.1 Creation
+Proposed via PR + Council review.
+
+=== 6.2 Activation
+Merged into `legal/exhibits/` and referenced in the license.
+
+=== 6.3 Deprecation
+Marked as deprecated but retained for historical lineage.
+
+=== 6.4 Replacement
+A new exhibit supersedes an older one.
+
+== 7. Tooling Integration
+
+`pmpl-audit` MUST:
+
+* detect missing exhibit references  
+* validate exhibit versioning  
+* ensure SPDX identifiers match  
