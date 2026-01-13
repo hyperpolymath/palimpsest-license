@@ -1,0 +1,34 @@
+= Palimpsest‑MPL Specification Index
+:toc: macro
+:toclevels: 2
+
+This index provides a unified entry point into the formal specification layer of the Palimpsest‑MPL ecosystem.  
+Each document defines a different dimension of the license, its governance, its provenance model, and its ethical foundations.
+
+toc::[]
+
+== Core Specifications
+
+* link:PMPL-SPEC.adoc[PMPL-SPEC] — Core license semantics, structure, and normative rules.
+* link:EXHIBITS-SPEC.adoc[EXHIBITS-SPEC] — Exhibit lifecycle, structure, and semantics.
+* link:ETHICAL-USE-SPEC.adoc[ETHICAL-USE-SPEC] — Ethical use, narrative boundaries, and cultural constraints.
+
+== Provenance and Cryptography
+
+* link:PROVENANCE-SPEC.adoc[PROVENANCE-SPEC] — Provenance metadata, signature formats, lineage rules.
+* link:QUANTUM-SAFE-SPEC.adoc[QUANTUM-SAFE-SPEC] — Post‑quantum cryptography and future‑proofing.
+
+== SCM Manifests
+
+* link:6SCM-SPEC.adoc[6SCM-SPEC] — Specification for the Six SCM Manifests (META, ECOSYSTEM, PLAYBOOK, AGENTIC, NEUROSYM, GOVERNANCE).
+
+== How These Specifications Interact
+
+* PMPL-SPEC defines the license core.
+* EXHIBITS-SPEC defines modular extensions.
+* ETHICAL-USE-SPEC defines normative boundaries.
+* PROVENANCE-SPEC defines how artefacts are signed, verified, and audited.
+* QUANTUM-SAFE-SPEC defines cryptographic requirements.
+* 6SCM-SPEC defines the machine‑readable governance and ecosystem structure.
+
+Together, they form the complete Palimpsest‑MPL specification layer.

@@ -1,0 +1,28 @@
+= Contributor Journey Map
+
+== Stage 1: First Contact
+* Reads README  
+* Opens an issue or discussion  
+* Learns about PMPL principles  
+
+== Stage 2: First Contribution
+* Fixes a typo or improves docs  
+* Adds SPDX headers  
+* Runs `just validate`  
+
+== Stage 3: Tooling Interaction
+* Builds pmpl-sign / pmpl-verify  
+* Runs pmpl-audit  
+* Understands provenance flow  
+
+== Stage 4: Domain Contribution
+* Legal: exhibits, clarifications  
+* Governance: versioning, processes  
+* Tooling: Rust improvements  
+* Documentation: onboarding, examples  
+
+== Stage 5: Maintainer Track
+* Consistent contributions  
+* Stewardship mindset  
+* Alignment with PMPL ethics  
+* Invitation from the Council  

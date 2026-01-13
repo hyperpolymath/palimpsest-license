@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -e
+
+echo "Running Palimpsest pre-commit checks..."
+
+# SPDX header check
+missing=0
+for f in $(git diff --cached --name-only); do
+  if [[ "$f" =~ \.(rs|adoc|scm|md)$ ]]; then
+    if ! grep -q "SPDX-License-Identifier: PMPL-1.0-or-later" "$f"; then
+      echo "Missing SPDX header in $f"
+      missing=1
+    fi
+  fi
+done
+
+if [ "$missing" -ne 0 ]; then
+  echo "Please add SPDX headers before committing."
+  exit 1
+fi
+
+# Optional: run pmpl-audit if installed
+if command -v pmpl-audit >/dev/null 2>&1; then
+  echo "Running pmpl-audit..."
+  pmpl-audit || true
+fi
+
+echo "Pre-commit checks passed."

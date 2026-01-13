@@ -1,0 +1,24 @@
+= Research Directory
+:toc: macro
+
+The `research/` directory contains academic, analytical, and exploratory work that informs the evolution of the Palimpsest‑MPL License ecosystem.
+
+== Structure
+
+* 'datasets/' — Provenance test data, cryptographic benchmarks, neurosymbolic examples.
+* 'experiments/' — Prototype implementations, PQ signature experiments, provenance chain simulations.
+* 'notes/' — Early‑stage thinking, drafts, scratchpads, and exploratory work.
+* `papers/` — Whitepapers, formal analyses, design rationales, and theoretical documents.
+* `presentations/` — Slide decks, talks, and briefings for internal and external audiences.
+
+== Purpose
+
+Research artefacts support:
+
+* ethical and narrative foundations  
+* provenance and cryptographic design  
+* neurosymbolic integration  
+* governance and versioning decisions  
+* ecosystem evolution  
+
+These documents are non‑normative unless explicitly referenced by a specification.

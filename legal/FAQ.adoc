@@ -1,0 +1,64 @@
+// SPDX-License-Identifier: MPL-2.0
+= Palimpsest License – Legal FAQ
+:toc: macro
+
+toc::[]
+
+== What is the Palimpsest‑MPL License?
+
+A modern, provenance‑aware license built on the MPL, designed for creators working with narrative, symbolic, cultural, or emotionally significant materials.
+
+== Why is Dutch law the primary jurisdiction?
+
+The license was drafted with Dutch copyright principles in mind, especially moral rights, TDM exceptions, and the Auteurswet’s strong protections for creators.
+
+== Is this license OSI‑approved?
+
+Not yet. OSI approval is a long‑term goal after legal validation and academic review.
+
+== How does this differ from MPL‑2.0?
+
+* Adds provenance metadata and signature requirements  
+* Adds ethical‑use constraints  
+* Adds modular exhibits  
+* Adds governance manifests  
+* Adds neurosymbolic and agentic integration guidance  
+
+== Is this a copyleft license?
+
+Yes, but with a **file‑level** copyleft model inherited from MPL.
+
+== Can commercial entities use Palimpsest‑licensed works?
+
+Yes, provided they comply with:
+
+* provenance requirements  
+* ethical‑use constraints  
+* exhibit‑specific obligations  
+
+== What are “Exhibits”?
+
+Modular extensions that clarify or extend the license.  
+See `legal/exhibits/` and `spec/EXHIBITS-SPEC.adoc`.
+
+== What is the provenance requirement?
+
+Artefacts must include:
+
+* SPDX headers  
+* provenance metadata  
+* optional cryptographic signatures  
+
+See `spec/PROVENANCE-SPEC.adoc`.
+
+== Do I need to sign artefacts?
+
+Signing is recommended but not mandatory unless an exhibit requires it.
+
+== How do I get legal help?
+
+See:
+
+* `legal/pro-bono/organisations/`  
+* `legal/pro-bono/contacts/`  
+* `legal/pro-bono/letters/`  

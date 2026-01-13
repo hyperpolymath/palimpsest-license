@@ -1,0 +1,43 @@
+= Specification Layer Overview
+:toc: macro
+:toclevels: 2
+
+The `spec/` directory contains the formal specifications that define the behaviour, semantics, and governance of the Palimpsest‑MPL License ecosystem.
+
+toc::[]
+
+== Purpose
+
+This directory provides:
+
+* normative specifications  
+* formal schemas  
+* ethical and narrative constraints  
+* provenance and cryptographic rules  
+* exhibit lifecycle definitions  
+
+These documents guide implementers, auditors, and contributors.
+
+== Contents
+
+* `PMPL-SPEC.adoc` — Core license specification  
+* `ETHICAL-USE-SPEC.adoc` — Ethical use and narrative boundaries  
+* `6SCM-SPEC.adoc` — Specification for the Six SCM Manifests  
+* `QUANTUM-SAFE-SPEC.adoc` — PQ cryptography and future‑proofing  
+* `PROVENANCE-SPEC.adoc` — Provenance, signatures, lineage, audit  
+* `EXHIBITS-SPEC.adoc` — Exhibit structure, lifecycle, semantics  
+
+== Relationship to the Repository
+
+These specifications inform:
+
+* `legal/` — canonical license text and exhibits  
+* `tools/` — provenance tooling  
+* `docs/` — user‑facing documentation  
+* `*.scm` — SCM manifests  
+* `.github/workflows/` — CI/CD compliance  
+
+== Governance
+
+All normative changes require approval from the Palimpsest Stewardship Council.  
+See `GOVERNANCE.adoc` for details.

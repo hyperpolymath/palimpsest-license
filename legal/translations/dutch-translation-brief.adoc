@@ -1,0 +1,61 @@
+// SPDX-License-Identifier: MPL-2.0
+= Dutch Translation Brief – Palimpsest‑MPL License
+:toc: macro
+
+This brief provides guidance for certified legal translators preparing the official Dutch translation of the Palimpsest‑MPL License.  
+Dutch law governs the license; therefore, the Dutch version must be precise, authoritative, and legally enforceable.
+
+toc::[]
+
+== Objectives
+
+* Produce a legally accurate Dutch translation of:
+  - PALIMPSEST-MPL-1.0.txt
+  - All normative exhibits
+  - Required definitions and terminology
+* Maintain fidelity to:
+  - Dutch copyright law (Auteurswet)
+  - Dutch civil law terminology
+  - MPL‑2.0 structure and intent
+* Ensure compatibility with:
+  - EU DSM Directive
+  - Dutch TDM exceptions
+  - Dutch moral rights doctrine
+
+== Translation Requirements
+
+=== 1. Legal Accuracy
+Use established Dutch legal terminology for:
+* auteursrecht  
+* persoonlijkheidsrechten  
+* verveelvoudiging  
+* openbaarmaking  
+* licentievoorwaarden  
+* beperkingen en uitzonderingen  
+
+=== 2. Structural Fidelity
+* Preserve section numbering and hierarchy.
+* Preserve exhibit references.
+* Preserve defined terms exactly.
+
+=== 3. Terminology Consistency
+Use the Dutch–English legal lexicon in:
+`legal/translations/dutch-english-legal-lexicon.md`
+
+=== 4. Translator Notes
+Include translator footnotes where:
+* Dutch law diverges from US/EU terminology  
+* MPL‑2.0 concepts require clarification  
+* Cultural or narrative terms require nuance  
+
+== Deliverables
+
+* Dutch translation (canonical `.txt`)
+* Annotated version with translator notes
+* Summary of interpretive decisions
+* Certification of translation accuracy
+
+== Contacts
+
+Palimpsest Stewardship Council  
+[Insert contact email]

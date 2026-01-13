@@ -1,0 +1,45 @@
+// SPDX-License-Identifier: MPL-2.0
+= Migration Note – Markdown to AsciiDoc Conversion
+
+All legal documents previously written in Markdown (`.md`) have been fully replaced with canonical AsciiDoc (`.adoc`) versions.
+
+== Rationale
+
+* AsciiDoc is the primary documentation format for the Palimpsest ecosystem.
+* It supports:
+  - structured legal drafting  
+  - cross‑references  
+  - tables and metadata  
+  - GitHub Pages integration  
+  - long‑form legal analysis  
+
+== Scope of Migration
+
+The following directories were fully converted:
+
+* `legal/pro-bono/organisations/`
+* `legal/pro-bono/contacts/`
+* `legal/pro-bono/letters/`
+* `legal/strategy/`
+* `legal/frameworks/`
+* `legal/annexes/`
+* `legal/translations/`
+* `legal/reference-schemes/`
+
+All `.md` files have been removed.
+
+== Canonical Format
+
+AsciiDoc (`.adoc`) is now the **only** authoritative format for legal documentation.
+
+== Version Control
+
+All rewritten files include:
+
+* SPDX headers  
+* consistent metadata  
+* cross‑links to related documents  
+
+== Review
+
+This migration was approved by the Palimpsest Stewardship Council.

@@ -1,0 +1,74 @@
+// SPDX-License-Identifier: MPL-2.0
+= Test‑Case Development Framework – Palimpsest License
+:toc: macro
+
+This framework outlines how to identify, prepare, and execute legal test cases to validate and enforce the Palimpsest‑MPL License.
+
+toc::[]
+
+== Objectives
+
+* Establish enforceability under Dutch law (primary jurisdiction).
+* Validate provenance and ethical‑use clauses.
+* Create precedent for platform accountability.
+* Support policy advocacy with real‑world examples.
+
+== Test‑Case Categories
+
+=== 1. Provenance Stripping
+Scenario:
+A platform or AI system removes provenance metadata or signatures.
+
+Legal Questions:
+* Does this violate Dutch moral rights?  
+* Does it breach license terms?  
+
+Evidence Needed:
+* Original artefact with metadata  
+* Platform output without metadata  
+* Logs, screenshots, timestamps  
+
+=== 2. Unethical Use or Distortion
+Scenario:
+A work is used in a harmful, misleading, or decontextualised way.
+
+Legal Questions:
+* Does this violate ethical‑use constraints?  
+* Does it infringe moral rights?  
+
+Evidence Needed:
+* Original work  
+* Misused output  
+* Harm analysis  
+
+=== 3. Unauthorized Commercial Use
+Scenario:
+A company uses a PMPL‑licensed work without complying with provenance or exhibit requirements.
+
+Legal Questions:
+* Is this a breach of license?  
+* Is it copyright infringement?  
+
+Evidence Needed:
+* Proof of use  
+* Missing compliance steps  
+* Commercial context  
+
+== Test‑Case Workflow
+
+. Identify candidate case  
+. Gather evidence  
+. Conduct legal analysis  
+. Consult honest brokers  
+. Prepare legal brief  
+. Engage pro bono counsel  
+. Decide on:
+  * negotiation  
+  * takedown  
+  * regulatory complaint  
+  * litigation (rare, last resort)  
+
+== Governance
+
+All test cases require approval by the Palimpsest Stewardship Council.  
+Confidentiality rules apply (see `legal/README.adoc`).
