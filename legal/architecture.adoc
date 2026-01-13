@@ -1,0 +1,61 @@
+// SPDX-License-Identifier: MPL-2.0
+= Legal Architecture Overview
+:toc: macro
+
+This document provides a high‑level view of the legal operations layer of the Palimpsest‑MPL License.
+
+== Conceptual Architecture
+
+----
+PALIMPSEST-MPL-1.0.txt
+        |
+        v
+   Exhibits (legal/exhibits/)
+        |
+        v
+Specifications (spec/*-SPEC.adoc)
+        |
+        v
+Jurisdictional Frameworks (legal/frameworks/)
+        |
+        v
+Legal Strategy (legal/strategy/)
+        |
+        v
+Pro Bono Outreach (legal/pro-bono/)
+        |
+        v
+Policy Advocacy & Enforcement
+        |
+        v
+Historical Archive (legal/historical/)
+----
+
+== Layer Descriptions
+
+=== License Core
+The canonical license text and its normative exhibits.
+
+=== Specification Layer
+Formal definitions, provenance rules, ethical constraints, and SCM manifest specifications.
+
+=== Frameworks Layer
+Jurisdictional analyses grounding the license in real legal systems.
+
+=== Strategy Layer
+Legal strategy, honest broker profiles, policy one‑pagers, and test‑case frameworks.
+
+=== Outreach Layer
+Operational engagement with law firms, academics, and digital rights organisations.
+
+=== Historical Layer
+Preservation of lineage and interpretive history.
+
+== Governance
+
+The Palimpsest Stewardship Council oversees:
+
+* normative changes  
+* jurisdictional alignment  
+* legal strategy  
+* outreach priorities  
