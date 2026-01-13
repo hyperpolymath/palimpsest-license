@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: MPL-2.0
+= Palimpsest‑MPL Ecosystem (ASCII Diagram)
+
+                  ┌──────────────────────────┐
+                  │      Legal Layer         │
+                  │  (license, exhibits,     │
+                  │   frameworks)            │
+                  └────────────┬─────────────┘
+                               │ defines
+                               ▼
+                  ┌──────────────────────────┐
+                  │    Governance Layer       │
+                  │ (council, decisions,      │
+                  │  versioning, practice)    │
+                  └────────────┬─────────────┘
+                               │ governs
+                               ▼
+                  ┌──────────────────────────┐
+                  │   Specification Layer     │
+                  │ (PMPL, provenance,        │
+                  │  exhibit specs)           │
+                  └────────────┬─────────────┘
+                               │ informs
+                               ▼
+                  ┌──────────────────────────┐
+                  │  Documentation Layer      │
+                  │ (onboarding, journey,     │
+                  │  integration, tooling)    │
+                  └────────────┬─────────────┘
+                               │ guides
+                               ▼
+                         Contributors
