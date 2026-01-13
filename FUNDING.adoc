@@ -1,0 +1,97 @@
+= Funding the Palimpsest License Project
+:toc: macro
+:toclevels: 2
+
+The Palimpsest‑MPL License is a Free and Open Source Software (FOSS) and legal governance initiative stewarded by hyperpolymath and the Palimpsest Stewardship Council.  
+This document explains how the project is funded, how contributions are used, and why community support matters.
+
+toc::[]
+
+== Purpose of Funding
+
+The Palimpsest License exists to protect creators who work with narrative, trauma, mythology, cultural memory, and symbolic expression.  
+Maintaining a living, ethical, provenance‑aware license requires:
+
+* legal expertise  
+* governance infrastructure  
+* tooling and audits  
+* documentation and accessibility  
+* translation and jurisdictional analysis  
+
+Community support ensures that the license remains stable, trustworthy, and stewarded with care.
+
+== Ways to Support the Project
+
+=== Transparent Funding (Recommended)
+* **Open Collective:** `palimpsest-license`  
+  Open accounting, public budgets, and transparent stewardship.
+
+=== Other Platforms
+* **Patreon:** `palimpsest-license`  
+* **LiberaPay:** recurring micro‑donations  
+* **Ko‑fi:** one‑time contributions  
+
+These platforms help sustain ongoing development and governance work.
+
+=== Cryptocurrency
+* **Monero (XMR):** preferred for privacy‑preserving contributions  
+  (See repository or contact maintainers for the current address.)
+
+=== Corporate Sponsorship
+Organizations whose values align with the license’s ethical, cultural, and provenance principles are welcome to discuss sponsorship.
+
+To begin a conversation, contact the maintainers or the Palimpsest Stewardship Council via the channels listed in the repository README.
+
+== How Funds Are Used
+
+Funding supports the long‑term health and integrity of the project:
+
+=== Reliability
+* Maintaining a stable license text and exhibit structure  
+* Ensuring documentation remains accurate and up to date  
+* Supporting versioning and release processes  
+
+=== Security
+* Regular security audits  
+* Hardening CI/CD workflows  
+* Maintaining provenance tooling (`pmpl-sign`, `pmpl-verify`, `pmpl-audit`)  
+* Ensuring cryptographic lineage remains trustworthy  
+
+=== Accessibility
+* WCAG 2.3 AAA compliance for all public‑facing materials  
+* Clear, multilingual documentation  
+* Inclusive onboarding for contributors and adopters  
+
+=== Governance
+* Supporting the work of the Palimpsest Stewardship Council  
+* Jurisdictional analysis and legal review  
+* Interpretive guidance and dispute mediation  
+
+=== Tooling and Ecosystem
+* Development and maintenance of provenance tools  
+* SCM manifest evolution (`ECOSYSTEM.scm`, `META.scm`, `PLAYBOOK.scm`, etc.)  
+* Research into ethical and neurosymbolic interfaces  
+
+== Why Support Matters
+
+The Palimpsest License is more than a legal document.  
+It is a framework for ethical creation in a world shared by humans and algorithms — a space where narrative, memory, and symbolic meaning deserve protection.
+
+Your support helps:
+
+* keep the license alive, evolving, and legally sound  
+* ensure creators retain agency and emotional lineage  
+* build tools that make provenance auditable and humane  
+* sustain a governance model rooted in care, clarity, and accountability  
+
+[quote]
+This is a license born not just from copyright, but from care.
+
+== Transparency
+
+All funding sources and expenditures are tracked through the project’s public channels (e.g., Open Collective).  
+The Council publishes periodic summaries as part of its governance responsibilities.
+
+== Contact
+
+For questions about funding, sponsorship, or stewardship, see the contact information in the repository README or reach out to the Palimpsest Stewardship Council.
