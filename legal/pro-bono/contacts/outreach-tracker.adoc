@@ -1,0 +1,49 @@
+// SPDX-License-Identifier: MPL-2.0
+= Outreach Tracker Template
+
+== Organisation Information
+
+[cols="1,3"]
+|===
+| Name | 
+| Jurisdiction | 
+| Type | Law firm / academic centre / NGO / other
+| Website | 
+| Primary Contact | 
+| Email | 
+| Phone | 
+|===
+
+== Outreach Status
+
+[cols="1,3"]
+|===
+| Initial Contact Date | 
+| Response Received | Yes / No
+| Response Date | 
+| Outcome | Interested / Declined / Referred / No Response
+| Next Steps | 
+| Follow‑Up Date | 
+|===
+
+== Notes
+
+* Summary of conversation  
+* Key concerns or questions  
+* Required documents sent  
+* Additional contacts suggested  
+
+== Attachments Sent
+
+* Palimpsest v0.4 documentation  
+* Legal One‑Pager  
+* Relevant exhibits  
+* Specific questions or requests  
+
+== Internal Classification
+
+[cols="1,3"]
+|===
+| Priority Tier | 1 / 2 / 3
+| Confidentiality Level | Public / Internal / Council‑Only
+|===
