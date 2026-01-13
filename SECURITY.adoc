@@ -1,0 +1,38 @@
+= Security Policy
+
+== Supported Versions
+
+This repository is currently under *active development*. All work targets the `main` branch; tagged releases are supported as published.
+
+== Reporting Vulnerabilities
+
+If you discover a security issue related to:
+
+* the Palimpsest‑MPL license text
+* provenance tooling (pmpl-sign, pmpl-verify, pmpl-audit)
+* CI/CD workflows
+* this repository’s configuration
+
+please:
+
+1. Do not open a public issue for sensitive findings.
+2. Contact the Palimpsest Stewardship Council via the contact channels listed in the repository README.
+3. Provide as much detail as possible (steps to reproduce, impact, affected components).
+
+The Council will:
+
+* acknowledge receipt within a reasonable time
+* evaluate the report
+* coordinate a fix or clarification where necessary
+* publish security notes when appropriate
+
+== Security Hardening
+
+This repository adopts:
+
+* least‑privilege GitHub Actions permissions
+* regular dependency and security scans
+* OpenSSF Scorecard monitoring
+* SPDX and provenance‑aware practices
+
+See `.github/workflows/` for details.
