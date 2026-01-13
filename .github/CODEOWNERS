@@ -1,19 +1,23 @@
-# CODEOWNERS
-# Format: [Path] [GitHub Username/Team]
+# CODEOWNERS — Palimpsest License
 
-# Root files (README, LICENSE, etc.)
-README.md LICENSE CONTRIBUTING.md CODE_OF_CONDUCT.md GOVERNANCE.md SECURITY.md @your-github-username
-CHANGELOG.md @your-github-username
+# Core license text and exhibits
+/legal/PALIMPSEST-MPL-1.0.txt    @hyperpolymath
+/legal/exhibits/*                @hyperpolymath
 
-# License texts
-LICENSES/ @your-github-username @legal-expert-username
+# Governance and versioning
+/GOVERNANCE.adoc                 @hyperpolymath
+/VERSIONING.adoc                 @hyperpolymath
 
-# Documentation
-docs/ @your-github-username @docs-maintainer-username
+# SCM manifests
+/ECOSYSTEM.scm                   @hyperpolymath
+/META.scm                        @hyperpolymath
+/PLAYBOOK.scm                    @hyperpolymath
+/AGENTIC.scm                     @hyperpolymath
+/NEUROSYM.scm                    @hyperpolymath
 
-# Tooling (scripts, workflows)
-.github/ @your-github-username @devops-username
-Makefile setup.sh test.sh @your-github-username @devops-username
+# Rust tools
+/tools/**                        @hyperpolymath
 
-# Assets (badges, QR codes)
-assets/ @your-github-username @designer-username
+# Docs
+/docs/**                         @hyperpolymath
+/README.adoc                     @hyperpolymath
