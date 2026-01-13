@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: MPL-2.0
+= International Pro Bono Legal Organisations
+:toc: macro
+
+These organisations provide global expertise relevant to licensing, digital rights, and cultural protection.
+
+toc::[]
+
+== Creative Commons
+
+* **Type:** Global licensing organisation  
+* **Expertise:** Open licensing, copyright reform  
+* **Relevance:** Compatibility assessment and collaboration  
+
+== Electronic Frontier Foundation (EFF)
+
+* **Type:** Digital rights NGO  
+* **Expertise:** Platform accountability, AI, copyright  
+* **Relevance:** Policy advocacy and legal strategy  
+
+== UNESCO – Cultural Rights Division
+
+* **Type:** UN agency  
+* **Expertise:** Cultural rights, heritage protection  
+* **Relevance:** Alignment with Palimpsest’s cultural and narrative focus  
+
+== PIIPA – Public Interest Intellectual Property Advisors
+
+* **Type:** Global pro bono network  
+* **Expertise:** IP support for public interest projects  
+* **Relevance:** Potential pro bono matchmaker  
+
+== WIPO – Copyright and Creative Industries Sector
+
+* **Type:** International organisation  
+* **Expertise:** Copyright harmonisation  
+* **Relevance:** Long‑term policy alignment  
