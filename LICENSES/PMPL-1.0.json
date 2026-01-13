@@ -1,0 +1,11 @@
+{
+  "licenseId": "PMPL-1.0",
+  "name": "Palimpsest-MPL License 1.0",
+  "version": "1.0",
+  "reference": "legal/PALIMPSEST-MPL-1.0.txt",
+  "jurisdiction": "NL",
+  "steward": "Palimpsest Stewardship Council",
+  "isOsiApproved": false,
+  "isFsfLibre": false,
+  "licenseText": "SEE: legal/PALIMPSEST-MPL-1.0.txt"
+}
