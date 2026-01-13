@@ -1,0 +1,71 @@
+= PMPL Versioning Policy
+:toc:
+
+== Purpose
+
+This document defines how new versions of the Palimpsest‑MPL License (PMPL) are created, reviewed, approved, and published.
+
+== Version Format
+
+PMPL uses semantic versioning:
+
+----
+MAJOR.MINOR
+----
+
+Examples:
+
+* `1.0` — initial release
+* `1.1` — clarifications, non‑substantive improvements
+* `2.0` — substantive legal or structural changes
+
+== “‑or‑later” Model
+
+The canonical SPDX identifier is:
+
+----
+PMPL-1.0-or-later
+----
+
+This grants recipients the option to use:
+
+* the version under which the work was originally licensed, or
+* any later version published by the Palimpsest Stewardship Council
+
+== Release Types
+
+=== Minor Versions (e.g., 1.1)
+* clarifications
+* improved definitions
+* non‑substantive refinements
+* updated exhibits
+
+=== Major Versions (e.g., 2.0)
+* substantive legal changes
+* new obligations
+* new rights
+* structural changes to exhibits
+
+== Release Process
+
+. Proposal submitted via GitHub issue
+. Council review
+. Public comment period (minimum 30 days)
+. Council vote (2/3 supermajority for major versions)
+. Publication of:
+* updated license text
+* changelog
+* SPDX metadata
+* legal commentary
+
+== Historical Versions
+
+All previous versions are stored under:
+
+----
+legal/historical/
+----
+
+== Deprecation
+
+The Council may deprecate versions but cannot revoke them.
