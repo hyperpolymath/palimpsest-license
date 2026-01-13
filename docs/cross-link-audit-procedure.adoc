@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: MPL-2.0
+= Cross‑Link Audit Procedure
+
+This document describes the procedure for auditing cross‑links across the Palimpsest‑MPL repository.
+
+== Purpose
+
+Cross‑link audits ensure:
+
+* no broken references  
+* no outdated paths  
+* no orphaned exhibits  
+* no circular dependencies  
+* consistent AsciiDoc linking patterns  
+
+== Procedure
+
+. Identify all `.adoc` and `.md` files.
+. Extract all `xref:` and `link:` references.
+. Verify that each referenced file exists.
+. Confirm that renamed or migrated files have updated links.
+. Check that governance, legal, and spec links follow canonical paths.
+. Flag any links pointing to deprecated or historical artefacts.
+. Produce a summary report for maintainers.
+
+== Review Frequency
+
+* Monthly for active development  
+* Before each tagged release  
+* After any directory restructuring  
+
+== Governance
+
+Cross‑link audits are part of the Maintainer Review Checklist.
