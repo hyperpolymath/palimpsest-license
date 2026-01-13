@@ -1,11 +1,16 @@
-// SPDX-License-Identifier: PMPL-1.0
-// SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
-
-= Palimpsest-MPL License Specification
-:toc: left
+// SPDX-License-Identifier: MPL-2.0
+= 6SCM Files Specification
+:toc:
 :toclevels: 3
-:icons: font
-:source-highlighter: rouge
+
+== Related Specifications
+* link:PMPL-SPEC.adoc[PMPL-SPEC]
+* link:EXHIBITS-SPEC.adoc[EXHIBITS-SPEC]
+* link:ETHICAL-USE-SPEC.adoc[ETHICAL-USE-SPEC]
+* link:PROVENANCE-SPEC.adoc[PROVENANCE-SPEC]
+* link:QUANTUM-SAFE-SPEC.adoc[QUANTUM-SAFE-SPEC]
+* link:6SCM-SPEC.adoc[6SCM-SPEC]
+* link:SPEC-INDEX.adoc[SPEC-INDEX]
 
 == Overview
 
