@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: MPL-2.0
+= Palimpsest‑MPL Documentation Hub
+:toc: macro
+:toclevels: 2
+
+Welcome to the documentation hub for the Palimpsest‑MPL ecosystem.  
+This site provides a structured, narrative‑driven overview of the system’s legal, governance, specification, and contributor layers.
+
+toc::[]
+
+== About Palimpsest‑MPL
+
+Palimpsest‑MPL is a provenance‑first, narrative‑aware licensing and governance ecosystem.  
+It integrates legal clarity, ethical‑use principles, and agent‑friendly design into a coherent, extensible framework.
+
+== Documentation Structure
+
+* **Onboarding** – Start here if you’re new  
+* **Journey Maps** – Conceptual and narrative overviews  
+* **Integration Guides** – How to use Palimpsest in your workflows  
+* **Provenance Diagrams** – Visual explanations of data lineage  
+* **Tooling** – Utilities and automation  
+* **Jurisdictional Notes** – Comparative legal insights  
+
+== Quick Links
+
+* xref:onboarding.adoc[Contributor Onboarding]  
+* xref:journey-map.adoc[Journey Map]  
+* xref:provenance-flow-diagram.adoc[Provenance Flow Diagram]  
+* xref:INTEGRATION.md[Integration Guide]  
+* xref:FAQ.md[FAQ]  
+* xref:tooling/tooling.adoc[Tooling Overview]  
+
+== Governance and Legal Layers
+
+* xref:../governance/GOVERNANCE.adoc[Governance Model]  
+* xref:../legal/[Legal Directory]  
+* xref:../spec/[Specifications]  
+
+== Contributing
+
+See:
+
+* xref:../governance/CONTRIBUTOR_ONBOARDING.adoc[Contributor Onboarding]  
+* xref:../governance/MAINTAINER_REVIEW_CHECKLIST.adoc[Maintainer Review Checklist]  
+
+== Community
+
+Use GitHub Discussions for:
+
+* Q&A  
+* Ideas  
+* Governance inquiries  
+* Announcements  
+
+Welcome to the ecosystem.
