@@ -1,0 +1,79 @@
+// SPDX-License-Identifier: MPL-2.0
+= Documentation Index – Palimpsest‑MPL Ecosystem
+:toc: macro
+:toclevels: 2
+
+This directory contains contributor‑facing documentation for understanding, integrating with, and navigating the Palimpsest‑MPL ecosystem.  
+It complements the legal, governance, and specification layers by providing conceptual maps, onboarding materials, diagrams, and integration guides.
+
+toc::[]
+
+== Purpose
+
+The `docs/` directory serves as the knowledge base for contributors.  
+It provides:
+
+* onboarding pathways  
+* conceptual and narrative maps  
+* integration guidance  
+* provenance flow diagrams  
+* tooling documentation  
+* jurisdictional comparisons  
+
+== Structure
+
+----
+docs/
+├── FAQ.md
+├── GUIDE.md
+├── INTEGRATION.md
+├── onboarding.adoc
+├── journey-map.adoc
+├── provenance-flow-diagram.adoc
+├── jurisdictievergelijking.nl
+└── tooling/
+└── tooling.adoc
+----
+
+
+== Document Overview
+
+=== FAQ.md
+Frequently asked questions about the ecosystem, workflows, and design philosophy.
+
+=== GUIDE.md
+A general contributor guide for navigating the repository.
+
+=== INTEGRATION.md
+Instructions for integrating Palimpsest‑MPL into external systems or workflows.
+
+=== onboarding.adoc
+A structured onboarding path for new contributors.
+
+=== journey-map.adoc
+A conceptual map of the contributor journey and ecosystem touchpoints.
+
+=== provenance-flow-diagram.adoc
+A diagrammatic explanation of provenance flows across artefacts.
+
+=== jurisdictievergelijking.nl
+A comparative analysis of jurisdictional differences relevant to Palimpsest.
+
+=== tooling/tooling.adoc
+Documentation for tooling, automation, and developer utilities.
+
+== Relationship to Other Layers
+
+* Legal documents → `legal/`  
+* Governance processes → `governance/`  
+* Specifications → `spec/`  
+* Examples and templates → `.github/`  
+
+== Contributing to Documentation
+
+Documentation changes follow the same governance rules as other contributions.  
+See:
+
+* `governance/CONTRIBUTOR_ONBOARDING.adoc`  
+* `governance/MAINTAINER_REVIEW_CHECKLIST.adoc`  
+
