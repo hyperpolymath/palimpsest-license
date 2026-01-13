@@ -1,19 +1,30 @@
 ---
 name: Feature Request
-about: Suggest a new feature (e.g., better AI compliance tooling)
-title: "[Feature] "
-labels: "enhancement"
-assignees: ""
+about: Propose an enhancement to the Palimpsest‑MPL ecosystem
+labels: enhancement
 ---
 
-## What Problem Does This Solve?
-Explain the problem you’re facing (e.g., "It’s hard to verify if an AI tool complies with the license").
+# Feature Request
+
+## Summary
+Describe the feature or improvement.
+
+## Motivation
+Why is this needed?  
+Which part of the ecosystem does it support?
 
 ## Proposed Solution
-Describe what you want to build (e.g., "A CLI tool to check if a model’s training data uses Palimpsest-licensed works").
+Describe the change, including any relevant `.adoc` files or specifications.
 
-## Alternatives You’ve Considered
-Any other solutions you thought of (e.g., "I considered manual checks, but they’re too slow").
+## Governance Impact
+Does this affect:
+- Exhibits?
+- Specifications?
+- Legal frameworks?
+- Provenance rules?
+
+## Alternatives Considered
+List any alternative approaches.
 
 ## Additional Context
-Add examples, screenshots, or links to related work.
+Links, references, or related issues.
