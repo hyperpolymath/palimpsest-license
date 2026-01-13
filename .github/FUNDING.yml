@@ -1,6 +1,9 @@
-# Supported funding platforms
-github: [your-github-username]
-patreon: palimpsest-license
+# .github/FUNDING.yml
+
 open_collective: palimpsest-license
-ko_fi: your_ko_fi_username
-custom: ["https://palimpsestlicense.org/donate"] # Your custom donation link
+patreon: palimpsest-license
+liberapay: palimpsest-license
+ko_fi: palimpsest-license
+custom:
+  - https://monero.address.example   # replace with actual XMR address page
+  - https://github.com/hyperpolymath/palimpsest-license
