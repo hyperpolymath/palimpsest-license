@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: MPL-2.0
+= Scotland Pro Bono Legal Organisations
+:toc: macro
+
+Scotland operates under a distinct legal system.  
+These organisations provide expertise relevant to Palimpsest’s jurisdictional analysis.
+
+toc::[]
+
+== University of Edinburgh – SCRIPT Centre
+
+* **Type:** Academic research centre  
+* **Expertise:** Technology law, AI ethics, digital rights  
+* **Relevance:** Academic validation and policy alignment  
+
+== University of Glasgow – CREATe
+
+* **Type:** Research centre  
+* **Expertise:** Copyright, cultural rights, creative industries  
+* **Relevance:** Strong alignment with Palimpsest’s narrative and cultural focus  
+
+== Scottish Legal Aid Board – Pro Bono Unit
+
+* **Type:** Public body  
+* **Expertise:** Legal coordination  
+* **Relevance:** Potential gateway to Scottish IP practitioners  
+
+== Shepherd and Wedderburn (Scotland)
+
+* **Type:** Law firm  
+* **Expertise:** IP, technology, media  
+* **Relevance:** Potential pro bono partner  
