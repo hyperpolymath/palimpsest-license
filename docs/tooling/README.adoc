@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: MPL-2.0
+= Tooling Index – Palimpsest‑MPL Ecosystem
+:toc: macro
+
+This directory contains documentation for tools, scripts, and automation that support provenance, governance, and contributor workflows.
+
+toc::[]
+
+== Purpose
+
+The tooling layer provides:
+
+* provenance validation  
+* AsciiDoc linting  
+* SPDX enforcement  
+* governance automation  
+* contributor utilities  
+
+== Contents
+
+=== tooling.adoc
+Overview of available tools, usage patterns, and integration points.
+
+== Future Additions
+
+* provenance validators  
+* exhibit lifecycle automation  
+* cross‑link integrity checkers  
+* CLI utilities  
