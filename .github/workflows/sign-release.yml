@@ -1,0 +1,41 @@
+name: Sign Release Artefacts
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  sign:
+    name: Sign release artefacts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build pmpl-sign
+        run: |
+          cd tools/pmpl-sign
+          cargo build --release
+
+      - name: Sign artefacts
+        run: |
+          mkdir -p signatures
+          for file in dist/*; do
+            echo "Signing $file"
+            tools/pmpl-sign/target/release/pmpl-sign "$file" \
+              --output "signatures/$(basename "$file").sig"
+          done
+
+      - name: Upload signatures
+        uses: softprops/action-gh-release@v2
+        with:
+          files: signatures/**
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
