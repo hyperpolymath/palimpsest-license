@@ -1,0 +1,23 @@
+# CODEOWNERS — Palimpsest License
+
+# Core license text and exhibits
+/legal/PALIMPSEST-MPL-1.0.txt    @hyperpolymath
+/legal/exhibits/*                @hyperpolymath
+
+# Governance and versioning
+/GOVERNANCE.adoc                 @hyperpolymath
+/VERSIONING.adoc                 @hyperpolymath
+
+# SCM manifests
+/ECOSYSTEM.scm                   @hyperpolymath
+/META.scm                        @hyperpolymath
+/PLAYBOOK.scm                    @hyperpolymath
+/AGENTIC.scm                     @hyperpolymath
+/NEUROSYM.scm                    @hyperpolymath
+
+# Rust tools
+/tools/**                        @hyperpolymath
+
+# Docs
+/docs/**                         @hyperpolymath
+/README.adoc                     @hyperpolymath
