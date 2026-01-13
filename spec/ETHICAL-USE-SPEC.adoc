@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-= 6SCM Files Specification
+= Ethical Use Specification
 :toc:
 :toclevels: 3
 
