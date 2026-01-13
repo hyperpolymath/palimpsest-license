@@ -1,0 +1,65 @@
+// SPDX-License-Identifier: MPL-2.0
+= Master Contact Database – Pro Bono Outreach
+:toc: macro
+:toclevels: 2
+
+This database tracks all organisations relevant to Palimpsest‑MPL legal outreach.  
+It is an internal operational document used by the Palimpsest Stewardship Council.
+
+toc::[]
+
+== Legend
+
+* **Tier 1** — Highest priority (Netherlands, Creative Commons, key academics)  
+* **Tier 2** — Strong alignment, secondary jurisdiction  
+* **Tier 3** — Useful but non‑critical  
+
+== Netherlands (Primary Jurisdiction)
+
+[cols="3,2,2,3,2"]
+|===
+| Organisation | Type | Tier | Contact | Status
+
+| IViR – University of Amsterdam | Academic | 1 | Faculty outreach | Not contacted
+| Bits of Freedom | NGO | 1 | Policy team | Not contacted
+| De Brauw Blackstone Westbroek | Law firm | 1 | Pro bono coordinator | Not contacted
+| NautaDutilh | Law firm | 1 | Pro bono coordinator | Not contacted
+| Stibbe | Law firm | 2 | IP team | Not contacted
+|===
+
+== United Kingdom
+
+[cols="3,2,2,3,2"]
+|===
+| Organisation | Type | Tier | Contact | Status
+
+| Open Rights Group | NGO | 2 | Policy team | Not contacted
+| LawWorks | Pro bono network | 2 | Intake form | Not contacted
+| Oxford IP Research Centre | Academic | 2 | Faculty | Not contacted
+| Cambridge CIPIL | Academic | 2 | Faculty | Not contacted
+| DLA Piper (UK) | Law firm | 3 | Pro bono | Not contacted
+|===
+
+== Scotland
+
+[cols="3,2,2,3,2"]
+|===
+| Organisation | Type | Tier | Contact | Status
+
+| Edinburgh SCRIPT Centre | Academic | 2 | Faculty | Not contacted
+| Glasgow CREATe | Academic | 2 | Faculty | Not contacted
+| Shepherd & Wedderburn | Law firm | 3 | Pro bono | Not contacted
+|===
+
+== International
+
+[cols="3,2,2,3,2"]
+|===
+| Organisation | Type | Tier | Contact | Status
+
+| Creative Commons | Licensing org | 1 | Legal team | Not contacted
+| Electronic Frontier Foundation | NGO | 1 | Legal team | Not contacted
+| UNESCO Cultural Rights Division | UN agency | 2 | Programme officer | Not contacted
+| PIIPA | Pro bono network | 3 | Intake | Not contacted
+| WIPO | International org | 3 | Copyright sector | Not contacted
+|===
