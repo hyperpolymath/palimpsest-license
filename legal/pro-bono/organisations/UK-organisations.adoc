@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: MPL-2.0
+= UK Pro Bono Legal Organisations
+:toc: macro
+
+This document profiles UK‑based organisations relevant to Palimpsest‑MPL legal outreach.  
+The UK is a secondary jurisdiction with distinct copyright and moral rights frameworks.
+
+toc::[]
+
+== Open Rights Group (ORG)
+
+* **Type:** Digital rights NGO  
+* **Expertise:** Platform accountability, privacy, copyright reform  
+* **Relevance:** Strong alignment with Palimpsest’s ethical‑use and provenance goals  
+* **Engagement Path:** Policy team, legal research unit  
+
+== LawWorks (UK Pro Bono)
+
+* **Type:** National pro bono network  
+* **Expertise:** Connecting projects with law firms  
+* **Relevance:** Gateway to IP/tech law firms  
+* **Engagement Path:** Project intake form  
+
+== University of Oxford – IP Research Centre
+
+* **Type:** Academic centre  
+* **Expertise:** Copyright, moral rights, AI governance  
+* **Relevance:** Academic validation and expert commentary  
+* **Engagement Path:** Faculty outreach  
+
+== University of Cambridge – Centre for IP and Information Law (CIPIL)
+
+* **Type:** Academic centre  
+* **Expertise:** Copyright, TDM, digital rights  
+* **Relevance:** High‑credibility academic review  
+* **Engagement Path:** Research leads  
+
+== DLA Piper (UK)
+
+* **Type:** Law firm  
+* **Expertise:** Technology, IP, AI regulation  
+* **Relevance:** Pro bono potential for license review  
+* **Engagement Path:** Pro bono coordinator  
