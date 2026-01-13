@@ -1,14 +1,42 @@
-# What Does This PR Do?
-A short summary of your change (e.g., "Fixes broken link in `EXPLAINME.md`" or "Adds Dutch translation for the AGI template").
+# Pull Request
+
+## Summary
+Describe the change introduced by this PR.
+
+## Type of Change
+Select all that apply:
+- [ ] Legal update
+- [ ] Specification update
+- [ ] Exhibit creation/modification
+- [ ] Documentation update
+- [ ] Governance change
+- [ ] Bug fix
+- [ ] Other
 
 ## Related Issues
-Link any issues this PR addresses (e.g., "Closes #123" or "Related to #456").
+Link any related issues (e.g., #42).
+
+## Files Updated
+List all `.adoc`, `.txt`, or specification files modified.
+
+## Provenance Notes
+- Origin of the change:
+- Related Council decisions (if any):
+- Versioning implications:
+
+## Governance Impact
+Does this PR require:
+- [ ] Exhibit lifecycle changes  
+- [ ] Specification updates  
+- [ ] Legal review  
+- [ ] Council approval  
 
 ## Checklist
-- [ ] I read the [CONTRIBUTING.md](../CONTRIBUTING.md) guidelines.
-- [ ] My changes follow the project’s style (lint/format checks passed).
-- [ ] I tested my changes (if applicable).
-- [ ] I updated documentation (if applicable).
+- [ ] SPDX headers present  
+- [ ] AsciiDoc validated  
+- [ ] Cross‑links checked  
+- [ ] Commit messages follow schema  
+- [ ] `.githooks` checks pass  
 
-## Additional Notes
-Add context for reviewers (e.g., "This change only affects the Dutch translation of the audit section").
+## Additional Context
+Anything else reviewers should know.
