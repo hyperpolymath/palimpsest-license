@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "Validating exhibits..."
+
+for file in legal/exhibits/*.adoc; do
+  if ! grep -q "= Exhibit" "$file"; then
+    echo "ERROR: Exhibit missing title: $file"
+    exit 1
+  fi
+  if ! grep -q "SPDX-License-Identifier:" "$file"; then
+    echo "ERROR: Exhibit missing SPDX header: $file"
+    exit 1
+  fi
+done
+
+echo "Exhibit validation passed."
+exit 0
