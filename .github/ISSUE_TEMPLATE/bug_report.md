@@ -1,28 +1,36 @@
 ---
 name: Bug Report
-about: Report a bug (e.g., broken link, invalid syntax)
-title: "[Bug] "
-labels: "bug"
-assignees: ""
+about: Report a problem with the Palimpsest‑MPL ecosystem
+labels: bug
 ---
 
-## Describe the Bug
-A clear, concise description of what the bug is (e.g., "The Dutch translation of the AGI template has a typo").
+# Bug Report
+
+## Summary
+A clear, concise description of the issue.
+
+## Expected Behaviour
+What you expected to happen.
+
+## Actual Behaviour
+What actually happened.
 
 ## Steps to Reproduce
-1. Go to '...' (e.g., open `LICENSES/palimpsest-license-v0.3.nl.md`)
-2. Click/scroll to '...'
-3. See error: [describe what's wrong]
+1.  
+2.  
+3.  
 
-## Expected Behavior
-What you *expected* to happen (e.g., "The translation should match the English version").
+## Relevant Files or Artefacts
+List any `.adoc`, `.txt`, or specification files involved.
 
-## Screenshots
-If applicable, add screenshots to show the issue.
+## Provenance Notes
+Where did the artefact originate?  
+Which version or commit?
 
 ## Environment
-- OS: [e.g., Windows 11, macOS Ventura]
-- Project version: [e.g., v0.3.0]
+- OS:
+- Git version:
+- Asciidoctor version (if relevant):
 
 ## Additional Context
-Add any other details (e.g., "I noticed this when checking the license for my project").
+Anything else we should know.
