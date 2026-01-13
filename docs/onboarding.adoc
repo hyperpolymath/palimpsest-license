@@ -1,0 +1,64 @@
+= Developer Onboarding Guide
+:toc: macro
+
+Welcome to the Palimpsest‑MPL development ecosystem.  
+This guide helps new contributors get set up quickly and understand the project’s structure, principles, and tooling.
+
+toc::[]
+
+== 1. Clone and Prepare
+
+----
+git clone https://github.com/hyperpolymath/palimpsest-license
+cd palimpsest-license
+just setup
+----
+
+== 2. Install Tooling
+
+* Rust (stable)
+* Asciidoctor
+* Guile (for SCM manifests)
+* Pre‑commit (optional)
+
+== 3. Build Everything
+
+----
+just build
+----
+
+== 4. Run Tests
+
+----
+just test
+----
+
+== 5. Validate Compliance
+
+----
+just validate
+----
+
+This runs:
+
+* SPDX header checks  
+* SCM manifest validation  
+* AsciiDoc build  
+* provenance audit (if tools are present)
+
+== 6. Understanding the Tooling Suite
+
+See `docs/tooling.adoc` for details on:
+
+* signing  
+* verification  
+* auditing  
+* integrations  
+
+== 7. Contribution Flow
+
+* Create a feature branch  
+* Make focused commits  
+* Ensure SPDX headers are present  
+* Run validation  
+* Submit a PR  
