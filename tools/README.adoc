@@ -1,0 +1,65 @@
+= Palimpsest Tooling Suite
+:toc: macro
+:toclevels: 2
+
+The `/tools` directory contains the provenance and compliance utilities that support the Palimpsest‑MPL License ecosystem.  
+These tools help maintain provenance integrity, verify authorship, and ensure that repositories remain reversible, auditable, and aligned with PMPL principles.
+
+toc::[]
+
+== Overview
+
+The suite currently includes:
+
+* `pmpl-sign/` – Create cryptographic signatures and embed provenance metadata.
+* `pmpl-verify/` – Verify signatures and validate provenance chains.
+* `pmpl-audit/` – Perform repository‑level audits (SPDX, manifests, provenance).
+* `integrations/` – Templates and examples for integrating PMPL tools into CI/CD.
+
+Each tool is written in Rust and built using Cargo.
+
+== Building the Tools
+
+To build all tools:
+
+----
+just build
+----
+
+To run tests:
+
+----
+just test
+----
+
+To validate compliance (SPDX, manifests, docs):
+
+----
+just validate
+----
+
+== Directory Structure
+
+----
+tools/
+├── pmpl-sign/       # Signing tool
+├── pmpl-verify/     # Verification tool
+├── pmpl-audit/      # Repository audit tool
+└── integrations/    # Integration templates and examples
+----
+
+== Philosophy
+
+These tools embody the core Palimpsest principles:
+
+* provenance integrity  
+* emotional lineage  
+* reversibility  
+* auditability  
+* narrative clarity  
+
+They are optional for adopters but recommended for projects that want strong provenance guarantees.
+
+== Roadmap
+
+See `docs/tooling.adoc` for the full roadmap and future capabilities.
