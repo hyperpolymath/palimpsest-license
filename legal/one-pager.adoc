@@ -1,0 +1,44 @@
+// SPDX-License-Identifier: MPL-2.0
+= Palimpsest License – Legal One‑Pager
+
+== Purpose
+
+The Palimpsest‑MPL License is a modern, provenance‑aware, ethically grounded license designed for creators working with narrative, symbolic, cultural, or emotionally significant materials.  
+It extends the Mozilla Public License with:
+
+* provenance integrity  
+* emotional lineage protection  
+* ethical‑use constraints  
+* optional quantum‑safe cryptography  
+* structured exhibits for domain‑specific guidance  
+
+== Jurisdiction
+
+Primary governing law: **Netherlands**  
+Secondary jurisdictions: **UK (England & Wales, Scotland), EU, US**
+
+== Key Innovations
+
+* **Provenance Layer**  
+  Cryptographic signatures, lineage metadata, and audit tooling.
+
+* **Ethical Use Layer**  
+  Constraints on misuse, distortion, or harmful deployment of creative works.
+
+* **Exhibits System**  
+  Modular extensions (e.g., quantum‑safe cryptography, cultural heritage guidance).
+
+* **SCM Manifests**  
+  Six machine‑readable governance files enabling auditability and agentic tooling.
+
+== Legal Validation Strategy
+
+* Engage Dutch copyright experts (IViR, De Brauw, NautaDutilh).  
+* Seek academic validation (IViR, Max Planck, Stanford CIS, Berkman Klein).  
+* Align with digital rights organisations (Bits of Freedom, EDRi, EFF).  
+* Commission certified Dutch translation for legal enforceability.
+
+== Contact
+
+Palimpsest Stewardship Council  
+[Insert contact email or GitHub link]
