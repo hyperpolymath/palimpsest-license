@@ -38,3 +38,58 @@ Use:
 
 Always include:
 
+----
+// SPDX-License-Identifier: MPL-2.0
+----
+
+
+== 4. Linking
+
+Use `xref:` for internal links:
+
+----
+xref:../governance/GOVERNANCE.adoc[Governance Model]
+----
+
+
+Use `link:` for external URLs.
+
+== 5. Provenance Notes
+
+Major documents should include:
+
+* origin  
+* version  
+* related exhibits  
+* governance status  
+
+== 6. Diagrams
+
+Prefer:
+
+* ASCII diagrams  
+* PlantUML blocks  
+* AsciiDoc tables  
+
+== 7. File Naming
+
+Use:
+
+* lowercase  
+* hyphens  
+* `.adoc` extension  
+
+Examples:
+
+* `journey-map.adoc`  
+* `provenance-flow-diagram.adoc`  
+* `tooling.adoc`  
+
+== 8. Review
+
+Documentation changes must follow:
+
+* Maintainer Review Checklist  
+* Governance rules  
+* Versioning guidelines  
+
