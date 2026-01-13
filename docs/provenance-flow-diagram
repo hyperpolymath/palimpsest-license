@@ -1,0 +1,8 @@
+ ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
+ │   pmpl-sign  │        │ pmpl-verify  │        │  pmpl-audit  │
+ └──────┬───────┘        └──────┬───────┘        └──────┬───────┘
+        │                        │                        │
+        ▼                        ▼                        ▼
+  Signed Artefact ───────▶ Verified Artefact ───────▶ Repository Audit
+        │                        │                        │
+        └──────────── Provenance Chain ───────────────────┘
