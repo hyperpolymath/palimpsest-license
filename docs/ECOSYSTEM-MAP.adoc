@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: MPL-2.0
+= Ecosystem Map – Palimpsest‑MPL
+:toc: macro
+
+== Overview
+
+The Palimpsest ecosystem consists of four interlocking layers:
+
+. **Legal Layer** (`legal/`)  
+   Defines rights, obligations, exhibits, and jurisdictional frameworks.
+
+. **Governance Layer** (`governance/`)  
+   Defines processes, decision‑making, versioning, and community standards.
+
+. **Specification Layer** (`spec/`)  
+   Defines normative technical and provenance specifications.
+
+. **Documentation Layer** (`docs/`)  
+   Provides conceptual, narrative, and onboarding materials.
+
+== Flow of Authority
+
+Legal → Governance → Specifications → Documentation
+
+== Flow of Understanding
+
+Documentation → Specifications → Governance → Legal
+
+== Provenance Flow
+
+* Legal artefacts reference specifications  
+* Specifications reference governance rules  
+* Governance rules reference legal foundations  
+* Documentation explains all three  
