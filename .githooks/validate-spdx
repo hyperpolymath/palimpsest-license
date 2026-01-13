@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "Validating SPDX headers..."
+
+for file in $(git ls-files | grep -E '\.(adoc|txt)$'); do
+  if ! grep -q "SPDX-License-Identifier:" "$file"; then
+    echo "ERROR: Missing SPDX header in $file"
+    exit 1
+  fi
+done
+
+echo "SPDX validation passed."
+exit 0
