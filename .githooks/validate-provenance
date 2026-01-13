@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "Validating provenance manifests..."
+
+for file in $(git ls-files | grep -E '\.(adoc|txt)$'); do
+  if ! grep -qi "provenance" "$file"; then
+    echo "WARNING: Missing provenance reference in $file"
+  fi
+done
+
+exit 0
