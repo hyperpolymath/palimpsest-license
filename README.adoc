@@ -117,6 +117,19 @@ palimpsest-license/
 └── Justfile
 ----
 
+== Tooling
+
+The Palimpsest Tooling Suite provides provenance, verification, and audit capabilities:
+
+* `pmpl-sign` – create cryptographic signatures and embed provenance metadata
+* `pmpl-verify` – verify signatures and validate provenance chains
+* `pmpl-audit` – perform repository‑level audits (SPDX, manifests, provenance)
+* `integrations/` – templates for CI/CD, Git hooks, and developer workflows
+
+See `docs/tooling.adoc` for full documentation.
+
+----
+
 == SPDX Identifier
 
 The canonical SPDX identifier for this license is:
