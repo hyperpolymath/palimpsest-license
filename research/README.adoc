@@ -5,6 +5,9 @@ The `research/` directory contains academic, analytical, and exploratory work th
 
 == Structure
 
+* 'datasets/' — Provenance test data, cryptographic benchmarks, neurosymbolic examples.
+* 'experiments/' — Prototype implementations, PQ signature experiments, provenance chain simulations.
+* 'notes/' — Early‑stage thinking, drafts, scratchpads, and exploratory work.
 * `papers/` — Whitepapers, formal analyses, design rationales, and theoretical documents.
 * `presentations/` — Slide decks, talks, and briefings for internal and external audiences.
 
