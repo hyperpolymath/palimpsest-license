@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Automatically inject provenance scaffolding into commit messages
+
+MSG_FILE="$1"
+
+# Only modify if message is empty or template
+if [ -s "$MSG_FILE" ]; then
+  exit 0
+fi
+
+cat <<EOF >> "$MSG_FILE"
+provenance: update
+# Add a descriptive commit message below.
+EOF
