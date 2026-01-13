@@ -1,0 +1,127 @@
+= MAINTAINERS
+:toc: macro
+:toclevels: 2
+
+This file defines who maintains the Palimpsest‑MPL License repository, how stewardship works in practice, and how to reach the right humans (or teams) for different kinds of changes.
+
+toc::[]
+
+== Roles and Responsibilities
+
+=== Palimpsest Stewardship Council
+
+The *Palimpsest Stewardship Council* is the ultimate steward of:
+
+* the Palimpsest‑MPL License text and exhibits
+* the ethical and provenance principles it encodes
+* the version lineage (PMPL‑1.0‑or‑later and successors)
+* interpretive guidance and dispute mediation
+
+See `GOVERNANCE.adoc` and `VERSIONING.adoc` for formal processes.
+
+The Council is responsible for:
+
+* approving changes to the license text and exhibits
+* issuing clarifications and interpretive notes
+* approving new major and minor versions
+* ensuring alignment with Dutch law and other key jurisdictions
+
+== Maintainer Structure
+
+The repository is maintained in layers:
+
+* *Core Maintainer* – has broad commit rights across the repo; curates overall structure and direction.
+* *Domain Maintainers* – own specific areas (legal text, tools, docs, SCM manifests).
+* *Stewardship Council* – reviews and ratifies changes that affect the license itself or its core governance.
+
+== Current Maintainers
+
+[NOTE]
+Update this section as maintainers change.
+
+=== Core Maintainer
+
+* *Core Repository Steward*  
+  Responsible for overall repo health, structure, and coherence.  
+  Coordinates between legal, technical, and governance changes.
+
+=== Domain Maintainers
+
+* *License & Legal Artefacts*  
+  Scope: `legal/`, `legal/exhibits/`, `legal/historical/`, jurisdictional frameworks, legal strategy docs.  
+  Responsibilities:
+  * keep the canonical PMPL text and exhibits in sync with Council decisions
+  * ensure legal resources are consistent with the published license
+  * coordinate with external legal reviewers and counsel
+
+* *Governance & Policy*  
+  Scope: `GOVERNANCE.adoc`, `VERSIONING.adoc`, `CODE_OF_PRACTICE.*`, `SECURITY.md`, `CODEOWNERS`.  
+  Responsibilities:
+  * maintain governance and versioning documentation
+  * keep security, conduct, and contribution policies current
+  * align repo practices with Council decisions and Scorecard best practices
+
+* *Tooling & Provenance*  
+  Scope: `tools/pmpl-sign`, `tools/pmpl-verify`, `tools/pmpl-audit`, CI workflows under `.github/workflows/`.  
+  Responsibilities:
+  * keep Rust tools building and tested
+  * maintain provenance and audit tooling
+  * ensure CI/CD reflects least‑privilege and provenance‑aware practices
+
+* *Documentation & Onboarding*  
+  Scope: `README.adoc`, `docs/`, `CHANGELOG.adoc`, onboarding guides.  
+  Responsibilities:
+  * maintain user‑facing documentation
+  * ensure docs reflect current PMPL semantics and ecosystem practices
+  * keep changelog accurate and narrative‑friendly
+
+* *SCM Manifests & Agentic Interfaces*  
+  Scope: `ECOSYSTEM.scm`, `META.scm`, `PLAYBOOK.scm`, `AGENTIC.scm`, `NEUROSYM.scm`.  
+  Responsibilities:
+  * keep SCM manifests consistent with actual repo state
+  * evolve agentic and neurosymbolic interfaces as the ecosystem grows
+  * ensure manifests remain reversible, auditable, and narratable
+
+== How to Contact Maintainers
+
+For most contributions:
+
+. Open an issue in the repository.
+. Tag the relevant area (e.g. *license*, *governance*, *tools*, *docs*).
+. Describe:
+   * what you want to change
+   * why it matters
+   * which files or domains are affected
+
+For sensitive issues (security, legal exposure, ethical misuse):
+
+* Follow the process in `SECURITY.md` (for security vulnerabilities).
+* Or contact the Palimpsest Stewardship Council via the channels listed in `README.adoc`.
+
+== How Decisions Are Made
+
+* *Routine maintenance* (typos, minor docs, small tooling fixes):  
+  May be approved by a relevant Domain Maintainer.
+
+* *Substantive changes* to:
+  * license text
+  * exhibits
+  * governance
+  * versioning rules
+
+  require review and approval by the Palimpsest Stewardship Council, following the processes in `GOVERNANCE.adoc` and `VERSIONING.adoc`.
+
+== Becoming a Maintainer
+
+The Council may invite contributors to become Maintainers when they:
+
+* demonstrate sustained, thoughtful contributions
+* show alignment with PMPL’s ethical and provenance principles
+* engage constructively with the community and Council
+
+New maintainers are usually:
+
+* onboarded as Domain Maintainers for a specific area
+* later considered for broader responsibilities if appropriate
+
+Status and scope of maintainers are recorded and updated in this file.
