@@ -1,7 +1,6 @@
 # Palimpsest-MPL License
 
-[![License: PMPL-1.0](https://img.shields.io/badge/License-PMPL--1.0-blue.svg)](legal/PALIMPSEST-MPL-1.0.txt)
-[![License: MPL-2.0]()](https://www.mozilla.org/en-US/MPL/2.0/)
+SPDX-License-Identifier: PMPL-1.0-or-later
 
 **File-level copyleft with ethical use and quantum-safe provenance**
 
