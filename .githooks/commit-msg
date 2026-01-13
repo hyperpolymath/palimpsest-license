@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Palimpsest commit message validator
+# Ensures governance-aligned commit messages
+
+MSG_FILE="$1"
+MSG=$(cat "$MSG_FILE")
+
+# Require prefix
+if ! echo "$MSG" | grep -E '^(legal|spec|exhibit|framework|provenance|governance|docs):' >/dev/null; then
+  echo "ERROR: Commit message must start with a prefix:"
+  echo "  legal:, spec:, exhibit:, framework:, provenance:, governance:, docs:"
+  exit 1
+fi
+
+# Require meaningful message
+if [ "$(echo "$MSG" | wc -w)" -lt 3 ]; then
+  echo "ERROR: Commit message too short."
+  exit 1
+fi
+
+exit 0
