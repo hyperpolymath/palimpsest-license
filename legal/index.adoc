@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: MPL-2.0
+= Legal Index – Palimpsest‑MPL License
+:toc: macro
+
+This index provides a unified entry point for all legal resources in the Palimpsest‑MPL ecosystem.
+
+toc::[]
+
+== Core Documents
+
+* link:PALIMPSEST-MPL-1.0.txt[Palimpsest‑MPL License]
+* link:../spec/PMPL-SPEC.adoc[PMPL Specification]
+* link:../spec/EXHIBITS-SPEC.adoc[Exhibits Specification]
+
+== Exhibits
+
+* link:exhibits/README.adoc[Exhibits Overview]
+
+== Historical
+
+* link:historical/README.adoc[Historical Archive]
+
+== Pro Bono Outreach
+
+* link:pro-bono/README.adoc[Outreach Overview]
+* link:pro-bono/organisations/[Organisation Profiles]
+* link:pro-bono/contacts/[Contact Databases]
+* link:pro-bono/letters/[Engagement Letters]
+
+== Legal Strategy
+
+* link:strategy/legal-strategy-v0.4.adoc[Legal Strategy]
+* link:strategy/honest-broker-candidates.adoc[Honest Brokers]
+* link:strategy/policy-one-pager.adoc[Policy One‑Pager]
+* link:strategy/test-case-framework.adoc[Test‑Case Framework]
+
+== Jurisdictional Frameworks
+
+* link:frameworks/netherlands/dutch-copyright-framework.adoc[Netherlands]
+* link:frameworks/uk/copyright-framework.adoc[UK]
+* link:frameworks/uk/moral-rights-analysis.adoc[UK Moral Rights]
+* link:frameworks/scotland/scottish-copyright-framework.adoc[Scotland]
+
+== Annexes
+
+* link:annexes/statutory/netherlands-statutory-references.adoc[Netherlands Statutory References]
+* link:annexes/statutory/uk-statutory-references.adoc[UK Statutory References]
+
+== Translations
+
+* link:translations/dutch-english-legal-lexicon.adoc[Dutch–English Legal Lexicon]
+* link:translations/dutch-translation-brief.adoc[Dutch Translation Brief]
+
+== Reference Schemes
+
+* link:reference-schemes/citation-guide.adoc[Citation Guide]
