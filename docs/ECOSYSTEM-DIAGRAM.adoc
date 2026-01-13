@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: MPL-2.0
+= Palimpsest‑MPL Ecosystem Diagram
+
+[plantuml, ecosystem-diagram, txt]
+----
+@startuml
+
+skinparam monochrome true
+skinparam defaultFontName Courier
+
+rectangle "Legal Layer\n(legal/)" {
+  rectangle "License\nExhibits\nFrameworks"
+}
+
+rectangle "Governance Layer\n(governance/)" {
+  rectangle "Council Decisions\nVersioning\nCodes of Practice"
+}
+
+rectangle "Specification Layer\n(spec/)" {
+  rectangle "PMPL Spec\nProvenance Spec\nExhibit Spec"
+}
+
+rectangle "Documentation Layer\n(docs/)" {
+  rectangle "Onboarding\nJourney Maps\nIntegration Guides\nTooling Docs"
+}
+
+Legal Layer --> Governance Layer : defines authority
+Governance Layer --> Specification Layer : governs norms
+Specification Layer --> Documentation Layer : informs explanations
+Documentation Layer --> Contributors : onboarding & clarity
+
+@enduml
+----
+
