@@ -1,0 +1,97 @@
+= Palimpsest Tooling: Provenance, Verification, and Audit
+:toc: macro
+:toclevels: 3
+
+The Palimpsest Tooling Suite provides cryptographic and structural guarantees for projects using the Palimpsest‑MPL License.  
+This document explains each tool, how they relate, and how they support provenance integrity.
+
+toc::[]
+
+== 1. pmpl-sign
+
+`pmpl-sign` creates cryptographic signatures for files or artefacts.
+
+=== Capabilities
+
+* Sign files using supported algorithms  
+* Embed provenance metadata  
+* Attach SPDX identifiers  
+* Prepare artefacts for verification and audit  
+
+=== Planned Enhancements
+
+* Post‑quantum signature support (Exhibit B)  
+* Multi‑author lineage chains  
+* Detached signature bundles  
+
+== 2. pmpl-verify
+
+`pmpl-verify` validates signatures and provenance metadata.
+
+=== Capabilities
+
+* Verify signatures created by `pmpl-sign`  
+* Validate provenance chains  
+* Confirm SPDX headers  
+* Detect tampering or mismatched metadata  
+
+=== Planned Enhancements
+
+* Cross‑repository lineage verification  
+* Integration with GitHub Releases  
+* Machine‑readable verification reports  
+
+== 3. pmpl-audit
+
+`pmpl-audit` performs repository‑level audits.
+
+=== Capabilities
+
+* Check SPDX headers across the repo  
+* Validate SCM manifests (`META.scm`, `ECOSYSTEM.scm`, etc.)  
+* Detect missing or inconsistent provenance metadata  
+* Produce audit summaries  
+
+=== Planned Enhancements
+
+* Scorecard integration  
+* CI‑friendly JSON output  
+* Policy‑driven audit profiles  
+
+== 4. integrations
+
+Templates and examples for:
+
+* GitHub Actions  
+* Git hooks  
+* Pre‑commit frameworks  
+* Release pipelines  
+
+== Provenance Flow
+
+----
+Author → pmpl-sign → Artefact + Signature
+Artefact + Signature → pmpl-verify → Verified Provenance
+Repository → pmpl-audit → Compliance + Integrity Report
+----
+
+== Roadmap
+
+=== v0.2
+
+* PQ signature support  
+* JSON audit reports  
+* GitHub Action for automated signing  
+* Integration with release artefacts  
+
+=== v0.3
+
+* Multi‑author lineage  
+* Repository‑wide signature bundles  
+* Cross‑repo provenance linking  
+
+=== v1.0
+
+* Full provenance graph  
+* Machine‑verifiable lineage  
+* Standardised audit profiles  
