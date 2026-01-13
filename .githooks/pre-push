@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Palimpsest pre-push hook
+# Heavy validation: cross-links, SPDX, exhibits
+
+echo "Running Palimpsest pre-push checks..."
+
+# 1. Validate SPDX headers
+for file in $(git ls-files | grep -E '\.(adoc|txt)$'); do
+  if ! grep -q "SPDX-License-Identifier:" "$file"; then
+    echo "ERROR: Missing SPDX header in $file"
+    exit 1
+  fi
+done
+
+# 2. Validate cross-links
+BROKEN_LINKS=0
+for link in $(grep -Rho "link:[^[]*" legal/ spec/ | sed 's/link://'); do
+  if [ ! -f "$link" ]; then
+    echo "ERROR: Broken link: $link"
+    BROKEN_LINKS=1
+  fi
+done
+
+if [ "$BROKEN_LINKS" -eq 1 ]; then
+  exit 1
+fi
+
+# 3. Validate exhibits
+if [ -f ".githooks/validate-exhibit" ]; then
+  .githooks/validate-exhibit || exit 1
+fi
+
+echo "Pre-push checks passed."
+exit 0
