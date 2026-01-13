@@ -24,3 +24,17 @@
   (lineage
     (root "MPL-2.0")
     (extension "Ethical use, emotional lineage, quantum-safe provenance")))
+
+(tools
+  (description "Provenance and audit utilities for the Palimpsest‑MPL ecosystem.")
+  (directories
+    (pmpl-sign     "Create cryptographic signatures and embed provenance metadata.")
+    (pmpl-verify   "Verify signatures and validate provenance chains.")
+    (pmpl-audit    "Perform repository‑level audits for SPDX, manifests, and provenance.")
+    (integrations  "Templates and onboarding resources for CI/CD and developer workflows."))
+  (principles
+    (provenance integrity)
+    (reversibility)
+    (auditability)
+    (narrative-clarity)
+    (emotional-lineage)))
