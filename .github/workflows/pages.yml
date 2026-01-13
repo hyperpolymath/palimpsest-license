@@ -23,6 +23,7 @@ jobs:
     name: Build docs for Pages
     runs-on: ubuntu-latest
     steps:
+    
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -40,6 +41,10 @@ jobs:
             find docs -name '*.adoc' -print0 | xargs -0 -n1 asciidoctor -D _site
           fi
           cp .nojekyll _site/.nojekyll || true
+
+      - name: Build tooling docs
+        run: |
+          asciidoctor -D _site docs/tooling.adoc
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
