@@ -1,0 +1,66 @@
+// SPDX-License-Identifier: MPL-2.0
+= Pro Bono Legal Outreach – Overview
+:toc: macro
+:toclevels: 2
+
+This directory contains all materials related to pro bono legal outreach for the Palimpsest‑MPL License project.  
+It includes organisation profiles, contact databases, engagement letter templates, and outreach tracking tools.
+
+toc::[]
+
+== Structure
+
+----
+pro-bono/
+├── README.adoc
+├── organisations/
+├── contacts/
+└── letters/
+----
+
+=== organisations/
+Profiles of legal organisations across jurisdictions:
+
+* UK
+* Scotland
+* Netherlands (primary jurisdiction)
+* International (Creative Commons, EFF, UNESCO, etc.)
+
+=== contacts/
+* `master-database.adoc` — full contact database  
+* `priority-contacts.adoc` — Tier 1 outreach targets  
+* `outreach-tracker.adoc` — per‑organisation tracking template  
+
+=== letters/
+Engagement letter templates for:
+
+* academic partnerships  
+* law firms  
+* digital rights organisations  
+* Creative Commons  
+* general introductions  
+* IViR Amsterdam (priority outreach)
+
+== Workflow
+
+. Identify target organisation  
+. Review organisation profile  
+. Select appropriate letter template  
+. Customise template  
+. Send outreach email  
+. Track status in `contacts/master-database.adoc`  
+. Update follow‑ups in `outreach-tracker.adoc`  
+
+== Confidentiality
+
+* Organisation profiles → public  
+* Letter templates → public  
+* Master database → internal  
+* Outreach status → internal  
+* Legal opinions → confidential (Council only)
+
+== Related Documents
+
+* link:../strategy/legal-strategy-v0.4.md[Legal Strategy]
+* link:../frameworks/[Jurisdictional Frameworks]
+* link:../../spec/EXHIBITS-SPEC.adoc[Exhibits Specification]
