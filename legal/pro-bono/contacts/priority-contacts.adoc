@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: MPL-2.0
+= Priority Contacts – Tier 1 Outreach
+:toc: macro
+
+These organisations represent the highest‑priority outreach targets for Palimpsest‑MPL legal validation.
+
+toc::[]
+
+== Netherlands (Critical)
+
+=== IViR – Institute for Information Law (University of Amsterdam)
+* **Why:** Primary academic validator under Dutch law  
+* **Focus:** Copyright, moral rights, AI  
+* **Targets:** Hugenholtz, Quintais  
+* **Action:** Use IViR priority letter  
+
+=== Bits of Freedom
+* **Why:** Digital rights alignment  
+* **Focus:** Platform accountability, AI ethics  
+* **Action:** Use digital rights letter  
+
+=== De Brauw Blackstone Westbroek
+* **Why:** Top Dutch IP firm  
+* **Focus:** Auteurswet, civil law  
+* **Action:** Use law firm pro bono letter  
+
+== International (High Impact)
+
+=== Creative Commons
+* **Why:** Licensing authority  
+* **Focus:** Compatibility, collaboration  
+* **Action:** Use Creative Commons letter  
+
+=== Electronic Frontier Foundation (EFF)
+* **Why:** Policy and enforcement credibility  
+* **Focus:** AI, copyright, platform accountability  
+* **Action:** Use digital rights letter  
