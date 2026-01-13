@@ -1,13 +1,12 @@
 version: 2
 updates:
-  # 1. Maintain GitHub Actions (workflows)
+  # 1. Maintain GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    # THE MAGIC PART: Groups updates into one PR
     groups:
-      dependencies:
+      actions:
         patterns:
           - "*"
 
@@ -17,16 +16,6 @@ updates:
     schedule:
       interval: "daily"
     groups:
-      dependencies:
-        patterns:
-          - "*"
-
-  # 3. Maintain NPM (if you have package.json)
-  - package-ecosystem: "deno"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    groups:
-      dependencies:
+      rust-deps:
         patterns:
           - "*"
