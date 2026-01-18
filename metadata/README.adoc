@@ -8,7 +8,12 @@ Metadata definitions and schemas.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
-Subdirectories: none
+Contents
+Subdirectories:
+* (none)
+
+Files:
+* metadata.readme.md
+* palimpsest.jsonld
 
 See INDEX.adoc for a minimal listing.

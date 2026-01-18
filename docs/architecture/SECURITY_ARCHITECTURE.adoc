@@ -7,7 +7,7 @@ v1.0, 2025-11-28
 :icons: font
 :source-highlighter: rouge
 
-// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 
 == Introduction

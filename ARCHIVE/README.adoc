@@ -8,10 +8,15 @@ Archived materials and historical snapshots.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
+Contents
 Subdirectories:
 * elixir-experiment
 * v0.3
 * v0.4
+
+Files:
+* Palimpsest License v0.3.docx
+* contributor-guidelines-v0.3.md
+* license-parser.js.v0.3-legacy
 
 See INDEX.adoc for a minimal listing.

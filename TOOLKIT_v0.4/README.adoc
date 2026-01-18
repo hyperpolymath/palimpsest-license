@@ -8,7 +8,13 @@ Toolkit materials associated with v0.4.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
-Subdirectories: none
+Contents
+Subdirectories:
+* (none)
+
+Files:
+* Audit_Template.csv
+* Audit_Template.md
+* Smart_Contract_Stub.sol
 
 See INDEX.adoc for a minimal listing.

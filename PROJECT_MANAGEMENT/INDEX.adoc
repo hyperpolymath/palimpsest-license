@@ -2,6 +2,14 @@
 :toc: macro
 :toclevels: 2
 
-This is a stub index for the PROJECT_MANAGEMENT directory.
+Subdirectories
+* campaigns
+* governance
+* templates
 
-Refer to README.adoc and the directory listing for current contents.
+Files
+* CURRENT_STATE_INVENTORY.md
+* DOCUMENT_AUDIT_2025-12-09.adoc
+* DOCUMENT_REVIEW_SYSTEM.md
+* MASTER_ROADMAP.md
+* RECONCILIATION_AUDIT.md

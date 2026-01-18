@@ -8,7 +8,7 @@ Press, lobbying, and advocacy materials.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
+Contents
 Subdirectories:
 * infrastructure
 * letters
@@ -17,5 +17,11 @@ Subdirectories:
 * proposals
 * v0.2
 * video-scripts
+
+Files:
+* briefing-sheet.md
+* manifesto.md
+* press-lobby-kit.readme.md
+* social-snippets.md
 
 See INDEX.adoc for a minimal listing.

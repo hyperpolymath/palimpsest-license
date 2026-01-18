@@ -1,7 +1,7 @@
 # Reversibility - Palimpsest License Project
 
 **Version:** 0.4.0
-**SPDX-License-Identifier:** Palimpsest-0.4 OR MIT
+**SPDX-License-Identifier: PMPL-1.0-or-later
 **Last Updated:** 2025-11-28
 
 ---

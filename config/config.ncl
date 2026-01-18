@@ -1,5 +1,5 @@
 # Palimpsest License - Nickel Configuration Schema
-# SPDX-License-Identifier: Palimpsest-0.4 OR MIT
+# SPDX-License-Identifier: PMPL-1.0-or-later
 #
 # Nickel is a configuration language for generating validated configs.
 # This file defines the schema for Palimpsest configuration across tools.

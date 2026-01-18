@@ -8,9 +8,12 @@ Legacy or alternate tooling and utilities.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
+Contents
 Subdirectories:
 * scripts
 * validation
+
+Files:
+* post-sync.sh
 
 See INDEX.adoc for a minimal listing.

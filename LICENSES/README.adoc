@@ -8,8 +8,11 @@ SPDX-style license metadata and license list files.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
+Contents
 Subdirectories:
 * v1.0
+
+Files:
+* PMPL-1.0.json
 
 See INDEX.adoc for a minimal listing.

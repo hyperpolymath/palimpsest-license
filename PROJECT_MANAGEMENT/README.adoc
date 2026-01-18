@@ -8,10 +8,17 @@ Project management plans, roadmaps, and coordination docs.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
+Contents
 Subdirectories:
 * campaigns
 * governance
 * templates
+
+Files:
+* CURRENT_STATE_INVENTORY.md
+* DOCUMENT_AUDIT_2025-12-09.adoc
+* DOCUMENT_REVIEW_SYSTEM.md
+* MASTER_ROADMAP.md
+* RECONCILIATION_AUDIT.md
 
 See INDEX.adoc for a minimal listing.

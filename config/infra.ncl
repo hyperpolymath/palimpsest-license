@@ -1,7 +1,7 @@
 # Palimpsest License Infrastructure Configuration
 # Nickel configuration for reproducible infrastructure-as-code
 # Version: 0.4.0
-# SPDX-License-Identifier: Palimpsest-0.4 OR MIT
+# SPDX-License-Identifier: PMPL-1.0-or-later
 
 {
   # ============================================================================

@@ -1,6 +1,6 @@
 # Palimpsest License - Containerfile (Podman/Docker compatible)
 # Multi-stage build using Chainguard Wolfi for minimal attack surface
-# SPDX-License-Identifier: Palimpsest-0.4 OR MIT
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Version: 0.4.0
 
 # ==============================================================================
