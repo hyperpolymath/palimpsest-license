@@ -1,0 +1,14 @@
+= config Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+Configuration files and environment metadata.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories: none
+
+See INDEX.adoc for a minimal listing.

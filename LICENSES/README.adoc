@@ -1,0 +1,15 @@
+= LICENSES Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+SPDX-style license metadata and license list files.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories:
+* v1.0
+
+See INDEX.adoc for a minimal listing.

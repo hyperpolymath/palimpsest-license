@@ -1,0 +1,16 @@
+= TOOLS Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+Legacy or alternate tooling and utilities.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories:
+* scripts
+* validation
+
+See INDEX.adoc for a minimal listing.

@@ -1,0 +1,7 @@
+= LICENSES Index
+:toc: macro
+:toclevels: 2
+
+This is a stub index for the LICENSES directory.
+
+Refer to README.adoc and the directory listing for current contents.

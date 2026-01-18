@@ -90,6 +90,13 @@ PMPL includes optional tooling for provenance and compliance:
 | Audit repositories for PMPL compliance
 |===
 
+The license parser is a work in progress in the Palimpsest Plasma repo:
+
+----
+Local: /mnt/eclipse/repos/palimpsest-plasma
+Remote: https://github.com/hyperpolymath/palimpsest-plasma
+----
+
 Build tools locally:
 
 ----
@@ -116,6 +123,45 @@ palimpsest-license/
 ├── LICENSE
 └── Justfile
 ----
+
+== Directory Index
+
+Top-level directories and their local indexes:
+
+* `ARCHIVE/INDEX.adoc`
+* `GUIDES_v0.4/INDEX.adoc`
+* `LICENSES/INDEX.adoc`
+* `LICENSE_CORE/INDEX.adoc`
+* `OUTREACH/INDEX.adoc`
+* `PRESENTATION/INDEX.adoc`
+* `PROJECT_MANAGEMENT/INDEX.adoc`
+* `RESEARCH/INDEX.adoc`
+* `TOOLKIT_v0.4/INDEX.adoc`
+* `TOOLS/INDEX.adoc`
+* `academic/INDEX.adoc`
+* `assets/README.md`
+* `bof-meetings/README.md`
+* `campaigns/INDEX.adoc`
+* `config/INDEX.adoc`
+* `docs/README.adoc`
+* `embed/README.md`
+* `examples/INDEX.adoc`
+* `formats/INDEX.adoc`
+* `governance/INDEX.adoc`
+* `integrations/README.md`
+* `legal/README.adoc`
+* `metadata/INDEX.adoc`
+* `ocaml/README.md`
+* `presentations/README.md`
+* `press-lobby-kit/INDEX.adoc`
+* `register/INDEX.adoc`
+* `research/README.adoc`
+* `scripts/INDEX.adoc`
+* `spec/README.adoc`
+* `standards/README.md`
+* `styles/README.md`
+* `templates/README.adoc`
+* `tools/README.adoc`
 
 == Tooling
 

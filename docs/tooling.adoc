@@ -67,6 +67,15 @@ Templates and examples for:
 * Pre‑commit frameworks  
 * Release pipelines  
 
+== Parser Work (Palimpsest Plasma)
+
+The dedicated license parser is being developed in the Palimpsest Plasma repo (work in progress):
+
+----
+Local: /mnt/eclipse/repos/palimpsest-plasma
+Remote: https://github.com/hyperpolymath/palimpsest-plasma
+----
+
 == Provenance Flow
 
 ----

@@ -1,0 +1,17 @@
+= PROJECT_MANAGEMENT Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+Project management plans, roadmaps, and coordination docs.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories:
+* campaigns
+* governance
+* templates
+
+See INDEX.adoc for a minimal listing.

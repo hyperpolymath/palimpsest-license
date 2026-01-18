@@ -21,6 +21,15 @@ The tooling layer provides:
 === tooling.adoc
 Overview of available tools, usage patterns, and integration points.
 
+== Parser Work (Palimpsest Plasma)
+
+The license parser is being developed in the Palimpsest Plasma repo (work in progress):
+
+----
+Local: /mnt/eclipse/repos/palimpsest-plasma
+Remote: https://github.com/hyperpolymath/palimpsest-plasma
+----
+
 == Future Additions
 
 * provenance validators  

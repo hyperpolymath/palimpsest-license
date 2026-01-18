@@ -1,0 +1,17 @@
+= ARCHIVE Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+Archived materials and historical snapshots.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories:
+* elixir-experiment
+* v0.3
+* v0.4
+
+See INDEX.adoc for a minimal listing.

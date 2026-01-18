@@ -1,0 +1,20 @@
+= campaigns Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+Campaign planning and collateral.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories:
+* academic
+* consent-layer
+* open-source-recognition
+* presentations
+* press
+* social-media
+
+See INDEX.adoc for a minimal listing.

@@ -1,0 +1,7 @@
+= governance Index
+:toc: macro
+:toclevels: 2
+
+This is a stub index for the governance directory.
+
+Refer to README.adoc and the directory listing for current contents.

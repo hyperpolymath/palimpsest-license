@@ -1,0 +1,21 @@
+= press-lobby-kit Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+Press, lobbying, and advocacy materials.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories:
+* infrastructure
+* letters
+* mail-merge-templates
+* outreach
+* proposals
+* v0.2
+* video-scripts
+
+See INDEX.adoc for a minimal listing.

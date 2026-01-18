@@ -1,0 +1,14 @@
+= register Directory
+:toc: macro
+:toclevels: 2
+
+Purpose
+Registry materials and indexes.
+
+Status
+Content may include draft or work-in-progress material; refer to individual files for status markers.
+
+Index
+Subdirectories: none
+
+See INDEX.adoc for a minimal listing.

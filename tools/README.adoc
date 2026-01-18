@@ -60,6 +60,15 @@ These tools embody the core Palimpsest principles:
 
 They are optional for adopters but recommended for projects that want strong provenance guarantees.
 
+== Palimpsest Plasma (Parser Work)
+
+The license parser is being developed in the Palimpsest Plasma repo (work in progress):
+
+----
+Local: /mnt/eclipse/repos/palimpsest-plasma
+Remote: https://github.com/hyperpolymath/palimpsest-plasma
+----
+
 == Roadmap
 
 See `docs/tooling.adoc` for the full roadmap and future capabilities.
