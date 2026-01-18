@@ -1,7 +1,7 @@
 #!/bin/sh
 # Robot Vacuum Cleaner (RVC) - Automated Tidying Script
-# SPDX-License-Identifier: Palimpsest-0.4 OR MIT
-# Version: 0.4.0
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Version: 1.0.0
 
 set -e
 

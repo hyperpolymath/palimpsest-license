@@ -1,7 +1,7 @@
 # Robot Vacuum Cleaner (RVC) Configuration
 # Automated tidying and maintenance for Palimpsest License project
-# SPDX-License-Identifier: Palimpsest-0.4 OR MIT
-# Version: 0.4.0
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Version: 1.0.0
 
 ---
 rvc:
@@ -262,7 +262,7 @@ security:
   license_check:
     enabled: true
     allowed_licenses:
-      - "Palimpsest-0.4"
+      - "PMPL-1.0-or-later"
       - "MIT"
       - "Apache-2.0"
       - "BSD-3-Clause"
@@ -510,10 +510,10 @@ compliance:
 # ============================================================================
 
 metadata:
-  version: "0.4.0"
-  last_updated: "2025-11-28"
+  version: "1.0.0"
+  last_updated: "2026-01-18"
   author: "Palimpsest Stewardship Council"
-  license: "Palimpsest-0.4 OR MIT"
+  license: "PMPL-1.0-or-later"
   documentation: "https://palimpsest.license/docs/rvc"
 
 ---

@@ -1,7 +1,7 @@
 #!/bin/sh
 # Palimpsest License - Pre-commit Git Hook
-# SPDX-License-Identifier: Palimpsest-0.4 OR MIT
-# Version: 0.4.0
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Version: 1.0.0
 #
 # This hook validates commits before they are created to ensure:
 # - SPDX license headers are present
@@ -102,7 +102,7 @@ if [ $MISSING_SPDX -eq 0 ]; then
 else
     print_error "SPDX header validation failed"
     print_info "Add this header to your files:"
-    echo "    -- SPDX-License-Identifier: Palimpsest-0.4 OR MIT"
+    echo "    -- SPDX-License-Identifier: PMPL-1.0-or-later"
     exit 1
 fi
 

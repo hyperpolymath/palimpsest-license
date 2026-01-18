@@ -1,0 +1,1 @@
+../../legal/PALIMPSEST-MPL-1.0.txt
