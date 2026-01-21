@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 = Documentation Style Guide – Palimpsest‑MPL
 :toc: macro
 
@@ -39,7 +39,7 @@ Use:
 Always include:
 
 ----
-// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 
@@ -92,4 +92,3 @@ Documentation changes must follow:
 * Maintainer Review Checklist  
 * Governance rules  
 * Versioning guidelines  
-

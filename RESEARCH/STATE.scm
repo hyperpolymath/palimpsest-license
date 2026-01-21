@@ -2,7 +2,7 @@
 ;;; STATE.scm — Palimpsest License Project State
 ;;; ==================================================
 ;;;
-;;; SPDX-License-Identifier: MIT AND LicenseRef-Palimpsest-0.4
+;;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;;; Copyright (c) 2025 Palimpsest Stewardship Council
 ;;;
 ;;; Checkpoint/restore state for AI-assisted development sessions.

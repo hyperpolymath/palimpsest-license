@@ -2,6 +2,12 @@
 :toc: macro
 :toclevels: 2
 
-This is a stub index for the ARCHIVE directory.
+Subdirectories
+* elixir-experiment
+* v0.3
+* v0.4
 
-Refer to README.adoc and the directory listing for current contents.
+Files
+* Palimpsest License v0.3.docx
+* contributor-guidelines-v0.3.md
+* license-parser.js.v0.3-legacy

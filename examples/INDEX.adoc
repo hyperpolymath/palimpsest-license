@@ -2,6 +2,8 @@
 :toc: macro
 :toclevels: 2
 
-This is a stub index for the examples directory.
+Subdirectories
+* vignettes
 
-Refer to README.adoc and the directory listing for current contents.
+Files
+* examples.readme.md

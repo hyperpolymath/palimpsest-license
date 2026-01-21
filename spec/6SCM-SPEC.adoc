@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 = 6SCM Files Specification
 :toc:
 :toclevels: 3
@@ -55,7 +55,7 @@ Tracks current project state. Updated frequently during development.
 
 [source,scheme]
 ----
-;; SPDX-License-Identifier: MPL-2.0
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; STATE.scm - Project state
 
 (state
@@ -93,7 +93,7 @@ Architecture decisions and development practices. Updated when major decisions c
 
 [source,scheme]
 ----
-;; SPDX-License-Identifier: MPL-2.0
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; META.scm - Project metadata
 
 (define project-meta
@@ -122,7 +122,7 @@ Project's position in the broader ecosystem. Updated when relationships change.
 
 [source,scheme]
 ----
-;; SPDX-License-Identifier: MPL-2.0
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; ECOSYSTEM.scm - Ecosystem positioning
 
 (ecosystem
@@ -145,7 +145,7 @@ Operational procedures and runbooks.
 
 [source,scheme]
 ----
-;; SPDX-License-Identifier: MPL-2.0
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; PLAYBOOK.scm - Operational runbook
 
 (define playbook
@@ -166,7 +166,7 @@ AI agent interaction patterns and constraints.
 
 [source,scheme]
 ----
-;; SPDX-License-Identifier: MPL-2.0
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; AGENTIC.scm - AI agent config
 
 (define agentic-config
@@ -190,7 +190,7 @@ Neurosymbolic integration configuration.
 
 [source,scheme]
 ----
-;; SPDX-License-Identifier: MPL-2.0
+;; SPDX-License-Identifier: PMPL-1.0-or-later
 ;; NEUROSYM.scm - Neurosymbolic config
 
 (define neurosym-config

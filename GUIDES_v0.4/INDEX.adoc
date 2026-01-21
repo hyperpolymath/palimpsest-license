@@ -2,6 +2,11 @@
 :toc: macro
 :toclevels: 2
 
-This is a stub index for the GUIDES_v0.4 directory.
+Subdirectories
+* professional-integration
 
-Refer to README.adoc and the directory listing for current contents.
+Files
+* Compliance_Roadmap.md
+* Developer_Guide.md
+* Red_Flag_Index.md
+* User_Guide.md

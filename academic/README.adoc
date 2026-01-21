@@ -8,8 +8,11 @@ Academic materials, papers, and research support.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
+Contents
 Subdirectories:
 * papers
+
+Files:
+* (none)
 
 See INDEX.adoc for a minimal listing.

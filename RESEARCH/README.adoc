@@ -8,7 +8,7 @@ Research notes and supporting material.
 Status
 Content may include draft or work-in-progress material; refer to individual files for status markers.
 
-Index
+Contents
 Subdirectories:
 * ambient-computing
 * emotional-cultural
@@ -16,5 +16,9 @@ Subdirectories:
 * neurosymbolic
 * pkp-integration
 * trans-perceptual
+
+Files:
+* STATE.scm
+* story.scm
 
 See INDEX.adoc for a minimal listing.

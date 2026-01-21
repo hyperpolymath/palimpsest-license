@@ -1,6 +1,6 @@
 #!/bin/sh
 # Palimpsest License - Git Hooks Setup Script
-# SPDX-License-Identifier: Palimpsest-0.4 OR MIT
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Version: 0.4.0
 #
 # This script installs git hooks from .git-hooks/ directory
