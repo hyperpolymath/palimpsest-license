@@ -1,6 +1,6 @@
 <!-- Large Palimpsest License Badge -->
-<svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" aria-label="Palimpsest License v0.4 Badge">
-  <title>Palimpsest License v0.4</title>
+<svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" aria-label="Palimpsest License v1.0 Badge">
+  <title>Palimpsest License v1.0</title>
   <style>
     .bg { fill: #f6f8fa; }
     .border { stroke: #d1d5da; stroke-width: 1.5; }
@@ -21,5 +21,5 @@
     <circle class="icon" cx="10" cy="10" r="5.5" opacity="0.5"/>
   </g>
   <text x="40" y="20" class="text">Palimpsest License</text>
-  <text x="40" y="32" class="subtext">v0.4 - Emotional Lineage Protection</text>
+  <text x="40" y="32" class="subtext">v1.0 - Emotional Lineage Protection</text>
 </svg>

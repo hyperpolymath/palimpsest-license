@@ -190,6 +190,10 @@ A machine‑readable SPDX metadata file is provided under:
 LICENSES/PMPL-1.0.json
 ----
 
+Current legal text: **PMPL-1.0** (see `LICENSE` and `legal/PALIMPSEST-MPL-1.0.txt`).
+Legacy *v0.x* materials (e.g., `GUIDES_v0.4/`, `METADATA_v0.4/`) are retained for
+archival and research context and should not be used for new work.
+
 == Compatibility
 
 PMPL‑1.0 is compatible with:

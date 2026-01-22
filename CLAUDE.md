@@ -96,7 +96,7 @@ just validate
 ### Adding SPDX Headers
 All source files must include:
 ```
-// SPDX-License-Identifier: PMPL-1.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: YEAR Your Name
 ```
 

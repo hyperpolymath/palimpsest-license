@@ -79,7 +79,7 @@ fn verify_directory(args: &Args) -> Result<()> {
             continue;
         }
 
-        match verify_file(path, args) {
+        match verify_file(&path.to_path_buf(), args) {
             Ok(true) => verified += 1,
             Ok(false) => missing += 1,
             Err(e) => {

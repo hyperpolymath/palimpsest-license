@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide covers integrating PMPL-1.0 into your development workflow, CI/CD pipelines, and compliance systems.
+This guide covers integrating PMPL-1.0 (SPDX: PMPL-1.0-or-later) into your development workflow, CI/CD pipelines, and compliance systems.
 
 ## File Headers
 
@@ -11,7 +11,7 @@ This guide covers integrating PMPL-1.0 into your development workflow, CI/CD pip
 For most source files:
 
 ```
-// SPDX-License-Identifier: PMPL-1.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Your Name <email@example.com>
 ```
 
@@ -20,7 +20,7 @@ For most source files:
 For files with significant creative content:
 
 ```
-// SPDX-License-Identifier: PMPL-1.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Your Name <email@example.com>
 //
 // Emotional Lineage: [Brief description of cultural/narrative context]
@@ -31,26 +31,26 @@ For files with significant creative content:
 
 **Rust:**
 ```rust
-// SPDX-License-Identifier: PMPL-1.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Author Name
 ```
 
 **Python:**
 ```python
-# SPDX-License-Identifier: PMPL-1.0
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # SPDX-FileCopyrightText: 2025 Author Name
 ```
 
 **HTML:**
 ```html
-<!-- SPDX-License-Identifier: PMPL-1.0 -->
+<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
 <!-- SPDX-FileCopyrightText: 2025 Author Name -->
 ```
 
 **Shell:**
 ```bash
 #!/usr/bin/env bash
-# SPDX-License-Identifier: PMPL-1.0
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # SPDX-FileCopyrightText: 2025 Author Name
 ```
 
