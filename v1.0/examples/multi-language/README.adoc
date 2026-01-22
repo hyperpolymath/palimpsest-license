@@ -11,9 +11,10 @@ multi-language/
 ├── LICENSES/             ← Individual license texts
 │   ├── PMPL-1.0-or-later.txt
 │   └── MIT.txt
+├── rescript.json         ← ReScript config
 ├── src/
-│   ├── core.rs           ← PMPL-1.0-or-later
-│   └── utils.js          ← MIT
+│   ├── core.rs           ← PMPL-1.0-or-later (Rust)
+│   └── Utils.res         ← MIT (ReScript)
 └── README.adoc
 ----
 
@@ -21,8 +22,8 @@ multi-language/
 
 Each file has its own license declared via SPDX headers:
 
-* `src/core.rs` - PMPL-1.0-or-later (file-level copyleft)
-* `src/utils.js` - MIT (permissive)
+* `src/core.rs` - PMPL-1.0-or-later (file-level copyleft, Rust)
+* `src/Utils.res` - MIT (permissive, ReScript → compiles to JavaScript)
 
 == Distribution
 
@@ -49,8 +50,11 @@ See link:../../docs/COMPATIBILITY.adoc[] for details.
 [source,bash]
 ----
 # PMPL file (copyleft)
-./src/core.rs  → Must stay PMPL if modified
+./src/core.rs   → Must stay PMPL if modified
 
 # MIT file (permissive)
-./src/utils.js → Can be relicensed if needed
+./src/Utils.res → Can be relicensed if needed
+
+# Build ReScript
+rescript         → Compiles Utils.res to Utils.res.js
 ----

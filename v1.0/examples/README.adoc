@@ -14,16 +14,16 @@
 | Rust
 
 | link:javascript/[javascript/]
-| JavaScript/TypeScript project with PMPL
-| JavaScript/TypeScript
+| Deno/JavaScript project with PMPL
+| JavaScript (Deno)
 
-| link:python/[python/]
-| Python package with PMPL licensing
-| Python
+| link:julia/[julia/]
+| Julia package with PMPL licensing
+| Julia
 
 | link:multi-language/[multi-language/]
-| Multi-language project combining PMPL with other licenses
-| Mixed
+| Multi-language project: PMPL (Rust) + MIT (ReScript)
+| Rust + ReScript
 |===
 
 == Quick Start
@@ -40,8 +40,14 @@ Each example includes:
 
 [source,bash]
 ----
-cd v1.0/examples/rust
-cargo build
+# Rust example
+cd v1.0/examples/rust && cargo build
+
+# Julia example
+cd v1.0/examples/julia && julia example.jl
+
+# Deno example
+cd v1.0/examples/javascript && deno run index.js
 ----
 
 == Common Patterns

@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+
+name = "PMPLJuliaExample"
+uuid = "12345678-1234-5678-1234-567812345678"
+authors = ["Palimpsest Stewardship Council"]
+version = "0.1.0"
+
+[compat]
+julia = "1.6"
+
+# Note: Julia packages use SPDX identifiers
+# This project demonstrates PMPL-1.0-or-later licensing
+#
+# File-level copyleft means:
+# - This file and modifications to it must remain PMPL-1.0-or-later
+# - You can combine this with files under MIT, BSD, Apache-2.0, etc.
+# - The combined project can be distributed under your choice of compatible license

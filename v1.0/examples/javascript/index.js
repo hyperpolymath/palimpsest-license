@@ -29,8 +29,8 @@ export function getLicenseInfo() {
   };
 }
 
-// Example usage
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Example usage (Deno)
+if (import.meta.main) {
   console.log(greet("World"));
   console.log("License info:", getLicenseInfo());
 }
