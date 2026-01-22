@@ -1,33 +1,25 @@
-;; ECOSYSTEM.scm — Palimpsest License Ecosystem Specification
-;; Canonical ontology for agents, artefacts, and governance flows.
+;; SPDX-License-Identifier: PMPL-1.0-or-later
+;; ECOSYSTEM.scm - Project ecosystem positioning
 
 (ecosystem
-  (name "palimpsest-license")
-  (version "1.0")
-  (governance "Palimpsest Stewardship Council")
-  (jurisdiction "NL")
-
-  (actors
-    (council "Palimpsest Stewardship Council")
-    (contributors "Individuals submitting improvements")
-    (maintainers "Repository maintainers")
-    (agents "Automated systems interacting with the license"))
-
-  (artefacts
-    (license "legal/PALIMPSEST-MPL-1.0.txt")
-    (exhibit-a "legal/exhibits/EXHIBIT-A-ETHICAL-USE.txt")
-    (exhibit-b "legal/exhibits/EXHIBIT-B-QUANTUM-SAFE.txt")
-    (metadata "LICENSES/PMPL-1.0.json")
-    (governance "GOVERNANCE.adoc")
-    (versioning "VERSIONING.adoc"))
-
-  (flows
-    (proposal "Contributor submits proposal → Council review → Public comment → Ratification")
-    (versioning "Council publishes new version → Metadata updated → Historical archive extended")
-    (provenance "pmpl-sign → pmpl-verify → pmpl-audit"))
-
-  (principles
-    (ethical-use "Preserve emotional lineage and cultural meaning")
-    (provenance "Maintain cryptographic lineage")
-    (reversibility "All artefacts must be reversible and auditable")
-    (narratability "Every artefact must tell its own story")))
+  ((version . "1.0.0")
+   (name . "palimpsest-license")
+   (type . "specification")
+   (purpose . "Ethical open source licensing framework for the AI age")
+   (position-in-ecosystem . "foundation")
+   (related-projects
+     ((rhodium-standard-repositories . "sibling-standard")
+      (gitvisor . "tooling-consumer")
+      (bunsenite . "consumer")
+      (zig-nickel-ffi . "consumer")
+      (formatrix-docs . "consumer")))
+   (what-this-is
+     ("An ethical licensing framework"
+      "A philosophical approach to open source"
+      "Protection for creators in AI age"
+      "Layered on MPL-2.0 for legal backing"
+      "Defines 6SCM machine-readable metadata standard"))
+   (what-this-is-not
+     ("A replacement for existing licenses - it extends MPL-2.0"
+      "Anti-AI or anti-technology - AI training explicitly permitted"
+      "A standalone legal invention - built on proven MPL-2.0 foundation"))))

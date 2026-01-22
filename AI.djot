@@ -1,0 +1,88 @@
+# AI Agent Instructions for palimpsest-license
+
+**This file directs AI agents to the correct machine-readable metadata and build automation.**
+
+## Machine-Readable Metadata (6SCM Files)
+
+All structured project metadata is located in `.machine_readable/`:
+
+- **`.machine_readable/STATE.scm`** - Current project state, progress, blockers, next actions
+- **`.machine_readable/META.scm`** - Architecture decisions, development practices, design rationale
+- **`.machine_readable/ECOSYSTEM.scm`** - Position in ecosystem, related projects
+- **`.machine_readable/PLAYBOOK.scm`** - Operational runbook, procedures
+- **`.machine_readable/AGENTIC.scm`** - AI agent interaction patterns
+- **`.machine_readable/NEUROSYM.scm`** - Neurosymbolic integration configuration
+
+**Root-level SCM files are symlinks** to `.machine_readable/` for convenience.
+
+## Build Automation (Contractiles)
+
+Build and task automation files are in `contractiles/`:
+
+- **`contractiles/Justfile`** - Primary build automation (just command runner)
+- **`contractiles/Mustfile`** - Must-have validation rules
+- **`contractiles/Lustfile`** - Desired optimizations (future)
+- **`contractiles/Dustfile`** - Cleanup automation (future)
+- **`contractiles/Trustfile`** - Security verification (future)
+
+## Quick Access
+
+```bash
+# Read project state
+cat .machine_readable/STATE.scm
+
+# View architecture decisions
+cat .machine_readable/META.scm
+
+# See ecosystem relationships
+cat .machine_readable/ECOSYSTEM.scm
+
+# Run build tasks
+just --list   # (from contractiles/Justfile)
+```
+
+## For AI Agents
+
+When analyzing this repository:
+
+1. **Start with**: `.machine_readable/STATE.scm` for current state
+2. **Understand structure**: `.machine_readable/META.scm` for architecture
+3. **Check relationships**: `.machine_readable/ECOSYSTEM.scm` for dependencies
+4. **Build/test**: `contractiles/Justfile` for automation
+
+## Repository Structure
+
+```
+palimpsest-license/
+├── v1.0/                      ← Current version (START HERE)
+├── ARCHIVE/                   ← Historical versions
+├── .machine_readable/         ← AI/agent metadata (6SCM files)
+├── contractiles/              ← Build automation
+├── legal/                     ← Legal resources
+├── docs/                      ← Documentation
+├── tools/                     ← CLI tools
+├── spec/                      ← Specifications
+└── AI.djot                    ← This file
+```
+
+## Why This Structure?
+
+- **`.machine_readable/`** - Keeps metadata separate from user-facing files
+- **Symlinks at root** - Convenience for tools expecting files at root
+- **`contractiles/`** - Groups build files, reducing root clutter
+- **`AI.djot`** - Single entry point for AI agents
+
+## File Format: Djot
+
+This file uses [Djot](https://djot.net/) - a light markup syntax designed for:
+
+- Unambiguous parsing
+- CommonMark compatibility
+- Better specification than Markdown
+- Ideal for AI processing
+
+## See Also
+
+- `README.adoc` - Main repository documentation
+- `REPOSITORY_STRUCTURE.adoc` - Complete structure guide
+- `VERSIONING_POLICY.adoc` - Version management policy

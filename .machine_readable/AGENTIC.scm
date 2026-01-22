@@ -1,26 +1,21 @@
-;; AGENTIC.scm — Agentic Reasoning Specification
-;; Defines how autonomous agents interpret, modify, and interact with artefacts.
+;; SPDX-License-Identifier: PMPL-1.0-or-later
+;; AGENTIC.scm - AI agent interaction patterns
 
-(agentic
-  (version "1.0")
-
-  (interpretation
-    (license "Treat PMPL as binding legal text with ethical extensions")
-    (exhibits "Interpret as normative supplements")
-    (metadata "Use SPDX metadata as canonical mapping"))
-
-  (agency
-    (allowed
-      (read "All artefacts")
-      (propose "Changes via issues or PRs")
-      (verify "Provenance and compliance"))
-    (forbidden
-      (modify "License text without Council approval")
-      (strip "Provenance metadata")
-      (misrepresent "Lineage or authorship")))
-
-  (autonomy
-    (agents-may
-      "Generate analyses, propose improvements, audit provenance")
-    (agents-must
-      "Preserve emotional lineage, maintain narrative context")))
+(define agentic-config
+  `((version . "1.0.0")
+    (claude-code
+      ((model . "claude-opus-4-5-20251101")
+       (tools . ("read" "edit" "bash" "grep" "glob"))
+       (permissions . "read-all")))
+    (patterns
+      ((code-review . "thorough")
+       (refactoring . "conservative")
+       (testing . "comprehensive")
+       (documentation . "bilingual-aware")))
+    (constraints
+      ((languages . ("ocaml" "scheme" "asciidoc" "nickel"))
+       (banned . ("typescript" "go" "python" "makefile"))))
+    (special-instructions
+      ((bilingual . "Maintain Dutch/English parity")
+       (legal . "Do not modify license text without review")
+       (governance . "Follow GOVERNANCE.md for major changes")))))
