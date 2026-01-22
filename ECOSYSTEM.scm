@@ -20,6 +20,6 @@
       "Layered on MPL-2.0 for legal backing"
       "Defines 6SCM machine-readable metadata standard"))
    (what-this-is-not
-     ("A replacement for existing licenses"
-      "Legally binding (until v1.0)"
-      "Anti-AI or anti-technology"))))
+     ("A replacement for existing licenses - it extends MPL-2.0"
+      "Anti-AI or anti-technology - AI training explicitly permitted"
+      "A standalone legal invention - built on proven MPL-2.0 foundation"))))
