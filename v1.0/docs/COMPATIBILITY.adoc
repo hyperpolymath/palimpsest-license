@@ -1,0 +1,389 @@
+= PMPL v1.0 License Compatibility Matrix
+:toc: macro
+:toclevels: 2
+
+**Compatibility of PMPL-1.0 with other open source licenses**
+
+toc::[]
+
+== Summary
+
+PMPL-1.0 is built on MPL-2.0 and inherits its compatibility characteristics. As a file-level copyleft license, it can be combined with most other licenses in multi-license projects.
+
+== Compatibility Table
+
+[cols="2,1,3"]
+|===
+| License | Compatible | Notes
+
+| **MIT**
+| ✅ Yes
+| MIT code can be combined with PMPL code. MIT files stay MIT, PMPL files stay PMPL.
+
+| **BSD-2-Clause**
+| ✅ Yes
+| BSD code can be combined with PMPL code. BSD files stay BSD, PMPL files stay PMPL.
+
+| **BSD-3-Clause**
+| ✅ Yes
+| BSD code can be combined with PMPL code. BSD files stay BSD, PMPL files stay PMPL.
+
+| **Apache-2.0**
+| ✅ Yes
+| Apache code can be combined with PMPL code. Apache files stay Apache, PMPL files stay PMPL.
+
+| **MPL-2.0**
+| ✅ Yes
+| PMPL extends MPL-2.0. MPL-2.0 code is forward-compatible with PMPL.
+
+| **LGPL-2.1**
+| ✅ Yes (secondary)
+| Via MPL-2.0 Section 3.3. Combined work can be distributed under LGPL-2.1-or-later.
+
+| **LGPL-3.0**
+| ✅ Yes (secondary)
+| Via MPL-2.0 Section 3.3. Combined work can be distributed under LGPL-3.0-or-later.
+
+| **GPL-2.0**
+| ✅ Yes (secondary)
+| Via MPL-2.0 Section 3.3. Combined work can be distributed under GPL-2.0-or-later.
+
+| **GPL-3.0**
+| ✅ Yes (secondary)
+| Via MPL-2.0 Section 3.3. Combined work can be distributed under GPL-3.0-or-later.
+
+| **AGPL-3.0**
+| ✅ Yes (secondary)
+| Via MPL-2.0 Section 3.3. Combined work can be distributed under AGPL-3.0-or-later.
+
+| **ISC**
+| ✅ Yes
+| ISC code can be combined with PMPL code. ISC files stay ISC, PMPL files stay PMPL.
+
+| **0BSD**
+| ✅ Yes
+| 0BSD code can be combined with PMPL code. 0BSD files stay 0BSD, PMPL files stay PMPL.
+
+| **Unlicense**
+| ✅ Yes
+| Public domain code can be combined with PMPL code.
+
+| **CC0**
+| ✅ Yes
+| Public domain dedication can be combined with PMPL code.
+
+| **EPL-2.0**
+| ⚠️ Maybe
+| Both are file-level copyleft. Combination possible but complex. Legal review recommended.
+
+| **GPL-2.0-only**
+| ⚠️ Restricted
+| Can use via secondary license mechanism, but GPLv2-only without "-or-later" is restrictive.
+
+| **Proprietary**
+| ⚠️ Conditional
+| PMPL files can be in proprietary projects IF kept in separate files and source provided for PMPL files.
+
+| **CC-BY**
+| ⚠️ Different domain
+| Creative Commons is for creative works, not software. Use with caution for code.
+
+| **CC-BY-SA**
+| ⚠️ Different domain
+| Share-alike Creative Commons. Compatibility complex. Not recommended for code.
+
+| **Artistic-2.0**
+| ⚠️ Maybe
+| Weak copyleft. Combination possible but complex. Legal review recommended.
+|===
+
+== Detailed Compatibility
+
+=== Permissive Licenses (MIT, BSD, Apache, ISC)
+
+**Status**: ✅ **Fully Compatible**
+
+**How it works**:
+
+[source,text]
+----
+your-project/
+├── LICENSE.txt              ← PMPL-1.0 (or state multi-license)
+├── src/
+│   ├── pmpl-code.rs         ← SPDX-License-Identifier: PMPL-1.0-or-later
+│   ├── mit-code.rs          ← SPDX-License-Identifier: MIT
+│   └── apache-code.rs       ← SPDX-License-Identifier: Apache-2.0
+----
+
+**Rules**:
+
+* Each file keeps its own license
+* PMPL files remain under PMPL
+* Permissive files remain under their original license
+* Can distribute as multi-license project
+
+**SPDX notation**:
+
+[source,text]
+----
+# Individual files
+SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-License-Identifier: MIT
+
+# Project overall (if needed)
+SPDX-License-Identifier: PMPL-1.0-or-later AND MIT
+----
+
+=== GPL/LGPL (Secondary License)
+
+**Status**: ✅ **Compatible via MPL-2.0 Section 3.3**
+
+**How it works**:
+
+MPL-2.0 (and thus PMPL-1.0) allows the recipient to choose to receive the work under GPL/LGPL instead:
+
+[source,text]
+----
+"You may also distribute Covered Software under the terms of one or more
+Secondary Licenses, so that the recipient of the Larger Work may, at their
+option, further distribute the Covered Software under the terms of either
+this License or such Secondary Licenses."
+----
+
+**Practical application**:
+
+1. **PMPL + GPL in same project**: GPL portions under GPL, PMPL portions under PMPL
+2. **Recipient's choice**: When distributing, recipient can choose GPL terms for PMPL portions
+3. **Original PMPL remains available**: Original PMPL files always available under PMPL
+
+**Example**:
+
+[source,text]
+----
+your-project/
+├── LICENSE.txt              ← PMPL-1.0
+├── LICENSE.GPL              ← GPL-3.0-or-later (alternative)
+├── src/
+│   ├── pmpl-code.rs         ← PMPL-1.0-or-later (can be taken under GPL)
+│   └── gpl-code.rs          ← GPL-3.0-or-later
+----
+
+**SPDX notation**:
+
+[source,text]
+----
+SPDX-License-Identifier: (PMPL-1.0-or-later OR GPL-3.0-or-later) AND GPL-3.0-or-later
+----
+
+=== Proprietary Software
+
+**Status**: ⚠️ **Conditional** - File-level copyleft applies
+
+**Rules**:
+
+✅ **You CAN**:
+
+* Include PMPL files in proprietary projects
+* Keep proprietary code in separate files
+* Distribute as a combined work
+
+❌ **You MUST**:
+
+* Keep PMPL files under PMPL
+* Provide source for PMPL files
+* Maintain PMPL license notices
+* Not modify PMPL files without sharing changes
+
+**Example structure**:
+
+[source,text]
+----
+proprietary-product/
+├── LICENSE-PROPRIETARY.txt   ← Your proprietary license
+├── OPEN-SOURCE-LICENSES.txt  ← Notice of PMPL components
+├── src/
+│   ├── proprietary.rs        ← Your code (closed source)
+│   └── pmpl-component.rs     ← PMPL-1.0 (must be open)
+└── pmpl-source/              ← Source for PMPL files
+    └── pmpl-component.rs
+----
+
+== Dual Licensing
+
+You can dual-license your own code under PMPL and another license:
+
+=== PMPL + MIT
+
+[source,text]
+----
+SPDX-License-Identifier: PMPL-1.0-or-later OR MIT
+----
+
+**Recipient's choice**: Use under PMPL or MIT terms.
+
+=== PMPL + Apache-2.0
+
+[source,text]
+----
+SPDX-License-Identifier: PMPL-1.0-or-later OR Apache-2.0
+----
+
+**Use case**: Maximum compatibility while offering ethical use guidelines.
+
+=== PMPL + GPL
+
+[source,text]
+----
+SPDX-License-Identifier: PMPL-1.0-or-later OR GPL-3.0-or-later
+----
+
+**Use case**: Ensure copyleft while offering GPL compatibility.
+
+== Multi-License Projects
+
+For projects with multiple licenses:
+
+=== LICENSE file structure
+
+**Option 1: Single LICENSE with sections**
+
+[source,text]
+----
+This project contains code under multiple licenses:
+
+1. PMPL-1.0-or-later (files in src/core/)
+   See LICENSE-PMPL.txt for full text.
+
+2. MIT (files in src/utils/)
+   See LICENSE-MIT.txt for full text.
+
+3. Apache-2.0 (files in src/vendor/)
+   See LICENSE-APACHE.txt for full text.
+
+Each file contains SPDX headers indicating its license.
+----
+
+**Option 2: Multiple LICENSE files**
+
+[source,text]
+----
+project/
+├── LICENSE              ← Primary (PMPL-1.0)
+├── LICENSE-MIT          ← MIT license text
+├── LICENSE-APACHE       ← Apache-2.0 license text
+└── LICENSES/            ← OR: Directory approach
+    ├── PMPL-1.0.txt
+    ├── MIT.txt
+    └── Apache-2.0.txt
+----
+
+=== REUSE specification
+
+For complex projects, follow https://reuse.software/[REUSE specification]:
+
+[source,text]
+----
+project/
+├── LICENSES/
+│   ├── PMPL-1.0-or-later.txt
+│   ├── MIT.txt
+│   └── Apache-2.0.txt
+├── .reuse/
+│   └── dep5              ← Copyright and license info
+└── src/
+    └── file.rs           ← SPDX headers
+----
+
+Validate with:
+
+[source,bash]
+----
+pip install reuse
+reuse lint
+----
+
+== Common Scenarios
+
+=== Scenario 1: Adding PMPL component to MIT project
+
+✅ **Allowed**
+
+[source,text]
+----
+mit-project/
+├── LICENSE              ← MIT
+├── src/
+│   ├── main.rs          ← MIT
+│   └── pmpl-lib.rs      ← PMPL-1.0-or-later
+----
+
+**Distribution**: Provide both licenses, SPDX headers on each file.
+
+=== Scenario 2: Using PMPL library in proprietary app
+
+✅ **Allowed** (with conditions)
+
+**Requirements**:
+
+* Ship PMPL library source alongside proprietary app
+* Maintain PMPL license for library files
+* Provide access to modified PMPL source if you modify it
+
+=== Scenario 3: Forking PMPL project to GPL
+
+✅ **Allowed via secondary license**
+
+You can re-license PMPL code under GPL using MPL-2.0 Section 3.3:
+
+[source,bash]
+----
+# Original: PMPL-1.0-or-later
+# Your fork: GPL-3.0-or-later
+----
+
+**Requirement**: Include notice that original is available under PMPL.
+
+=== Scenario 4: Combining PMPL with GPL library
+
+✅ **Allowed**
+
+[source,text]
+----
+combined-project/
+├── LICENSE-PMPL.txt
+├── LICENSE-GPL.txt
+├── src/
+│   ├── pmpl-code.rs     ← PMPL-1.0-or-later
+│   └── gpl-code.rs      ← GPL-3.0-or-later
+----
+
+**Distribution**: Combined work can be under GPL (via secondary license), but PMPL files remain available under PMPL.
+
+== Legal Compatibility Chart
+
+[source,text]
+----
+PMPL-1.0
+    ↓
+MPL-2.0 (base)
+    ↓
+Compatible with:
+├── MIT/BSD/Apache (separate files)
+├── GPL/LGPL (secondary license)
+├── Other MPL-2.0 code (compatible)
+└── Proprietary (file-level separation)
+----
+
+== Questions?
+
+* **General compatibility**: See link:FAQ.adoc[]
+* **Integration guidance**: See link:INTEGRATION-GUIDE.adoc[]
+* **Legal questions**: Contact Palimpsest Stewardship Council
+* **Complex scenarios**: Seek legal counsel
+
+== References
+
+* **MPL-2.0 Compatibility**: https://www.mozilla.org/en-US/MPL/2.0/FAQ/
+* **SPDX License List**: https://spdx.org/licenses/
+* **REUSE Specification**: https://reuse.software/spec/
+* **FSF License Compatibility**: https://www.gnu.org/licenses/license-compatibility.html

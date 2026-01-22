@@ -1,0 +1,602 @@
+= PMPL v1.0 Integration Guide
+:toc: macro
+:toclevels: 3
+
+**Integrating PMPL-1.0 into development workflows, CI/CD pipelines, and package managers**
+
+toc::[]
+
+== Overview
+
+This guide covers practical integration of PMPL-1.0 (`SPDX-License-Identifier: PMPL-1.0-or-later`) into your development environment.
+
+== File Headers
+
+=== Standard Header (Minimum Required)
+
+For all source files:
+
+[source,javascript]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Your Name <you@example.com>
+----
+
+=== Extended Header (Recommended)
+
+For files with significant creative or cultural content:
+
+[source,javascript]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Your Name <you@example.com>
+//
+// Emotional Lineage: [Brief context - e.g., "Protest song adaptation"]
+// See LINEAGE.md for full provenance
+----
+
+=== Language-Specific Headers
+
+**Rust:**
+[source,rust]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Author Name
+----
+
+**Python:**
+[source,python]
+----
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2025 Author Name
+----
+
+**HTML/XML:**
+[source,html]
+----
+<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
+<!-- SPDX-FileCopyrightText: 2025 Author Name -->
+----
+
+**Shell:**
+[source,bash]
+----
+#!/usr/bin/env bash
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2025 Author Name
+----
+
+**CSS:**
+[source,css]
+----
+/* SPDX-License-Identifier: PMPL-1.0-or-later */
+/* SPDX-FileCopyrightText: 2025 Author Name */
+----
+
+**SQL:**
+[source,sql]
+----
+-- SPDX-License-Identifier: PMPL-1.0-or-later
+-- SPDX-FileCopyrightText: 2025 Author Name
+----
+
+== CI/CD Integration
+
+=== GitHub Actions
+
+**Basic SPDX header check:**
+
+[source,yaml]
+----
+# .github/workflows/license-check.yml
+name: License Compliance
+
+on: [push, pull_request]
+
+permissions: read-all
+
+jobs:
+  check-headers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SPDX headers
+        run: |
+          # Find files missing SPDX headers
+          find src -name "*.rs" -type f | while read file; do
+            if ! head -5 "$file" | grep -q "SPDX-License-Identifier"; then
+              echo "❌ Missing SPDX header: $file"
+              exit 1
+            fi
+          done
+          echo "✅ All files have SPDX headers"
+----
+
+**With pmpl-audit tool:**
+
+[source,yaml]
+----
+# .github/workflows/pmpl-audit.yml
+name: PMPL Compliance
+
+on: [push, pull_request]
+
+permissions: read-all
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install pmpl-audit
+        run: cargo install --git https://github.com/hyperpolymath/palimpsest-license pmpl-audit
+
+      - name: Run compliance audit
+        run: pmpl-audit --verbose .
+----
+
+**Optional: Verify signatures:**
+
+[source,yaml]
+----
+verify-provenance:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+
+    - uses: dtolnay/rust-toolchain@stable
+
+    - name: Install pmpl-verify
+      run: cargo install --git https://github.com/hyperpolymath/palimpsest-license pmpl-verify
+
+    - name: Verify quantum-safe signatures
+      run: pmpl-verify --recursive src/
+      continue-on-error: true  # Signatures are optional
+----
+
+=== GitLab CI
+
+[source,yaml]
+----
+# .gitlab-ci.yml
+license-compliance:
+  stage: test
+  image: rust:latest
+  script:
+    - cargo install pmpl-audit
+    - pmpl-audit .
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+provenance-check:
+  stage: test
+  image: rust:latest
+  script:
+    - cargo install pmpl-verify
+    - pmpl-verify --recursive src/
+  allow_failure: true  # Signatures are optional
+----
+
+== Package Managers
+
+=== Cargo (Rust)
+
+[source,toml]
+----
+# Cargo.toml
+[package]
+name = "your-project"
+version = "1.0.0"
+license = "PMPL-1.0-or-later"
+license-file = "LICENSE"
+description = "Your project description"
+repository = "https://github.com/yourname/your-project"
+
+# Optional: PMPL-specific metadata
+[package.metadata.pmpl]
+exhibits = ["ethical-use", "quantum-safe"]
+provenance-enabled = true
+----
+
+**Note**: Until PMPL-1.0 is added to crates.io's license list, you may need:
+
+[source,toml]
+----
+license = "PMPL-1.0-or-later OR MPL-2.0"
+license-file = "LICENSE"
+----
+
+=== npm (Node.js)
+
+[source,json]
+----
+{
+  "name": "your-package",
+  "version": "1.0.0",
+  "license": "PMPL-1.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourname/your-package"
+  },
+  "pmpl": {
+    "exhibits": ["ethical-use", "quantum-safe"],
+    "provenance": true
+  }
+}
+----
+
+**Fallback** for npm registries that don't recognize PMPL yet:
+
+[source,json]
+----
+{
+  "license": "SEE LICENSE IN LICENSE.txt"
+}
+----
+
+=== PyPI (Python)
+
+[source,python]
+----
+# pyproject.toml
+[project]
+name = "your-package"
+version = "1.0.0"
+license = {text = "PMPL-1.0-or-later"}
+
+# OR (if not recognized)
+license = {file = "LICENSE"}
+
+[project.urls]
+Homepage = "https://github.com/yourname/your-package"
+Repository = "https://github.com/yourname/your-package"
+----
+
+**setup.py (legacy):**
+
+[source,python]
+----
+setup(
+    name="your-package",
+    version="1.0.0",
+    license="PMPL-1.0-or-later",
+    # OR: license_files=["LICENSE"],
+)
+----
+
+=== Go Modules
+
+[source,go]
+----
+// go.mod
+module github.com/yourname/your-project
+
+go 1.21
+----
+
+**License declaration** in README or package doc:
+
+[source,go]
+----
+// Package yourpackage provides...
+//
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Your Name
+package yourpackage
+----
+
+== Git Hooks
+
+=== Pre-Commit Hook
+
+[source,bash]
+----
+#!/usr/bin/env bash
+# .githooks/pre-commit
+# SPDX-License-Identifier: PMPL-1.0-or-later
+
+set -e
+
+echo "Checking SPDX headers..."
+
+# Check staged files for SPDX headers
+git diff --cached --name-only --diff-filter=ACM | \
+  grep -E '\.(rs|js|ts|py|go)$' | \
+  while read file; do
+    if ! head -5 "$file" | grep -q "SPDX-License-Identifier"; then
+      echo "❌ Missing SPDX header: $file"
+      echo "Add: // SPDX-License-Identifier: PMPL-1.0-or-later"
+      exit 1
+    fi
+  done
+
+echo "✅ All files have SPDX headers"
+----
+
+**Install hooks:**
+
+[source,bash]
+----
+# Make executable
+chmod +x .githooks/pre-commit
+
+# Configure git to use .githooks
+git config core.hooksPath .githooks
+----
+
+=== Pre-Push Hook (with signing)
+
+[source,bash]
+----
+#!/usr/bin/env bash
+# .githooks/pre-push
+# SPDX-License-Identifier: PMPL-1.0-or-later
+
+set -e
+
+# Optional: Sign commits before push
+if command -v pmpl-sign &> /dev/null; then
+  echo "Signing modified files..."
+  git diff --name-only HEAD~1 HEAD | \
+    while read file; do
+      pmpl-sign "$file"
+    done
+fi
+
+echo "✅ Ready to push"
+----
+
+== IDE Integration
+
+=== VS Code
+
+**Add to `.vscode/settings.json`:**
+
+[source,json]
+----
+{
+  "files.insertFinalNewline": true,
+  "editor.rulers": [80, 100],
+
+  // SPDX header snippets
+  "editor.snippetSuggestions": "top",
+
+  // File templates
+  "files.associations": {
+    "*.pmpl": "text",
+    "LINEAGE": "markdown"
+  },
+
+  // REUSE extension (optional)
+  "reuse.autoAddHeaders": true,
+  "reuse.licenseId": "PMPL-1.0-or-later"
+}
+----
+
+**Snippet** (`.vscode/snippets.code-snippets`):
+
+[source,json]
+----
+{
+  "PMPL Header": {
+    "scope": "rust,javascript,typescript,python",
+    "prefix": "pmpl",
+    "body": [
+      "// SPDX-License-Identifier: PMPL-1.0-or-later",
+      "// SPDX-FileCopyrightText: ${CURRENT_YEAR} ${1:Your Name}",
+      "",
+      "$0"
+    ],
+    "description": "Insert PMPL license header"
+  }
+}
+----
+
+=== IntelliJ IDEA / RustRover
+
+**File Templates** (Settings → Editor → File and Code Templates):
+
+[source,rust]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: ${YEAR} ${USER}
+
+#parse("File Header.java")
+----
+
+== REUSE Specification
+
+For comprehensive license management, use https://reuse.software/[REUSE]:
+
+=== Setup
+
+[source,bash]
+----
+# Install reuse
+pip install reuse
+
+# Initialize REUSE structure
+mkdir -p LICENSES
+cp v1.0/LICENSE.txt LICENSES/PMPL-1.0-or-later.txt
+
+# Add .reuse/dep5 for bulk copyright info
+mkdir -p .reuse
+----
+
+=== .reuse/dep5 Example
+
+[source,text]
+----
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: your-project
+Upstream-Contact: Your Name <you@example.com>
+Source: https://github.com/yourname/your-project
+
+Files: src/*.rs
+Copyright: 2025 Your Name <you@example.com>
+License: PMPL-1.0-or-later
+
+Files: docs/*.md
+Copyright: 2025 Your Name
+License: PMPL-1.0-or-later
+
+Files: vendor/*
+Copyright: Various (see individual files)
+License: MIT AND Apache-2.0
+----
+
+=== Validate Compliance
+
+[source,bash]
+----
+# Check compliance
+reuse lint
+
+# Generate SPDX bill of materials
+reuse spdx > SBOM.spdx
+----
+
+== Documentation
+
+=== README Badge
+
+Add to your README:
+
+**Markdown:**
+[source,markdown]
+----
+[![License: PMPL-1.0-or-later](https://img.shields.io/badge/License-PMPL--1.0-blue.svg)](https://github.com/hyperpolymath/palimpsest-license/blob/main/v1.0/LICENSE.txt)
+----
+
+**AsciiDoc:**
+[source,asciidoc]
+----
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0-or-later, link=https://github.com/hyperpolymath/palimpsest-license/blob/main/v1.0/LICENSE.txt]
+----
+
+**Or use palimpsest-license badges:**
+[source,markdown]
+----
+![PMPL-1.0](https://raw.githubusercontent.com/hyperpolymath/palimpsest-license/main/assets/badges/svg/badge-standard.svg)
+----
+
+=== LICENSE File
+
+Place at repository root:
+
+[source,bash]
+----
+# Copy license text
+cp /path/to/palimpsest-license/v1.0/LICENSE.txt LICENSE
+
+# Or download
+curl -O https://raw.githubusercontent.com/hyperpolymath/palimpsest-license/main/v1.0/LICENSE.txt
+mv LICENSE.txt LICENSE
+----
+
+=== Optional: LINEAGE.md
+
+For works with emotional lineage:
+
+[source,markdown]
+----
+# Provenance and Emotional Lineage
+
+## Original Context
+
+[Describe cultural, narrative, or symbolic context]
+
+## Contributions
+
+- 2024-01-15: Original work by [Name]
+- 2025-01-10: Adaptation by [Name] - [describe changes]
+
+## Cultural Notes
+
+[Explain any cultural sensitivity, community obligations, etc.]
+
+## Quantum-Safe Signatures
+
+Provenance signatures:
+- `src/core.rs`: ML-DSA signature `a1b2c3d4...`
+- `src/utils.rs`: ML-DSA signature `e5f6g7h8...`
+----
+
+== Automation Tools
+
+=== PMPL Tooling
+
+**Install from palimpsest-license repository:**
+
+[source,bash]
+----
+# Clone repository
+git clone https://github.com/hyperpolymath/palimpsest-license.git
+cd palimpsest-license
+
+# Build tools
+cd tools/pmpl-sign && cargo build --release
+cd ../pmpl-verify && cargo build --release
+cd ../pmpl-audit && cargo build --release
+
+# Install globally
+cargo install --path tools/pmpl-sign
+cargo install --path tools/pmpl-verify
+cargo install --path tools/pmpl-audit
+----
+
+**Usage:**
+
+[source,bash]
+----
+# Sign a file
+pmpl-sign src/main.rs
+
+# Verify signature
+pmpl-verify src/main.rs
+
+# Audit entire repository
+pmpl-audit .
+----
+
+== Best Practices
+
+=== Checklist for New Projects
+
+- [ ] Copy `LICENSE` file to repository root
+- [ ] Add SPDX headers to all source files
+- [ ] Configure package manager metadata
+- [ ] Set up CI/CD license checks
+- [ ] Install git hooks
+- [ ] Add license badge to README
+- [ ] (Optional) Set up REUSE compliance
+- [ ] (Optional) Configure quantum-safe signing
+
+=== Multi-License Projects
+
+For projects with multiple licenses:
+
+[source,text]
+----
+your-project/
+├── LICENSE                ← Primary (or multi-license notice)
+├── LICENSES/              ← REUSE-compliant
+│   ├── PMPL-1.0-or-later.txt
+│   ├── MIT.txt
+│   └── Apache-2.0.txt
+├── .reuse/
+│   └── dep5              ← Bulk copyright declarations
+└── src/
+    ├── pmpl-file.rs       ← SPDX: PMPL-1.0-or-later
+    └── mit-file.rs        ← SPDX: MIT
+----
+
+== Questions?
+
+* **Package manager not listed?** See link:FAQ.adoc[] or ask in https://github.com/hyperpolymath/palimpsest-license/discussions[Discussions]
+* **CI/CD problems?** Check link:../../tools/README.adoc[tools documentation]
+* **Compatibility issues?** See link:COMPATIBILITY.adoc[]

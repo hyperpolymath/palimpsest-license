@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
+
+[package]
+name = "pmpl-rust-example"
+version = "0.1.0"
+edition = "2021"
+license = "PMPL-1.0-or-later"
+license-file = "../../LICENSE.txt"
+description = "Example Rust project using PMPL-1.0"
+repository = "https://github.com/hyperpolymath/palimpsest-license"
+
+[package.metadata.pmpl]
+exhibits = ["ethical-use", "quantum-safe"]
+provenance-enabled = false
+
+[dependencies]

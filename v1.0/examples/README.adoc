@@ -1,0 +1,91 @@
+= PMPL v1.0 Examples
+:toc:
+
+**Sample implementations showing how to use PMPL-1.0 in different languages and project types**
+
+== Available Examples
+
+[cols="2,3,2"]
+|===
+| Directory | Description | Language
+
+| link:rust/[rust/]
+| Rust library with PMPL licensing
+| Rust
+
+| link:javascript/[javascript/]
+| JavaScript/TypeScript project with PMPL
+| JavaScript/TypeScript
+
+| link:python/[python/]
+| Python package with PMPL licensing
+| Python
+
+| link:multi-language/[multi-language/]
+| Multi-language project combining PMPL with other licenses
+| Mixed
+|===
+
+== Quick Start
+
+Each example includes:
+
+* Proper LICENSE file
+* SPDX headers in source files
+* Package manager configuration
+* README with usage instructions
+* Optional: Provenance metadata
+
+**To try an example:**
+
+[source,bash]
+----
+cd v1.0/examples/rust
+cargo build
+----
+
+== Common Patterns
+
+=== Minimal PMPL Project
+
+[source,text]
+----
+my-project/
+├── LICENSE               ← PMPL-1.0 text
+├── README.md             ← Project documentation
+└── src/
+    └── main.rs           ← SPDX headers
+----
+
+=== PMPL with Provenance
+
+[source,text]
+----
+my-project/
+├── LICENSE
+├── LINEAGE.md            ← Emotional lineage documentation
+├── provenance/           ← Quantum-safe signatures
+│   └── signatures.json
+└── src/
+    └── main.rs           ← SPDX headers + provenance metadata
+----
+
+=== Multi-License Project
+
+[source,text]
+----
+my-project/
+├── LICENSE               ← Multi-license notice
+├── LICENSES/             ← Individual license texts
+│   ├── PMPL-1.0-or-later.txt
+│   └── MIT.txt
+└── src/
+    ├── pmpl-code.rs      ← SPDX: PMPL-1.0-or-later
+    └── mit-code.rs       ← SPDX: MIT
+----
+
+== See Also
+
+* link:../docs/QUICK-START.adoc[Quick Start Guide]
+* link:../docs/INTEGRATION-GUIDE.adoc[Integration Guide]
+* link:../docs/COMPATIBILITY.adoc[License Compatibility]
