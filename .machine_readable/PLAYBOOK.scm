@@ -1,24 +1,19 @@
-;; PLAYBOOK.scm — Agent Playbook for Palimpsest License
-;; Defines canonical behaviours, rituals, and operational flows.
+;; SPDX-License-Identifier: PMPL-1.0-or-later
+;; PLAYBOOK.scm - Operational runbook
 
-(playbook
-  (version "1.0")
-
-  (rituals
-    (submit-proposal
-      "Open issue → Provide rationale → Link to exhibits → Await Council triage")
-    (update-license
-      "Draft revision → Public comment → Council vote → Publish → Archive previous version")
-    (provenance
-      "pmpl-sign → commit → pmpl-verify → CI audit"))
-
-  (behaviours
-    (agents
-      (must "Respect emotional lineage, preserve provenance metadata")
-      (should "Annotate changes with narrative context")
-      (must-not "Strip signatures, obscure authorship, or remove lineage chains")))
-
-  (interfaces
-    (cli "pmpl-sign, pmpl-verify, pmpl-audit")
-    (docs "README.adoc, GOVERNANCE.adoc, VERSIONING.adoc")
-    (legal "legal/PALIMPSEST-MPL-1.0.txt")))
+(define playbook
+  `((version . "1.0.0")
+    (procedures
+      ((build . (("docs" . "just docs")
+                 ("validate" . "just validate")))
+       (test . (("lint" . "npm run lint")
+                ("format" . "npm run format")))
+       (release . (("version-bump" . "Update CHANGELOG.md")
+                   ("tag" . "git tag -a vX.Y.Z")
+                   ("publish" . "just release")))
+       (translation . (("sync" . "Check bilingual-map.md")
+                       ("review" . "Dutch legal review")))))
+    (alerts . ())
+    (contacts
+      ((steward . "Jonathan D.A. Jewell")
+       (repo . "github.com/hyperpolymath/palimpsest-license")))))

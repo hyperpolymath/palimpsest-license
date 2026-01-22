@@ -1,0 +1,142 @@
+= Contractiles - Build Automation
+:toc:
+
+Build automation and task runner configuration files.
+
+== What are Contractiles?
+
+**Contractiles** are build automation files that define project tasks, validation rules, and operational contracts. The name reflects their role as "contracts" between developers and the build system.
+
+== Files
+
+[cols="2,3,3"]
+|===
+| File | Status | Purpose
+
+| `Justfile`
+| ✅ Present
+| Primary task runner using [just](https://github.com/casey/just)
+
+| `Mustfile`
+| ✅ Present
+| Must-have validation rules and checks
+
+| `Lustfile`
+| 🔜 Planned
+| Desired optimizations and enhancements
+
+| `Dustfile`
+| 🔜 Planned
+| Cleanup automation and artifact removal
+
+| `Trustfile`
+| 🔜 Planned
+| Security verification and trust checks
+|===
+
+== Justfile Usage
+
+The `Justfile` provides common development tasks:
+
+[source,bash]
+----
+# List all available tasks
+just --list
+
+# Build Rust tools
+just build
+
+# Run tests
+just test
+
+# Format code
+just fmt
+
+# Run all checks
+just check
+
+# Validate license compliance
+just validate
+----
+
+**Note**: You need [just](https://github.com/casey/just) installed:
+
+[source,bash]
+----
+# Install just
+cargo install just
+
+# Or via package manager
+# Fedora: dnf install just
+# Ubuntu: apt install just
+# macOS: brew install just
+----
+
+== Mustfile
+
+The `Mustfile` defines validation rules that **must** pass before:
+
+* Committing code
+* Creating releases
+* Merging pull requests
+
+Rules include:
+
+* License header presence (SPDX)
+* File format validation
+* Directory structure checks
+* Metadata consistency
+
+== Future Contractiles
+
+=== Lustfile (Planned)
+
+Defines **desired but optional** optimizations:
+
+* Performance improvements
+* Code quality enhancements
+* Documentation completeness
+* Test coverage goals
+
+These are "nice to have" - they improve quality but aren't blockers.
+
+=== Dustfile (Planned)
+
+Cleanup automation:
+
+* Remove build artifacts
+* Clean temporary files
+* Prune old branches
+* Archive outdated materials
+
+=== Trustfile (Planned)
+
+Security and trust verification:
+
+* Signature verification
+* Dependency auditing
+* SBOM generation
+* Supply chain security checks
+
+== Why a Separate Directory?
+
+Contractiles are grouped in `contractiles/` to:
+
+1. **Reduce root clutter** - Build files separate from content
+2. **Clear purpose** - All automation in one place
+3. **Easy discovery** - AI agents know where to look
+4. **Consistent pattern** - Follows Hyperpolymath standards
+
+== Integration
+
+Contractiles integrate with:
+
+* **Git hooks** (`.githooks/`) - Pre-commit/pre-push validation
+* **CI/CD** (`.github/workflows/`) - Automated testing
+* **SCM files** (`.machine_readable/`) - Metadata consistency
+
+== See Also
+
+* link:../AI.djot[] - AI agent instructions
+* link:../.githooks/README.adoc[] - Git hooks documentation
+* link:../scripts/README.adoc[] - Additional scripts

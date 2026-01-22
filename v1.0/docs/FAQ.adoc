@@ -1,0 +1,377 @@
+= PMPL v1.0 Frequently Asked Questions
+:toc: macro
+:toclevels: 3
+
+Common questions about using, applying, and understanding the Palimpsest-MPL License v1.0.
+
+toc::[]
+
+== General Questions
+
+=== What is the Palimpsest-MPL License?
+
+Palimpsest-MPL (PMPL-1.0) is an open source license built on Mozilla Public License 2.0, with added provisions for:
+
+* Ethical use guidelines (Exhibit A)
+* Post-quantum cryptographic provenance (Exhibit B)
+* Emotional lineage recognition
+
+It's designed for the age of AI and quantum computing while remaining compatible with the established open source ecosystem.
+
+=== Why "Palimpsest"?
+
+A palimpsest is a manuscript where earlier writing has been erased and overwritten, but traces of the original remain visible. This metaphor captures how creative works accumulate layers of contribution and meaning over time. The license honors this layered nature of collaborative creation.
+
+=== How is it different from MPL-2.0?
+
+The base legal terms are identical to MPL-2.0. PMPL-1.0 adds:
+
+1. **Ethical use guidelines** - Community norms around attribution, cultural sensitivity, and AI use
+2. **Quantum-safe provenance** - Optional cryptographic signatures using post-quantum algorithms
+3. **Emotional lineage** - Recognition of cultural and narrative meaning in creative works
+
+=== Is it legally enforceable?
+
+The MPL-2.0 base is fully enforceable. The ethical use guidelines (Exhibit A) are primarily community norms enforced through reputation and community standards rather than litigation.
+
+== Using PMPL-Licensed Software
+
+=== Can I use PMPL-licensed code in my project?
+
+Yes. You can use PMPL-licensed code in:
+
+* Personal projects
+* Commercial products
+* Open source projects
+* Proprietary software (with conditions)
+
+=== Can I use it commercially?
+
+Yes. Commercial use is permitted. The ethical use exhibit asks commercial users to:
+
+* Acknowledge the ethical guidelines
+* Act in good faith
+* Support communities whose work enables their products
+
+=== Do I need to open source my entire project?
+
+No. PMPL-1.0 has file-level copyleft like MPL-2.0:
+
+* Modified PMPL files must remain under PMPL
+* Your own files can be under any license
+* You can combine PMPL code with proprietary code in separate files
+
+=== Can I use it for AI training?
+
+Yes, with expectations:
+
+* Document the training use
+* Don't claim AI outputs have the creative authority of the training data
+* Preserve attribution through your pipeline
+* Consider opt-out mechanisms
+
+== Creating PMPL-Licensed Software
+
+=== How do I apply PMPL to my project?
+
+1. Add `PALIMPSEST-MPL-1.0.txt` as your LICENSE file (or from link:../LICENSE.txt[v1.0/LICENSE.txt])
+2. Add SPDX headers to source files: `SPDX-License-Identifier: PMPL-1.0-or-later`
+3. Include copyright notices in headers: `SPDX-FileCopyrightText: 2025 Your Name`
+4. Optionally add provenance signatures
+
+See link:QUICK-START.adoc[] for detailed instructions.
+
+=== Do I need to sign my commits?
+
+Quantum-safe signatures are **optional** but recommended. They:
+
+* Prove authorship cryptographically
+* Create an audit trail
+* Remain secure against quantum computers
+* Help with long-term attribution
+
+See link:../../tools/pmpl-sign/README.adoc[pmpl-sign documentation] for implementation.
+
+=== What about existing contributors?
+
+If relicensing an existing project:
+
+1. Get explicit consent from all contributors
+2. Document the license change in CHANGELOG
+3. Keep attribution for all contributions
+4. Consider a Contributor License Agreement (CLA) for ongoing contributions
+
+== Compatibility
+
+=== Is it compatible with GPL?
+
+PMPL-1.0 is compatible with GPL 2.0+ and LGPL 2.1+ as secondary licenses (per MPL-2.0 Section 3.3). This means:
+
+* GPL/LGPL code can be combined with PMPL code
+* The combined work follows GPL/LGPL terms
+* The original PMPL files remain available under PMPL
+
+See link:COMPATIBILITY.adoc[] for detailed compatibility matrix.
+
+=== Is it compatible with Apache 2.0?
+
+✅ **Yes.** PMPL-1.0 and Apache 2.0 are compatible:
+
+* Can be combined in the same project
+* Apache 2.0 code remains under Apache 2.0
+* PMPL code remains under PMPL
+
+=== Is it compatible with MIT/BSD?
+
+✅ **Yes.** MIT and BSD code can be:
+
+* Combined with PMPL code
+* Kept under their original licenses
+* Used in the same project
+
+=== Can I dual-license with PMPL?
+
+Yes. Common patterns:
+
+[source,text]
+----
+SPDX-License-Identifier: PMPL-1.0-or-later OR MIT
+SPDX-License-Identifier: PMPL-1.0-or-later OR Apache-2.0
+----
+
+The recipient can choose which license to follow.
+
+== Ethical Use
+
+=== What is "emotional lineage"?
+
+Emotional lineage refers to the cultural, narrative, and symbolic meaning embedded in creative works. This includes:
+
+* Protest traditions and social movements
+* Cultural heritage and community stories
+* Trauma narratives and lived experiences
+* Spiritual and religious content
+
+The license asks users to respect this context, not just the code.
+
+=== Are the ethical guidelines legally binding?
+
+The guidelines in Exhibit A are primarily **community norms**:
+
+* They set expectations for ethical behavior
+* They're enforced through community reputation
+* Serious violations could potentially be actionable under related laws (defamation, cultural appropriation statutes where applicable)
+* The Stewardship Council may issue public statements about violations
+
+=== What if I disagree with the ethical guidelines?
+
+The guidelines represent community consensus. If you disagree:
+
+1. You can still use the software (guidelines are voluntary norms)
+2. Submit feedback via the project repository
+3. Propose alternative approaches through the governance process
+4. Fork the project under MPL-2.0 if guidelines conflict fundamentally with your needs
+
+=== What's an example of emotional lineage violation?
+
+Examples of disrespectful use:
+
+* Using protest music in police training materials
+* Extracting trauma narratives for entertainment without context
+* Commercializing sacred or ceremonial content
+* Stripping cultural meaning from community-created works
+
+The license doesn't prohibit these uses legally, but asks users to consider the impact.
+
+== Quantum-Safe Provenance
+
+=== Do I need to understand quantum computing?
+
+No. The cryptographic requirements are implemented in tools:
+
+* Use `pmpl-sign` to sign files
+* Use `pmpl-verify` to verify signatures
+* The tools handle the cryptography
+
+See link:../../tools/README.adoc[tools documentation].
+
+=== When will quantum computers break current signatures?
+
+Current estimates suggest:
+
+* 2030-2040 for cryptographically relevant quantum computers
+* Some recommend "harvest now, decrypt later" protection today
+* PMPL signatures are designed to remain valid for 50+ years
+
+=== What if the algorithms are broken?
+
+The Stewardship Council maintains the approved algorithm list:
+
+* New algorithms can be added as needed
+* Deprecation follows a 2-year notice period
+* Signature format supports algorithm agility (can migrate to new algorithms)
+
+Approved algorithms (PMPL-1.0):
+
+* **ML-DSA** (CRYSTALS-Dilithium) - NIST FIPS 204
+* **SLH-DSA** (SPHINCS+) - NIST FIPS 205
+* **FN-DSA** (Falcon) - Under NIST review
+
+=== Is signing required?
+
+**No.** Quantum-safe signatures are optional. The license works perfectly fine without them. Signing is recommended for:
+
+* High-value intellectual property
+* Long-term archival (decades)
+* Regulatory compliance needs
+* Projects with complex contribution chains
+
+== Governance
+
+=== Who maintains the license?
+
+The **Palimpsest Stewardship Council**:
+
+* 3 Creator Representatives
+* 2 Legal Experts
+* 1 Technologist
+* 1 Cultural Heritage Advocate
+
+See link:../../GOVERNANCE.adoc[GOVERNANCE.adoc] for full structure.
+
+=== How can I participate?
+
+Ways to contribute:
+
+* Submit issues and feedback via https://github.com/hyperpolymath/palimpsest-license/issues[GitHub Issues]
+* Join https://github.com/hyperpolymath/palimpsest-license/discussions[community discussions]
+* Propose amendments through the governance process
+* Apply for Council membership when positions open
+
+=== Can the license change?
+
+Future versions may be published:
+
+* You can always use software under the version it was released under
+* **Or any later version** (your choice - that's what `-or-later` means)
+* Major changes require Council supermajority (6/7) and community review
+* Minor versions require 4/7 Council approval
+
+See link:../../VERSIONING_POLICY.adoc[VERSIONING_POLICY.adoc] for version management.
+
+=== What happens if the Stewardship Council dissolves?
+
+If the Council becomes inactive:
+
+* The license terms remain valid
+* The license text is immutable
+* Community can fork governance under MPL-2.0 terms
+* Existing PMPL-licensed code continues under PMPL
+
+== Technical Questions
+
+=== What's the SPDX identifier?
+
+[source,text]
+----
+PMPL-1.0-or-later
+----
+
+For specific version only:
+
+[source,text]
+----
+PMPL-1.0
+----
+
+Always prefer `-or-later` unless you have specific reasons not to.
+
+=== How do I handle multi-file projects?
+
+Each source file needs:
+
+[source,javascript]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Your Name <you@example.com>
+----
+
+The project root needs:
+
+* `LICENSE` or `LICENSE.txt` with full PMPL-1.0 text
+* `README` mentioning the license
+* Optional: `legal/exhibits/` with full exhibit texts
+
+=== Can I use PMPL for non-code works?
+
+Yes. PMPL works for:
+
+* ✅ Software (primary use case)
+* ✅ Documentation
+* ✅ Datasets
+* ✅ Training corpora
+* ✅ Creative works (art, music, writing)
+* ✅ Research artifacts
+
+The file-level copyleft model adapts well to mixed-media projects.
+
+=== How do I migrate from another license?
+
+**From MPL-2.0:**
+
+1. Get contributor consent (or you're the sole author)
+2. Update LICENSE to PMPL-1.0
+3. Update SPDX headers
+4. Document change in CHANGELOG
+
+**From MIT/BSD/Apache:**
+
+1. **Requires all contributors' consent** (changing from permissive to copyleft)
+2. May need CLAs or relicensing agreements
+3. Consider dual-licensing during transition
+4. Legal review recommended
+
+**From GPL:**
+
+1. Technically challenging (GPL is stricter copyleft)
+2. May need to keep GPL or get exceptions
+3. Consult with legal counsel
+
+== Getting Help
+
+=== Where can I ask questions?
+
+* **GitHub Issues**: https://github.com/hyperpolymath/palimpsest-license/issues - Technical questions, bugs
+* **GitHub Discussions**: https://github.com/hyperpolymath/palimpsest-license/discussions - Broader topics, community conversation
+* **Email**: Contact the Council for sensitive matters (see link:../../GOVERNANCE.adoc[])
+
+=== Where is the official license text?
+
+* **This Repository**: https://github.com/hyperpolymath/palimpsest-license
+* **License Text**: link:../LICENSE.txt[v1.0/LICENSE.txt] or link:../../legal/PALIMPSEST-MPL-1.0.txt[legal/PALIMPSEST-MPL-1.0.txt]
+* **Exhibits**: link:../exhibits/[v1.0/exhibits/]
+
+=== Who do I contact about violations?
+
+1. Try to resolve directly with the violator first (misunderstandings are common)
+2. Contact the Stewardship Council for guidance
+3. Seek legal counsel for serious violations
+4. Document everything for potential enforcement
+
+For MPL-2.0 base violations (copyright infringement), standard copyright enforcement applies.
+
+=== Is there a mailing list or chat?
+
+Currently:
+
+* **GitHub Discussions** - Primary community forum
+* **GitHub Issues** - Technical questions
+
+Community-run options may emerge over time. Check the repository for current links.
+
+== Still Have Questions?
+
+* Check link:QUICK-START.adoc[Quick Start Guide] for usage instructions
+* See link:INTEGRATION-GUIDE.adoc[Integration Guide] for CI/CD and tooling
+* Review link:COMPATIBILITY.adoc[Compatibility Matrix] for license combinations
+* Ask in https://github.com/hyperpolymath/palimpsest-license/discussions[GitHub Discussions]

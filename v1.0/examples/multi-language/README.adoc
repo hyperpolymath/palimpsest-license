@@ -1,0 +1,60 @@
+= Multi-License Project Example
+
+**Example showing PMPL-1.0 combined with other licenses in a single project**
+
+== Structure
+
+[source,text]
+----
+multi-language/
+├── LICENSE               ← Multi-license notice
+├── LICENSES/             ← Individual license texts
+│   ├── PMPL-1.0-or-later.txt
+│   └── MIT.txt
+├── rescript.json         ← ReScript config
+├── src/
+│   ├── core.rs           ← PMPL-1.0-or-later (Rust)
+│   └── Utils.res         ← MIT (ReScript)
+└── README.adoc
+----
+
+== File Licensing
+
+Each file has its own license declared via SPDX headers:
+
+* `src/core.rs` - PMPL-1.0-or-later (file-level copyleft, Rust)
+* `src/Utils.res` - MIT (permissive, ReScript → compiles to JavaScript)
+
+== Distribution
+
+When distributing this project:
+
+1. Include both LICENSE texts (in `LICENSES/` directory)
+2. Maintain SPDX headers in all files
+3. Respect file-level licensing:
+   - PMPL files remain under PMPL
+   - MIT files remain under MIT
+
+== Compatibility
+
+PMPL-1.0 and MIT are fully compatible:
+
+* PMPL has file-level copyleft (not project-level)
+* MIT is permissive and compatible with PMPL
+* Can be combined in same project
+
+See link:../../docs/COMPATIBILITY.adoc[] for details.
+
+== Usage
+
+[source,bash]
+----
+# PMPL file (copyleft)
+./src/core.rs   → Must stay PMPL if modified
+
+# MIT file (permissive)
+./src/Utils.res → Can be relicensed if needed
+
+# Build ReScript
+rescript         → Compiles Utils.res to Utils.res.js
+----

@@ -5,9 +5,9 @@
 ```markdown
 ## Licence
 
-[![Palimpsest License v0.4](https://example.com/path/to/badge-large.svg)](https://palimpsestlicense.org/)
+[![Palimpsest License v1.0](https://example.com/path/to/badge-large.svg)](https://palimpsestlicense.org/)
 
-This work is licensed under the **[Palimpsest License v0.4](https://palimpsestlicense.org/)** —
+This work is licensed under the **[Palimpsest License v1.0](https://palimpsestlicense.org/)** —
 a future-proof, layered licensing framework designed for creative work in the age of AI.
 
 ### What This Means
@@ -40,8 +40,8 @@ You must:
 ### Full Licence Text
 
 For complete terms and conditions, please see:
-- [Palimpsest License v0.4 (English)](https://palimpsestlicense.org/licence-text/)
-- [Palimpsest License v0.4 (Dutch)](https://palimpsestlicense.org/licence-text/nl/)
+- [Palimpsest License v1.0 (English)](https://palimpsestlicense.org/licence-text/)
+- [Palimpsest License v1.0 (Dutch)](https://palimpsestlicense.org/licence-text/nl/)
 
 ### Questions?
 
@@ -68,7 +68,7 @@ For complete terms and conditions, please see:
 > A brief description of your project
 
 This project explores [description] while preserving emotional lineage and cultural context
-under the [Palimpsest License v0.4](https://palimpsestlicense.org/).
+under the [Palimpsest License v1.0](https://palimpsestlicense.org/).
 
 ## Table of Contents
 
@@ -89,7 +89,7 @@ under the [Palimpsest License v0.4](https://palimpsestlicense.org/).
 
 ## Licence and Attribution
 
-[![Palimpsest License v0.4](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
+[![Palimpsest License v1.0](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
 
 ### Work Information
 
@@ -98,7 +98,7 @@ under the [Palimpsest License v0.4](https://palimpsestlicense.org/).
 | **Title** | Project Name |
 | **Author(s)** | Your Name, Contributor Name |
 | **Year** | 2025 |
-| **Licence** | [Palimpsest License v0.4](https://palimpsestlicense.org/) |
+| **Licence** | [Palimpsest License v1.0](https://palimpsestlicense.org/) |
 | **Version** | 1.0.0 |
 | **Repository** | [github.com/username/repo](https://github.com/username/repo) |
 
@@ -112,14 +112,14 @@ If you use this work in research or creative projects, please cite:
   title = {Project Name},
   year = {2025},
   version = {1.0.0},
-  licence = {Palimpsest License v0.4},
+  licence = {Palimpsest License v1.0},
   url = {https://github.com/username/repo}
 }
 ```
 
 ### Licence Summary
 
-This work is licensed under the [Palimpsest License v0.4](https://palimpsestlicense.org/),
+This work is licensed under the [Palimpsest License v1.0](https://palimpsestlicense.org/),
 which means:
 
 <details>

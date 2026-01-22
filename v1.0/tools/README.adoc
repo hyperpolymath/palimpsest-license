@@ -1,0 +1,181 @@
+= PMPL v1.0 Tooling
+:toc:
+
+**Command-line tools for PMPL-1.0 compliance, signing, and verification**
+
+toc::[]
+
+== Overview
+
+The Palimpsest-MPL tooling suite provides:
+
+* **pmpl-sign** - Create quantum-safe signatures
+* **pmpl-verify** - Verify provenance and signatures
+* **pmpl-audit** - Audit repositories for PMPL compliance
+
+**All tools are optional.** PMPL-1.0 works perfectly without them.
+
+== Tools Location
+
+The actual tool source code is in the main repository `tools/` directory:
+
+[source,text]
+----
+palimpsest-license/
+└── tools/
+    ├── pmpl-sign/          ← Signing tool
+    │   ├── Cargo.toml
+    │   └── src/
+    ├── pmpl-verify/        ← Verification tool
+    │   ├── Cargo.toml
+    │   └── src/
+    ├── pmpl-audit/         ← Audit tool
+    │   ├── Cargo.toml
+    │   └── src/
+    └── README.adoc         ← Main tools documentation
+----
+
+**See link:../../tools/README.adoc[tools/README.adoc] for complete documentation.**
+
+== Installation
+
+**From source:**
+
+[source,bash]
+----
+# Clone repository
+git clone https://github.com/hyperpolymath/palimpsest-license.git
+cd palimpsest-license
+
+# Build all tools
+cd tools/pmpl-sign && cargo build --release
+cd ../pmpl-verify && cargo build --release
+cd ../pmpl-audit && cargo build --release
+
+# Install globally
+cargo install --path tools/pmpl-sign
+cargo install --path tools/pmpl-verify
+cargo install --path tools/pmpl-audit
+----
+
+**From crates.io (when published):**
+
+[source,bash]
+----
+cargo install pmpl-sign
+cargo install pmpl-verify
+cargo install pmpl-audit
+----
+
+== Quick Usage
+
+=== pmpl-sign
+
+Create quantum-safe signatures for files:
+
+[source,bash]
+----
+# Sign a single file
+pmpl-sign src/main.rs
+
+# Sign all Rust files
+find src -name "*.rs" -exec pmpl-sign {} \;
+
+# Specify algorithm
+pmpl-sign --algorithm ML-DSA-65 src/main.rs
+----
+
+=== pmpl-verify
+
+Verify provenance and signatures:
+
+[source,bash]
+----
+# Verify a single file
+pmpl-verify src/main.rs
+
+# Verify all files recursively
+pmpl-verify --recursive src/
+
+# Verbose output
+pmpl-verify --verbose src/main.rs
+----
+
+=== pmpl-audit
+
+Audit repository for PMPL compliance:
+
+[source,bash]
+----
+# Audit current directory
+pmpl-audit .
+
+# Audit specific directory
+pmpl-audit /path/to/project
+
+# Detailed report
+pmpl-audit --verbose --output report.json .
+----
+
+== CI/CD Integration
+
+See link:../docs/INTEGRATION-GUIDE.adoc[] for CI/CD setup examples.
+
+**Quick GitHub Actions example:**
+
+[source,yaml]
+----
+- name: Install pmpl-audit
+  run: cargo install pmpl-audit
+
+- name: Run compliance audit
+  run: pmpl-audit .
+----
+
+== When to Use These Tools
+
+[cols="2,3,2"]
+|===
+| Tool | When to Use | Required?
+
+| **pmpl-sign**
+| Long-term provenance, regulatory compliance, high-value IP
+| ❌ Optional
+
+| **pmpl-verify**
+| Verify signed contributions, audit supply chain
+| ❌ Optional
+
+| **pmpl-audit**
+| CI/CD compliance checks, pre-release validation
+| ✅ Recommended
+|===
+
+== Algorithm Support
+
+**Quantum-safe signature algorithms:**
+
+* **ML-DSA** (CRYSTALS-Dilithium) - NIST FIPS 204
+* **SLH-DSA** (SPHINCS+) - NIST FIPS 205
+* **FN-DSA** (Falcon) - Under NIST review
+
+**Default:** ML-DSA-65 (128-bit security, balanced performance)
+
+== Documentation
+
+**Full tool documentation:**
+
+* link:../../tools/pmpl-sign/README.adoc[pmpl-sign documentation]
+* link:../../tools/pmpl-verify/README.adoc[pmpl-verify documentation]
+* link:../../tools/pmpl-audit/README.adoc[pmpl-audit documentation]
+
+**Integration guides:**
+
+* link:../docs/INTEGRATION-GUIDE.adoc[CI/CD Integration]
+* link:../docs/QUICK-START.adoc[Quick Start Guide]
+
+== Questions?
+
+* **Tool issues**: https://github.com/hyperpolymath/palimpsest-license/issues
+* **Usage questions**: https://github.com/hyperpolymath/palimpsest-license/discussions
+* **General PMPL questions**: See link:../docs/FAQ.adoc[]

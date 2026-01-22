@@ -1,0 +1,428 @@
+= Repository Structure - Palimpsest License
+:toc: macro
+:toclevels: 3
+
+**The canonical, version-stable structure for the palimpsest-license repository**
+
+toc::[]
+
+== Design Philosophy
+
+This repository is designed to **never shapeshift**. Regardless of whether we're on v1.0, v1.5, or v3.0, the structure remains consistent and navigable.
+
+**Key Principles:**
+
+1. **One Current Version** - Always exactly one `vX.Y/` directory at root
+2. **Clear Archival** - All old versions systematically archived
+3. **Consistent Navigation** - Same directory patterns across versions
+4. **Automated Migration** - Scripts handle version transitions
+
+== Canonical Structure
+
+This structure applies to **all versions** of the repository:
+
+[source,text]
+----
+palimpsest-license/
+│
+├── vX.Y/                           ← CURRENT VERSION (e.g., v1.0, v1.1, v2.0)
+│   ├── LICENSE.txt                 ← Complete license text
+│   ├── README.adoc                 ← Version-specific documentation hub
+│   ├── INDEX.adoc                  ← Navigation guide
+│   │
+│   ├── docs/                       ← Version-specific documentation
+│   │   ├── QUICK-START.adoc        ← 5-minute guide
+│   │   ├── FAQ.adoc                ← Frequently asked questions
+│   │   ├── INTEGRATION-GUIDE.adoc  ← CI/CD, tooling integration
+│   │   └── COMPATIBILITY.adoc      ← License compatibility matrix
+│   │
+│   ├── exhibits/                   ← Exhibit texts
+│   │   ├── EXHIBIT-A-ETHICAL-USE.txt
+│   │   └── EXHIBIT-B-QUANTUM-SAFE.txt
+│   │
+│   ├── examples/                   ← Sample implementations
+│   │   ├── javascript/
+│   │   ├── rust/
+│   │   ├── python/
+│   │   └── multi-language/
+│   │
+│   └── tools/                      ← Links to tooling docs
+│       └── README.adoc
+│
+├── ARCHIVE/                        ← HISTORICAL VERSIONS
+│   ├── README.adoc                 ← Archive index
+│   ├── v0.3/                       ← Archived v0.3
+│   │   ├── README.adoc             ← "Archived" notice
+│   │   └── ...
+│   ├── v0.4/                       ← Archived v0.4
+│   │   ├── README.adoc             ← "Archived" notice
+│   │   ├── guides/
+│   │   ├── metadata/
+│   │   └── toolkit/
+│   └── v1.0/                       ← Future: v1.0 when v1.1 releases
+│       ├── README.adoc
+│       ├── LICENSE.txt
+│       ├── docs/
+│       └── ...
+│
+├── legal/                          ← CROSS-VERSION LEGAL RESOURCES
+│   ├── PALIMPSEST-MPL-1.0.txt      ← Canonical copy
+│   ├── MPL-2.0.txt                 ← Base license
+│   │
+│   ├── exhibits/                   ← Canonical exhibit texts
+│   │   ├── EXHIBIT-A-ETHICAL-USE.txt
+│   │   └── EXHIBIT-B-QUANTUM-SAFE.txt
+│   │
+│   ├── frameworks/                 ← Jurisdictional frameworks
+│   │   ├── nl/                     ← Netherlands
+│   │   ├── uk/                     ← United Kingdom
+│   │   ├── eu/                     ← European Union
+│   │   └── us/                     ← United States
+│   │
+│   ├── historical/                 ← Historical license versions
+│   │   ├── v0.3/
+│   │   └── v0.4/
+│   │
+│   ├── pro-bono/                   ← Pro bono legal contacts
+│   ├── strategy/                   ← Legal strategy documents
+│   └── translations/               ← Translations of legal text
+│       ├── nl/                     ← Dutch
+│       └── ...
+│
+├── docs/                           ← CROSS-VERSION DOCUMENTATION
+│   ├── FAQ.md                      ← General FAQ
+│   ├── INTEGRATION.md              ← Integration guide
+│   ├── architecture/               ← System architecture
+│   ├── examples/                   ← Cross-version examples
+│   ├── tooling/                    ← Tooling documentation
+│   └── ...
+│
+├── tools/                          ← CURRENT TOOLING
+│   ├── pmpl-sign/                  ← Signing tool (Rust)
+│   │   ├── Cargo.toml
+│   │   └── src/
+│   ├── pmpl-verify/                ← Verification tool (Rust)
+│   │   ├── Cargo.toml
+│   │   └── src/
+│   ├── pmpl-audit/                 ← Audit tool (Rust)
+│   │   ├── Cargo.toml
+│   │   └── src/
+│   └── README.adoc
+│
+├── spec/                           ← SPECIFICATIONS
+│   ├── PMPL-SPEC.adoc              ← License specification
+│   ├── ETHICAL-USE-SPEC.adoc       ← Exhibit A spec
+│   ├── QUANTUM-SAFE-SPEC.adoc      ← Exhibit B spec
+│   ├── PROVENANCE-SPEC.adoc        ← Provenance metadata spec
+│   ├── EXHIBITS-SPEC.adoc          ← Exhibits format spec
+│   ├── 6SCM-SPEC.adoc              ← Machine-readable metadata spec
+│   └── SPEC-INDEX.adoc
+│
+├── research/                       ← RESEARCH MATERIALS
+│   ├── papers/                     ← Academic papers
+│   ├── presentations/              ← Conference presentations
+│   ├── experiments/                ← Experiments and prototypes
+│   ├── datasets/                   ← Research datasets
+│   └── notes/                      ← Research notes
+│
+├── scripts/                        ← AUTOMATION SCRIPTS
+│   ├── migrate-version.jl          ← Version migration script
+│   ├── generate-structure.sh       ← Structure generator
+│   ├── setup-hooks.sh              ← Git hooks setup
+│   ├── setup.sh                    ← Initial setup
+│   ├── test.sh                     ← Test runner
+│   └── README.adoc
+│
+├── .github/                        ← GITHUB CONFIGURATION
+│   ├── workflows/                  ← CI/CD workflows
+│   ├── ISSUE_TEMPLATE/
+│   ├── PULL_REQUEST_TEMPLATE/
+│   └── ...
+│
+├── .machine_readable/              ← AI/AGENT METADATA
+│   ├── STATE.scm                   ← Project state
+│   ├── META.scm                    ← Architecture decisions
+│   ├── ECOSYSTEM.scm               ← Ecosystem position
+│   ├── PLAYBOOK.scm                ← Operational runbook
+│   ├── AGENTIC.scm                 ← Agent interaction patterns
+│   └── NEUROSYM.scm                ← Neurosymbolic config
+│
+├── governance/                     ← GOVERNANCE DOCUMENTS
+│   ├── CONTRIBUTOR_ONBOARDING.adoc
+│   └── ...
+│
+├── assets/                         ← BRANDING & ASSETS
+│   ├── badges/                     ← License badges
+│   ├── branding/                   ← Logos, brand guidelines
+│   ├── templates/                  ← Document templates
+│   └── ...
+│
+├── README.adoc                     ← MAIN ENTRY POINT
+├── LICENSE                         ← Current license text
+├── CONTRIBUTING.adoc               ← Contribution guidelines
+├── GOVERNANCE.adoc                 ← Governance structure
+├── VERSIONING.adoc                 ← Versioning policy (deprecated)
+├── VERSIONING_POLICY.adoc          ← Current versioning policy
+├── REPOSITORY_STRUCTURE.adoc       ← This document
+├── CHANGELOG.adoc                  ← Version history
+├── SECURITY.md                     ← Security policy
+├── CODE_OF_CONDUCT.md              ← Code of conduct
+├── MAINTAINERS.adoc                ← Maintainers list
+├── STATE.scm                       ← Symlink → .machine_readable/STATE.scm
+├── META.scm                        ← Symlink → .machine_readable/META.scm
+├── ECOSYSTEM.scm                   ← Symlink → .machine_readable/ECOSYSTEM.scm
+└── Justfile                        ← Build automation
+
+----
+
+== Structural Invariants
+
+These elements **never change** regardless of version:
+
+[cols="2,5"]
+|===
+| Element | Rule
+
+| **Current version directory**
+| Always exactly ONE `vX.Y/` at root (e.g., `v1.1/`)
+
+| **ARCHIVE/ structure**
+| Always grows, never shrinks. Old versions never move once archived.
+
+| **Cross-version directories**
+| `legal/`, `docs/`, `tools/`, `spec/`, `research/` stay at root
+
+| **Machine-readable metadata**
+| `.machine_readable/` contains all SCM files, symlinked at root
+
+| **Main README**
+| Always highlights current version prominently
+
+| **LICENSE file**
+| Always contains or links to current version text
+
+| **Navigation**
+| Each directory has INDEX.adoc or README.adoc
+|===
+
+== Version-Specific vs Cross-Version
+
+Understanding which content goes where:
+
+=== Version-Specific Content → `vX.Y/`
+
+Content that **changes between versions**:
+
+* License text for that version
+* Version-specific quick start guide
+* Examples demonstrating that version
+* Documentation explaining that version's features
+
+=== Cross-Version Content → Root directories
+
+Content that **spans all versions**:
+
+* Legal frameworks (applicable to all versions)
+* Research papers (reference multiple versions)
+* Tooling (works with all versions)
+* Specifications (define the standard)
+* Governance (applies to project as a whole)
+
+== Directory Purposes
+
+[cols="2,3,3"]
+|===
+| Directory | Purpose | Who Uses It
+
+| `vX.Y/`
+| Current version materials
+| End users, implementers
+
+| `ARCHIVE/`
+| Historical versions
+| Researchers, legacy users
+
+| `legal/`
+| Legal resources, frameworks
+| Lawyers, compliance officers
+
+| `docs/`
+| General documentation
+| Everyone
+
+| `tools/`
+| CLI tools for compliance
+| Developers, DevOps
+
+| `spec/`
+| Formal specifications
+| Implementers, standards bodies
+
+| `research/`
+| Academic research
+| Researchers, academics
+
+| `scripts/`
+| Automation
+| Maintainers, contributors
+
+| `.machine_readable/`
+| AI/Agent metadata
+| AI agents, automation tools
+
+| `governance/`
+| Governance docs
+| Contributors, council members
+
+| `assets/`
+| Visual assets, branding
+| Marketing, documentation
+|===
+
+== Migration Workflow
+
+When releasing a new version:
+
+1. **Run migration script**:
++
+[source,bash]
+----
+./scripts/migrate-version.jl --from 1.0 --to 1.1
+----
+
+2. **Structure automatically updates**:
++
+----
+v1.0/ → ARCHIVE/v1.0/    (old version archived)
+v1.1/ ← Created          (new version structure)
+----
+
+3. **Structure remains consistent**:
++
+----
+vX.Y/                    (still at root, just new version)
+ARCHIVE/                 (still at root, now includes v1.0)
+legal/, docs/, tools/    (unchanged)
+README.adoc              (updated to reference v1.1)
+----
+
+**Result**: Repository looks the same, just version number changed.
+
+== File Naming Conventions
+
+[cols="2,3,3"]
+|===
+| File Type | Naming | Example
+
+| **License text**
+| `LICENSE.txt` or `PALIMPSEST-MPL-X.Y.txt`
+| `LICENSE.txt`, `PALIMPSEST-MPL-1.0.txt`
+
+| **Documentation**
+| `UPPERCASE.adoc` or `lowercase.md`
+| `README.adoc`, `quick-start.md`
+
+| **Specifications**
+| `UPPERCASE-SPEC.adoc`
+| `PMPL-SPEC.adoc`, `ETHICAL-USE-SPEC.adoc`
+
+| **Machine-readable**
+| `UPPERCASE.scm`
+| `STATE.scm`, `META.scm`, `ECOSYSTEM.scm`
+
+| **Scripts**
+| `lowercase-with-dashes.jl`
+| `migrate-version.jl`, `setup-hooks.sh`
+
+| **Exhibits**
+| `EXHIBIT-X-NAME.txt`
+| `EXHIBIT-A-ETHICAL-USE.txt`
+|===
+
+== Navigation Patterns
+
+Every directory should have one of:
+
+* `README.adoc` - Human-readable index
+* `INDEX.adoc` - Structured navigation
+* Both (README for prose, INDEX for links)
+
+**Example INDEX.adoc**:
+
+[source,asciidoc]
+----
+= Directory Name
+
+Quick description of what's in this directory.
+
+== Contents
+
+* link:file1.adoc[File 1] - Description
+* link:file2.adoc[File 2] - Description
+
+== Subdirectories
+
+* link:subdir/[Subdirectory] - Description
+----
+
+== Maintenance
+
+=== Adding New Cross-Version Content
+
+If you need a new cross-version directory:
+
+1. Add it at root level (not in `vX.Y/`)
+2. Document it in this file
+3. Add an INDEX.adoc or README.adoc
+4. Update main README.adoc to reference it
+
+=== Adding Version-Specific Content
+
+If you need version-specific content:
+
+1. Add it to `vX.Y/` (current version)
+2. It will automatically archive when version migrates
+3. Document it in `vX.Y/README.adoc`
+
+=== Removing Content
+
+Before removing any directory:
+
+1. Check if it's referenced in other docs
+2. Update all references
+3. If historical value, move to ARCHIVE/ instead of deleting
+
+== Validation
+
+To check if repository structure is correct:
+
+[source,bash]
+----
+# Check for exactly one vX.Y/ directory at root
+ls -d v*.* | wc -l   # Should output: 1
+
+# Check ARCHIVE exists
+test -d ARCHIVE && echo "✓ ARCHIVE exists"
+
+# Check key directories
+for dir in legal docs tools spec research scripts; do
+    test -d $dir && echo "✓ $dir exists"
+done
+
+# Check machine-readable metadata
+test -d .machine_readable && echo "✓ .machine_readable exists"
+----
+
+Or use the structure validation script:
+
+[source,bash]
+----
+./scripts/validate-structure.sh
+----
+
+== See Also
+
+* link:VERSIONING_POLICY.adoc[] - How versions are managed
+* link:scripts/README.adoc[] - Automation scripts
+* link:GOVERNANCE.adoc[] - Decision-making process
+* link:CONTRIBUTING.adoc[] - How to contribute

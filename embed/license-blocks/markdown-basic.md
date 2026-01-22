@@ -3,34 +3,34 @@
 ## Simple Version
 
 ```markdown
-[![Palimpsest License v0.4](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
+[![Palimpsest License v1.0](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
 
-This work is licensed under the [Palimpsest License v0.4](https://palimpsestlicense.org/).
+This work is licensed under the [Palimpsest License v1.0](https://palimpsestlicense.org/).
 ```
 
 **Output:**
 
-[![Palimpsest License v0.4](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
+[![Palimpsest License v1.0](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
 
-This work is licensed under the [Palimpsest License v0.4](https://palimpsestlicense.org/).
+This work is licensed under the [Palimpsest License v1.0](https://palimpsestlicense.org/).
 
 ---
 
 ## With Author Attribution
 
 ```markdown
-[![Palimpsest License v0.4](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
+[![Palimpsest License v1.0](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
 
 **Author:** Your Name
-**Licence:** [Palimpsest License v0.4](https://palimpsestlicense.org/)
+**Licence:** [Palimpsest License v1.0](https://palimpsestlicense.org/)
 ```
 
 **Output:**
 
-[![Palimpsest License v0.4](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
+[![Palimpsest License v1.0](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
 
 **Author:** Your Name
-**Licence:** [Palimpsest License v0.4](https://palimpsestlicense.org/)
+**Licence:** [Palimpsest License v1.0](https://palimpsestlicense.org/)
 
 ---
 
@@ -41,7 +41,7 @@ This work is licensed under the [Palimpsest License v0.4](https://palimpsestlice
 
 ## Licence
 
-This project is licensed under the [Palimpsest License v0.4](https://palimpsestlicense.org/).
+This project is licensed under the [Palimpsest License v1.0](https://palimpsestlicense.org/).
 
 [![Palimpsest License](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
 
@@ -60,9 +60,9 @@ For the full licence text, visit [palimpsestlicense.org](https://palimpsestlicen
 ## Inline Badge
 
 ```markdown
-This work is licensed under the Palimpsest License v0.4 [![Palimpsest](https://example.com/path/to/badge-compact.svg)](https://palimpsestlicense.org/).
+This work is licensed under the Palimpsest License v1.0 [![Palimpsest](https://example.com/path/to/badge-compact.svg)](https://palimpsestlicense.org/).
 ```
 
 **Output:**
 
-This work is licensed under the Palimpsest License v0.4 [![Palimpsest](https://example.com/path/to/badge-compact.svg)](https://palimpsestlicense.org/).
+This work is licensed under the Palimpsest License v1.0 [![Palimpsest](https://example.com/path/to/badge-compact.svg)](https://palimpsestlicense.org/).

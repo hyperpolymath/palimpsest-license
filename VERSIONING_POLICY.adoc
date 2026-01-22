@@ -1,0 +1,344 @@
+= Versioning Policy - Palimpsest-MPL License
+:toc: macro
+:toclevels: 3
+
+**How version updates are managed to maintain repository consistency**
+
+toc::[]
+
+== Philosophy
+
+The palimpsest-license repository is designed to remain **structurally consistent** across all version updates. When v1.1, v1.2, v2.0, or any future version is released, the repository **does not shapeshift** - it maintains the same clear structure and navigation patterns.
+
+**Core Principle**: *One current version, clearly visible. All others archived systematically.*
+
+== Repository Structure Invariants
+
+These elements **never change** regardless of version:
+
+[source,text]
+----
+palimpsest-license/
+├── vX.Y/                    ← CURRENT version directory (always present)
+│   ├── LICENSE.txt          ← Always here
+│   ├── README.adoc          ← Always here
+│   ├── INDEX.adoc           ← Always here
+│   ├── docs/                ← Always here
+│   ├── exhibits/            ← Always here
+│   ├── examples/            ← Always here
+│   └── tools/               ← Always here
+├── ARCHIVE/                 ← OLD versions (grows over time)
+│   ├── v0.3/
+│   ├── v0.4/
+│   ├── v1.0/                ← Moved here when v1.1 releases
+│   └── v1.1/                ← Moved here when v1.2 releases
+├── legal/                   ← Cross-version resources
+├── docs/                    ← Cross-version documentation
+├── tools/                   ← Tooling (current)
+├── research/                ← Research materials
+├── spec/                    ← Specifications
+├── README.adoc              ← Main entry point (updated per version)
+├── LICENSE                  ← Current license text
+└── ...                      ← Other cross-version files
+----
+
+== Version Naming Convention
+
+**Format**: `vMAJOR.MINOR`
+
+- **Major versions** (v1.0 → v2.0): Breaking changes, legal text modifications
+- **Minor versions** (v1.0 → v1.1): Additions, clarifications, non-breaking changes
+- **Patch versions**: Not used for license text (only for tooling/docs)
+
+**Current version directory**: Always named after the current stable version (e.g., `v1.0/`, `v1.1/`, `v2.0/`)
+
+== Migration Process
+
+When releasing a new version (e.g., v1.0 → v1.1):
+
+=== Step 1: Pre-Release Preparation
+
+1. **Create new version branch**:
++
+[source,bash]
+----
+git checkout -b release/v1.1
+----
+
+2. **Run migration script**:
++
+[source,bash]
+----
+./scripts/migrate-version.jl --from 1.0 --to 1.1
+----
++
+This script automatically:
+- Moves `v1.0/` → `ARCHIVE/v1.0/`
+- Creates new `v1.1/` directory with template
+- Updates README.adoc to reference v1.1
+- Updates STATE.scm, ECOSYSTEM.scm, META.scm
+- Updates LICENSE to point to v1.1
+- Creates ARCHIVE/v1.0/README.adoc with archival notice
+
+3. **Populate v1.1/ content**:
++
+- Update `v1.1/LICENSE.txt` with new license text
+- Update `v1.1/README.adoc` with version-specific info
+- Update `v1.1/docs/` with new documentation
+- Add new examples if applicable
+
+4. **Update CHANGELOG.adoc**:
++
+Document all changes from v1.0 → v1.1
+
+=== Step 2: Review and Test
+
+1. Verify all links in README.adoc work
+2. Check that v1.0 materials are properly archived
+3. Ensure ARCHIVE/v1.0/README.adoc has clear notice
+4. Test all scripts and examples for v1.1
+5. Review STATE.scm reflects current state
+
+=== Step 3: Release
+
+1. **Merge release branch**:
++
+[source,bash]
+----
+git checkout main
+git merge release/v1.1
+git tag -a v1.1 -m "Release PMPL v1.1"
+git push origin main --tags
+----
+
+2. **Create GitHub Release**:
++
+- Use tag v1.1
+- Title: "PMPL v1.1 - [Brief Description]"
+- Body: Link to CHANGELOG.adoc section
+- Attach `v1.1/LICENSE.txt` as asset
+
+3. **Update GitHub repository settings**:
++
+- Default branch: main
+- Description: "Palimpsest-MPL License v1.1"
+- Topics: Include `pmpl-1-1`
+
+=== Step 4: Announce
+
+1. Update project website (if applicable)
+2. Post to community channels
+3. Update external documentation references
+4. Notify downstream consumers
+
+== Archive Structure
+
+The `ARCHIVE/` directory maintains a consistent structure:
+
+[source,text]
+----
+ARCHIVE/
+├── README.adoc              ← Index of all archived versions
+├── v0.3/
+│   ├── README.adoc          ← "This version is archived" notice
+│   └── ...                  ← Original v0.3 materials
+├── v0.4/
+│   ├── README.adoc          ← "This version is archived" notice
+│   ├── guides/              ← Moved from GUIDES_v0.4/
+│   ├── metadata/            ← Moved from METADATA_v0.4/
+│   └── toolkit/             ← Moved from TOOLKIT_v0.4/
+├── v1.0/                    ← Created when v1.1 releases
+│   ├── README.adoc          ← "Superseded by v1.1" notice
+│   ├── LICENSE.txt          ← Preserved v1.0 license text
+│   ├── docs/                ← Preserved v1.0 docs
+│   └── ...
+└── v1.1/                    ← Created when v1.2 releases
+    └── ...
+----
+
+=== Archive README Template
+
+Each archived version includes a README.adoc:
+
+[source,asciidoc]
+----
+= PMPL vX.Y - ARCHIVED VERSION
+
+⚠️ **This version has been superseded by PMPL vN.M**
+
+This directory contains historical materials for PMPL vX.Y.
+
+**For current version**: See link:../../vN.M/[vN.M/]
+
+== Archival Information
+
+- **Archived**: YYYY-MM-DD
+- **Superseded by**: vN.M
+- **Status**: Historical reference only
+- **Do not use for new projects**
+
+== What's Here
+
+[Description of what's in this archived version]
+
+== Migration
+
+If you're using PMPL vX.Y, see link:../../docs/MIGRATION.md[Migration Guide] for upgrading to vN.M.
+----
+
+== Consistency Rules
+
+These rules ensure the repository never "shapeshifts":
+
+=== Rule 1: One Current Version Directory
+**Always** exactly one version directory at root level (e.g., `v1.1/`).
+
+**Never** have multiple version dirs at root like:
+```
+v1.0/
+v1.1/  ← Wrong! Only one should be at root
+```
+
+=== Rule 2: README.adoc Always Points to Current
+The main README.adoc **always** has:
+- Giant section highlighting current version
+- Link to `vX.Y/LICENSE.txt`
+- Link to `vX.Y/README.adoc`
+- Version table showing current as ✅ STABLE
+
+=== Rule 3: LICENSE File Tracks Current
+Root `LICENSE` file **always** contains or links to current version text.
+
+=== Rule 4: Archive Once, Never Move
+Once a version is in `ARCHIVE/`, it **never moves** again.
+
+```
+ARCHIVE/v1.0/  ← Stays here forever, even after v2.0, v3.0, etc.
+```
+
+=== Rule 5: Cross-Version Resources Separate
+Resources that span versions stay in their own directories:
+
+- `docs/` - Cross-version documentation
+- `legal/` - Legal resources and frameworks
+- `research/` - Research papers
+- `spec/` - Formal specifications
+- `tools/` - Current tooling
+
+=== Rule 6: State Files Always Current
+STATE.scm, META.scm, ECOSYSTEM.scm always reflect **current version**.
+
+Archived versions have their own copies in `ARCHIVE/vX.Y/`.
+
+== Migration Script
+
+The `scripts/migrate-version.jl` script automates the migration:
+
+=== Usage
+
+[source,bash]
+----
+# Migrate from v1.0 to v1.1
+./scripts/migrate-version.jl --from 1.0 --to 1.1
+
+# Dry run (preview changes)
+./scripts/migrate-version.jl --from 1.0 --to 1.1 --dry-run
+----
+
+=== What It Does
+
+1. ✅ Validates current state (checks v1.0/ exists)
+2. ✅ Creates `ARCHIVE/v1.0/` directory
+3. ✅ Moves `v1.0/*` → `ARCHIVE/v1.0/`
+4. ✅ Creates `v1.1/` from template
+5. ✅ Copies necessary files to v1.1/ for editing
+6. ✅ Updates README.adoc version references
+7. ✅ Updates STATE.scm version and archived copy
+8. ✅ Creates `ARCHIVE/v1.0/README.adoc` with notice
+9. ✅ Updates CHANGELOG.adoc structure
+10. ✅ Creates git branch: `release/v1.1`
+
+=== What It Doesn't Do
+
+The script provides structure but **you must**:
+- Write new license text for v1.1
+- Update documentation for changes
+- Write CHANGELOG entry
+- Review and test everything
+- Merge and tag the release
+
+== Version Support Policy
+
+[cols="2,3,2"]
+|===
+| Version | Status | Support
+
+| **Current** (v1.1)
+| ✅ STABLE
+| Full support, updates, bug fixes
+
+| **Previous Minor** (v1.0)
+| 🗄️ Archived
+| Security fixes only (6 months)
+
+| **Older Minors** (v0.x)
+| 🗄️ Archived
+| No support, historical reference
+
+| **Previous Major** (v0.x when v1.x current)
+| 🗄️ Archived
+| Critical security fixes only (12 months)
+|===
+
+== FAQ
+
+=== Why not keep all versions at root?
+
+Multiple version directories at root level create confusion about which version is current. The single `vX.Y/` directory at root makes it **unmistakably obvious** which version to use.
+
+=== What if someone links to old v1.0/ location?
+
+The migration script can optionally create a symlink:
+```
+v1.0 → ARCHIVE/v1.0/
+```
+
+But this should be temporary. Update your links to point to ARCHIVE.
+
+=== Can I work on v1.1 before v1.0 is archived?
+
+Yes, create a `release/v1.1` branch and work there. Don't merge until ready to make v1.1 current.
+
+=== What about patch releases (v1.0.1)?
+
+Patch releases for tooling/docs don't trigger full migration. Update files in place and tag.
+
+Patch releases for **license text** are treated as minor versions (v1.0 → v1.1).
+
+=== How do I test the migration?
+
+Run the script with `--dry-run` flag, or work in a separate git branch:
+
+[source,bash]
+----
+git checkout -b test-migration
+./scripts/migrate-version.jl --from 1.0 --to 1.1
+# Review changes
+git reset --hard  # Undo if needed
+----
+
+== Governance
+
+Version migrations require approval from the Palimpsest Stewardship Council:
+
+- **Minor versions** (v1.0 → v1.1): Requires 4/7 Council approval
+- **Major versions** (v1.0 → v2.0): Requires 6/7 Council approval
+
+See link:GOVERNANCE.adoc[] for full decision-making process.
+
+== See Also
+
+- link:CHANGELOG.adoc[CHANGELOG.adoc] - Version history
+- link:GOVERNANCE.adoc[GOVERNANCE.adoc] - Decision-making process
+- link:CONTRIBUTING.adoc[CONTRIBUTING.adoc] - How to propose changes
+- link:scripts/README.adoc[scripts/README.adoc] - Script documentation

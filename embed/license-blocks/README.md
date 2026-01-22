@@ -24,9 +24,9 @@ This directory contains ready-to-use HTML and Markdown snippets for displaying P
 Copy this to your README.md:
 
 ```markdown
-[![Palimpsest License v0.4](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
+[![Palimpsest License v1.0](https://example.com/path/to/badge-standard.svg)](https://palimpsestlicense.org/)
 
-This work is licensed under the [Palimpsest License v0.4](https://palimpsestlicense.org/).
+This work is licensed under the [Palimpsest License v1.0](https://palimpsestlicense.org/).
 ```
 
 **Don't forget to:**
@@ -41,13 +41,13 @@ Copy from `html-basic.html` or `html-detailed.html`:
 <div class="palimpsest-license">
   <a href="https://palimpsestlicense.org/" rel="license">
     <img src="https://example.com/path/to/badge-standard.svg"
-         alt="Palimpsest License v0.4"
+         alt="Palimpsest License v1.0"
          width="128" height="32">
   </a>
   <p>
     This work is licensed under the
     <a href="https://palimpsestlicense.org/" rel="license">
-      Palimpsest License v0.4
+      Palimpsest License v1.0
     </a>.
   </p>
 </div>
@@ -99,7 +99,7 @@ https://yourdomain.com/assets/palimpsest-badge.svg
 In the future, the Palimpsest project may provide official badge hosting:
 
 ```
-https://badges.palimpsestlicense.org/v0.4/standard.svg
+https://badges.palimpsestlicense.org/v1.0/standard.svg
 ```
 
 Check [palimpsestlicense.org](https://palimpsestlicense.org/) for updates.
@@ -143,7 +143,7 @@ For better SEO and semantic web support, use Schema.org markup:
   <a href="https://palimpsestlicense.org/"
      rel="license"
      itemprop="license">
-    Palimpsest License v0.4
+    Palimpsest License v1.0
   </a>
 </div>
 ```
@@ -189,7 +189,7 @@ For bilingual or multilingual sites, you can provide licence information in mult
   <p>
     Licensed under the
     <a href="https://palimpsestlicense.org/licence-text/">
-      Palimpsest License v0.4
+      Palimpsest License v1.0
     </a>
   </p>
 </div>
@@ -198,7 +198,7 @@ For bilingual or multilingual sites, you can provide licence information in mult
   <p>
     Gelicentieerd onder de
     <a href="https://palimpsestlicense.org/licence-text/nl/">
-      Palimpsest Licentie v0.4
+      Palimpsest Licentie v1.0
     </a>
   </p>
 </div>
@@ -221,7 +221,7 @@ Add to your theme's `footer.php`:
          alt="Palimpsest License" />
   </a>
   <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.
-     Licensed under the Palimpsest License v0.4.</p>
+     Licensed under the Palimpsest License v1.0.</p>
 </div>
 ```
 
@@ -310,7 +310,7 @@ However, use of these templates should accurately represent that your work is li
 
 - `assets/badges/` — Badge image files in multiple formats
 - `assets/conversion-scripts/` — Tools for converting badges to different formats
-- `GUIDES_v0.4/User_Guide.md` — How to apply the Palimpsest License
+- `GUIDES_v0.4/User_Guide.md` — How to apply the Palimpsest License (legacy guide set)
 - [palimpsestlicense.org](https://palimpsestlicense.org/) — Official website
 
 ## Support

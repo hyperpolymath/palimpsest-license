@@ -1,40 +1,29 @@
-;; META.scm — Repository Identity Manifest
-;; Defines the canonical identity, purpose, and interpretive frame.
+;; SPDX-License-Identifier: PMPL-1.0-or-later
+;; META.scm - Project metadata and architectural decisions
 
-(meta
-  (id "palimpsest-license")
-  (version "1.0")
-  (spdx "PMPL-1.0-or-later")
-  (governed-by "Dutch law")
-  (steward "Palimpsest Stewardship Council")
-
-  (purpose
-    "To maintain the canonical text, governance, provenance, and tooling for the Palimpsest-MPL License.")
-
-  (scope
-    (legal "License text, exhibits, jurisdictional frameworks")
-    (governance "Council processes, versioning, interpretive guidance")
-    (tooling "Provenance tools, audit tools, signing tools")
-    (documentation "User guides, integration guides, compatibility notes"))
-
-  (constraints
-    (must-preserve "Emotional lineage, provenance metadata, narrative context")
-    (must-not "Strip provenance, misrepresent lineage, obscure authorship"))
-
-  (lineage
-    (root "MPL-2.0")
-    (extension "Ethical use, emotional lineage, quantum-safe provenance")))
-
-(tools
-  (description "Provenance and audit utilities for the Palimpsest‑MPL ecosystem.")
-  (directories
-    (pmpl-sign     "Create cryptographic signatures and embed provenance metadata.")
-    (pmpl-verify   "Verify signatures and validate provenance chains.")
-    (pmpl-audit    "Perform repository‑level audits for SPDX, manifests, and provenance.")
-    (integrations  "Templates and onboarding resources for CI/CD and developer workflows."))
-  (principles
-    (provenance integrity)
-    (reversibility)
-    (auditability)
-    (narrative-clarity)
-    (emotional-lineage)))
+(define project-meta
+  `((version . "1.0.0")
+    (architecture-decisions
+      ((adr-001
+        (status . "accepted")
+        (date . "2024-06-01")
+        (context . "Need license compatible with AI age concerns")
+        (decision . "Layer Palimpsest ethical framework on top of MPL-2.0")
+        (consequences . "MPL-2.0 provides legal backing, Palimpsest adds ethical layer"))
+       (adr-002
+        (status . "accepted")
+        (date . "2024-09-01")
+        (context . "Need machine-readable project metadata")
+        (decision . "Use 6SCM files standard (STATE, META, ECOSYSTEM, PLAYBOOK, AGENTIC, NEUROSYM)")
+        (consequences . "Consistent metadata across all repos, AI-parseable"))))
+    (development-practices
+      ((code-style . "ocamlformat")
+       (security . "openssf-scorecard")
+       (testing . "comprehensive")
+       (versioning . "semver")
+       (documentation . "asciidoc")
+       (branching . "trunk-based")))
+    (design-rationale
+      ((bilingual . "Dutch legally binding, English for accessibility")
+       (layered . "MPL-2.0 legal + Palimpsest ethical")
+       (6scm . "Machine-readable metadata for tooling and AI agents")))))

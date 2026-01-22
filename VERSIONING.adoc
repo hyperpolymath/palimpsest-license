@@ -3,7 +3,7 @@
 
 == Purpose
 
-This document defines how new versions of the Palimpsest‑MPL License (PMPL) are created, reviewed, approved, and published.
+This document defines how new versions of the Palimpsest-MPL License (PMPL) are created, reviewed, approved, and published.
 
 == Version Format
 
@@ -15,11 +15,26 @@ MAJOR.MINOR
 
 Examples:
 
-* `1.0` — initial release
-* `1.1` — clarifications, non‑substantive improvements
-* `2.0` — substantive legal or structural changes
+* `1.0` - initial release
+* `1.1` - clarifications, non-substantive improvements
+* `2.0` - substantive legal or structural changes
 
-== “‑or‑later” Model
+== Current Canonical Version
+
+The current legal text is:
+
+* **Palimpsest-MPL License 1.0** (PMPL-1.0)
+
+The canonical SPDX identifier for new work is:
+
+----
+PMPL-1.0-or-later
+----
+
+Use **PMPL-1.0-or-later** in file headers and metadata. The license text itself
+remains the PMPL-1.0 legal text.
+
+== "-or-later" Model
 
 The canonical SPDX identifier is:
 
@@ -32,12 +47,23 @@ This grants recipients the option to use:
 * the version under which the work was originally licensed, or
 * any later version published by the Palimpsest Stewardship Council
 
+== Badge Versioning
+
+Badges should display the legal version explicitly (e.g., *Palimpsest License v1.0*)
+and align with **PMPL-1.0-or-later** in SPDX metadata. Avoid legacy *v0.x* badge
+labels for new work.
+
+== Legacy References
+
+Historical materials may reference *v0.x* for archival or research purposes. Those
+references are legacy and do not indicate the current legal version.
+
 == Release Types
 
 === Minor Versions (e.g., 1.1)
 * clarifications
 * improved definitions
-* non‑substantive refinements
+* non-substantive refinements
 * updated exhibits
 
 === Major Versions (e.g., 2.0)

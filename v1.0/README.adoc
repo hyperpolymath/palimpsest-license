@@ -1,0 +1,163 @@
+= PMPL v1.0 - CURRENT VERSION
+:toc: macro
+:toclevels: 2
+
+*This is the current, canonical version of the Palimpsest-MPL License.*
+
+Last Updated: January 2025 +
+Status: **STABLE** +
+SPDX Identifier: `PMPL-1.0-or-later`
+
+toc::[]
+
+== What is PMPL v1.0?
+
+The Palimpsest-MPL License v1.0 is a file-level copyleft license that extends Mozilla Public License 2.0 with:
+
+* **Ethical Use Framework** (Exhibit A) - Structured guidelines for responsible use
+* **Quantum-Safe Provenance** (Exhibit B) - Post-quantum cryptographic signatures
+* **Emotional Lineage Protection** - Recognition of cultural and narrative meaning
+* **AI Training Clarity** - Clear guidance for machine learning use cases
+
+== Quick Start
+
+=== Download the License
+
+The complete license text is in this directory:
+
+----
+v1.0/LICENSE.txt
+----
+
+Or download directly from GitHub:
+
+----
+curl -O https://raw.githubusercontent.com/hyperpolymath/palimpsest-license/main/v1.0/LICENSE.txt
+----
+
+=== Apply to Your Project
+
+1. **Copy the license:**
++
+----
+cp v1.0/LICENSE.txt YOUR_PROJECT/LICENSE
+----
+
+2. **Add SPDX headers to source files:**
++
+[source,javascript]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Your Name
+----
+
+3. **Optional: Add exhibits**
++
+If you want to include the full exhibit texts:
++
+----
+cp v1.0/exhibits/* YOUR_PROJECT/legal/
+----
+
+=== What's Included
+
+This directory contains everything you need:
+
+[cols="2,5"]
+|===
+| File/Directory | Purpose
+
+| `LICENSE.txt`
+| Complete PMPL v1.0 license text
+
+| `exhibits/`
+| Full text of Exhibit A (Ethical Use) and Exhibit B (Quantum-Safe Provenance)
+
+| `docs/`
+| v1.0-specific documentation and guides
+
+| `examples/`
+| Sample implementations and use cases
+
+| `tools/`
+| Links to PMPL tooling (pmpl-sign, pmpl-verify, pmpl-audit)
+|===
+
+== Documentation
+
+Key documents for v1.0:
+
+* link:docs/QUICK-START.adoc[Quick Start Guide] - Get up and running in 5 minutes
+* link:docs/INTEGRATION-GUIDE.adoc[Integration Guide] - CI/CD, package managers, SPDX tools
+* link:docs/FAQ.adoc[FAQ] - Common questions answered
+* link:docs/COMPATIBILITY.adoc[Compatibility Matrix] - Works with MIT, BSD, Apache-2.0, GPL, etc.
+
+== Tooling
+
+PMPL v1.0 includes optional command-line tools:
+
+[cols="2,5"]
+|===
+| Tool | Purpose
+
+| `pmpl-sign`
+| Create quantum-safe signatures for your files
+
+| `pmpl-verify`
+| Verify provenance and signature chains
+
+| `pmpl-audit`
+| Audit repositories for PMPL compliance
+|===
+
+Build instructions: link:../tools/README.adoc[tools/README.adoc]
+
+== Legal Text Structure
+
+The v1.0 license consists of:
+
+1. **Preamble** - Philosophy and context
+2. **Section 1: Base License** - Incorporates MPL-2.0 by reference
+3. **Section 2: Additional Definitions** - Emotional Lineage, Provenance Metadata, etc.
+4. **Section 3: Modified Terms** - Changes to MPL-2.0 terms
+5. **Exhibit A: Ethical Use Guidelines** - Framework for responsible use
+6. **Exhibit B: Quantum-Safe Provenance** - Post-quantum signature requirements
+
+== Compatibility
+
+PMPL v1.0 is compatible with:
+
+* MIT License
+* BSD-2-Clause / BSD-3-Clause
+* Apache-2.0
+* MPL-2.0
+* LGPL-2.1 or later
+* GPL-2.0 or later (via secondary license mechanism)
+
+See link:docs/COMPATIBILITY.adoc[] for detailed compatibility analysis.
+
+== Changes from v0.4
+
+Major improvements in v1.0:
+
+* **Simplified structure** - Clearer, more concise legal text
+* **Production-ready** - Fully reviewed and tested
+* **Better tooling** - Rust-based tools for signing and verification
+* **SPDX compliant** - Official SPDX identifier registered
+* **Improved clarity** - Ambiguities from v0.x resolved
+
+See link:../CHANGELOG.adoc[] for complete version history.
+
+== Need Help?
+
+* **Issues**: https://github.com/hyperpolymath/palimpsest-license/issues
+* **Discussions**: https://github.com/hyperpolymath/palimpsest-license/discussions
+* **Legal Questions**: Contact the Palimpsest Stewardship Council
+
+== License of This Repository
+
+This repository and all v1.0 materials are licensed under:
+
+----
+SPDX-License-Identifier: PMPL-1.0-or-later
+----

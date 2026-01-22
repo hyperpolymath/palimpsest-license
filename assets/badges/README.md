@@ -23,11 +23,11 @@ badges/
 
 2. **Standard** (`badge-standard.svg`) - 128×32px
    - Default badge for most uses
-   - Text: "Palimpsest v0.4"
+   - Text: "Palimpsest v1.0"
 
 3. **Large** (`badge-large.svg`) - 180×40px
    - Detailed badge with subtitle
-   - Text: "Palimpsest License" + "v0.4 - Emotional Lineage Protection"
+   - Text: "Palimpsest License" + "v1.0 - Emotional Lineage Protection"
 
 ### By Colour/Style
 
@@ -52,7 +52,7 @@ The **Standard**, **Compact**, and **Large** badges include CSS media queries th
 For websites and documentation, use SVG directly for best quality and adaptive dark mode support:
 
 ```html
-<img src="https://example.com/path/to/badge-standard.svg" alt="Palimpsest License v0.4">
+<img src="https://example.com/path/to/badge-standard.svg" alt="Palimpsest License v1.0">
 ```
 
 ### Markdown
@@ -60,7 +60,7 @@ For websites and documentation, use SVG directly for best quality and adaptive d
 For GitHub README or Markdown documentation:
 
 ```markdown
-![Palimpsest License v0.4](https://example.com/path/to/badge-standard.svg)
+![Palimpsest License v1.0](https://example.com/path/to/badge-standard.svg)
 ```
 
 ### PNG (Raster)
@@ -68,7 +68,7 @@ For GitHub README or Markdown documentation:
 For platforms that don't support SVG, use PNG:
 
 ```html
-<img src="https://example.com/path/to/badge-standard-512w.png" alt="Palimpsest License v0.4" width="128">
+<img src="https://example.com/path/to/badge-standard-512w.png" alt="Palimpsest License v1.0" width="128">
 ```
 
 ### JPG (Non-Transparent)
@@ -76,7 +76,7 @@ For platforms that don't support SVG, use PNG:
 For email signatures or platforms requiring JPG:
 
 ```html
-<img src="https://example.com/path/to/badge-standard-512w.jpg" alt="Palimpsest License v0.4" width="128">
+<img src="https://example.com/path/to/badge-standard-512w.jpg" alt="Palimpsest License v1.0" width="128">
 ```
 
 ## Generating Raster Formats
@@ -137,7 +137,7 @@ When embedding badges, always include descriptive alt text:
 
 ```html
 <!-- Good -->
-<img src="badge.svg" alt="Licensed under Palimpsest License v0.4">
+<img src="badge.svg" alt="Licensed under Palimpsest License v1.0">
 
 <!-- Bad -->
 <img src="badge.svg" alt="badge">
@@ -151,7 +151,7 @@ To update the version number in badges, edit the SVG files:
 
 ```xml
 <!-- Change this: -->
-<text x="30" y="20" class="text">Palimpsest v0.4</text>
+<text x="30" y="20" class="text">Palimpsest v1.0</text>
 
 <!-- To this: -->
 <text x="30" y="20" class="text">Palimpsest v0.5</text>
@@ -227,9 +227,9 @@ The badges themselves are provided under CC0 (public domain) to facilitate adopt
 
 - `embed/license-blocks/` - Full licence blocks with HTML/Markdown snippets
 - `assets/conversion-scripts/` - Conversion tools and documentation
-- `GUIDES_v0.4/User_Guide.md` - How to apply the Palimpsest License
+- `GUIDES_v0.4/User_Guide.md` - How to apply the Palimpsest License (legacy guide set)
 
 ---
 
-**Last updated:** 2025-11-22
+**Last updated:** 2026-01-19
 **Maintainer:** Palimpsest Stewardship Council

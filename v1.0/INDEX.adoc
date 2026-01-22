@@ -1,0 +1,73 @@
+= PMPL v1.0 Directory Index
+:toc:
+
+== Core Files
+
+[cols="2,5"]
+|===
+| File | Purpose
+
+| link:LICENSE.txt[LICENSE.txt]
+| The complete PMPL v1.0 license text - use this in your projects
+
+| link:README.adoc[README.adoc]
+| Main documentation hub for v1.0
+
+| link:docs/QUICK-START.adoc[docs/QUICK-START.adoc]
+| 5-minute guide to using PMPL v1.0
+|===
+
+== Exhibits
+
+[cols="2,5"]
+|===
+| File | Purpose
+
+| link:exhibits/EXHIBIT-A-ETHICAL-USE.txt[EXHIBIT-A-ETHICAL-USE.txt]
+| Full text of Exhibit A: Ethical Use Guidelines
+
+| link:exhibits/EXHIBIT-B-QUANTUM-SAFE.txt[EXHIBIT-B-QUANTUM-SAFE.txt]
+| Full text of Exhibit B: Quantum-Safe Provenance
+|===
+
+== Documentation
+
+All v1.0-specific documentation is in the `docs/` subdirectory:
+
+* link:docs/QUICK-START.adoc[Quick Start Guide]
+* link:docs/FAQ.adoc[Frequently Asked Questions] (coming soon)
+* link:docs/INTEGRATION-GUIDE.adoc[Integration Guide] (coming soon)
+* link:docs/COMPATIBILITY.adoc[Compatibility Matrix] (coming soon)
+
+== Examples
+
+Sample implementations and use cases in the `examples/` subdirectory (coming soon):
+
+* JavaScript/TypeScript projects
+* Rust projects
+* Python projects
+* Multi-language repositories
+
+== Tools
+
+Links to PMPL tooling in the `tools/` subdirectory:
+
+* pmpl-sign - Create quantum-safe signatures
+* pmpl-verify - Verify provenance chains
+* pmpl-audit - Audit repository compliance
+
+See link:../tools/README.adoc[] for build instructions.
+
+== Navigation
+
+* **Up**: link:../README.adoc[Main repository README]
+* **Legal Resources**: link:../legal/README.adoc[legal/]
+* **Specifications**: link:../spec/README.adoc[spec/]
+* **Research**: link:../research/README.adoc[research/]
+* **Governance**: link:../GOVERNANCE.adoc[GOVERNANCE.adoc]
+
+== Quick Links
+
+* https://github.com/hyperpolymath/palimpsest-license[GitHub Repository]
+* https://github.com/hyperpolymath/palimpsest-license/issues[Report Issues]
+* https://github.com/hyperpolymath/palimpsest-license/discussions[Community Discussions]
