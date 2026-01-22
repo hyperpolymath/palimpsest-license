@@ -1,0 +1,207 @@
+= PMPL v1.0 Quick Start Guide
+:toc: macro
+:toclevels: 2
+
+Get the Palimpsest-MPL License v1.0 working in your project in less than 5 minutes.
+
+toc::[]
+
+== Step 1: Get the License Text
+
+Choose one of these methods:
+
+=== Method A: Download from GitHub
+
+----
+curl -O https://raw.githubusercontent.com/hyperpolymath/palimpsest-license/main/v1.0/LICENSE.txt
+mv LICENSE.txt LICENSE
+----
+
+=== Method B: Clone the repository
+
+----
+git clone https://github.com/hyperpolymath/palimpsest-license.git
+cp palimpsest-license/v1.0/LICENSE.txt YOUR_PROJECT/LICENSE
+----
+
+=== Method C: Copy from local clone
+
+If you already have this repo:
+
+----
+cp /path/to/palimpsest-license/v1.0/LICENSE.txt YOUR_PROJECT/LICENSE
+----
+
+== Step 2: Add SPDX Headers
+
+Add these two lines to the top of every source file:
+
+=== For code files (JavaScript, Rust, C, etc.)
+
+[source,javascript]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 Your Name <your.email@example.com>
+----
+
+=== For Python
+
+[source,python]
+----
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2025 Your Name <your.email@example.com>
+----
+
+=== For HTML/XML
+
+[source,html]
+----
+<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
+<!-- SPDX-FileCopyrightText: 2025 Your Name <your.email@example.com> -->
+----
+
+=== For shell scripts
+
+[source,bash]
+----
+#!/bin/bash
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2025 Your Name <your.email@example.com>
+----
+
+== Step 3: Optional - Add Exhibits
+
+If you want the full exhibit texts in your project:
+
+----
+mkdir -p legal/exhibits
+cp v1.0/exhibits/EXHIBIT-A-ETHICAL-USE.txt legal/exhibits/
+cp v1.0/exhibits/EXHIBIT-B-QUANTUM-SAFE.txt legal/exhibits/
+----
+
+The exhibits are already incorporated by reference in the main LICENSE.txt, so this is optional.
+
+== Step 4: Update Your README
+
+Add a license badge to your README:
+
+=== Markdown
+
+[source,markdown]
+----
+## License
+
+This project is licensed under the Palimpsest-MPL License v1.0 - see the [LICENSE](LICENSE) file for details.
+
+SPDX-License-Identifier: PMPL-1.0-or-later
+----
+
+=== AsciiDoc
+
+[source,asciidoc]
+----
+== License
+
+This project is licensed under the Palimpsest-MPL License v1.0 - see the link:LICENSE[] file for details.
+
+SPDX-License-Identifier: PMPL-1.0-or-later
+----
+
+== Step 5: Verify (Optional)
+
+If you want to verify your SPDX headers are correct:
+
+----
+# Install reuse tool
+pip install reuse
+
+# Check compliance
+reuse lint
+----
+
+Or use the PMPL audit tool:
+
+----
+cd /path/to/palimpsest-license/tools/pmpl-audit
+cargo build --release
+./target/release/pmpl-audit YOUR_PROJECT
+----
+
+== You're Done!
+
+Your project is now licensed under PMPL v1.0. 🎉
+
+== Next Steps
+
+* Read the link:FAQ.adoc[FAQ] for common questions
+* Check out link:INTEGRATION-GUIDE.adoc[Integration Guide] for CI/CD setup
+* Learn about link:../tools/README.adoc[PMPL tooling] for signatures and provenance
+* Join the https://github.com/hyperpolymath/palimpsest-license/discussions[community discussions]
+
+== Common Patterns
+
+=== Dual Licensing
+
+You can dual-license with PMPL and another compatible license:
+
+----
+SPDX-License-Identifier: PMPL-1.0-or-later OR MIT
+----
+
+=== Multi-Author Projects
+
+For files with multiple contributors:
+
+[source,javascript]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2024 Alice Smith <alice@example.com>
+// SPDX-FileCopyrightText: 2025 Bob Jones <bob@example.com>
+----
+
+=== Corporate Use
+
+For corporate projects:
+
+[source,javascript]
+----
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2025 YourCompany, Inc.
+----
+
+== Troubleshooting
+
+=== "My package manager doesn't recognize PMPL-1.0"
+
+Add a fallback:
+
+[source,json]
+----
+{
+  "license": "PMPL-1.0-or-later OR MPL-2.0"
+}
+----
+
+Most package managers will accept this and understand MPL-2.0 (which is PMPL's base license).
+
+=== "Do I need to include the full exhibits?"
+
+No. The LICENSE.txt already incorporates them by reference. Including them separately is optional and mainly useful for:
+
+* Offline/air-gapped environments
+* Educational purposes
+* Making the full text searchable in your repo
+
+=== "Can I modify the license text?"
+
+No. The license text is immutable. You can:
+
+* Add supplementary terms in a separate file (as long as they don't contradict PMPL)
+* Use dual licensing
+* Propose changes upstream to the Palimpsest Stewardship Council
+
+== Questions?
+
+* Open an issue: https://github.com/hyperpolymath/palimpsest-license/issues
+* Start a discussion: https://github.com/hyperpolymath/palimpsest-license/discussions
+* Read the full FAQ: link:FAQ.adoc[]
