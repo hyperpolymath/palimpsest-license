@@ -159,5 +159,5 @@ See link:../CHANGELOG.adoc[] for complete version history.
 This repository and all v1.0 materials are licensed under:
 
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----

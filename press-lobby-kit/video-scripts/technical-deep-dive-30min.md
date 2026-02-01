@@ -1078,7 +1078,7 @@ else:
 >
 > "Production deployment—scalable, secure, auditable."
 >
-> "All of this is open source. Visit github.com/palimpsest-licence to explore the code, contribute, or deploy your own instance."
+> "All of this is open source. Visit github.com/palimpsest-license to explore the code, contribute, or deploy your own instance."
 >
 > "If you're building AI tools, platforms, or scrapers—integrate Palimpsest. It's the right thing to do, and it's technically straightforward."
 >

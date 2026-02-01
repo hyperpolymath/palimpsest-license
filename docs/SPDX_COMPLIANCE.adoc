@@ -81,7 +81,7 @@ identifier for internal consistency.
 [source,haskell]
 ----
 {-
-SPDX-License-Identifier: MIT
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 ----
@@ -95,7 +95,7 @@ with language pragmas or imports.
 
 [source,rescript]
 ----
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 ----
 
@@ -107,7 +107,7 @@ with language pragmas or imports.
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 ----
 
@@ -119,7 +119,7 @@ with language pragmas or imports.
 
 [source,yaml]
 ----
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 ----
 
@@ -131,7 +131,7 @@ with language pragmas or imports.
 
 [source,asciidoc]
 ----
-// SPDX-License-Identifier: CC-BY-SA-4.0 OR Palimpsest-0.4
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 ----
 
@@ -312,7 +312,7 @@ reuse lint
 [source,haskell]
 ----
 {-
-SPDX-License-Identifier: MIT
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 
@@ -324,7 +324,7 @@ module MyModule where
 **Template for new JavaScript files**:
 [source,javascript]
 ----
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 
 /**

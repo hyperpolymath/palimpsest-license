@@ -283,7 +283,7 @@
   - **Layer 2:** Validation (Haskell, Python, Rust)
   - **Layer 3:** Consent Registry (API, database, audit logs)
   - **Layer 4:** Integration (CI/CD, scrapers, platforms)
-- GitHub link: github.com/palimpsest-licence
+- GitHub link: github.com/palimpsest-license
 
 **Speaker Notes:**
 > "How is this implemented? Four technical layers."
@@ -296,7 +296,7 @@
 >
 > "Layer 4: Integration. We provide SDKs, CI/CD plugins (GitHub Actions, GitLab CI), and documentation for scrapers, platforms, and tools."
 >
-> "All of this is open source. Visit github.com/palimpsest-licence to explore the code."
+> "All of this is open source. Visit github.com/palimpsest-license to explore the code."
 >
 > "Platform developers: You can integrate Palimpsest checks into your infrastructure."
 >
@@ -485,7 +485,7 @@
 - Three paths:
   1. **Creators:** Adopt the licence (palimpsest.licence/adopt)
   2. **Platforms:** Integrate consent infrastructure (dev@palimpsest.licence)
-  3. **Researchers/Developers:** Contribute to open-source tooling (github.com/palimpsest-licence)
+  3. **Researchers/Developers:** Contribute to open-source tooling (github.com/palimpsest-license)
 - QR code linking to website
 
 **Speaker Notes:**
@@ -543,7 +543,7 @@
 - Contact information:
   - Website: palimpsest.licence
   - Email: hello@palimpsest.licence
-  - GitHub: github.com/palimpsest-licence
+  - GitHub: github.com/palimpsest-license
   - Twitter/X: @palimpsest_lic
   - Mastodon: @palimpsest@fosstodon.org
   - Discord: discord.gg/palimpsest

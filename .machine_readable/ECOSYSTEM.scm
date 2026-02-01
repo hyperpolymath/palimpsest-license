@@ -9,7 +9,7 @@
    (position-in-ecosystem . "foundation")
    (related-projects
      ((rhodium-standard-repositories . "sibling-standard")
-      (gitvisor . "tooling-consumer")
+      (git-hud . "tooling-consumer")
       (bunsenite . "consumer")
       (zig-nickel-ffi . "consumer")
       (formatrix-docs . "consumer")))

@@ -7,7 +7,7 @@
 
 Built on Mozilla Public License 2.0.
 
-image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link=v1.0/LICENSE.txt]
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
 image:https://img.shields.io/badge/Status-Stable-green.svg[Status: Stable]
 image:https://img.shields.io/badge/Version-1.0-orange.svg[Version: 1.0]
 
@@ -259,7 +259,7 @@ Use **v1.0** for all new work.
 This repository is licensed under:
 
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
 ----
 

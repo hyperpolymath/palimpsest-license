@@ -53,7 +53,7 @@ ipfs add palimpsest-metadata.json
 ### 2. Smart Contract (Ethereum)
 
 ```solidity
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: PMPL-1.0-or-later
 pragma solidity ^0.8.0;
 
 /**

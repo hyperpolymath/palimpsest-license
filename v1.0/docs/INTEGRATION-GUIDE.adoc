@@ -69,7 +69,7 @@ For files with significant creative or cultural content:
 **CSS:**
 [source,css]
 ----
-/* SPDX-License-Identifier: PMPL-1.0-or-later */
+/* SPDX-License-Identifier: PMPL-1.0-or-later
 /* SPDX-FileCopyrightText: 2025 Author Name */
 ----
 

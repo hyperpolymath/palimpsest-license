@@ -86,13 +86,13 @@ For permissions beyond this license, contact: [your email]
 
 **Python example**:
 ```python
-# SPDX-License-Identifier: Palimpsest-0.4
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Copyright 2025 Your Name
 ```
 
 **JavaScript example**:
 ```javascript
-// SPDX-License-Identifier: Palimpsest-0.4
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // Copyright 2025 Your Name
 ```
 

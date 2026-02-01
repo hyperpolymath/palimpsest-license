@@ -93,7 +93,7 @@ Add a license badge to your README:
 
 This project is licensed under the Palimpsest-MPL License v1.0 - see the [LICENSE](LICENSE) file for details.
 
-SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 === AsciiDoc
@@ -104,7 +104,7 @@ SPDX-License-Identifier: PMPL-1.0-or-later
 
 This project is licensed under the Palimpsest-MPL License v1.0 - see the link:LICENSE[] file for details.
 
-SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 == Step 5: Verify (Optional)
@@ -145,7 +145,7 @@ Your project is now licensed under PMPL v1.0. 🎉
 You can dual-license with PMPL and another compatible license:
 
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later OR MIT
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 === Multi-Author Projects

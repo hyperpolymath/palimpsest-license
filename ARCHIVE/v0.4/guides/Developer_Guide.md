@@ -73,21 +73,21 @@ Unlike purely technical licenses (MIT, Apache) or creative licenses (CC), the Pa
 
 **Python:**
 ```python
-# SPDX-License-Identifier: Palimpsest-0.4
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Copyright 2025 Your Name
 # This file is part of [Project Name], licensed under Palimpsest v0.4
 ```
 
 **JavaScript/TypeScript:**
 ```javascript
-// SPDX-License-Identifier: Palimpsest-0.4
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // Copyright 2025 Your Name
 // Licensed under the Palimpsest License v0.4
 ```
 
 **Rust:**
 ```rust
-// SPDX-License-Identifier: Palimpsest-0.4
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // Copyright 2025 Your Name
 ```
 
@@ -1242,7 +1242,7 @@ def add_palimpsest_watermark(image_path, metadata):
     draw = ImageDraw.Draw(img)
 
     author = metadata['author']['name']
-    license_text = f"© {author} | Palimpsest-0.4"
+    license_text = f" {author} | Palimpsest-0.4"
 
     # Add semi-transparent attribution at bottom
     font = ImageFont.truetype("arial.ttf", 16)
@@ -1314,7 +1314,7 @@ exiftool -TagsFromFile source.jpg "-all:all>all:all" converted.png
 
 # Solution
 # Use dual licensing temporarily
-# SPDX-License-Identifier: Palimpsest-0.4 OR CC-BY-SA-4.0
+# SPDX-License-Identifier: PMPL-1.0-or-later
 
 # Or add to SPDX license list request
 # (See https://github.com/spdx/license-list-XML)

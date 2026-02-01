@@ -109,7 +109,7 @@ Value: Palimpsest License v0.4; Consent required: ai-training; Contact: creator@
 
 #### Source Code (SPDX)
 ```python
-# SPDX-License-Identifier: PALIMPSEST-0.4
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # SPDX-FileCopyrightText: 2025 Jane Doe <jane@example.com>
 # Consent-Required: ai-training
 # Consent-Contact: jane@example.com

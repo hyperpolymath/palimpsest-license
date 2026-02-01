@@ -127,11 +127,11 @@ your-project/
 [source,text]
 ----
 # Individual files
-SPDX-License-Identifier: PMPL-1.0-or-later
-SPDX-License-Identifier: MIT
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 
 # Project overall (if needed)
-SPDX-License-Identifier: PMPL-1.0-or-later AND MIT
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 === GPL/LGPL (Secondary License)
@@ -172,7 +172,7 @@ your-project/
 
 [source,text]
 ----
-SPDX-License-Identifier: (PMPL-1.0-or-later OR GPL-3.0-or-later) AND GPL-3.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 === Proprietary Software
@@ -216,7 +216,7 @@ You can dual-license your own code under PMPL and another license:
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later OR MIT
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 **Recipient's choice**: Use under PMPL or MIT terms.
@@ -225,7 +225,7 @@ SPDX-License-Identifier: PMPL-1.0-or-later OR MIT
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later OR Apache-2.0
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 **Use case**: Maximum compatibility while offering ethical use guidelines.
@@ -234,7 +234,7 @@ SPDX-License-Identifier: PMPL-1.0-or-later OR Apache-2.0
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later OR GPL-3.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 **Use case**: Ensure copyleft while offering GPL compatibility.

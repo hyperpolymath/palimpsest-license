@@ -39,7 +39,7 @@ The PMPL-1.0 license consists of:
 === License Identifier
 
 ----
-SPDX-License-Identifier: PMPL-1.0
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 ----
 
 === Full Name
@@ -52,7 +52,7 @@ Palimpsest-MPL License Version 1.0
 
 [source]
 ----
-SPDX-License-Identifier: PMPL-1.0
+SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 SPDX-FileCopyrightText: <year> <copyright holder>
 ----
 

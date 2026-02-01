@@ -481,7 +481,7 @@
 **Q5: "How can I contribute to Palimpsest development? I'm a developer."**
 
 **AI/Platform Panellist:**
-> "Visit github.com/palimpsest-licence. We have open-source validators, SDKs, and CI/CD tools. We need contributors for more languages, better UX, and documentation. Join our Discord too—link on the website."
+> "Visit github.com/palimpsest-license. We have open-source validators, SDKs, and CI/CD tools. We need contributors for more languages, better UX, and documentation. Join our Discord too—link on the website."
 
 ---
 

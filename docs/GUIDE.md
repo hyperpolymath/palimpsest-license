@@ -18,7 +18,7 @@ mv PALIMPSEST-MPL-1.0.txt LICENSE
 2. Add the header to your source files:
 
 ```
-// SPDX-License-Identifier: PMPL-1.0
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: [Year] [Your Name/Organization]
 ```
 

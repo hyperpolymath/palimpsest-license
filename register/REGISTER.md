@@ -215,7 +215,7 @@ This register lists Hyperpolymath repositories covered by Palimpsest-MPL License
 - `git-seo`
 - `gitbot-fleet`
 - `gitloom`
-- `gitvisor`
+- `git-hud`
 - `glambot`
 - `gleam-zig-ffi`
 - `grim-repo`

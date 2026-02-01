@@ -199,7 +199,7 @@ Copyright [Year] [Your Name/Organisation]
 For code files, add a header:
 
 ```python
-# SPDX-License-Identifier: Palimpsest-0.4
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # Copyright [Year] [Your Name]
 # Licensed under the Palimpsest License v0.4
 # See LICENSE file for full terms
@@ -327,7 +327,7 @@ L **Claim the work lacks cultural or emotional context** when it clearly does
 
 ### Special Permissions (Require Explicit Consent)
 
-=ç **Contact the creator for consent to:**
+= **Contact the creator for consent to:**
 - Train large language models or generative AI
 - Create commercial derivatives that fundamentally alter meaning
 - Use in contexts that may conflict with the original's cultural purpose
@@ -353,7 +353,7 @@ All uses must include:
 "Song Title" by Artist Name
 Licensed under Palimpsest License v0.4
 https://palimpsest.license/v0.4
-© 2025 Artist Name
+ 2025 Artist Name
 ```
 
 ### Enhanced Attribution (Strongly Recommended)
