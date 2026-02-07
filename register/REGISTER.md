@@ -207,7 +207,7 @@ This register lists Hyperpolymath repositories covered by Palimpsest-MPL License
 - `fslint-plugin-sdk`
 - `funfriendly-git`
 - `git-dispatcher`
-- `git-dropper`
+- `git-batcher`
 - `git-eco-bot`
 - `git-reunify`
 - `git-rsr-certified`
