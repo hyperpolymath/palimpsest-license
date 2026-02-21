@@ -283,3 +283,8 @@ The full license text is in link:v1.0/LICENSE.txt[].
 
 [.text-center]
 **Ready to get started? → link:v1.0/docs/QUICK-START.adoc[Quick Start Guide]**
+
+
+== Architecture
+
+See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.
