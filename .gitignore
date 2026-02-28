@@ -9,6 +9,9 @@ build/
 **/*.rs.bk
 Cargo.lock
 
+# Dependencies
+node_modules/
+
 # Tools
 tools/**/target/
 tools/**/dist/
