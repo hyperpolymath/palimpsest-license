@@ -235,7 +235,7 @@ The open licensing movement faces tension between core values:
 
 ```html
 <!-- Example: Dual licensing with CC and Palimpsest -->
-<div xmlns:cc="http://creativecommons.org/ns#"
+<div xmlns:cc="https://creativecommons.org/ns#"
      xmlns:pal="https://palimpsest-license.org/ns#">
   <a href="https://example.com/work" property="cc:attributionName pal:creator">
     Creator Name
