@@ -6,6 +6,7 @@
 //! This tool checks a repository for compliance with Palimpsest-MPL
 //! requirements, including SPDX headers, license files, and provenance.
 
+#![forbid(unsafe_code)]
 use anyhow::{Context, Result};
 use clap::Parser;
 use regex::Regex;

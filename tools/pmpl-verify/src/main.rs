@@ -6,6 +6,7 @@
 //! This tool verifies PMPL-compliant provenance signatures created by
 //! pmpl-sign, checking both the cryptographic signature and the content hash.
 
+#![forbid(unsafe_code)]
 use anyhow::{Context, Result};
 use clap::Parser;
 use sha3::{Digest, Sha3_256};
