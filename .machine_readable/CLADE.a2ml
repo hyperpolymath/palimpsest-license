@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "e254831b-01e0-553a-8372-ea8fa24e9a17"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "palimpsest-license"
+prefixed-name = "gv-palimpsest-license"
+
+[clade]
+primary = "gv"
+secondary = []
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/palimpsest-license"
+gitlab = "hyperpolymath/palimpsest-license"
+bitbucket = "hyperpolymath/palimpsest-license"
+
+[lineage]
+type = "standalone"
+parent = "PMPL-1.0 license text, exhibits, governance model, Rust tooling"
+born = "2026-03-16"
