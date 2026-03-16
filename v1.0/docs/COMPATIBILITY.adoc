@@ -54,7 +54,7 @@ PMPL-1.0 is built on MPL-2.0 and inherits its compatibility characteristics. As 
 
 | **AGPL-3.0**
 | ✅ Yes (secondary)
-| Via MPL-2.0 Section 3.3. Combined work can be distributed under AGPL-3.0-or-later.
+| Via MPL-2.0 Section 3.3. Combined work can be distributed under PMPL-1.0-or-later.
 
 | **ISC**
 | ✅ Yes

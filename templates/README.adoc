@@ -47,4 +47,4 @@ All files use Guile Scheme S-expression format with specific media types:
 
 == License
 
-These templates are licensed under AGPL-3.0-or-later.
+These templates are licensed under PMPL-1.0-or-later.
