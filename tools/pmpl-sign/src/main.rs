@@ -7,6 +7,7 @@
 //! cryptographic algorithms as specified in Exhibit B of the Palimpsest-MPL
 //! license.
 
+#![forbid(unsafe_code)]
 use anyhow::{Context, Result};
 use clap::Parser;
 use sha3::{Digest, Sha3_256};
