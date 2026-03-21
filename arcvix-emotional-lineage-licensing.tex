@@ -1,0 +1,1389 @@
+% SPDX-License-Identifier: PMPL-1.0-or-later
+% SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+%
+% arXiv-style academic paper on emotional lineage licensing
+% and consent layers for non-interpretive AI systems.
+
+\documentclass[11pt,twocolumn]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2cm]{geometry}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{abstract}
+\usepackage{microtype}
+\usepackage{url}
+
+% --- Hyperlink styling ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    citecolor=blue!60!black,
+    urlcolor=blue!60!black
+}
+
+% --- Listing style ---
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    xleftmargin=1em,
+    xrightmargin=1em
+}
+
+% --- Title ---
+\title{%
+    \textbf{Emotional Lineage and Consent Layers:\\
+    Extending Open-Source Licensing for the\\
+    Age of Non-Interpretive AI Systems}
+}
+
+\author{%
+    Jonathan D.A.\ Jewell\\
+    \textit{Independent Researcher}\\
+    \texttt{j.d.a.jewell@open.ac.uk}\\
+    \texttt{https://github.com/hyperpolymath}
+}
+
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================================
+% ABSTRACT
+% ============================================================================
+\begin{abstract}
+Open-source software licenses were designed in an era when the primary
+consumers of source code were human developers. The four freedoms of free
+software---to use, study, share, and improve---implicitly assume a human
+agent capable of \emph{interpreting} the work: understanding its purpose,
+respecting its context, and engaging with its meaning. The rise of
+large-scale non-interpretive AI systems---those that ingest, compress, and
+recombine creative works without semantic comprehension---exposes a
+structural gap in every major open-source license. Neither the MIT License,
+the GNU General Public License, the Apache License 2.0, nor the Creative
+Commons family addresses the distinction between a human reading code and
+a statistical model consuming it as training data. This paper introduces
+two complementary concepts developed for the Palimpsest-MPL License
+(PMPL-1.0): \emph{emotional lineage protection}, which formalises the
+obligation to preserve the narrative, cultural, and symbolic meaning
+embedded in creative works; and the \emph{consent layer for
+non-interpretive systems}, which establishes an explicit opt-in mechanism
+for automated ingestion of licensed works. We present formal definitions,
+examine compatibility with existing legal frameworks including the EU AI
+Act and U.S.\ fair use doctrine, propose a machine-readable consent
+metadata standard, and argue that the interpretive/non-interpretive
+distinction represents a necessary evolution in software licensing theory.
+The paper concludes that consent-based licensing, far from being anti-AI,
+is the natural extension of the principles that built the open-source
+movement.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} software licensing, open source, AI training,
+emotional lineage, consent, non-interpretive systems, copyleft, PMPL,
+cultural preservation, SPDX
+
+% ============================================================================
+% 1. INTRODUCTION
+% ============================================================================
+\section{Introduction}
+\label{sec:introduction}
+
+The open-source software movement transformed how humanity builds digital
+infrastructure. From the GNU Manifesto~\cite{stallman1985gnu} to the
+proliferation of permissive licenses in the 2010s, the legal instruments
+governing source code have co-evolved with the communities that produce
+it. Yet these instruments share a common, unstated assumption: that the
+entity exercising the granted rights is a \emph{human being}, or at
+minimum, an organisation directed by human judgment.
+
+This assumption was invisible because it was universal. When Richard
+Stallman articulated the four freedoms~\cite{stallman2002free}, the idea
+that a non-human system might ``use'' software---not as a tool, but as
+raw material for pattern extraction---was science fiction. When the MIT
+License declared that ``permission is hereby granted\ldots to any person
+obtaining a copy,'' the word ``person'' was not legally contested. When
+the Apache Software Foundation drafted patent clauses, the threat model
+was corporate litigation, not statistical regurgitation.
+
+The emergence of large language models (LLMs), diffusion models, and
+other generative AI systems has rendered these assumptions untenable.
+These systems do not \emph{use} software in any sense contemplated by
+existing licenses. They do not read documentation, understand variable
+names, or appreciate the political context of a commit message. They
+consume bytes. They extract statistical regularities. They produce
+outputs that may superficially resemble---but do not \emph{understand}---%
+the works they were trained on.
+
+This distinction between \emph{interpretive use} (a human engaging with
+a work's meaning) and \emph{non-interpretive use} (an automated system
+processing a work as data) is the central concern of this paper. We argue
+that it represents not merely a technical nuance, but a \emph{category
+error} in the foundations of open-source licensing---one that, left
+unaddressed, threatens both creator autonomy and the sustainability of
+open-source ecosystems.
+
+The paper proceeds as follows. Section~\ref{sec:background} surveys the
+history of open-source licensing and the current legal landscape around
+AI training. Section~\ref{sec:emotional-lineage} introduces the concept
+of emotional lineage and argues for its formal recognition in licensing
+frameworks. Section~\ref{sec:interpretive-distinction} develops the
+interpretive/non-interpretive distinction with formal definitions and
+legal grounding. Section~\ref{sec:consent-layer} presents the consent
+layer mechanism. Section~\ref{sec:comparison} compares the approach with
+existing licenses. Section~\ref{sec:palimpsest} explains the palimpsest
+metaphor and its implications. Section~\ref{sec:legal-analysis} analyses
+enforceability. Section~\ref{sec:implementation} describes the
+machine-readable implementation. Section~\ref{sec:discussion} discusses
+broader implications, and Section~\ref{sec:conclusion} concludes.
+
+% ============================================================================
+% 2. BACKGROUND
+% ============================================================================
+\section{Background}
+\label{sec:background}
+
+\subsection{A Brief History of Open-Source Licensing}
+
+The legal infrastructure of open source emerged in three waves. The
+\emph{first wave} (1983--1998) was dominated by the GNU General Public
+License (GPL), which established the copyleft principle: derivative works
+must be distributed under the same terms~\cite{stallman2002free}. The
+GPL's genius was recognising that freedom, without legal mechanism, is
+merely aspiration. Its limitation was treating software as pure
+\emph{functionality}---something compiled and executed, not something
+carrying cultural weight.
+
+The \emph{second wave} (1998--2015) saw the rise of permissive licenses.
+The MIT License, the BSD licenses, and the Apache License 2.0 reflected
+a pragmatic turn: maximum adoption through minimum obligation. The Open
+Source Initiative (OSI) codified the Open Source Definition, which
+deliberately excluded ethical considerations from licensing
+criteria~\cite{perens1999osi}. This was a philosophical choice, not an
+oversight. The OSI position was that licenses should govern
+\emph{distribution mechanics}, not \emph{use}.
+
+The \emph{third wave} (2015--present) has been characterised by tension.
+The rise of cloud computing produced the Server Side Public License
+(SSPL) and the Business Source License (BSL), which attempted to close
+the ``SaaS loophole''~\cite{mongodb2018sspl}. The Hippocratic
+License~\cite{ehmke2019hippocratic} and the Anti-996
+License~\cite{anti996} introduced ethical constraints, provoking fierce
+debate about whether such constraints were compatible with ``open source''
+as defined by the OSI. Simultaneously, the AI training problem emerged
+as a distinct challenge, largely unaddressed by any existing licence.
+
+\subsection{The AI Training Problem}
+
+When a large language model is trained on a corpus that includes
+GPL-licensed code, does the resulting model constitute a ``derivative
+work''? The question is not merely academic. GitHub Copilot, trained
+partly on GPL-licensed repositories, can reproduce substantial portions
+of copylefted code~\cite{copilot2022controversy}. If the model is a
+derivative work, it arguably must be distributed under GPL terms---an
+obligation that no model provider has accepted. If it is not, then
+copyleft has a gap wide enough to drive an entire industry through.
+
+The legal landscape is unsettled. In \emph{Andersen v.\ Stability AI}
+(2023), artists challenged the use of their work in training diffusion
+models~\cite{andersen2023}. The \emph{New York Times v.\ OpenAI} (2023)
+lawsuit raised similar questions for text~\cite{nyt2023openai}. Courts
+have not yet produced definitive rulings, and the answers may differ by
+jurisdiction.
+
+What is clear is that existing licenses were not designed to answer these
+questions. The GPL speaks of ``source code'' and ``object code,'' of
+``conveying'' and ``distribution''~\cite{gplv3}. It does not speak of
+training data, model weights, or statistical reproduction. The MIT
+License grants permission to ``use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies''---a list that does not
+obviously include ``feed to a neural network as training
+data''~\cite{mit-license}. The Apache License 2.0 includes patent
+grants but says nothing about whether ingestion into a model constitutes
+``use''~\cite{apache2}.
+
+\subsection{The EU AI Act and Emerging Regulation}
+
+The European Union's AI Act~\cite{eu-ai-act-2024}, which entered into
+force in 2024, represents the most comprehensive regulatory framework
+for AI systems to date. Article 53 requires providers of general-purpose
+AI models to ``put in place a policy to comply with Union copyright law,''
+including ``the identification and compliance with reservations of rights
+expressed pursuant to Article 4(3) of Directive (EU) 2019/790''---the
+text and data mining opt-out provision.
+
+This is significant because it establishes, at the regulatory level, the
+principle that \emph{rightsholders may opt out of AI training}. The EU
+AI Act does not create the right---it presupposes it. The question for
+licensing is how to \emph{exercise} that right in a machine-readable,
+enforceable manner.
+
+\subsection{The Limits of Copyright}
+
+Copyright law, as traditionally understood, protects the \emph{expression}
+of ideas, not the ideas themselves~\cite{samuelson1984copyright}.
+This distinction, known as the idea-expression dichotomy, creates a
+structural problem for creative works whose value lies not in their
+literal expression but in their \emph{meaning}. A protest song is
+valuable not because of its specific chord progressions (expression) but
+because of what it represents---the movement it accompanied, the
+injustice it named, the community it galvanised.
+
+Copyright can prevent someone from copying the chord progressions. It
+cannot prevent someone from stripping the song of its context, feeding
+it to a generative model, and producing ``content'' that
+statistically resembles protest music without carrying any of its
+purpose. This is the gap that emotional lineage protection is designed
+to address.
+
+% ============================================================================
+% 3. THE EMOTIONAL LINEAGE CONCEPT
+% ============================================================================
+\section{The Emotional Lineage Concept}
+\label{sec:emotional-lineage}
+
+\subsection{Definition}
+
+We define \textbf{emotional lineage} as:
+
+\begin{quote}
+\textit{The narrative, cultural, symbolic, and contextual meaning embedded
+in creative works, including but not limited to: protest traditions,
+cultural heritage, trauma narratives, community stories, and the social
+relationships that produced the work.}
+\end{quote}
+
+This definition is deliberately broad. It encompasses the historical
+context of a codebase (why it was written, what problem it emerged from),
+the cultural milieu of a creative work (the tradition it belongs to, the
+community it serves), and the relational fabric of collaborative
+production (the human connections, mentorships, and conflicts that shaped
+its development).
+
+\subsection{Why Code Has Emotional Lineage}
+
+The claim that source code carries emotional lineage may seem
+counterintuitive to those who view programming as a purely technical
+activity. We argue this view is mistaken, on several grounds.
+
+\textbf{First, code embeds values.} The choice to build an encryption
+library reflects a belief in privacy. The decision to make a medical
+records system open-source reflects a commitment to healthcare access.
+The architecture of a decentralised protocol reflects a political
+philosophy. These are not incidental; they are constitutive of the
+software's identity.
+
+\textbf{Second, code carries community history.} A project's git log is
+a social document. It records who contributed, when, and why. It shows
+debates in commit messages, struggles in issue trackers, celebrations in
+release notes. When this history is compressed into model weights, the
+social fabric is destroyed while the statistical patterns are preserved.
+
+\textbf{Third, code exists within traditions.} The Unix philosophy, the
+Lisp tradition, the Haskell community's emphasis on type safety, the
+Rust community's focus on safety without garbage collection---these are
+not merely technical preferences. They are \emph{cultures}, with values,
+norms, heroes, and histories. Code written within these traditions
+carries their meaning.
+
+\textbf{Fourth, some code is explicitly political.} Encryption tools
+built for activists, anonymity networks designed for whistleblowers,
+accessibility libraries created for disabled users---these works were
+produced not for abstract ``utility'' but for specific human purposes,
+often at personal risk to their creators. To strip this context is not
+a neutral act.
+
+\subsection{Cultural Erasure Through Context Collapse}
+
+When a non-interpretive system ingests a creative work, it performs what
+we term \textbf{context collapse}: the reduction of a multi-layered,
+historically situated work to a set of statistical features. This is not
+merely a loss of attribution (which existing licenses already address)
+but a loss of \emph{meaning}.
+
+Consider an analogy from cultural heritage. A sacred object in a museum
+retains its physical form but loses its sacred function. The museum
+visitor sees an artefact; the originating community sees a desecration.
+The object's ``emotional lineage''---its relationship to the community
+that created it, the ceremonies it was part of, the beliefs it
+embodies---has been severed~\cite{clifford1988predicament}.
+
+The same dynamic occurs when AI systems ingest creative works. The
+\emph{expression} is statistically preserved (the model can reproduce
+patterns that resemble the original). The \emph{meaning} is destroyed
+(the model has no access to purpose, context, or significance). This
+is not an accident of current technology that better AI will solve. It
+is a structural feature of non-interpretive processing.
+
+\subsection{Formalising Preservation Obligations}
+
+The Palimpsest-MPL License (PMPL-1.0) addresses emotional lineage
+through Section 3.1, which requires that distributors and derivative
+work creators ``make reasonable efforts to preserve and communicate the
+Emotional Lineage of Covered Software\ldots including maintaining
+narrative context, cultural attributions, and symbolic meaning where
+documented.''
+
+The ``where documented'' qualifier is important. The obligation is not
+to divine unspoken intentions, but to preserve context that has been
+\emph{explicitly recorded}. This is operationalised through several
+mechanisms:
+
+\begin{enumerate}[label=(\alph*)]
+    \item A \texttt{LINEAGE.md} file that documents the origin story,
+          cultural context, and symbolic meaning of the work.
+    \item Provenance metadata that cryptographically links contributions
+          to their authors and timestamps.
+    \item A prohibition on stripping or obscuring provenance metadata
+          from distributed works (Section 4.1).
+\end{enumerate}
+
+The standard of ``reasonable efforts'' is borrowed from existing legal
+frameworks (e.g., the ``reasonable person'' standard in tort law) and
+deliberately avoids imposing disproportionate burdens. A developer
+forking a project is not required to write an essay on its cultural
+significance. They \emph{are} required not to delete the essay if one
+exists.
+
+% ============================================================================
+% 4. THE INTERPRETIVE / NON-INTERPRETIVE DISTINCTION
+% ============================================================================
+\section{The Interpretive/Non-Interpretive Distinction}
+\label{sec:interpretive-distinction}
+
+\subsection{Formal Definition}
+
+We distinguish two categories of use:
+
+\begin{description}[style=nextline]
+    \item[\textbf{Interpretive use}]
+    Use by an agent (human or system) that engages with the semantic
+    content of a work---understanding its purpose, respecting its
+    context, and producing outputs that reflect comprehension of its
+    meaning. Examples include: a developer reading and modifying source
+    code; a musician listening to and building upon a composition; a
+    student studying a textbook.
+
+    \item[\textbf{Non-interpretive use}]
+    Use by an automated system that processes a work without semantic
+    engagement---extracting statistical patterns, features, or structures
+    without comprehending purpose, context, or meaning. Examples include:
+    AI model training on source code; content aggregation systems that
+    scrape and recombine text; automated summarisation tools that compress
+    meaning into statistical approximations.
+\end{description}
+
+The distinction is not about the \emph{sophistication} of the system. A
+simple grep command is interpretive in our framework if directed by a
+human for a comprehension purpose. A highly sophisticated LLM is
+non-interpretive if it processes works as training data without engaging
+with their meaning. The criterion is \emph{semantic engagement}, not
+computational complexity.
+
+\subsection{The Photography Analogy}
+
+This distinction has precedent in existing law. In privacy and data
+protection law, a fundamental difference exists between \emph{viewing}
+and \emph{processing}. A person may look at another person's face in a
+public space (interpretive engagement). They may not, without consent,
+photograph that face and use it to train a facial recognition system
+(non-interpretive processing)~\cite{gdpr2016}.
+
+The analogy is precise. Looking at a face involves understanding---you
+recognise the person, read their expression, engage with their humanity.
+Training a facial recognition system involves extraction---the face
+becomes a vector of measurements, stripped of identity, emotion, and
+context. The same physical input (photons reflected from a face) is
+subject to fundamentally different legal regimes depending on how it is
+\emph{used}.
+
+We argue that the same principle should apply to creative works. Reading
+code, studying it, learning from it, modifying it---these are
+interpretive acts, freely permitted under open-source principles.
+Feeding code to a training pipeline that extracts patterns without
+comprehension---this is a non-interpretive act, requiring explicit
+consent.
+
+\subsection{Why the Distinction Matters}
+
+One might object that the distinction is artificial. After all, human
+learning also involves ``pattern extraction'' at a neurological level.
+When a developer reads idiomatic Rust code and later writes similar
+patterns, have they not ``trained'' on the original?
+
+The objection fails for three reasons.
+
+\textbf{First, human learning is inherently interpretive.} When a
+developer reads Rust code, they understand what the borrow checker
+enforces and \emph{why}. They grasp the design philosophy. They can
+articulate the trade-offs. They form opinions about the code's quality.
+This is categorically different from a model that represents
+\texttt{fn main()} as a sequence of tokens with statistical
+co-occurrence patterns.
+
+\textbf{Second, human learning is bounded by human capacity.} A
+developer can read thousands of projects over a career. An LLM can
+ingest millions of repositories in hours. The \emph{scale} of
+non-interpretive processing creates effects---market displacement,
+cultural homogenisation, community disinvestment---that have no analogue
+in human learning.
+
+\textbf{Third, human learning produces human agency.} A developer who
+learns from open-source code becomes a more capable contributor to the
+ecosystem. An AI model trained on open-source code may displace the
+developers who wrote it, without contributing to the community that
+produced the training data~\cite{lemley2023generative}. The
+relationship between consumption and contribution is fundamentally
+different.
+
+\subsection{Edge Cases and the Spectrum of Interpretation}
+
+We acknowledge that the boundary between interpretive and
+non-interpretive use is not always sharp. Consider the following cases:
+
+\begin{itemize}
+    \item \textbf{IDE autocompletion}: A system that suggests code
+          completions based on local context. This is borderline:
+          the system does not ``understand'' the code, but it is
+          directed by a human who does, and operates at human scale.
+    \item \textbf{Static analysis}: A tool that detects bugs by
+          pattern matching. This is non-interpretive in mechanism
+          but interpretive in purpose---it serves human comprehension.
+    \item \textbf{Search indexing}: A system that indexes code to
+          make it findable. This processes code without understanding
+          it, but serves the interpretive use of human searchers.
+\end{itemize}
+
+These edge cases suggest that the distinction should be understood as a
+\emph{spectrum} rather than a binary. The PMPL-1.0 addresses this by
+focusing on the clearest cases---AI training pipelines, content
+aggregation systems, and automated summarisation tools---while leaving
+the boundary zone to evolve through community practice and, where
+necessary, adjudication.
+
+The key principle is: \emph{when in doubt, ask}. The consent layer
+(Section~\ref{sec:consent-layer}) provides the mechanism for asking.
+
+% ============================================================================
+% 5. THE CONSENT LAYER
+% ============================================================================
+\section{The Consent Layer}
+\label{sec:consent-layer}
+
+\subsection{Design Principles}
+
+The consent layer is governed by four principles:
+
+\begin{enumerate}
+    \item \textbf{Default-open for interpretive use.} The license imposes
+          no additional restrictions on human use of covered works. The
+          four freedoms are fully preserved.
+    \item \textbf{Explicit consent for non-interpretive use.} Automated
+          systems that process covered works as training data or for
+          content aggregation must obtain or verify consent.
+    \item \textbf{Granular control.} Creators can specify consent at
+          the project level, file level, or even function level.
+    \item \textbf{Machine readability.} Consent metadata must be
+          processable by automated systems, enabling compliance at scale.
+\end{enumerate}
+
+\subsection{Mechanism}
+
+The consent layer operates through three components:
+
+\subsubsection{The Non-Interpretive System Notice}
+
+Section 3.2 of the PMPL-1.0 requires that any entity using covered
+software as input to a non-interpretive system must: (a) document such
+use in a publicly accessible manner, and (b) not claim that outputs of
+such systems carry the emotional lineage of the original work without
+explicit permission from contributors.
+
+This is a \emph{transparency obligation}, not a prohibition. The
+license does not forbid AI training on covered works. It requires that
+such training be \emph{documented}---that the creator and the public
+can know when and how their work was used.
+
+\subsubsection{The Ethical Use Declaration}
+
+Section 3.3 requires commercial users to acknowledge that they have read
+and understood the Ethical Use Guidelines (Exhibit A) and agree to act in
+good faith accordance with their principles. This is modelled on existing
+mechanisms in commercial licensing (e.g., Oracle's Java SE License, which
+requires acceptance of terms before use).
+
+\subsubsection{Consent Metadata}
+
+The machine-readable component (detailed in Section~\ref{sec:implementation})
+allows creators to express their consent preferences in a structured
+format. A \texttt{.palimpsest/consent.json} file (or equivalent SPDX
+annotation) can specify:
+
+\begin{lstlisting}
+{
+  "consent": {
+    "interpretive": "granted",
+    "non-interpretive": {
+      "ai-training": "requires-notice",
+      "content-aggregation": "denied",
+      "search-indexing": "granted",
+      "academic-research": "granted"
+    }
+  },
+  "contact": "maintainer@example.org",
+  "updated": "2026-01-15"
+}
+\end{lstlisting}
+
+\subsection{Opt-In vs.\ Opt-Out}
+
+A critical design decision is whether non-interpretive use requires
+\emph{opt-in} (explicit grant) or merely respects \emph{opt-out}
+(explicit denial). The EU's text and data mining framework under
+Directive 2019/790 adopts an opt-out model for commercial purposes: TDM
+is permitted unless the rightsholder has ``expressly reserved'' their
+rights~\cite{eu-dsm-directive}.
+
+The PMPL-1.0 takes a middle path. Interpretive use is opt-in by default
+(the license grants it). Non-interpretive use requires \emph{notice}
+(documentation of use) but not necessarily \emph{permission}. Creators
+who wish to deny non-interpretive use entirely may do so through the
+consent metadata. Creators who wish to permit it may do so, with or
+without conditions.
+
+This design reflects a recognition that the open-source ecosystem
+encompasses diverse views. Some creators welcome AI training on their
+work and see it as a form of dissemination. Others view it as
+exploitative extraction. The consent layer does not impose a single
+answer; it provides the \emph{mechanism} for each creator to express
+their own.
+
+\subsection{Revocability and Versioning}
+
+Consent is versioned and revocable. A creator who grants consent for
+AI training in version 1.0 of their work may revoke it in version 2.0.
+This does not retroactively invalidate training performed on version 1.0
+(which was lawfully obtained under the then-current terms), but it does
+prevent future training on version 2.0 without re-obtaining consent.
+
+This is analogous to how GPL version selection works: you may use a work
+under the GPL version it was released under, even if the project later
+adopts a different license~\cite{gplv3}. Consent, like licensing, is
+time-bound to the version.
+
+% ============================================================================
+% 6. COMPARISON WITH EXISTING LICENSES
+% ============================================================================
+\section{Comparison with Existing Licenses}
+\label{sec:comparison}
+
+Table~\ref{tab:comparison} summarises how existing licenses address the
+concerns raised in this paper.
+
+\begin{table*}[t]
+\centering
+\caption{Comparison of license provisions relevant to AI and cultural context.}
+\label{tab:comparison}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Feature} & \textbf{MIT} & \textbf{GPL-3.0} & \textbf{Apache-2.0} & \textbf{MPL-2.0} & \textbf{CC-BY-4.0} & \textbf{PMPL-1.0} \\
+\midrule
+Attribution required         & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Copyleft                     &            & \checkmark &            & File-level &            & File-level \\
+Patent grant                 &            & \checkmark & \checkmark & \checkmark &            & \checkmark \\
+AI training addressed        &            &            &            &            &            & \checkmark \\
+Emotional lineage            &            &            &            &            &            & \checkmark \\
+Consent mechanism            &            &            &            &            &            & \checkmark \\
+Interpretive/non-int.\ dist. &            &            &            &            &            & \checkmark \\
+Provenance metadata          &            &            &            &            &            & \checkmark \\
+Machine-readable consent     &            &            &            &            &            & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{MIT License}
+
+The MIT License~\cite{mit-license} is maximally permissive. It permits
+``any person obtaining a copy'' to ``use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell'' the software. The only obligation
+is to include the copyright notice and permission notice. AI training
+is not mentioned, and the breadth of ``use'' arguably encompasses it.
+There is no mechanism for preserving context, lineage, or meaning. The
+MIT License treats software as a commodity; the PMPL treats it as a
+cultural artefact.
+
+\subsection{GNU General Public License v3}
+
+The GPL-3.0~\cite{gplv3} is the strongest copyleft license in wide use.
+Its ``derivative work'' trigger is powerful: if you modify GPL code and
+distribute the result, you must release your modifications under the GPL.
+However, whether an AI model constitutes a ``derivative work'' of its
+training data is deeply contested~\cite{lemley2023generative}. If model
+weights are not ``source code'' and inference is not ``distribution,''
+the GPL's copyleft trigger never fires. The GPL also says nothing about
+emotional lineage, context preservation, or consent for non-interpretive
+use.
+
+\subsection{Apache License 2.0}
+
+The Apache License~\cite{apache2} adds explicit patent grants to
+permissive licensing. Its patent termination clause (Section 3) provides
+protection against patent trolling. However, like the MIT License, it
+is silent on AI training, emotional lineage, and non-interpretive use.
+Its ``NOTICE'' file requirement is the closest analogue to provenance
+preservation, but it does not extend to cultural or narrative context.
+
+\subsection{Mozilla Public License 2.0}
+
+The MPL-2.0~\cite{mpl2} is the direct ancestor of the PMPL-1.0. Its
+file-level copyleft strikes a balance between the permissiveness of MIT
+and the project-level copyleft of the GPL. However, like all licenses
+in this family, it was designed for a world where software is compiled
+and distributed by humans, not ingested by statistical models. The PMPL
+extends the MPL with the provisions described in this paper while
+preserving full MPL-2.0 compatibility.
+
+\subsection{Creative Commons Licenses}
+
+The Creative Commons family, particularly CC-BY-4.0~\cite{cc-by}, is
+widely used for non-software creative works. CC-BY requires attribution,
+which might seem to address context preservation. However, attribution
+in the CC sense is a \emph{credit} obligation, not a \emph{meaning}
+obligation. You must say who created the work; you need not say \emph{why}
+they created it, what it \emph{means}, or what community it belongs to.
+Furthermore, CC licenses do not distinguish between interpretive and
+non-interpretive use. A CC-BY photograph can be attributed in an AI
+training dataset manifest; this satisfies the license while doing nothing
+to preserve the photograph's cultural significance.
+
+\subsection{Data-Specific Licenses}
+
+More recent efforts, such as the Responsible AI License
+(RAIL)~\cite{rail2022} and the Open Data Commons licenses, have begun
+to address AI-specific concerns. The RAIL framework introduces use
+restrictions that are triggered by the \emph{purpose} of use, not just
+the \emph{act} of distribution. This is closer to the PMPL approach,
+but the RAIL licenses focus on \emph{prohibiting harmful outputs} rather
+than \emph{preserving input meaning}. They are complementary rather than
+competing frameworks.
+
+% ============================================================================
+% 7. THE PALIMPSEST METAPHOR
+% ============================================================================
+\section{The Palimpsest Metaphor}
+\label{sec:palimpsest}
+
+\subsection{Layers of Meaning}
+
+A palimpsest is a manuscript page that has been written on, scraped
+clean, and written on again---sometimes multiple times. Medieval scribes,
+working with expensive parchment, would erase earlier texts to reuse the
+material. But the erasure was never complete. Under ultraviolet light or
+multispectral imaging, the earlier layers become visible again. Some of
+the most important texts in Western history---Archimedes' \emph{Method
+of Mechanical Theorems}, Cicero's \emph{De re publica}---survived only
+as palimpsest underlayers~\cite{netz2007archimedes}.
+
+The metaphor is precise. Creative works, including software, are
+palimpsests. The visible layer---the current version of the code, the
+latest release---sits atop earlier layers: previous versions, abandoned
+approaches, design decisions that were debated and resolved, cultural
+contexts that shaped choices. These layers are not visible to a
+non-interpretive system, which sees only the top layer (the current
+bytes). But they are \emph{constitutive} of the work's identity.
+
+\subsection{Preservation Obligations}
+
+The palimpsest metaphor implies a specific ethical obligation: to
+preserve \emph{all layers}, not just the top one. This is precisely what
+provenance metadata, emotional lineage documentation, and the
+\texttt{LINEAGE.md} file are designed to do. They make the underlayers
+\emph{accessible}---not by requiring everyone to read them, but by
+ensuring they are not \emph{destroyed}.
+
+The distinction matters. A developer forking a project need not study its
+complete history. But they must not delete the history. A company using
+an open-source library need not understand the cultural context of every
+dependency. But they must not strip the metadata that records it. The
+obligation is to \emph{not destroy}, not to \emph{fully comprehend}.
+
+This is a lower bar than it might appear. In practice, it means: do not
+strip SPDX headers. Do not delete \texttt{LINEAGE.md}. Do not remove
+provenance signatures. Do not claim that AI-generated outputs carry the
+authority of human-created originals. These are obligations of
+\emph{restraint}, not of \emph{effort}.
+
+\subsection{The Palimpsest as Counter-Narrative to ``Move Fast and Break Things''}
+
+The palimpsest metaphor also serves a rhetorical function. It stands in
+deliberate opposition to the Silicon Valley ethos of ``move fast and
+break things''---an ethos that treats existing structures as obstacles
+rather than as repositories of accumulated wisdom. The palimpsest says:
+what came before has value. The layers beneath the surface contain
+meaning. Speed and disruption are not always virtues; sometimes, the
+most important act is preservation.
+
+This is not a Luddite position. The PMPL explicitly permits AI training,
+automated processing, and all forms of technological innovation. It
+merely insists that innovation should not require the destruction of
+context. You can write new text on the parchment; you must not burn the
+parchment to fuel the ink.
+
+% ============================================================================
+% 8. LEGAL ANALYSIS
+% ============================================================================
+\section{Legal Analysis}
+\label{sec:legal-analysis}
+
+\subsection{Enforceability of Emotional Lineage Provisions}
+
+The enforceability of emotional lineage provisions depends on jurisdiction
+and the legal theory under which they are advanced. We consider three
+frameworks.
+
+\subsubsection{Contract Law}
+
+Software licenses function as contracts (or, in some jurisdictions, as
+bare licenses). The PMPL's emotional lineage provisions are contractual
+obligations: by using covered software, you agree to preserve documented
+emotional lineage. This is enforceable to the same extent as any other
+license term. Courts routinely enforce license conditions that go beyond
+copyright's minimum requirements---the GPL's copyleft obligations, for
+instance, are contractual additions to copyright's baseline
+permissions~\cite{jacobsen2008}.
+
+The ``reasonable efforts'' standard in Section 3.1 is deliberately
+chosen for enforceability. Courts are familiar with reasonableness
+standards and have extensive precedent for applying
+them~\cite{farnsworth2004contracts}. A court need not determine the
+``correct'' level of emotional lineage preservation; it need only
+determine whether the defendant made \emph{reasonable efforts}.
+
+\subsubsection{Moral Rights}
+
+Many jurisdictions recognise ``moral rights'' (droit moral) that protect
+the integrity of creative works independent of economic
+rights~\cite{berne1886}. The Berne Convention, to which most nations are
+signatories, guarantees the right of attribution and the right to object
+to derogatory treatment of a work. Emotional lineage provisions can be
+understood as an elaboration of the integrity right: stripping cultural
+context from a work is a form of derogatory treatment.
+
+The strength of this argument varies by jurisdiction. France and Germany
+have strong moral rights traditions; the United States has weak ones
+(limited primarily to visual arts under the Visual Artists Rights Act of
+1990)~\cite{vara1990}. The PMPL's contractual approach ensures
+enforceability regardless of the local moral rights regime.
+
+\subsubsection{Cultural Heritage Law}
+
+For works with explicit cultural heritage significance, additional legal
+frameworks may apply. The UNESCO Convention on Intangible Cultural
+Heritage~\cite{unesco2003} and the WIPO Intergovernmental Committee on
+Intellectual Property and Genetic Resources, Traditional Knowledge and
+Folklore~\cite{wipo-tk} provide frameworks for protecting cultural
+expressions. While these instruments do not directly apply to software
+licenses, they establish the principle that cultural context is legally
+cognisable---a principle that supports the PMPL's approach.
+
+\subsection{Enforceability of the Consent Layer}
+
+The consent layer raises distinct enforceability questions.
+
+\subsubsection{The Notice Obligation}
+
+Section 3.2(a) requires documentation of non-interpretive use. This is
+a straightforward contractual obligation analogous to the GPL's source
+code disclosure requirement. Failure to document AI training use is a
+license violation, with the same remedies available as for any other
+license breach (injunction, damages, termination of the license
+grant)~\cite{jacobsen2008}.
+
+\subsubsection{The Authority Claim Prohibition}
+
+Section 3.2(b) prohibits claiming that AI outputs carry the emotional
+lineage of the original work. This is enforceable under both contract
+law (as a license condition) and consumer protection law (as a
+prohibition on misleading claims). If a company represents that its
+AI-generated code carries the imprimatur of a well-known open-source
+project, and that representation is based on training data rather than
+actual endorsement, this is straightforwardly actionable as a false or
+misleading claim under consumer protection statutes in most
+jurisdictions~\cite{ftc-act}.
+
+\subsubsection{Compatibility with Fair Use / Fair Dealing}
+
+In the United States, fair use (17 U.S.C.\ \S 107) provides a defence
+to copyright infringement based on four factors: purpose and character
+of use, nature of the copyrighted work, amount used, and market
+effect~\cite{us-copyright-act}. AI training proponents argue that
+training is transformative fair use. Even if courts accept this argument
+for copyright purposes, it does not defeat contractual obligations.
+Fair use is a defence to \emph{copyright infringement}; it is not a
+defence to \emph{breach of contract}. If a user has accepted the PMPL's
+terms, the consent layer's obligations apply regardless of whether the
+underlying use would constitute fair use in the absence of a
+license~\cite{davidson2004click}.
+
+Similarly, in jurisdictions with fair dealing exceptions (UK, Canada,
+Australia), the contractual nature of the PMPL's provisions operates
+independently of the copyright exception.
+
+\subsection{Interaction with the EU AI Act}
+
+The PMPL's consent layer is designed for compatibility with Article 53 of
+the EU AI Act. The machine-readable consent metadata
+(Section~\ref{sec:implementation}) provides the ``reservation of rights''
+mechanism contemplated by the Act's reference to Directive 2019/790
+Article 4(3). AI model providers who comply with the PMPL's consent
+layer will, by construction, satisfy the AI Act's transparency and
+opt-out compliance requirements for covered works.
+
+\subsection{OSI Compatibility}
+
+The PMPL-1.0 is not OSI-approved, and we anticipate that it would not
+satisfy the Open Source Definition (OSD) as currently
+interpreted~\cite{perens1999osi}. The OSD requires that licenses not
+discriminate against ``fields of endeavour'' (OSD criterion 6), and the
+consent layer's distinction between interpretive and non-interpretive
+use could be characterised as discriminating against AI training.
+
+We regard this as a limitation of the OSD, not of the PMPL. The OSD was
+drafted in 1998, when the idea of non-interpretive use did not exist.
+Its ``fields of endeavour'' criterion was designed to prevent licenses
+from restricting use to, say, non-military purposes---not to prevent
+licenses from distinguishing between human engagement and automated
+extraction. We suggest that the OSD should be updated to recognise the
+interpretive/non-interpretive distinction, but we do not condition the
+PMPL's validity on this recognition.
+
+% ============================================================================
+% 9. IMPLEMENTATION
+% ============================================================================
+\section{Implementation}
+\label{sec:implementation}
+
+\subsection{SPDX Integration}
+
+The PMPL-1.0 is identified by the SPDX License Identifier
+\texttt{PMPL-1.0-or-later}. Source files include the standard SPDX
+header:
+
+\begin{lstlisting}
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2026 Author Name
+\end{lstlisting}
+
+The ``-or-later'' suffix follows the convention established by the GPL
+and LGPL, indicating that the work may be used under the specified
+version or any later version published by the Palimpsest Stewardship
+Council.
+
+\subsection{Machine-Readable Consent Metadata}
+
+The consent metadata specification defines a structured format for
+expressing consent preferences. The canonical location is
+\texttt{.palimpsest/consent.json} in the repository root, but the
+specification also supports:
+
+\begin{itemize}
+    \item SPDX annotations in individual files
+    \item HTTP headers for web-served content
+    \item DNS TXT records for domain-level preferences
+    \item \texttt{robots.txt}-style directives for web crawlers
+\end{itemize}
+
+The consent metadata schema supports the following fields:
+
+\begin{lstlisting}
+{
+  "$schema": "https://palimpsest.dev/
+    consent/v1.schema.json",
+  "version": "1.0",
+  "scope": "repository",
+  "consent": {
+    "interpretive": "granted",
+    "non-interpretive": {
+      "ai-training": "<policy>",
+      "content-aggregation": "<policy>",
+      "search-indexing": "<policy>",
+      "academic-research": "<policy>",
+      "automated-summarization": "<policy>"
+    }
+  },
+  "conditions": {
+    "attribution": true,
+    "notification": false,
+    "documentation": true,
+    "lineage-preservation": true
+  },
+  "contact": "<email>",
+  "updated": "<ISO-8601-date>",
+  "signature": "<quantum-safe-sig>"
+}
+\end{lstlisting}
+
+Where \texttt{<policy>} is one of: \texttt{"granted"} (permitted without
+conditions), \texttt{"requires-notice"} (permitted with documentation
+obligation), \texttt{"requires-permission"} (requires explicit
+approval), or \texttt{"denied"} (not permitted under this license).
+
+\subsection{Integration with AI Training Pipelines}
+
+For the consent metadata to be effective, it must be discoverable by
+AI training pipelines. We propose a multi-layered discovery mechanism:
+
+\begin{enumerate}
+    \item \textbf{Repository level}: The \texttt{.palimpsest/consent.json}
+          file is checked during data collection.
+    \item \textbf{Package level}: Package registries (npm, crates.io,
+          PyPI) include consent metadata in package manifests.
+    \item \textbf{Web level}: A \texttt{.well-known/palimpsest.json}
+          endpoint serves consent metadata for web-hosted content.
+    \item \textbf{DNS level}: A \texttt{\_palimpsest} TXT record
+          provides domain-wide consent preferences.
+\end{enumerate}
+
+This layered approach ensures that consent metadata is discoverable
+regardless of how the content is accessed. A training pipeline that
+clones repositories checks the \texttt{.palimpsest/} directory. A
+pipeline that scrapes websites checks the \texttt{.well-known/} endpoint.
+A pipeline that queries package registries checks the manifest metadata.
+
+\subsection{Provenance and Quantum-Safe Signatures}
+
+The PMPL includes optional support for quantum-safe cryptographic
+signatures on provenance metadata. This is forward-looking: current
+cryptographic signatures (RSA, ECDSA) will become vulnerable when
+large-scale quantum computers become available~\cite{nist-pqc}. The
+PMPL supports three NIST-approved post-quantum algorithms: ML-DSA
+(FIPS 204), SLH-DSA (FIPS 205), and FN-DSA (FIPS 206).
+
+Provenance signatures serve two functions in the consent framework.
+First, they authenticate the consent metadata itself, preventing
+tampering (e.g., an AI company modifying a repository's consent file
+to grant permission that was not given). Second, they create an
+immutable audit trail, allowing retrospective verification of what
+consent was in effect at any point in time.
+
+\subsection{Tooling}
+
+The reference implementation includes three Rust CLI tools:
+
+\begin{itemize}
+    \item \texttt{pmpl-sign}: Signs files and provenance metadata with
+          quantum-safe signatures.
+    \item \texttt{pmpl-verify}: Verifies signatures and provenance
+          chains.
+    \item \texttt{pmpl-audit}: Audits a repository for PMPL compliance,
+          including consent metadata validation.
+\end{itemize}
+
+These tools are themselves licensed under the PMPL-1.0, ensuring that
+the compliance infrastructure is subject to the same protections as the
+works it protects.
+
+% ============================================================================
+% 10. DISCUSSION
+% ============================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Implications for AI Governance}
+
+The consent layer model has implications beyond software licensing. It
+suggests a general principle: \emph{automated systems that process
+creative works should be subject to different rules than humans who
+engage with them}. This principle could inform:
+
+\begin{itemize}
+    \item \textbf{Regulatory frameworks}: The EU AI Act already
+          distinguishes between different risk levels of AI systems.
+          The interpretive/non-interpretive distinction could inform
+          a more granular risk taxonomy.
+    \item \textbf{Platform governance}: Social media platforms could
+          distinguish between human sharing (interpretive) and automated
+          scraping (non-interpretive) in their terms of service.
+    \item \textbf{Academic publishing}: The ongoing debate about AI use
+          in academic research could benefit from a clear distinction
+          between using AI as a tool (interpretive) and using scholarly
+          works as training data (non-interpretive).
+\end{itemize}
+
+\subsection{Open-Source Sustainability}
+
+The open-source sustainability crisis is well-documented. Maintainers
+burn out~\cite{eghbal2020working}. Critical infrastructure depends on
+unpaid volunteers. Companies extract enormous value from open-source
+software while contributing little back.
+
+AI training exacerbates this dynamic. When a company trains a model on
+open-source code and sells access to the model, the value chain runs
+from open-source contributors (who created the training data) to the
+model provider (who captured the value) to the end user (who pays for
+access). The contributors receive nothing---not even the indirect benefit
+of more developers learning from their code, since the model replaces
+the learning process.
+
+The consent layer does not solve the sustainability problem. But it
+creates a \emph{leverage point}. If non-interpretive use requires notice
+or consent, creators have a basis for negotiating compensation, imposing
+conditions, or simply saying ``no.'' This is not anti-AI; it is
+\emph{pro-autonomy}. The same principle underlies every labour
+negotiation: the right to withhold one's labour (or, here, one's
+creative output) is the foundation of fair exchange.
+
+\subsection{Cultural Preservation in the Age of Generative AI}
+
+Generative AI systems produce vast quantities of content that
+statistically resembles human creative output. This creates a paradox:
+the more AI-generated content exists, the harder it becomes to identify
+and preserve authentic human creative expression. The emotional lineage
+framework provides a mechanism for distinguishing between works with
+genuine cultural roots and works that are statistically derived from
+such roots.
+
+The \texttt{LINEAGE.md} file, provenance signatures, and consent metadata
+together create a \emph{cultural fingerprint}---a set of markers that
+indicate not just who created a work, but \emph{why}, in \emph{what
+context}, and with \emph{what meaning}. AI-generated content, by
+definition, cannot produce authentic lineage documentation. The
+distinction is not about technical sophistication; it is about
+\emph{authenticity}---the relationship between a work and the human
+experience that produced it.
+
+\subsection{Objections and Responses}
+
+\subsubsection{``This Is Anti-AI''}
+
+The PMPL does not prohibit AI training. It requires transparency
+(documentation of non-interpretive use) and provides a mechanism for
+creators to express their preferences. This is no more ``anti-AI'' than
+GDPR is ``anti-internet.'' Requiring consent for data processing is a
+fundamental principle of information governance, not an act of
+technological hostility.
+
+\subsubsection{``Emotional Lineage Is Too Vague''}
+
+The ``reasonable efforts'' standard, combined with the ``where
+documented'' qualifier, grounds the obligation in verifiable facts. A
+creator who documents their work's cultural context in
+\texttt{LINEAGE.md} has created a concrete obligation. A creator who
+does not has created no additional obligation beyond standard attribution.
+The vagueness objection conflates the concept (broad) with the
+obligation (specific).
+
+\subsubsection{``This Will Fragment the Ecosystem''}
+
+Any new license creates some fragmentation. The PMPL mitigates this by
+building on the MPL-2.0, which is already widely understood and legally
+tested. The additional provisions (emotional lineage, consent layer) are
+\emph{additive}---they do not modify any MPL-2.0 permission or
+obligation. Code licensed under the PMPL can be combined with MPL-2.0
+code in the same project, minimising compatibility concerns.
+
+\subsubsection{``Consent Metadata Will Be Ignored''}
+
+It may be. Many Creative Commons metadata tags are ignored today. Many
+\texttt{robots.txt} directives are violated. The existence of
+non-compliance does not invalidate the legal instrument. Copyright itself
+is routinely infringed; this does not make copyright law meaningless.
+The consent layer provides a \emph{legal basis for action} when
+non-compliance occurs, not a technological guarantee of compliance.
+
+\subsection{Limitations and Future Work}
+
+This paper and the PMPL-1.0 have several limitations that future work
+should address:
+
+\begin{itemize}
+    \item \textbf{Enforcement infrastructure}: While the legal basis is
+          sound, practical enforcement requires monitoring tools that
+          can detect non-interpretive use of specific works. This is a
+          technical challenge that current provenance tracking technology
+          is only beginning to address.
+    \item \textbf{International harmonisation}: Copyright and contract
+          law vary by jurisdiction. While the PMPL's contractual approach
+          provides broad enforceability, specific provisions may require
+          adaptation for different legal systems.
+    \item \textbf{Community adoption}: The success of any license depends
+          on adoption. The PMPL is new and untested in court. Building
+          the community and jurisprudential track record will take time.
+    \item \textbf{The boundary problem}: The interpretive/non-interpretive
+          distinction, while useful, has edge cases that will require
+          ongoing refinement through community practice and legal
+          interpretation.
+    \item \textbf{Collective consent}: The current framework addresses
+          individual creator consent. Works with many contributors raise
+          collective action problems that the current governance
+          structure (Stewardship Council) only partially addresses.
+\end{itemize}
+
+% ============================================================================
+% 11. CONCLUSION
+% ============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+The open-source licensing frameworks that have served us for four decades
+were built on an assumption that is no longer universal: that the primary
+consumers of creative works are human beings capable of engaging with
+their meaning. The emergence of non-interpretive AI systems---systems
+that process works as statistical inputs without semantic
+comprehension---creates a structural gap in every existing license.
+
+This paper has introduced two concepts to address this gap: emotional
+lineage protection, which formalises the obligation to preserve the
+narrative, cultural, and symbolic meaning embedded in creative works; and
+the consent layer for non-interpretive systems, which provides a
+machine-readable mechanism for creators to express their preferences
+about automated processing of their work.
+
+These concepts are implemented in the Palimpsest-MPL License (PMPL-1.0),
+which extends the Mozilla Public License 2.0 with ethical use
+requirements, quantum-safe provenance, and the consent metadata
+framework described herein. The PMPL is not anti-technology. It is
+pro-consent. It applies the same principle that underlies privacy law,
+labour law, and medical ethics: that the people affected by a system's
+operation should have a voice in how that system uses their contributions.
+
+The palimpsest metaphor reminds us that creative works are layered.
+Beneath the visible surface---the current version, the compiled binary,
+the rendered output---lie layers of history, meaning, and human
+connection. A licensing framework adequate to the age of AI must protect
+all of these layers, not just the ones that machines can see.
+
+We invite the open-source community, legal scholars, and AI governance
+researchers to engage with these ideas---to critique, refine, and build
+upon them. Like the palimpsest itself, this work is a layer in an
+ongoing conversation. It does not claim to be the final word. It claims
+only to be a necessary one.
+
+% ============================================================================
+% ACKNOWLEDGMENTS
+% ============================================================================
+\section*{Acknowledgments}
+
+The author thanks the Palimpsest Stewardship Council for their
+contributions to the development of the PMPL-1.0 license text, and the
+broader open-source licensing community for decades of foundational work
+upon which this paper builds.
+
+% ============================================================================
+% REFERENCES
+% ============================================================================
+\begin{thebibliography}{99}
+
+\bibitem{stallman1985gnu}
+R.~Stallman, ``The GNU Manifesto,'' \emph{Dr.\ Dobb's Journal},
+vol.~10, no.~3, pp.~30--35, 1985.
+
+\bibitem{stallman2002free}
+R.~M.~Stallman, \emph{Free Software, Free Society: Selected Essays of
+Richard M.\ Stallman}. Boston, MA: GNU Press, 2002.
+
+\bibitem{perens1999osi}
+B.~Perens, ``The Open Source Definition,'' in \emph{Open Sources: Voices
+from the Open Source Revolution}, C.~DiBona, S.~Ockman, and M.~Stone,
+Eds. Sebastopol, CA: O'Reilly Media, 1999, pp.~171--188.
+
+\bibitem{mongodb2018sspl}
+MongoDB, Inc., ``Server Side Public License (SSPL) v1,'' 2018.
+[Online]. Available: \url{https://www.mongodb.com/licensing/
+server-side-public-license}
+
+\bibitem{ehmke2019hippocratic}
+C.~A.~Ehmke, ``The Hippocratic License: An Ethical License for Open
+Source Projects,'' 2019.
+[Online]. Available: \url{https://firstdonoharm.dev/}
+
+\bibitem{anti996}
+996.ICU Contributors, ``Anti 996 License Version 1.0,'' 2019.
+[Online]. Available: \url{https://github.com/996icu/996.ICU}
+
+\bibitem{copilot2022controversy}
+A.~Butterick, ``GitHub Copilot Investigation,'' 2022.
+[Online]. Available: \url{https://githubcopilotinvestigation.com/}
+
+\bibitem{andersen2023}
+S.~Andersen et~al.\ v.\ Stability AI Ltd.\ et~al., No.\ 3:23-cv-00201
+(N.D.\ Cal.\ 2023).
+
+\bibitem{nyt2023openai}
+The New York Times Company v.\ Microsoft Corporation et~al.,
+No.\ 1:23-cv-11195 (S.D.N.Y.\ 2023).
+
+\bibitem{gplv3}
+Free Software Foundation, ``GNU General Public License, Version 3,''
+June 2007.
+[Online]. Available: \url{https://www.gnu.org/licenses/gpl-3.0.html}
+
+\bibitem{mit-license}
+Open Source Initiative, ``The MIT License,'' n.d.
+[Online]. Available: \url{https://opensource.org/licenses/MIT}
+
+\bibitem{apache2}
+Apache Software Foundation, ``Apache License, Version 2.0,'' January
+2004.
+[Online]. Available: \url{https://www.apache.org/licenses/LICENSE-2.0}
+
+\bibitem{mpl2}
+Mozilla Foundation, ``Mozilla Public License, Version 2.0,'' January
+2012.
+[Online]. Available: \url{https://www.mozilla.org/en-US/MPL/2.0/}
+
+\bibitem{eu-ai-act-2024}
+European Parliament and Council, ``Regulation (EU) 2024/1689 laying down
+harmonised rules on artificial intelligence (AI Act),'' \emph{Official
+Journal of the European Union}, L series, 2024.
+
+\bibitem{eu-dsm-directive}
+European Parliament and Council, ``Directive (EU) 2019/790 on copyright
+and related rights in the Digital Single Market,'' \emph{Official Journal
+of the European Union}, L 130, pp.~92--125, 2019.
+
+\bibitem{samuelson1984copyright}
+P.~Samuelson, ``CONTU Revisited: The Case Against Copyright Protection
+for Computer Programs in Machine-Readable Form,'' \emph{Duke Law
+Journal}, vol.~1984, no.~4, pp.~663--769, 1984.
+
+\bibitem{clifford1988predicament}
+J.~Clifford, \emph{The Predicament of Culture: Twentieth-Century
+Ethnography, Literature, and Art}. Cambridge, MA: Harvard University
+Press, 1988.
+
+\bibitem{gdpr2016}
+European Parliament and Council, ``Regulation (EU) 2016/679 on the
+protection of natural persons with regard to the processing of personal
+data (General Data Protection Regulation),'' \emph{Official Journal of
+the European Union}, L 119, pp.~1--88, 2016.
+
+\bibitem{lemley2023generative}
+M.~A.~Lemley, ``How Broad is the Right to Train AI?,'' Working Paper,
+Stanford Law School, 2023.
+
+\bibitem{lessig2006code}
+L.~Lessig, \emph{Code: And Other Laws of Cyberspace, Version 2.0}. New
+York: Basic Books, 2006.
+
+\bibitem{jacobsen2008}
+Jacobsen v.\ Katzer, 535 F.3d 1373 (Fed.\ Cir.\ 2008).
+
+\bibitem{farnsworth2004contracts}
+E.~A.~Farnsworth, \emph{Farnsworth on Contracts}, 3rd ed. New York:
+Aspen Publishers, 2004.
+
+\bibitem{berne1886}
+World Intellectual Property Organization, ``Berne Convention for the
+Protection of Literary and Artistic Works,'' 1886, as amended 1979.
+
+\bibitem{vara1990}
+Visual Artists Rights Act of 1990, 17 U.S.C.\ \S\S~106A, 113(d)
+(1990).
+
+\bibitem{unesco2003}
+UNESCO, ``Convention for the Safeguarding of the Intangible Cultural
+Heritage,'' 2003.
+
+\bibitem{wipo-tk}
+World Intellectual Property Organization, ``Intergovernmental Committee
+on Intellectual Property and Genetic Resources, Traditional Knowledge
+and Folklore,'' established 2000.
+
+\bibitem{nist-pqc}
+National Institute of Standards and Technology, ``Post-Quantum
+Cryptography Standardization,'' FIPS 204, 205, 206, 2024.
+
+\bibitem{cc-by}
+Creative Commons, ``Attribution 4.0 International (CC BY 4.0),'' 2013.
+[Online]. Available: \url{https://creativecommons.org/licenses/by/4.0/}
+
+\bibitem{rail2022}
+BigScience, ``The RAIL License Family,'' 2022.
+[Online]. Available: \url{https://www.licenses.ai/}
+
+\bibitem{eghbal2020working}
+N.~Eghbal, \emph{Working in Public: The Making and Maintenance of Open
+Source Software}. San Francisco, CA: Stripe Press, 2020.
+
+\bibitem{us-copyright-act}
+Copyright Act of 1976, 17 U.S.C.\ \S\S~101--810.
+
+\bibitem{davidson2004click}
+A.~Davidson, ``Shrinkwrap and Clickwrap Agreements,'' \emph{St.\ John's
+Law Review}, vol.~78, no.~3, pp.~613--638, 2004.
+
+\bibitem{ftc-act}
+Federal Trade Commission Act, 15 U.S.C.\ \S\S~41--58.
+
+\bibitem{netz2007archimedes}
+R.~Netz and W.~Noel, \emph{The Archimedes Codex: How a Medieval Prayer
+Book Is Revealing the True Genius of Antiquity's Greatest Scientist}.
+Philadelphia, PA: Da Capo Press, 2007.
+
+\bibitem{lessig2004free}
+L.~Lessig, \emph{Free Culture: How Big Media Uses Technology and the
+Law to Lock Down Culture and Control Creativity}. New York: Penguin
+Press, 2004.
+
+\bibitem{benkler2006wealth}
+Y.~Benkler, \emph{The Wealth of Networks: How Social Production
+Transforms Markets and Freedom}. New Haven, CT: Yale University Press,
+2006.
+
+\bibitem{vaidhyanathan2001copyrights}
+S.~Vaidhyanathan, \emph{Copyrights and Copywrongs: The Rise of
+Intellectual Property and How It Threatens Creativity}. New York: New
+York University Press, 2001.
+
+\bibitem{zittrain2008future}
+J.~Zittrain, \emph{The Future of the Internet---And How to Stop It}.
+New Haven, CT: Yale University Press, 2008.
+
+\bibitem{moglen2003dotcommunist}
+E.~Moglen, ``The dotCommunist Manifesto,'' 2003.
+[Online]. Available: \url{https://moglen.law.columbia.edu/
+publications/dcm.html}
+
+\bibitem{kelty2008two}
+C.~M.~Kelty, \emph{Two Bits: The Cultural Significance of Free
+Software}. Durham, NC: Duke University Press, 2008.
+
+\bibitem{coyle2019value}
+D.~Coyle, ``Do-it-yourself Digital: The Production Boundary, the
+Productivity Puzzle and Economic Welfare,'' \emph{Economica}, vol.~86,
+no.~344, pp.~750--774, 2019.
+
+\bibitem{sobel2017artificial}
+B.~L.~W.~Sobel, ``Artificial Intelligence's Fair Use Crisis,''
+\emph{Columbia Journal of Law \& the Arts}, vol.~41, no.~1, pp.~45--97,
+2017.
+
+\bibitem{grimmelmann2016no}
+J.~Grimmelmann, ``There's No Such Thing as a Computer-Authored Work---And
+It's a Good Thing, Too,'' \emph{Columbia Journal of Law \& the Arts},
+vol.~39, no.~3, pp.~403--416, 2016.
+
+\bibitem{sag2019copyright}
+M.~Sag, ``Copyright and Copy-Reliant Technology,'' \emph{Northwestern
+University Law Review}, vol.~112, no.~6, pp.~1607--1682, 2019.
+
+\end{thebibliography}
+
+\end{document}
