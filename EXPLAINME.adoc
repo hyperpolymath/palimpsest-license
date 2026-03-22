@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+= Palimpsest-MPL License (PMPL) — Show Me The Receipts
+:toc:
+:icons: font
+
+The README makes claims. This file backs them up.
+
+[quote, README]
+____
+Built on Mozilla Public License 2.0.
+____
+
+== Technology Choices
+
+[cols="1,2"]
+|===
+| Technology | Learn More
+
+| **Deno** | https://deno.land
+|===
+
+== Questions?
+
+Open an issue or reach out directly — happy to explain anything in more detail.
