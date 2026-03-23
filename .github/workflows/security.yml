@@ -29,15 +29,15 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@6624720a57d4c312633c7b953db2f2da5bcb4c3a # v3
+        uses: github/codeql-action/init@05b1a5d28f8763fd11e77388fe57846f1ba8e766 # v3
         with:
           languages: ${{ matrix.language }}
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@6624720a57d4c312633c7b953db2f2da5bcb4c3a # v3
+        uses: github/codeql-action/autobuild@05b1a5d28f8763fd11e77388fe57846f1ba8e766 # v3
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@6624720a57d4c312633c7b953db2f2da5bcb4c3a # v3
+        uses: github/codeql-action/analyze@05b1a5d28f8763fd11e77388fe57846f1ba8e766 # v3
 
   scorecard:
     name: OpenSSF Scorecard
@@ -59,7 +59,7 @@ jobs:
           publish_results: true
 
       - name: Upload SARIF to code scanning
-        uses: github/codeql-action/upload-sarif@6624720a57d4c312633c7b953db2f2da5bcb4c3a # v3
+        uses: github/codeql-action/upload-sarif@05b1a5d28f8763fd11e77388fe57846f1ba8e766 # v3
         with:
           sarif_file: results.sarif
 
@@ -75,4 +75,4 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Dependency Review
-        uses: actions/dependency-review-action@4901385134134e04cec5fbe5ddfe3b2c5bd5d976 # v4
+        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4
