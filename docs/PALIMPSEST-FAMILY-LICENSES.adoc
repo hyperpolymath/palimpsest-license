@@ -1,0 +1,563 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell (hyperpolymath)
+= The Palimpsest License Family: A Framework for Layered Licensing
+Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+v1.0, 2026-03-23
+:toc: left
+:toclevels: 3
+:sectnums:
+:icons: font
+
+== Executive Summary
+
+The Palimpsest License family is a system for creating _layered_ open-source
+licenses that extend well-known base licenses with provisions for quantum-safe
+provenance, emotional lineage preservation, AI awareness, and cultural
+sensitivity — while maintaining legal fallback to the underlying base license
+in any jurisdiction where the palimpsest-specific provisions are challenged.
+
+This document describes:
+
+* The legal architecture that makes layered licensing viable
+* Which base licenses can support a palimpsest layer
+* Specific proposals for PAGPL, PGPL, PAPL, and others
+* How fallback works in court proceedings
+* A decision matrix for choosing the right variant
+
+== The Palimpsest Metaphor
+
+A palimpsest is a manuscript where old text has been scraped away and written
+over, but the original remains visible beneath. This is the perfect metaphor
+for our licensing approach:
+
+* The *old text* (base license) remains legally visible and enforceable
+* The *new text* (palimpsest layer) adds protections for the modern era
+* If the new text is challenged, the old text is still there, still binding
+
+This is not a hack or a workaround. It is a deliberate legal architecture
+that combines innovation with proven foundations.
+
+== Legal Architecture
+
+=== The Layered Structure
+
+Every palimpsest license has three layers:
+
+[cols="1,3,2", options="header"]
+|===
+| Layer | Purpose | Legal Character
+
+| *Base License*
+| Proven copyleft or permissive terms
+| Legally tested, court-precedented
+
+| *Palimpsest Layer*
+| Quantum-safe provenance, AI awareness, emotional lineage, cultural sensitivity
+| Novel provisions, legally untested
+
+| *Fallback Clause*
+| Explicit reversion mechanism
+| Structured severability
+|===
+
+=== The Fallback Clause (Critical)
+
+Every palimpsest variant MUST include a clause substantially equivalent to:
+
+[quote]
+____
+*Structured Fallback.* Where any provision of this License that extends or
+modifies the Base License (Sections [N] through [M] and Exhibits [A]
+through [Z]) is held unenforceable, void, or inapplicable in any
+jurisdiction, the corresponding provision of [Base License Name, Version X.Y]
+shall apply in its stead. The remaining provisions of this License, including
+all enforceable palimpsest-specific provisions, continue in full force and
+effect.
+____
+
+This gives courts a clear, named, well-understood license to fall back to,
+rather than voiding the entire agreement.
+
+=== Why This Works Legally
+
+[cols="1,3", options="header"]
+|===
+| Legal Principle | How It Applies
+
+| *Severability*
+| Standard in contract law. If one clause is unenforceable, the rest survives.
+Most base licenses (MPL-2.0 S10, GPL-3.0 S17, Apache-2.0 S9) already include
+severability clauses.
+
+| *Blue-pencil doctrine*
+| Courts in common-law jurisdictions routinely strike unenforceable provisions
+while preserving the remainder. The fallback clause gives them an explicit
+substitution rather than requiring judicial construction.
+
+| *Contra proferentem*
+| Ambiguous terms are construed against the drafter. By providing a named
+fallback, we reduce ambiguity — the court knows exactly what the parties
+intended if the novel provisions fail.
+
+| *Precedent layering*
+| Base licenses (GPL, MPL, Apache) have decades of case law. The palimpsest
+layer inherits this legal stability as its foundation.
+|===
+
+== The Palimpsest License Family
+
+=== Existing: PMPL-1.0 (Palimpsest-MPL)
+
+[cols="1,3", options="header"]
+|===
+| Property | Value
+
+| *Base* | Mozilla Public License 2.0
+| *Copyleft scope* | File-level
+| *Status* | Published, in production use
+| *Fallback* | MPL-2.0
+| *SPDX* | `PMPL-1.0-or-later`
+|===
+
+MPL-2.0 is the ideal base for the palimpsest approach because:
+
+* MPL-2.0 Section 10.2 _explicitly permits_ modified versions of the license
+* File-level copyleft is granular enough to combine with proprietary code
+* Strong patent grant provisions
+* Well-tested in court (Mozilla has enforced it)
+
+=== Proposed: PAGPL-1.0 (Palimpsest-AGPL)
+
+[cols="1,3", options="header"]
+|===
+| Property | Value
+
+| *Base* | GNU Affero General Public License 3.0
+| *Copyleft scope* | Project-level + network use
+| *Status* | Proposed
+| *Fallback* | AGPL-3.0-or-later
+| *SPDX* | `PAGPL-1.0-or-later`
+|===
+
+==== Why PAGPL, Not PGPL
+
+The AGPL is a better base than the GPL for palimpsest layering because:
+
+1. *Network copyleft*: AGPL Section 13 requires that users interacting with
+   the software over a network receive access to the source code. This is
+   critical for modern software (SaaS, games with online components, APIs).
+   The GPL has no such provision — someone can take GPL code, run it as a
+   service, and never share their modifications.
+
+2. *Stronger protection*: AGPL is the strongest widely-used copyleft license.
+   If the palimpsest layer's protections are stripped by a court, falling back
+   to AGPL still provides robust protection. Falling back to GPL leaves the
+   network-use gap.
+
+3. *Alignment with palimpsest values*: The palimpsest philosophy of preserving
+   lineage and attribution is better served by a license that prevents
+   "service-washing" — running modified code as a service without sharing.
+
+==== PAGPL Construction
+
+[source]
+----
+PAGPL-1.0 = AGPL-3.0-or-later
+           + Section P1: Emotional Lineage Preservation
+           + Section P2: Non-Interpretive System Notice (AI)
+           + Section P3: Ethical Use Declaration
+           + Section P4: Provenance Metadata Preservation
+           + Section P5: Quantum-Safe Provenance (Optional)
+           + Section P6: Lineage Chain
+           + Section P7: Governance (Stewardship Council)
+           + Section P8: Structured Fallback to AGPL-3.0-or-later
+           + Exhibit A: Ethical Use Guidelines
+           + Exhibit B: Quantum-Safe Provenance Specification
+----
+
+==== PAGPL: Addressing GPL Section 7 Compatibility
+
+GPL-3.0 (and by extension AGPL-3.0) Section 7 permits "additional terms"
+in two categories:
+
+* *Section 7(a)*: Disclaiming warranty or limiting liability — compatible
+* *Section 7(b)*: Requiring attribution — compatible (palimpsest provenance
+  requirements fit here as "reasonable legal notices")
+* *Section 7(c)*: Prohibiting misrepresentation of origin — compatible
+  (emotional lineage preservation fits here)
+
+However, Section 7 also states that any term not fitting these categories is
+an "additional restriction" that downstream recipients may remove under
+Section 7, paragraph 4.
+
+*This is the central challenge.* The ethical use declaration (Section P3) and
+the AI documentation requirement (Section P2) are arguably "additional
+restrictions" that downstream recipients could strip.
+
+*Solution*: The PAGPL explicitly addresses this:
+
+[quote]
+____
+*Relationship to Base License Section 7.* The Palimpsest provisions in
+Sections P1 through P7 are offered as additional permissions and reasonable
+attribution requirements under Section 7(b) of the Base License where
+possible. Where a court determines that any Palimpsest provision constitutes
+an additional restriction under Section 7, paragraph 4, the Structured
+Fallback (Section P8) applies to that provision, and the Base License terms
+govern in its place. No Palimpsest provision shall be construed to reduce the
+rights granted by the Base License.
+____
+
+This means:
+
+* *Best case*: Courts accept the palimpsest provisions as 7(b) attribution
+  requirements. Full palimpsest protections apply.
+* *Fallback case*: Courts treat some provisions as additional restrictions.
+  Those specific provisions revert to AGPL-3.0. The remaining palimpsest
+  provisions survive.
+* *Worst case*: All palimpsest provisions are struck. The full AGPL-3.0
+  applies. This is still strong copyleft protection.
+
+=== Proposed: PGPL-1.0 (Palimpsest-GPL)
+
+[cols="1,3", options="header"]
+|===
+| Property | Value
+
+| *Base* | GNU General Public License 3.0
+| *Copyleft scope* | Project-level (no network clause)
+| *Status* | Proposed
+| *Fallback* | GPL-3.0-or-later
+| *SPDX* | `PGPL-1.0-or-later`
+|===
+
+==== When to Choose PGPL over PAGPL
+
+* When the software has no network/server component
+* When AGPL's network clause would deter contributors
+* When GPL-compatibility matters more than maximum protection
+
+==== PGPL: The Same Section 7 Analysis Applies
+
+The PGPL uses the identical construction to PAGPL, substituting GPL-3.0 for
+AGPL-3.0 as the base. All the Section 7 analysis above applies identically.
+
+==== Naming and Trademark
+
+The name "GPL" is closely associated with the Free Software Foundation. The
+palimpsest variants:
+
+* Are clearly named "Palimpsest-GPL" and "Palimpsest-AGPL", not "GNU GPL"
+* State explicitly they are not FSF products
+* Include a disclaimer: "This License is not endorsed by or affiliated with
+  the Free Software Foundation."
+* Use the full legal text of GPL/AGPL by reference (which is permitted — the
+  GPL itself is not copyrighted in a way that prevents this)
+
+The FSF has no trademark on the abbreviation "GPL" itself, only on
+"GNU General Public License" as a mark. "Palimpsest General Public License"
+is sufficiently distinct.
+
+=== Proposed: PAPL-1.0 (Palimpsest-Apache)
+
+[cols="1,3", options="header"]
+|===
+| Property | Value
+
+| *Base* | Apache License 2.0
+| *Copyleft scope* | None (permissive)
+| *Status* | Proposed
+| *Fallback* | Apache-2.0
+| *SPDX* | `PAPL-1.0-or-later`
+|===
+
+==== Why PAPL Is the Easiest Variant
+
+Apache-2.0 is permissive. There is no copyleft machinery to conflict with
+palimpsest provisions. The patent grant (Section 3) is particularly valuable
+for quantum-safe cryptography work. There are no "additional restriction"
+concerns because the base license imposes almost no restrictions.
+
+==== When to Choose PAPL
+
+* Libraries, SDKs, and tools where adoption matters more than copyleft
+* Projects where the patent grant is important (cryptography, AI/ML)
+* Ecosystems where Apache-2.0 is the dominant license (e.g., cloud-native)
+
+=== Other Potential Variants
+
+[cols="1,1,2,1", options="header"]
+|===
+| Variant | Base | Use Case | Feasibility
+
+| PBSD-1.0
+| BSD-3-Clause
+| Minimal base, maximum palimpsest autonomy
+| Easy but weak fallback
+
+| PMIT-1.0
+| MIT
+| Ultra-permissive with palimpsest layer
+| Easy but fallback is near-empty
+
+| PEUPL-1.0
+| EUPL-1.2
+| EU-facing projects, built-in multilingual support
+| Good — EUPL has compatibility clause
+
+| PARL-1.0
+| Artistic-2.0
+| Creative/cultural software, Perl ecosystem
+| Good — philosophically aligned
+
+| PCOHL-1.0
+| CERN-OHL-S-2
+| Open hardware with palimpsest provenance
+| Niche but clean fit
+|===
+
+== Decision Matrix
+
+Use this to choose the right palimpsest variant:
+
+[cols="3,1,1,1,1", options="header"]
+|===
+| Criterion | PMPL | PAGPL | PGPL | PAPL
+
+| Copyleft strength
+| Medium
+| *Maximum*
+| Strong
+| None
+
+| Network/SaaS protection
+| No
+| *Yes*
+| No
+| No
+
+| Fallback strength
+| Good
+| *Excellent*
+| Good
+| Moderate
+
+| Adoption friction
+| Low
+| High
+| Medium
+| *Lowest*
+
+| Proprietary combination
+| Per-file
+| No
+| No
+| *Yes*
+
+| Patent grant
+| Yes
+| Yes
+| Yes
+| *Yes (strongest)*
+
+| Court precedent of base
+| Good
+| Good
+| *Excellent*
+| Good
+
+| GPL-compatible
+| Via MPL S3.3
+| Yes (superset)
+| *Yes*
+| No
+
+| Section 7 risk
+| N/A
+| Medium
+| Medium
+| *None*
+|===
+
+=== Recommended Combinations
+
+*For games (IDApTIK model):*
+
+* Engine/framework: *PAGPL-1.0* (strongest copyleft, network protection)
+* Game content/art/levels: *Proprietary* or *CC-BY-NC-SA-4.0*
+* Tools/SDKs for modders: *PMPL-1.0* or *PAPL-1.0*
+
+*For libraries:*
+
+* Core library: *PMPL-1.0* (file-level copyleft allows proprietary use)
+* Reference implementation: *PAGPL-1.0* (forces network users to share)
+
+*For infrastructure:*
+
+* Server software: *PAGPL-1.0* (prevents service-washing)
+* Client libraries: *PAPL-1.0* (encourages adoption)
+
+== The Palimpsest Provisions in Detail
+
+All palimpsest variants share the same palimpsest-specific sections. Only the
+base license and fallback clause differ.
+
+=== P1: Emotional Lineage Preservation
+
+Requires reasonable efforts to preserve and communicate the narrative,
+cultural, and symbolic meaning of covered software. This is not a ban on
+modification — it is a requirement to acknowledge context.
+
+*Fallback mapping*: Under GPL/AGPL, this maps to Section 7(b) "requiring
+preservation of specified reasonable legal notices" and Section 7(c)
+"prohibiting misrepresentation of the origin of that material." Under MPL,
+it maps to the attribution requirements of Section 3.1.
+
+=== P2: Non-Interpretive System Notice
+
+If covered software is used as input to AI training, content aggregation, or
+automated summarisation, the user must document this use and must not claim
+that the AI output carries the emotional lineage of the original.
+
+*Fallback mapping*: Under GPL/AGPL, this maps to Section 7(b) attribution.
+Under MPL, it is a documentation requirement analogous to Section 3.1.
+
+=== P3: Ethical Use Declaration
+
+Commercial use requires acknowledgment of the ethical use guidelines
+(Exhibit A). This is a _declaration_ of awareness, not a restriction on use.
+
+*Fallback mapping*: This is the provision most likely to be challenged as an
+"additional restriction" under GPL/AGPL Section 7. If struck, the base
+license's terms apply — commercial use remains unrestricted but without the
+ethical acknowledgment.
+
+=== P4-P6: Provenance Requirements
+
+Preservation of cryptographic provenance metadata, quantum-safe signatures,
+and lineage chains. These are technical requirements rather than use
+restrictions.
+
+*Fallback mapping*: Under all base licenses, these map to attribution and
+notice preservation requirements, which are well-established in open-source
+licensing.
+
+=== P7: Governance
+
+The Palimpsest Stewardship Council provides non-binding dispute resolution
+and license stewardship.
+
+*Fallback mapping*: This is an additional mechanism, not a restriction. It
+survives independently of the base license.
+
+== Creating a New Palimpsest Variant
+
+To create a new P-variant:
+
+. Choose the base license
+. Verify the base license permits derivative licensing (most do — the license
+  text itself is typically permissively licensed or dedicated to the public)
+. Draft the structured fallback clause, naming the specific base version
+. Map each palimpsest provision to a corresponding base license section
+  (for fallback purposes)
+. Include the trademark disclaimer
+. Register the SPDX identifier (or use LicenseRef- prefix)
+. Add to the palimpsest-license repository under `legal/variants/`
+. Update tools (pmpl-sign, pmpl-verify, pmpl-audit) to recognise the variant
+
+== Appendix A: Court Fallback Scenarios
+
+=== Scenario 1: Emotional Lineage Provision Challenged
+
+A company strips all attribution context from palimpsest-licensed code and
+uses it in a product without acknowledging cultural origins.
+
+* *With palimpsest layer*: Violation of P1. Stewardship Council may issue
+  guidance. Legal action possible under P1.
+* *If P1 is struck*: Fallback to base license attribution requirements
+  (MPL S3.1, GPL S7(b), Apache S4). Still requires notices. Weaker but not
+  toothless.
+
+=== Scenario 2: AI Training Documentation Challenged
+
+An AI company uses palimpsest-licensed code for training without documenting
+the use.
+
+* *With palimpsest layer*: Violation of P2. Must document and disclaim
+  emotional lineage in outputs.
+* *If P2 is struck*: Fallback to base license. Under AGPL, the network clause
+  may still apply if the AI service is network-facing. Under MPL/GPL, no
+  specific AI provision — code is usable under standard terms.
+
+=== Scenario 3: Entire Palimpsest Layer Struck
+
+A jurisdiction rules that all palimpsest provisions are unenforceable.
+
+* *PAGPL fallback*: AGPL-3.0 applies in full. Strong copyleft + network
+  clause. Code is well-protected.
+* *PGPL fallback*: GPL-3.0 applies in full. Strong copyleft, no network
+  clause. Adequate protection for non-SaaS software.
+* *PMPL fallback*: MPL-2.0 applies in full. File-level copyleft. Moderate
+  protection.
+* *PAPL fallback*: Apache-2.0 applies in full. Permissive. Weakest fallback
+  but patent grant survives.
+
+== Appendix B: Comparison with Existing Layered Licenses
+
+[cols="2,3,3", options="header"]
+|===
+| License | Approach | How Palimpsest Differs
+
+| *Commons Clause*
+| Adds non-compete clause to permissive base
+| Palimpsest adds ethical/provenance provisions, not commercial restrictions.
+  Fallback is cleaner (named base version, not just "the license without the
+  clause").
+
+| *BSL (Business Source License)*
+| Time-delayed open source (proprietary for N years, then open)
+| Palimpsest is open from day one. Different goal: protecting meaning and
+  attribution, not delaying openness.
+
+| *SSPL (Server Side Public License)*
+| MongoDB's AGPL-derivative requiring full-stack source for service use
+| Palimpsest does not expand copyleft scope beyond the base license. SSPL was
+  rejected by OSI for overreach. Palimpsest fallback ensures base-license
+  compliance.
+
+| *Elastic License 2.0*
+| Source-available with anti-SaaS provisions
+| Palimpsest is genuinely open source (falls back to OSI-approved licenses).
+  ELv2 is not OSI-approved.
+
+| *PolyForm licenses*
+| Non-compete and internal-use variants
+| Palimpsest is not a use restriction — it is an attribution and awareness
+  requirement. Fundamentally different legal character.
+|===
+
+== Appendix C: SPDX Registration Roadmap
+
+[cols="1,2,2", options="header"]
+|===
+| Identifier | Status | Notes
+
+| `PMPL-1.0-or-later`
+| In use (LicenseRef)
+| Submit to SPDX when adoption reaches threshold
+
+| `PAGPL-1.0-or-later`
+| Proposed
+| Draft license text needed
+
+| `PGPL-1.0-or-later`
+| Proposed
+| Draft license text needed
+
+| `PAPL-1.0-or-later`
+| Proposed
+| Draft license text needed
+|===
+
+Until SPDX registration, use `LicenseRef-` prefix for tooling compatibility:
+`LicenseRef-PAGPL-1.0-or-later`.
