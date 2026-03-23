@@ -1,0 +1,1 @@
+../../legal/PALIMPSEST-AGPL-1.0.txt
