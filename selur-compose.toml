@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+#
+# Stapeln selur-compose.toml — Palimpsest License
+# Multi-service: docs-server (Python HTTP on :8000) + validator (Haskell CLI)
+
+[project]
+name = "palimpsest-license"
+
+# --------------------------------------------------------------------------
+# Service: Documentation Server (Python HTTP server serving license docs)
+# Build target: docs-server (Stage 2)
+# --------------------------------------------------------------------------
+[services.docs-server]
+build = { context = ".", dockerfile = "Containerfile", target = "docs-server" }
+restart = "unless-stopped"
+networks = ["default"]
+ports = ["8000:8000"]
+
+healthcheck = { test = "curl -f http://localhost:8000/ || exit 1", interval = "30s", timeout = "3s", start_period = "5s", retries = 3 }
+
+[services.docs-server.labels]
+"org.opencontainers.image.title" = "Palimpsest License Docs"
+"org.opencontainers.image.version" = "0.4.0"
+
+# --------------------------------------------------------------------------
+# Service: Validator (Haskell binary for license compliance checking)
+# Build target: validator (Stage 3)
+# --------------------------------------------------------------------------
+[services.validator]
+build = { context = ".", dockerfile = "Containerfile", target = "validator" }
+restart = "no"
+networks = ["default"]
+
+healthcheck = { test = "/app/bin/palimpsest-validator --version", interval = "30s", timeout = "3s", start_period = "5s", retries = 3 }
+
+[services.validator.labels]
+"org.opencontainers.image.title" = "Palimpsest Validator"
+"org.opencontainers.image.version" = "0.4.0"
+
+# --------------------------------------------------------------------------
+# Networks
+# --------------------------------------------------------------------------
+[networks.default]
+driver = "bridge"
