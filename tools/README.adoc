@@ -65,7 +65,7 @@ They are optional for adopters but recommended for projects that want strong pro
 The license parser is being developed in the Palimpsest Plasma repo (work in progress):
 
 ----
-Local: /mnt/eclipse/repos/palimpsest-plasma
+Local: $REPOS_DIR/palimpsest-plasma
 Remote: https://github.com/hyperpolymath/palimpsest-plasma
 ----
 
