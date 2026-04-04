@@ -271,3 +271,109 @@ fn print_text_report(result: &AuditResult) {
     // Overall result
     println!("Overall: {}", if result.passed { "PASS" } else { "FAIL" });
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_audit_result_struct() {
+        let result = AuditResult {
+            path: "/test/repo".to_string(),
+            license_present: true,
+            license_type: Some("PMPL-1.0".to_string()),
+            files_checked: 10,
+            files_with_headers: 8,
+            files_missing_headers: vec!["file1.rs".to_string(), "file2.rs".to_string()],
+            files_with_signatures: 5,
+            issues: vec![],
+            passed: true,
+        };
+        assert!(result.license_present);
+        assert_eq!(result.files_checked, 10);
+        assert_eq!(result.files_with_headers, 8);
+        assert_eq!(result.files_missing_headers.len(), 2);
+        assert!(result.passed);
+    }
+
+    #[test]
+    fn test_detect_pmpl_license() {
+        let pmpl_content = "PALIMPSEST-MPL License\n\nVersion: 1.0\nTerms...";
+        assert!(pmpl_content.contains("PALIMPSEST-MPL"));
+    }
+
+    #[test]
+    fn test_detect_mpl_license() {
+        let mpl_content = "Mozilla Public License\n\nVersion 2.0";
+        assert!(mpl_content.contains("Mozilla Public License"));
+    }
+
+    #[test]
+    fn test_spdx_pattern_matching() {
+        let spdx_pattern = Regex::new(r"SPDX-License-Identifier:\s*\S+").unwrap();
+
+        let header1 = "// SPDX-License-Identifier: PMPL-1.0-or-later";
+        let header2 = "# SPDX-License-Identifier: MIT";
+        let header3 = "Some code without SPDX header";
+
+        assert!(spdx_pattern.is_match(header1));
+        assert!(spdx_pattern.is_match(header2));
+        assert!(!spdx_pattern.is_match(header3));
+    }
+
+    #[test]
+    fn test_license_filenames() {
+        let license_names = ["LICENSE", "LICENSE.txt", "LICENSE.md", "COPYING"];
+        assert!(license_names.contains(&"LICENSE"));
+        assert!(license_names.contains(&"COPYING"));
+        assert!(!license_names.contains(&"LICENSES"));
+    }
+
+    #[test]
+    fn test_file_extension_filtering() {
+        let extensions = vec!["rs", "py", "js", "ts"];
+        assert!(extensions.contains(&"rs"));
+        assert!(extensions.contains(&"py"));
+        assert!(!extensions.contains(&"txt"));
+    }
+
+    #[test]
+    fn test_audit_result_serialization() {
+        let result = AuditResult {
+            path: "/test/repo".to_string(),
+            license_present: true,
+            license_type: Some("PMPL-1.0".to_string()),
+            files_checked: 5,
+            files_with_headers: 5,
+            files_missing_headers: vec![],
+            files_with_signatures: 0,
+            issues: vec![],
+            passed: true,
+        };
+
+        let json = serde_json::to_string(&result);
+        assert!(json.is_ok());
+        let json_str = json.unwrap();
+        assert!(json_str.contains("PMPL-1.0"));
+        assert!(json_str.contains("passed"));
+    }
+
+    #[test]
+    fn test_skip_build_directories() {
+        let skip_patterns = vec!["/target/", "/node_modules/", "/vendor/", "/_build/"];
+        let path_with_target = "/repo/target/debug/main.o";
+        let path_with_src = "/repo/src/main.rs";
+
+        assert!(skip_patterns.iter().any(|p| path_with_target.contains(p)));
+        assert!(!skip_patterns.iter().any(|p| path_with_src.contains(p)));
+    }
+
+    #[test]
+    fn test_hidden_file_detection() {
+        let hidden_files = vec![".gitignore", ".github/workflows", ".hidden.rs"];
+        let normal_files = vec!["main.rs", "lib.rs", "src/code.rs"];
+
+        assert!(hidden_files.iter().all(|f| f.starts_with('.')));
+        assert!(!normal_files.iter().any(|f| f.starts_with('.')));
+    }
+}

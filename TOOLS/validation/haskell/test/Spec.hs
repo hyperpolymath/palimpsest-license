@@ -12,6 +12,8 @@ import Palimpsest.Validator.BilingualSpec
 import Palimpsest.Validator.ReferenceSpec
 import Palimpsest.Validator.UtilsSpec
 import Integration.PipelineSpec
+import E2E.ValidationE2ESpec
+import Property.ValidatorPropertySpec
 
 main :: IO ()
 main = hspec $ do
@@ -25,3 +27,9 @@ main = hspec $ do
 
     describe "Integration Tests" $ do
       pipelineSpec
+
+    describe "End-to-End Tests" $ do
+      e2eSpec
+
+    describe "Property-Based Tests" $ do
+      propertySpec

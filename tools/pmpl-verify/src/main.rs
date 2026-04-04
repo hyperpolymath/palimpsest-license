@@ -226,3 +226,78 @@ mod hex {
         bytes.as_ref().iter().map(|b| format!("{:02x}", b)).collect()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_hex_encode() {
+        let bytes = vec![0x48, 0x65, 0x6c, 0x6c, 0x6f]; // "Hello"
+        let encoded = hex::encode(&bytes);
+        assert_eq!(encoded, "48656c6c6f");
+    }
+
+    #[test]
+    fn test_hex_encode_empty() {
+        let bytes: Vec<u8> = vec![];
+        let encoded = hex::encode(&bytes);
+        assert_eq!(encoded, "");
+    }
+
+    #[test]
+    fn test_parse_signature_valid() {
+        let sig_content = r#"-----BEGIN PALIMPSEST SIGNATURE-----
+Version: PMPL-SIG/1.0
+Algorithm: ML-DSA-65
+Signer: test@example.com
+Timestamp: 2025-01-01T00:00:00Z
+Content-Hash: abcd1234
+
+[PLACEHOLDER]
+-----END PALIMPSEST SIGNATURE-----"#;
+
+        let result = parse_signature(sig_content);
+        assert!(result.is_ok());
+        let info = result.unwrap();
+        assert_eq!(info.algorithm, "ML-DSA-65");
+        assert_eq!(info.signer, "test@example.com");
+        assert_eq!(info.timestamp, "2025-01-01T00:00:00Z");
+        assert_eq!(info.content_hash, "abcd1234");
+    }
+
+    #[test]
+    fn test_parse_signature_missing_hash() {
+        let sig_content = r#"-----BEGIN PALIMPSEST SIGNATURE-----
+Version: PMPL-SIG/1.0
+Algorithm: ML-DSA-65
+Signer: test@example.com
+-----END PALIMPSEST SIGNATURE-----"#;
+
+        let result = parse_signature(sig_content);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_hash_computation() {
+        // Smoke test: ensure SHA3-256 can be computed without panic
+        let content = b"test content";
+        let mut hasher = Sha3_256::new();
+        hasher.update(content);
+        let hash = hasher.finalize();
+        assert_eq!(hash.len(), 32); // SHA3-256 produces 32 bytes
+    }
+
+    #[test]
+    fn test_signature_info_struct() {
+        let sig_info = SignatureInfo {
+            algorithm: "ML-DSA-65".to_string(),
+            signer: "test@example.com".to_string(),
+            timestamp: "2025-01-01T00:00:00Z".to_string(),
+            content_hash: "abcd1234".to_string(),
+        };
+        assert_eq!(sig_info.algorithm, "ML-DSA-65");
+        assert_eq!(sig_info.signer, "test@example.com");
+        assert!(!sig_info.content_hash.is_empty());
+    }
+}

@@ -119,3 +119,64 @@ mod hex {
         bytes.as_ref().iter().map(|b| format!("{:02x}", b)).collect()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_hex_encode() {
+        let bytes = vec![0x48, 0x65, 0x6c, 0x6c, 0x6f]; // "Hello"
+        let encoded = hex::encode(&bytes);
+        assert_eq!(encoded, "48656c6c6f");
+    }
+
+    #[test]
+    fn test_hex_encode_empty() {
+        let bytes: Vec<u8> = vec![];
+        let encoded = hex::encode(&bytes);
+        assert_eq!(encoded, "");
+    }
+
+    #[test]
+    fn test_hex_encode_single_byte() {
+        let bytes = vec![0xFF];
+        let encoded = hex::encode(&bytes);
+        assert_eq!(encoded, "ff");
+    }
+
+    #[test]
+    fn test_hash_computation() {
+        // Smoke test: ensure SHA3-256 can be computed without panic
+        let content = b"test content";
+        let mut hasher = Sha3_256::new();
+        hasher.update(content);
+        let hash = hasher.finalize();
+        assert_eq!(hash.len(), 32); // SHA3-256 produces 32 bytes
+    }
+
+    #[test]
+    fn test_signature_block_formatting() {
+        let sig_block = format!(
+            r#"-----BEGIN PALIMPSEST SIGNATURE-----
+Version: PMPL-SIG/1.0
+Algorithm: {}
+Signer: {}
+Timestamp: {}
+Content-Hash: {}
+
+[PLACEHOLDER: Actual {} signature would go here]
+-----END PALIMPSEST SIGNATURE-----
+"#,
+            "ML-DSA-65",
+            "test@example.com",
+            "2025-01-01T00:00:00Z",
+            "abcd1234",
+            "ML-DSA-65"
+        );
+        assert!(sig_block.contains("BEGIN PALIMPSEST SIGNATURE"));
+        assert!(sig_block.contains("ML-DSA-65"));
+        assert!(sig_block.contains("test@example.com"));
+        assert!(sig_block.contains("END PALIMPSEST SIGNATURE"));
+    }
+}
