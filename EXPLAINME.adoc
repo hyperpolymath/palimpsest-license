@@ -1,22 +1,117 @@
 // SPDX-License-Identifier: PMPL-1.0-or-later
+// Copyright (c) 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = Palimpsest-MPL License (PMPL) — Show Me The Receipts
 :toc:
 :icons: font
+:author: Jonathan D.A. Jewell
 
-The README makes claims. This file backs them up.
+The README makes claims. This file backs them up, traces the critical paths,
+and tells a reviewer exactly where to look.
+
+== Claim 1: File-Level Copyleft Built on Mozilla Public License 2.0
 
 [quote, README]
 ____
 Built on Mozilla Public License 2.0.
 ____
 
-== Technology Choices
+*How it works:*
+The canonical license text lives at `legal/PALIMPSEST-MPL-1.0.txt` (and a
+versioned copy at `v1.0/LICENSE.txt`). The PMPL-1.0 PREAMBLE states that it
+"incorporates the full text of Mozilla Public License 2.0 by reference" — the
+base MPL-2.0 terms apply except where modified by two Exhibits. Exhibit A adds
+ethical use guidelines (cultural sensitivity, emotional lineage preservation,
+AI training obligations). Exhibit B adds optional post-quantum cryptographic
+provenance signatures using NIST-approved algorithms (ML-DSA, SLH-DSA, FN-DSA).
 
-[cols="1,2"]
+File-level copyleft is inherited directly from MPL-2.0: modifications to a
+PMPL-licensed *file* must be released under the same licence, but code in
+separate files may remain proprietary — matching MPL's "weak copyleft" model.
+
+The SPDX identifier `PMPL-1.0-or-later` is used throughout the hyperpolymath
+account. All tooling (including CI workflows and the `pmpl-audit` CLI) checks
+for this exact identifier string.
+
+*Honest caveat:*
+PMPL is not an OSI-approved license. Ecosystems that require OSI-approved
+identifiers (Ada/GNAT, Chrome/Firefox extension stores) must fall back to
+`MPL-2.0`. The account's global CLAUDE.md documents this fallback policy.
+
+== Claim 2: Compliance Tooling — Sign, Verify, Audit
+
+[quote, README]
+____
+Quick Start: curl -O https://raw.githubusercontent.com/hyperpolymath/palimpsest-license/main/v1.0/LICENSE.txt
+— Add SPDX headers to your source files. That's it!
+____
+
+*How it works:*
+Three Rust CLI tools sit under `tools/`:
+
+- `pmpl-sign/` — Signs a file or directory with a post-quantum provenance
+  signature (Exhibit B). Writes a `.pmpl-sig` sidecar file.
+- `pmpl-verify/` — Verifies sidecar signatures and checks the provenance chain.
+- `pmpl-audit/` — Walks a repository tree and reports compliance. Entry point:
+  `tools/pmpl-audit/src/main.rs`. Uses `clap` for argument parsing, `walkdir`
+  for directory traversal, and `regex` for SPDX header matching. Outputs a
+  structured `AuditResult` in text or JSON format reporting:
+  files checked, files with headers, files missing headers, and whether the
+  run passed.
+
+All three tools are `#![forbid(unsafe_code)]`. Build with `just build` in the
+repo root (delegates to `cargo build --release` per each tool's `Cargo.toml`).
+Run checks with `just validate`.
+
+The `deno.json` at root drives template and documentation tooling written in
+Deno/ReScript; it is separate from the Rust tools.
+
+*Honest caveat:*
+Provenance signature verification (`pmpl-verify`) requires the ML-DSA / SLH-DSA
+cryptographic libraries, which have not yet been integrated. The verify tool
+framework exists but signature checks are stubbed pending library selection.
+See `PROOF-NEEDS.md` and `TEST-NEEDS.md`.
+
+== Dogfooded Across The Account
+
+[cols="2,3,1"]
 |===
-| Technology | Learn More
+| Repo / System | How PMPL is used | Status
 
-| **Deno** | https://deno.land
+| Every hyperpolymath repo | `SPDX-License-Identifier: PMPL-1.0-or-later` header on all source files | Live
+| `hypatia` workflow linter | `pmpl-audit` CLI run in CI to catch files missing SPDX headers | Planned
+| `rsr-template-repo` | `LICENSE` file is the PMPL text; new repos clone it as default license | Live
+| `robot-repo-automaton` | Automated fixer adds SPDX headers when `pmpl-audit` reports violations | Planned
+| `standards` monorepo | PMPL spec documents live alongside other hyperpolymath standards | Live
+| `palimpsest-license` itself | Dog-fooded: repo is licensed under PMPL-1.0-or-later | Live
+|===
+
+== File Map
+
+[cols="1,3"]
+|===
+| Path | What's There
+
+| `legal/PALIMPSEST-MPL-1.0.txt` | **Primary license text.** The normative PMPL-1.0 document
+| `legal/MPL-2.0.txt` | MPL-2.0 base text (incorporated by reference)
+| `legal/exhibits/` | Exhibit A (ethical use) and Exhibit B (quantum provenance) as standalone documents
+| `legal/historical/` | Archived v0.3, v0.4 drafts
+| `v1.0/` | Versioned snapshot of the stable release: LICENSE.txt, README.adoc, docs/QUICK-START.adoc
+| `spec/` | Formal specification documents: `PMPL-SPEC.adoc`, `ETHICAL-USE-SPEC.adoc`, `QUANTUM-SAFE-SPEC.adoc`
+| `tools/pmpl-audit/src/main.rs` | **Critical path.** SPDX header compliance scanner; walkdir + regex + clap
+| `tools/pmpl-sign/src/` | Quantum-safe provenance signing tool (post-quantum crypto stub)
+| `tools/pmpl-verify/src/` | Provenance chain verification tool (post-quantum crypto stub)
+| `tools/integrations/` | GitHub Actions and GitLab CI configuration snippets for `pmpl-audit`
+| `docs/` | User-facing docs: GUIDE.md, FAQ.md, INTEGRATION.md, language examples
+| `research/` | Academic papers and presentations on the license design
+| `governance/` | Palimpsest Stewardship Council governance documents
+| `templates/` | SPDX header templates per language (Rust, Python, JS, Ada, etc.)
+| `examples/` | Complete project examples using PMPL
+| `deno.json` | Deno/ReScript tooling for documentation generation
+| `config.ncl` | Nickel configuration for build and deployment
+| `Justfile` | Build recipes: `just build`, `just test`, `just validate`, `just audit`
+| `flake.nix` / `guix.scm` | Reproducible environment definitions
+| `contractiles/` | Contractile trust/dust/intend check files
+| `.machine_readable/6a2/` | A2ML state, meta, ecosystem, agentic, neurosym, playbook manifests
 |===
 
 == Questions?
