@@ -114,4 +114,4 @@ htmlcov/
 # Temp
 /tmp/
 *.tmp
-*.bak
+*.bakstack.yaml.lock
