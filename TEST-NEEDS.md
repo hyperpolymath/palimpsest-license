@@ -1,5 +1,7 @@
 # TEST-NEEDS.md — palimpsest-license
 
+## CRG Grade: C — ACHIEVED 2026-04-04
+
 > Last updated: 2026-04-04
 > Status: CRG C Blitz - PASSING
 
