@@ -259,7 +259,7 @@ Content-Hash: abcd1234
 
         let result = parse_signature(sig_content);
         assert!(result.is_ok());
-        let info = result.unwrap();
+        let info = result.expect("TODO: handle error");
         assert_eq!(info.algorithm, "ML-DSA-65");
         assert_eq!(info.signer, "test@example.com");
         assert_eq!(info.timestamp, "2025-01-01T00:00:00Z");

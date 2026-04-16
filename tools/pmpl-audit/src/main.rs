@@ -144,7 +144,7 @@ fn check_file_headers(
     check_signatures: bool,
     result: &mut AuditResult,
 ) -> Result<()> {
-    let spdx_pattern = Regex::new(r"SPDX-License-Identifier:\s*\S+").unwrap();
+    let spdx_pattern = Regex::new(r"SPDX-License-Identifier:\s*\S+").expect("TODO: handle error");
 
     for entry in WalkDir::new(path)
         .into_iter()
@@ -310,7 +310,7 @@ mod tests {
 
     #[test]
     fn test_spdx_pattern_matching() {
-        let spdx_pattern = Regex::new(r"SPDX-License-Identifier:\s*\S+").unwrap();
+        let spdx_pattern = Regex::new(r"SPDX-License-Identifier:\s*\S+").expect("TODO: handle error");
 
         let header1 = "// SPDX-License-Identifier: PMPL-1.0-or-later";
         let header2 = "# SPDX-License-Identifier: MIT";
@@ -353,7 +353,7 @@ mod tests {
 
         let json = serde_json::to_string(&result);
         assert!(json.is_ok());
-        let json_str = json.unwrap();
+        let json_str = json.expect("TODO: handle error");
         assert!(json_str.contains("PMPL-1.0"));
         assert!(json_str.contains("passed"));
     }
