@@ -119,7 +119,6 @@ This register lists Hyperpolymath repositories covered by Palimpsest-MPL License
 - `betlang`
 - `betlang-playground`
 - `bgp-backbone-lab`
-- `big-up-sh`
 - `bitfuckit`
 - `blue-screen-of-app`
 - `bofig`

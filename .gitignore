@@ -115,3 +115,6 @@ htmlcov/
 /tmp/
 *.tmp
 *.bakstack.yaml.lock
+_build/
+deps/
+.elixir_ls/
