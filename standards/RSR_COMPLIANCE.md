@@ -35,7 +35,7 @@ The Palimpsest License project achieves **Bronze-level RSR compliance** with par
 |---|----------|--------|-------|-------|
 | 1 | **Documentation** | ✅ Complete | 10/10 | README, LICENSE, SECURITY, CONTRIBUTING, CODE_OF_PRACTICE, GOVERNANCE, MAINTAINERS, CHANGELOG, TPCF, CLAUDE |
 | 2 | **.well-known/** | ✅ Complete | 10/10 | security.txt (RFC 9116), ai.txt, humans.txt |
-| 3 | **Build System** | ✅ Good | 9/10 | justfile (20+ recipes), flake.nix, npm scripts. Not fully hermetic. |
+| 3 | **Build System** | ✅ Good | 9/10 | Justfile (20+ recipes), flake.nix, npm scripts. Not fully hermetic. |
 | 4 | **Testing** | 🔄 Partial | 6/10 | Haskell validator tests pass. Integration tests incomplete. No coverage reports yet. |
 | 5 | **Type Safety** | ✅ Excellent | 10/10 | Haskell (strong static types), ReScript (sound types), TypeScript definitions |
 | 6 | **Memory Safety** | ✅ Excellent | 10/10 | Haskell (GC, no manual memory), ReScript (compiles to safe JS), zero unsafe blocks |

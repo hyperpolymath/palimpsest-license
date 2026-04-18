@@ -260,7 +260,7 @@ The project includes a comprehensive `justfile` with 40+ recipes:
 |===
 
 .*Cross-Platform Support:*
-The justfile works on Linux, macOS, Windows (WSL), and NixOS without modification.
+The Justfile works on Linux, macOS, Windows (WSL), and NixOS without modification.
 
 .*Example: RSR Compliance Check*
 [source,bash]

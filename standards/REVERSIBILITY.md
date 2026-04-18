@@ -524,8 +524,8 @@ npm install
 # View git config
 git config --list
 
-# View justfile
-cat justfile
+# View Justfile
+cat Justfile
 
 # REVERSIBILITY: Read-only, no undo needed
 ```
@@ -566,15 +566,15 @@ echo 'export VARIABLE=value' >> ~/.bashrc
 
 #### Modifying Core Config Files
 ```bash
-# Edit justfile, package.json, etc.
-vim justfile
+# Edit Justfile, package.json, etc.
+vim Justfile
 
 # PREVENTION:
-git diff justfile          # Review changes before commit
-git commit justfile        # Commit known-good state
+git diff Justfile          # Review changes before commit
+git commit Justfile        # Commit known-good state
 
 # UNDO:
-git checkout -- justfile
+git checkout -- Justfile
 ```
 
 ---

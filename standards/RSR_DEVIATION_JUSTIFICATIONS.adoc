@@ -415,14 +415,14 @@ $ rg "\bany\b" --type ts integrations/client/typescript/
 . *TypeScript Strict Mode:* No escape hatches, full type safety
 . *Haskell for Critical Code:* All validation logic in Haskell, not TypeScript
 . *ReScript Migration:* Ongoing migration from TypeScript to ReScript
-. *Minimal JavaScript:* Build scripts being replaced with justfile recipes
+. *Minimal JavaScript:* Build scripts being replaced with Justfile recipes
 . *npm Audit:* Weekly security scanning, zero high/critical vulnerabilities
 
 ==== Long-Term Strategy (Q1-Q3 2026):
 
 . *Complete ReScript Migration:* Replace all TypeScript with ReScript
 . *WebAssembly Exploration:* Compile Haskell validators to WASM for browser use
-. *Justfile Replacement:* Replace npm scripts with justfile recipes where possible
+. *Justfile Replacement:* Replace npm scripts with Justfile recipes where possible
 . *Zero JavaScript Goal:* Aim for zero JavaScript by Q4 2026 (may not be fully achievable due to npm tooling, but minimise)
 
 === 3.6 Conclusion

@@ -52,7 +52,7 @@ palimpsest-license/
 ├── flake.nix                    # Nix reproducible builds
 ├── guix.scm                     # Guix package definition
 ├── Containerfile                # Wolfi container definition
-├── justfile                     # Build automation recipes
+├── Justfile                     # Build automation recipes
 ├── package.json                 # Node.js dependencies
 └── Makefile                     # Asset conversion targets
 ```
