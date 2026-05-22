@@ -123,7 +123,7 @@ fn check_license_file(path: &PathBuf, result: &mut AuditResult) -> Result<()> {
             if content.contains("PALIMPSEST-MPL") || content.contains("PMPL-1.0") {
                 result.license_type = Some("PMPL-1.0".to_string());
             } else if content.contains("Mozilla Public License") {
-                result.license_type = Some("MPL-2.0".to_string());
+                result.license_type = Some("PMPL-1.0-or-later".to_string());
             } else if content.contains("MIT License") {
                 result.license_type = Some("MIT".to_string());
             } else if content.contains("Apache License") {

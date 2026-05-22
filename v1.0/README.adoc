@@ -117,9 +117,9 @@ Build instructions: link:../tools/README.adoc[tools/README.adoc]
 The v1.0 license consists of:
 
 1. **Preamble** - Philosophy and context
-2. **Section 1: Base License** - Incorporates MPL-2.0 by reference
+2. **Section 1: Base License** - Incorporates PMPL-1.0-or-later by reference
 3. **Section 2: Additional Definitions** - Emotional Lineage, Provenance Metadata, etc.
-4. **Section 3: Modified Terms** - Changes to MPL-2.0 terms
+4. **Section 3: Modified Terms** - Changes to PMPL-1.0-or-later terms
 5. **Exhibit A: Ethical Use Guidelines** - Framework for responsible use
 6. **Exhibit B: Quantum-Safe Provenance** - Post-quantum signature requirements
 
@@ -130,7 +130,7 @@ PMPL v1.0 is compatible with:
 * MIT License
 * BSD-2-Clause / BSD-3-Clause
 * Apache-2.0
-* MPL-2.0
+* PMPL-1.0-or-later
 * LGPL-2.1 or later
 * GPL-2.0 or later (via secondary license mechanism)
 
@@ -159,5 +159,5 @@ See link:../CHANGELOG.adoc[] for complete version history.
 This repository and all v1.0 materials are licensed under:
 
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 ----

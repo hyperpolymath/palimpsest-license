@@ -8,7 +8,7 @@ toc::[]
 
 == Summary
 
-PMPL-1.0 is built on MPL-2.0 and inherits its compatibility characteristics. As a file-level copyleft license, it can be combined with most other licenses in multi-license projects.
+PMPL-1.0 is built on PMPL-1.0-or-later and inherits its compatibility characteristics. As a file-level copyleft license, it can be combined with most other licenses in multi-license projects.
 
 == Compatibility Table
 
@@ -32,29 +32,29 @@ PMPL-1.0 is built on MPL-2.0 and inherits its compatibility characteristics. As 
 | ✅ Yes
 | Apache code can be combined with PMPL code. Apache files stay Apache, PMPL files stay PMPL.
 
-| **MPL-2.0**
+| **PMPL-1.0-or-later**
 | ✅ Yes
-| PMPL extends MPL-2.0. MPL-2.0 code is forward-compatible with PMPL.
+| PMPL extends PMPL-1.0-or-later. PMPL-1.0-or-later code is forward-compatible with PMPL.
 
 | **LGPL-2.1**
 | ✅ Yes (secondary)
-| Via MPL-2.0 Section 3.3. Combined work can be distributed under LGPL-2.1-or-later.
+| Via PMPL-1.0-or-later Section 3.3. Combined work can be distributed under LGPL-2.1-or-later.
 
 | **LGPL-3.0**
 | ✅ Yes (secondary)
-| Via MPL-2.0 Section 3.3. Combined work can be distributed under LGPL-3.0-or-later.
+| Via PMPL-1.0-or-later Section 3.3. Combined work can be distributed under LGPL-3.0-or-later.
 
 | **GPL-2.0**
 | ✅ Yes (secondary)
-| Via MPL-2.0 Section 3.3. Combined work can be distributed under GPL-2.0-or-later.
+| Via PMPL-1.0-or-later Section 3.3. Combined work can be distributed under GPL-2.0-or-later.
 
 | **GPL-3.0**
 | ✅ Yes (secondary)
-| Via MPL-2.0 Section 3.3. Combined work can be distributed under GPL-3.0-or-later.
+| Via PMPL-1.0-or-later Section 3.3. Combined work can be distributed under GPL-3.0-or-later.
 
 | **AGPL-3.0**
 | ✅ Yes (secondary)
-| Via MPL-2.0 Section 3.3. Combined work can be distributed under PMPL-1.0-or-later.
+| Via PMPL-1.0-or-later Section 3.3. Combined work can be distributed under PMPL-1.0-or-later.
 
 | **ISC**
 | ✅ Yes
@@ -127,20 +127,20 @@ your-project/
 [source,text]
 ----
 # Individual files
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 
 # Project overall (if needed)
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 === GPL/LGPL (Secondary License)
 
-**Status**: ✅ **Compatible via MPL-2.0 Section 3.3**
+**Status**: ✅ **Compatible via PMPL-1.0-or-later Section 3.3**
 
 **How it works**:
 
-MPL-2.0 (and thus PMPL-1.0) allows the recipient to choose to receive the work under GPL/LGPL instead:
+PMPL-1.0-or-later (and thus PMPL-1.0) allows the recipient to choose to receive the work under GPL/LGPL instead:
 
 [source,text]
 ----
@@ -172,7 +172,7 @@ your-project/
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 === Proprietary Software
@@ -216,7 +216,7 @@ You can dual-license your own code under PMPL and another license:
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 **Recipient's choice**: Use under PMPL or MIT terms.
@@ -225,7 +225,7 @@ SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 **Use case**: Maximum compatibility while offering ethical use guidelines.
@@ -234,7 +234,7 @@ SPDX-License-Identifier: PMPL-1.0-or-later-or-later
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 **Use case**: Ensure copyleft while offering GPL compatibility.
@@ -333,7 +333,7 @@ mit-project/
 
 ✅ **Allowed via secondary license**
 
-You can re-license PMPL code under GPL using MPL-2.0 Section 3.3:
+You can re-license PMPL code under GPL using PMPL-1.0-or-later Section 3.3:
 
 [source,bash]
 ----
@@ -365,12 +365,12 @@ combined-project/
 ----
 PMPL-1.0
     ↓
-MPL-2.0 (base)
+PMPL-1.0-or-later (base)
     ↓
 Compatible with:
 ├── MIT/BSD/Apache (separate files)
 ├── GPL/LGPL (secondary license)
-├── Other MPL-2.0 code (compatible)
+├── Other PMPL-1.0-or-later code (compatible)
 └── Proprietary (file-level separation)
 ----
 
@@ -383,7 +383,7 @@ Compatible with:
 
 == References
 
-* **MPL-2.0 Compatibility**: https://www.mozilla.org/en-US/MPL/2.0/FAQ/
+* **PMPL-1.0-or-later Compatibility**: https://www.mozilla.org/en-US/MPL/2.0/FAQ/
 * **SPDX License List**: https://spdx.org/licenses/
 * **REUSE Specification**: https://reuse.software/spec/
 * **FSF License Compatibility**: https://www.gnu.org/licenses/license-compatibility.html

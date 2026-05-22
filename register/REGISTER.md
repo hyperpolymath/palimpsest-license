@@ -482,4 +482,4 @@ This register lists Hyperpolymath repositories covered by Palimpsest-MPL License
 - `czech-file-knife/deny.toml` (PMPL-1.0-only license policy)
 - `wp-praxis/deny.toml` (PMPL-1.0-only license policy)
 - `wp-sinople-theme/deno/lib/license-detector/mod.js` (PMPL-1.0-only detection)
-- `palimpsest-license/legal/MPL-2.0.txt` (replaced with PMPL-1.0 text)
+- `palimpsest-license/legal/PMPL-1.0-or-later.txt` (replaced with PMPL-1.0 text)

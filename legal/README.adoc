@@ -17,7 +17,7 @@ toc::[]
 legal/
 ├── README.adoc
 ├── PALIMPSEST-MPL-1.0.txt
-├── MPL-2.0.txt
+├── PMPL-1.0-or-later.txt
 ├── exhibits/
 ├── historical/
 ├── pro-bono/

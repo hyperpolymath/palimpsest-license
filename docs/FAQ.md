@@ -14,16 +14,16 @@ It's designed for the age of AI and quantum computing while remaining compatible
 
 A palimpsest is a manuscript where earlier writing has been erased and overwritten, but traces of the original remain visible. This metaphor captures how creative works accumulate layers of contribution and meaning over time. The license honors this layered nature of collaborative creation.
 
-### How is it different from MPL-2.0?
+### How is it different from PMPL-1.0-or-later?
 
-The base legal terms are identical to MPL-2.0. PMPL-1.0 adds:
+The base legal terms are identical to PMPL-1.0-or-later. PMPL-1.0 adds:
 1. **Ethical use guidelines** - Community norms around attribution, cultural sensitivity, and AI use
 2. **Quantum-safe provenance** - Optional cryptographic signatures using post-quantum algorithms
 3. **Emotional lineage** - Recognition of cultural and narrative meaning in creative works
 
 ### Is it legally enforceable?
 
-The MPL-2.0 base is fully enforceable. The ethical use guidelines (Exhibit A) are primarily community norms enforced through reputation and community standards rather than litigation.
+The PMPL-1.0-or-later base is fully enforceable. The ethical use guidelines (Exhibit A) are primarily community norms enforced through reputation and community standards rather than litigation.
 
 ## Using PMPL-Licensed Software
 
@@ -44,7 +44,7 @@ Yes. Commercial use is permitted. The ethical use exhibit asks commercial users 
 
 ### Do I need to open source my entire project?
 
-No. PMPL-1.0 has file-level copyleft like MPL-2.0:
+No. PMPL-1.0 has file-level copyleft like PMPL-1.0-or-later:
 - Modified PMPL files must remain under PMPL
 - Your own files can be under any license
 - You can combine PMPL code with proprietary code in separate files
@@ -86,7 +86,7 @@ If relicensing an existing project:
 
 ### Is it compatible with GPL?
 
-PMPL-1.0 is compatible with GPL 2.0+ and LGPL 2.1+ as secondary licenses (per MPL-2.0 Section 3.3). This means:
+PMPL-1.0 is compatible with GPL 2.0+ and LGPL 2.1+ as secondary licenses (per PMPL-1.0-or-later Section 3.3). This means:
 - GPL/LGPL code can be combined with PMPL code
 - The combined work follows GPL/LGPL terms
 - The original PMPL files remain available under PMPL
@@ -131,7 +131,7 @@ The guidelines represent community consensus. If you disagree:
 1. You can still use the software (guidelines are voluntary)
 2. Submit feedback via the project repository
 3. Propose alternative approaches through the governance process
-4. Fork the project under MPL-2.0 if guidelines conflict with your needs
+4. Fork the project under PMPL-1.0-or-later if guidelines conflict with your needs
 
 ## Quantum-Safe Provenance
 

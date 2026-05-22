@@ -4,10 +4,10 @@
 
 The **Palimpsest-MPL License (PMPL-1.0)** is a file-level copyleft license built on Mozilla Public License 2.0, extended with ethical use guidelines and quantum-safe provenance.
 
-**Current Version:** PMPL-1.0 (based on MPL-2.0)
+**Current Version:** PMPL-1.0 (based on PMPL-1.0-or-later)
 
 **Core Features:**
-- File-level copyleft (MPL-2.0 foundation)
+- File-level copyleft (PMPL-1.0-or-later foundation)
 - Ethical use guidelines (Exhibit A)
 - Quantum-safe provenance signatures (Exhibit B)
 - Emotional lineage recognition
@@ -19,7 +19,7 @@ The **Palimpsest-MPL License (PMPL-1.0)** is a file-level copyleft license built
 palimpsest-license/
 ├── legal/                      # License texts
 │   ├── PALIMPSEST-MPL-1.0.txt  # Main license
-│   ├── MPL-2.0.txt             # Base license
+│   ├── PMPL-1.0-or-later.txt             # Base license
 │   ├── exhibits/               # Exhibit A & B
 │   └── historical/             # v0.3, v0.4 archives
 ├── docs/                       # Documentation
@@ -41,7 +41,7 @@ palimpsest-license/
 │   └── presentations/
 ├── .github/                    # CI/CD workflows
 │
-├── LICENSE                     # MPL-2.0 + Palimpsest
+├── LICENSE                     # PMPL-1.0-or-later + Palimpsest
 ├── README.md                   # Project overview
 ├── CONTRIBUTING.adoc           # Contribution guidelines
 ├── GOVERNANCE.md               # Decision-making
@@ -52,7 +52,7 @@ palimpsest-license/
 
 ## Key Principles
 
-### 1. MPL-2.0 Foundation
+### 1. PMPL-1.0-or-later Foundation
 Built on proven legal framework:
 - File-level copyleft (not project-level)
 - Compatible with proprietary code in separate files

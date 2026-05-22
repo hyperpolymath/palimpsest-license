@@ -67,7 +67,7 @@ palimpsest-license/
 │
 ├── legal/                          ← CROSS-VERSION LEGAL RESOURCES
 │   ├── PALIMPSEST-MPL-1.0.txt      ← Canonical copy
-│   ├── MPL-2.0.txt                 ← Base license
+│   ├── PMPL-1.0-or-later.txt                 ← Base license
 │   │
 │   ├── exhibits/                   ← Canonical exhibit texts
 │   │   ├── EXHIBIT-A-ETHICAL-USE.txt

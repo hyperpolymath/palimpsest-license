@@ -24,7 +24,7 @@ export function getLicenseInfo() {
   return {
     identifier: "PMPL-1.0-or-later",
     name: "Palimpsest-MPL License v1.0 or later",
-    compatibleWith: ["MIT", "BSD", "Apache-2.0", "GPL", "MPL-2.0"],
+    compatibleWith: ["MIT", "BSD", "Apache-2.0", "GPL", "PMPL-1.0-or-later"],
     url: "https://github.com/hyperpolymath/palimpsest-license"
   };
 }

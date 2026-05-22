@@ -106,7 +106,7 @@
 
 **pmpl-audit (9 tests)**
 - AuditResult struct
-- License detection (PMPL-1.0, MPL-2.0, MIT, Apache)
+- License detection (PMPL-1.0, PMPL-1.0-or-later, MIT, Apache)
 - SPDX pattern matching
 - License filenames
 - File extension filtering

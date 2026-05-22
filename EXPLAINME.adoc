@@ -24,7 +24,7 @@ ethical use guidelines (cultural sensitivity, emotional lineage preservation,
 AI training obligations). Exhibit B adds optional post-quantum cryptographic
 provenance signatures using NIST-approved algorithms (ML-DSA, SLH-DSA, FN-DSA).
 
-File-level copyleft is inherited directly from MPL-2.0: modifications to a
+File-level copyleft is inherited directly from PMPL-1.0-or-later: modifications to a
 PMPL-licensed *file* must be released under the same licence, but code in
 separate files may remain proprietary — matching MPL's "weak copyleft" model.
 
@@ -35,7 +35,7 @@ for this exact identifier string.
 *Honest caveat:*
 PMPL is not an OSI-approved license. Ecosystems that require OSI-approved
 identifiers (Ada/GNAT, Chrome/Firefox extension stores) must fall back to
-`MPL-2.0`. The account's global CLAUDE.md documents this fallback policy.
+`PMPL-1.0-or-later`. The account's global CLAUDE.md documents this fallback policy.
 
 == Claim 2: Compliance Tooling — Sign, Verify, Audit
 
@@ -92,7 +92,7 @@ See `PROOF-NEEDS.md` and `TEST-NEEDS.md`.
 | Path | What's There
 
 | `legal/PALIMPSEST-MPL-1.0.txt` | **Primary license text.** The normative PMPL-1.0 document
-| `legal/MPL-2.0.txt` | MPL-2.0 base text (incorporated by reference)
+| `legal/PMPL-1.0-or-later.txt` | PMPL-1.0-or-later base text (incorporated by reference)
 | `legal/exhibits/` | Exhibit A (ethical use) and Exhibit B (quantum provenance) as standalone documents
 | `legal/historical/` | Archived v0.3, v0.4 drafts
 | `v1.0/` | Versioned snapshot of the stable release: LICENSE.txt, README.adoc, docs/QUICK-START.adoc

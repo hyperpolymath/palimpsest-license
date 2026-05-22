@@ -8,7 +8,7 @@
 fn main() {
     println!("Hello from PMPL-licensed Rust code!");
     println!("License: PMPL-1.0-or-later");
-    println!("Compatible with MPL-2.0, MIT, BSD, Apache-2.0, GPL, and more");
+    println!("Compatible with PMPL-1.0-or-later, MIT, BSD, Apache-2.0, GPL, and more");
 }
 
 #[cfg(test)]

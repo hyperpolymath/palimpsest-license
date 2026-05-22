@@ -41,9 +41,9 @@ If you're relicensing an existing project:
 
 ## License Components
 
-### Base License (MPL-2.0)
+### Base License (PMPL-1.0-or-later)
 
-The Palimpsest-MPL inherits all terms from MPL-2.0:
+The Palimpsest-MPL inherits all terms from PMPL-1.0-or-later:
 
 - **File-level copyleft**: Modified files must remain under PMPL-1.0
 - **Larger works**: Can be combined with proprietary code in separate files
@@ -134,7 +134,7 @@ PMPL-1.0 can be combined with:
 - MIT
 - BSD (2-clause, 3-clause)
 - Apache 2.0
-- MPL-2.0
+- PMPL-1.0-or-later
 - LGPL 2.1+ (as secondary license)
 - GPL 2.0+ (as secondary license)
 
@@ -184,7 +184,7 @@ See [FAQ.md](FAQ.md) for frequently asked questions.
 
 ## Version History
 
-- **PMPL-1.0** (2025): Initial release based on MPL-2.0
+- **PMPL-1.0** (2025): Initial release based on PMPL-1.0-or-later
 - **v0.4** (2024): Pre-release development version
 - **v0.3** (2024): Early conceptual framework
 

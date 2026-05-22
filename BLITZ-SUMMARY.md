@@ -72,7 +72,7 @@ Three Rust CLI tools with embedded tests:
 
 **pmpl-audit (9 tests)**
 - AuditResult struct functionality
-- License type detection (PMPL-1.0, MPL-2.0, MIT, Apache)
+- License type detection (PMPL-1.0, PMPL-1.0-or-later, MIT, Apache)
 - SPDX pattern matching
 - License filename recognition
 - File extension filtering

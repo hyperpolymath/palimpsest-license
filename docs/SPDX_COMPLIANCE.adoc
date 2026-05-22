@@ -81,7 +81,7 @@ identifier for internal consistency.
 [source,haskell]
 ----
 {-
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 ----
@@ -312,7 +312,7 @@ reuse lint
 [source,haskell]
 ----
 {-
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 

@@ -22,9 +22,9 @@ It's designed for the age of AI and quantum computing while remaining compatible
 
 A palimpsest is a manuscript where earlier writing has been erased and overwritten, but traces of the original remain visible. This metaphor captures how creative works accumulate layers of contribution and meaning over time. The license honors this layered nature of collaborative creation.
 
-=== How is it different from MPL-2.0?
+=== How is it different from PMPL-1.0-or-later?
 
-The base legal terms are identical to MPL-2.0. PMPL-1.0 adds:
+The base legal terms are identical to PMPL-1.0-or-later. PMPL-1.0 adds:
 
 1. **Ethical use guidelines** - Community norms around attribution, cultural sensitivity, and AI use
 2. **Quantum-safe provenance** - Optional cryptographic signatures using post-quantum algorithms
@@ -32,7 +32,7 @@ The base legal terms are identical to MPL-2.0. PMPL-1.0 adds:
 
 === Is it legally enforceable?
 
-The MPL-2.0 base is fully enforceable. The ethical use guidelines (Exhibit A) are primarily community norms enforced through reputation and community standards rather than litigation.
+The PMPL-1.0-or-later base is fully enforceable. The ethical use guidelines (Exhibit A) are primarily community norms enforced through reputation and community standards rather than litigation.
 
 == Using PMPL-Licensed Software
 
@@ -55,7 +55,7 @@ Yes. Commercial use is permitted. The ethical use exhibit asks commercial users 
 
 === Do I need to open source my entire project?
 
-No. PMPL-1.0 has file-level copyleft like MPL-2.0:
+No. PMPL-1.0 has file-level copyleft like PMPL-1.0-or-later:
 
 * Modified PMPL files must remain under PMPL
 * Your own files can be under any license
@@ -105,7 +105,7 @@ If relicensing an existing project:
 
 === Is it compatible with GPL?
 
-PMPL-1.0 is compatible with GPL 2.0+ and LGPL 2.1+ as secondary licenses (per MPL-2.0 Section 3.3). This means:
+PMPL-1.0 is compatible with GPL 2.0+ and LGPL 2.1+ as secondary licenses (per PMPL-1.0-or-later Section 3.3). This means:
 
 * GPL/LGPL code can be combined with PMPL code
 * The combined work follows GPL/LGPL terms
@@ -135,8 +135,8 @@ Yes. Common patterns:
 
 [source,text]
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 The recipient can choose which license to follow.
@@ -170,7 +170,7 @@ The guidelines represent community consensus. If you disagree:
 1. You can still use the software (guidelines are voluntary norms)
 2. Submit feedback via the project repository
 3. Propose alternative approaches through the governance process
-4. Fork the project under MPL-2.0 if guidelines conflict fundamentally with your needs
+4. Fork the project under PMPL-1.0-or-later if guidelines conflict fundamentally with your needs
 
 === What's an example of emotional lineage violation?
 
@@ -265,7 +265,7 @@ If the Council becomes inactive:
 
 * The license terms remain valid
 * The license text is immutable
-* Community can fork governance under MPL-2.0 terms
+* Community can fork governance under PMPL-1.0-or-later terms
 * Existing PMPL-licensed code continues under PMPL
 
 == Technical Questions
@@ -317,7 +317,7 @@ The file-level copyleft model adapts well to mixed-media projects.
 
 === How do I migrate from another license?
 
-**From MPL-2.0:**
+**From PMPL-1.0-or-later:**
 
 1. Get contributor consent (or you're the sole author)
 2. Update LICENSE to PMPL-1.0
@@ -358,7 +358,7 @@ The file-level copyleft model adapts well to mixed-media projects.
 3. Seek legal counsel for serious violations
 4. Document everything for potential enforcement
 
-For MPL-2.0 base violations (copyright infringement), standard copyright enforcement applies.
+For PMPL-1.0-or-later base violations (copyright infringement), standard copyright enforcement applies.
 
 === Is there a mailing list or chat?
 

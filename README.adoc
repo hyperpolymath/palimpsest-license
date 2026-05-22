@@ -150,7 +150,7 @@ PMPL v1.0 is compatible with:
 * ✅ MIT License
 * ✅ BSD-2-Clause / BSD-3-Clause
 * ✅ Apache-2.0
-* ✅ MPL-2.0
+* ✅ PMPL-1.0-or-later
 * ✅ LGPL-2.1 or later
 * ✅ GPL-2.0 or later (via secondary license mechanism)
 
@@ -259,7 +259,7 @@ Use **v1.0** for all new work.
 This repository is licensed under:
 
 ----
-SPDX-License-Identifier: PMPL-1.0-or-later-or-later
+SPDX-License-Identifier: PMPL-1.0-or-later
 SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
 ----
 

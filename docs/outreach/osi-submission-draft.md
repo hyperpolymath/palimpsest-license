@@ -15,13 +15,13 @@ I am submitting the Palimpsest-MPL License (PMPL) version 1.0 for review under t
 
 ## Summary
 
-The PMPL is a file-level copyleft license that extends MPL-2.0 with three additional provisions:
+The PMPL is a file-level copyleft license that extends PMPL-1.0-or-later with three additional provisions:
 
 1. **Ethical use clause** — prohibits use in autonomous weapons, mass surveillance without judicial oversight, and deliberate environmental destruction
 2. **Post-quantum provenance** — optional cryptographic attestation chain for tracking modification history, designed for quantum-safe algorithms
 3. **Emotional lineage protection** — recognises that creative works carry context and meaning; requires attribution of the "palimpsest" (the layered history of contributions)
 
-The base MPL-2.0 terms apply in full. The additional provisions are in Exhibits A and B, following the MPL-2.0 exhibit pattern.
+The base MPL-2.0 terms apply in full. The additional provisions are in Exhibits A and B, following the PMPL-1.0-or-later exhibit pattern.
 
 ## License Text
 
@@ -32,7 +32,7 @@ SPDX identifier (proposed): `PMPL-1.0-or-later`
 ## Rationale
 
 The PMPL addresses a gap between existing copyleft licenses and the needs of projects that:
-- Want MPL-2.0's file-level copyleft (not the full project scope of GPL)
+- Want PMPL-1.0-or-later's file-level copyleft (not the full project scope of GPL)
 - Need to exclude specific harmful uses without being as broad as non-commercial clauses
 - Want cryptographic provenance as a first-class concept, not an afterthought
 - Value the history of contributions to a work, not just the current state
@@ -45,9 +45,9 @@ The PMPL is currently used across 500+ repositories under the `hyperpolymath` Gi
 
 The PMPL satisfies the Open Source Definition criteria:
 
-1. **Free redistribution** — Sec 1 (MPL-2.0 base) permits unlimited redistribution
-2. **Source code** — Sec 1 (MPL-2.0 base) requires source availability for covered files
-3. **Derived works** — Sec 1 (MPL-2.0 base) permits modifications and derived works
+1. **Free redistribution** — Sec 1 (PMPL-1.0-or-later base) permits unlimited redistribution
+2. **Source code** — Sec 1 (PMPL-1.0-or-later base) requires source availability for covered files
+3. **Derived works** — Sec 1 (PMPL-1.0-or-later base) permits modifications and derived works
 4. **Integrity of author's source code** — Attribution via palimpsest lineage
 5. **No discrimination against persons or groups** — The ethical use clause restricts specific uses, not users. (This is the clause most likely to require discussion — see below.)
 6. **No discrimination against fields of endeavour** — The ethical use clause restricts three specific harmful applications, not fields of endeavour

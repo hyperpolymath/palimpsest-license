@@ -206,7 +206,7 @@ provenance-enabled = true
 
 [source,toml]
 ----
-license = "PMPL-1.0-or-later OR MPL-2.0"
+license = "PMPL-1.0-or-later OR PMPL-1.0-or-later"
 license-file = "LICENSE"
 ----
 

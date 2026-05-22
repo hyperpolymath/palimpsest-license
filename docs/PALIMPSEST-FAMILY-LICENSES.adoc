@@ -86,7 +86,7 @@ rather than voiding the entire agreement.
 
 | *Severability*
 | Standard in contract law. If one clause is unenforceable, the rest survives.
-Most base licenses (MPL-2.0 S10, GPL-3.0 S17, Apache-2.0 S9) already include
+Most base licenses (PMPL-1.0-or-later S10, GPL-3.0 S17, Apache-2.0 S9) already include
 severability clauses.
 
 | *Blue-pencil doctrine*
@@ -115,13 +115,13 @@ layer inherits this legal stability as its foundation.
 | *Base* | Mozilla Public License 2.0
 | *Copyleft scope* | File-level
 | *Status* | Published, in production use
-| *Fallback* | MPL-2.0
+| *Fallback* | PMPL-1.0-or-later
 | *SPDX* | `PMPL-1.0-or-later`
 |===
 
-MPL-2.0 is the ideal base for the palimpsest approach because:
+PMPL-1.0-or-later is the ideal base for the palimpsest approach because:
 
-* MPL-2.0 Section 10.2 _explicitly permits_ modified versions of the license
+* PMPL-1.0-or-later Section 10.2 _explicitly permits_ modified versions of the license
 * File-level copyleft is granular enough to combine with proprietary code
 * Strong patent grant provisions
 * Well-tested in court (Mozilla has enforced it)
@@ -497,7 +497,7 @@ A jurisdiction rules that all palimpsest provisions are unenforceable.
   clause. Code is well-protected.
 * *PGPL fallback*: GPL-3.0 applies in full. Strong copyleft, no network
   clause. Adequate protection for non-SaaS software.
-* *PMPL fallback*: MPL-2.0 applies in full. File-level copyleft. Moderate
+* *PMPL fallback*: PMPL-1.0-or-later applies in full. File-level copyleft. Moderate
   protection.
 * *PAPL fallback*: Apache-2.0 applies in full. Permissive. Weakest fallback
   but patent grant survives.

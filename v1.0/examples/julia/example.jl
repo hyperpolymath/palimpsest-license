@@ -23,7 +23,7 @@ function get_license_info()
     Dict(
         "identifier" => "PMPL-1.0-or-later",
         "name" => "Palimpsest-MPL License v1.0 or later",
-        "compatible_with" => ["MIT", "BSD", "Apache-2.0", "GPL", "MPL-2.0", "LGPL"],
+        "compatible_with" => ["MIT", "BSD", "Apache-2.0", "GPL", "PMPL-1.0-or-later", "LGPL"],
         "copyleft_scope" => "file-level"
     )
 end
