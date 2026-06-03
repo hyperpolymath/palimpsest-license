@@ -1,4 +1,10 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest Licentie
+[![OpenSSF Best Practices](https://img.shields.io/badge/OpenSSF-Best_Practices-green?logo=openssourcesecurity)](https://www.bestpractices.dev/en/projects/new?repo_url=https://github.com/hyperpolymath/palimpsest-license)
+
 
 > **Let op:** Deze Markdown versie wordt onderhouden voor achterwaartse compatibiliteit. De canonieke versie is nu [README.nl.adoc](./README.nl.adoc) (AsciiDoc formaat) voor RSR Gold naleving.
 
