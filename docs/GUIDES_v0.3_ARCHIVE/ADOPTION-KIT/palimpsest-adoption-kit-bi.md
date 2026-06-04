@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 🌐 Future-Proof Your Creative Legacy: The Palimpsest License v0.3 Adoption Guide
 For Writers, Artists, Musicians, Photojournalists & All Storytellers
 Bilingual Edition: English & Nederlands

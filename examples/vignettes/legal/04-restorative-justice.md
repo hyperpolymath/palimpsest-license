@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Legal Vignette: The Restorative Justice Resolution
 
 ## Scenario: License Violation Resolved Through Restorative Practices

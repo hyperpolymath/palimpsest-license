@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Protocol Buffers for Palimpsest License Metadata
 
 This directory contains Protocol Buffers (protobuf) schema definitions for efficient serialisation and deserialisation of Palimpsest License metadata.

@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # 🌀 Palimpsest Licentie v0.3
 
 **Geldig recht:** Koninkrijk der Nederlanden (Boek 6 van het Burgerlijk Wetboek)  

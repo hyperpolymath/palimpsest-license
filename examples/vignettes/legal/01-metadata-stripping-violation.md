@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Legal Vignette: The Metadata Stripping Violation
 
 ## Scenario: Clause 2.3 Breach - Metadata Preservation Violation

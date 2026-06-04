@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Ecto Schemas for Palimpsest License
 
 This directory contains Elixir Ecto schemas for the Palimpsest License metadata infrastructure.

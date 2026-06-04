@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest License Presentation Materials
 
 Comprehensive presentation resources for introducing, explaining, and advocating for the Palimpsest License across different audiences and contexts.

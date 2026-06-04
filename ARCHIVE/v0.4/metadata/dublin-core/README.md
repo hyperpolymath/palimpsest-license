@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Dublin Core Metadata for Palimpsest License v0.4
 
 This directory contains Dublin Core metadata representations of the Palimpsest License in multiple formats.

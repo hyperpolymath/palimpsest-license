@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Technical Vignette: AI Training Dataset Compliance Check
 
 ## Scenario: Automated Palimpsest License Detection in Training Data

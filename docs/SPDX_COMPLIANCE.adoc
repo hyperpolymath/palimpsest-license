@@ -1,4 +1,5 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 
 = SPDX Compliance Strategy for Palimpsest License
@@ -95,7 +96,6 @@ with language pragmas or imports.
 
 [source,rescript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 ----
 
@@ -107,7 +107,6 @@ with language pragmas or imports.
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 ----
 
@@ -131,7 +130,6 @@ with language pragmas or imports.
 
 [source,asciidoc]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 ----
 
@@ -324,7 +322,6 @@ module MyModule where
 **Template for new JavaScript files**:
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 
 /**

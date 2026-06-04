@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest-MPL Integration Guide
 
 ## Overview
@@ -43,7 +47,6 @@ For files with significant creative content:
 
 **HTML:**
 ```html
-<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
 <!-- SPDX-FileCopyrightText: 2025 Author Name -->
 ```
 

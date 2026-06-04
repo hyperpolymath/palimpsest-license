@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest OCaml Library
 
 OCaml implementation of Palimpsest License metadata tools. Supports both native compilation and JavaScript output via Melange.

@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # AI-Specific Vignette: AI-Generated Derivative with Lineage
 
 ## Scenario: AI Creates Derivative Work, Preserving Cultural Lineage

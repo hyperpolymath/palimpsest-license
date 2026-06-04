@@ -12,6 +12,7 @@ jobs:
   sign:
     name: Sign release artefacts
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout

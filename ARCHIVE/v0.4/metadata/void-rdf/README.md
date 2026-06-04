@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # VoID RDF Vocabulary for Palimpsest License
 
 This directory contains Vocabulary of Interlinked Datasets (VoID) descriptions and the Palimpsest License RDF/OWL vocabulary for semantic web integration.

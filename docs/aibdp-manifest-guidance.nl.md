@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 ## Dutch Version (Nederlandse Vertaling)
 
 Hieronder volgt een onafhankelijk manifest in JSON-formaat, dat alle aspecten bestrijkt die zijn opgenomen in de Palimpsest Licentie v0.3 – waaronder collectieve licentieverlening, AI-governance audits, culturele erfgoedcompliance en specifieke vereisten voor geavanceerde AI-paradigma’s (Autonoom, Agentisch, Ambient, Neurale Interface, Kwantum AI, etc.). Dit manifest staat op zichzelf, maar is ontworpen om in samenhang te werken met de volledige juridische licentie en het AI Boundary Declaration Protocol (AIBDP).

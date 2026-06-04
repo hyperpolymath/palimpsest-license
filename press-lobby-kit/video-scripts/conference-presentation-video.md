@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Conference Presentation Video: "The Consent Layer for Creative Work" (20 Minutes)
 
 **Recorded Presentation for AI Ethics, Tech, and Creative Rights Conferences**

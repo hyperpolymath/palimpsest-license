@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 A Mermaid filetype refers to a text-based file that contains diagram definitions written in Mermaid syntax, a lightweight markup language for generating flowcharts, sequence diagrams, Gantt charts, and more — all from plain text.
 
 📁 Common Mermaid File Extensions

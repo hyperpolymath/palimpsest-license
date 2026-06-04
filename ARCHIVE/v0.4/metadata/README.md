@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest License Metadata Infrastructure v0.4
 
 This directory contains comprehensive metadata infrastructure for the Palimpsest License, enabling interoperability, machine-readability, and integration across diverse systems and platforms.

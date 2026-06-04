@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 Jurisdiction Comparison: Dutch Law + Scottish Courts under the Hague Convention (2005)
 English Version
 Introduction

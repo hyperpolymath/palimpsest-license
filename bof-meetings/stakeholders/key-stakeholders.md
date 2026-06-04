@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Key Stakeholders for Palimpsest License BoF Sessions
 
 This document identifies individuals, organisations, and groups to invite and engage across different BoF venues. Organised by conference and stakeholder category.

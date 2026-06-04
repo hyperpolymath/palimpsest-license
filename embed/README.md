@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # 🌀 Palimpsest License Embeddable Assets
 
 This directory contains copy-pasteable snippets to help you easily apply the Palimpsest License to your creative works.

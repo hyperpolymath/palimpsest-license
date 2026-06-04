@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # 🧭 Ethics in the Palimpsest License
 
 The Palimpsest License is not just a legal framework—it’s a moral compass for creative works that carry emotional, cultural, and symbolic weight. This document explores the ethical principles guiding its use, with a focus on **symbolic credit**, **remixing grief**, **ambient attribution**, and **narrative ethics**.

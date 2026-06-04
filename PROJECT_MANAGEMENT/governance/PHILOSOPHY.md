@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # The Philosophy Behind Palimpsest
 
 > *"This is genuinely novel territory. Not 'apply existing tech to new domain' but 'invent new approaches because existing ones are inadequate.'"*

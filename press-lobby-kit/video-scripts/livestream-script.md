@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Livestream Panel: "The Future of Creative Licensing in the AI Era" (90 Minutes)
 
 **Panel Discussion & Community Q&A Event**

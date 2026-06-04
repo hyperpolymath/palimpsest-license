@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Technical Deep Dive: "Implementing Palimpsest Licence Infrastructure" (30 Minutes)
 
 **For Developer Audience: Architecture, Protocols, and Integration**

@@ -23,6 +23,7 @@ jobs:
   build:
     name: Build docs for Pages
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
     
       - name: Checkout
@@ -56,6 +57,7 @@ jobs:
     name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

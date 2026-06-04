@@ -1,4 +1,5 @@
-// SPDX-License-Identifier: PMPL-1.0-or-later
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = Documentation Style Guide – Palimpsest‑MPL
 :toc: macro
 
@@ -39,7 +40,6 @@ Use:
 Always include:
 
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 ----
 
 

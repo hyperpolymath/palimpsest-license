@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest License Badges
 
 This directory contains badge variants for the Palimpsest License in multiple formats and styles. These badges can be used on websites, documentation, GitHub repositories, and other platforms to indicate that a work is licensed under the Palimpsest License.

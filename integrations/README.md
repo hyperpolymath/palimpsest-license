@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest License - Integration Scripts
 
 Comprehensive integration scripts and tools for implementing the Palimpsest License across different platforms, frameworks, and technologies.

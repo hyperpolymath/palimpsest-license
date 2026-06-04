@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = PMPL v1.0 Frequently Asked Questions
 :toc: macro
 :toclevels: 3
@@ -292,7 +294,6 @@ Each source file needs:
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Your Name <you@example.com>
 ----
 

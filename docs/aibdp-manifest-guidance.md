@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 Below is the merged, standalone manifest that covers all the areas addressed in the Palimpsest License v0.3 document—including collective licensing, AI governance audits, cultural heritage compliance, and safeguards for emerging AI paradigms (Autonomous, Agentic, Ambient, Neural Interface, Quantum AI, etc.)—while remaining an independent declaration. This manifest is intended for use in your IETF draft (HTTP 30 code development) and is designed to operate in tandem with the full legal instrument, even though it remains a machine‐readable, technical “boundary declaration.” It is served—typically at a “.well-known/aibdp.json” endpoint—so that automated systems and human reviewers can verify that your content is subject to the declared AI usage boundaries.
 
 Below is the complete JSON manifest, followed by guidance notes and background explaining its relationship with the legal instrument and the AI Boundary Declaration Protocol (AIBDP).

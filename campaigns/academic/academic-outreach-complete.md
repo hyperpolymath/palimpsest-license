@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Academic Outreach: Palimpsest License Research Programme
 
 ## Complete academic engagement materials including CFP, research agenda, technical questions, grant templates, and partnership programme

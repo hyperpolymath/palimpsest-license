@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest License Figma Project
 
 This document provides the official link to the Palimpsest License design assets on Figma. This project includes all brand logos, icons, UI components, and screen mockups.

@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Compliance Checklist
 1. Embed \syntheticLineageTag\ in all outputs.
 2. Conduct biannual AI governance audits.

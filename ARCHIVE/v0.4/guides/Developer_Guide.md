@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest License v0.4  Developer Guide
 
 ## Technical Integration and Implementation
@@ -93,7 +97,6 @@ Unlike purely technical licenses (MIT, Apache) or creative licenses (CC), the Pa
 
 **HTML/XML:**
 ```html
-<!-- SPDX-License-Identifier: Palimpsest-0.4 -->
 <!-- Copyright 2025 Your Name -->
 ```
 

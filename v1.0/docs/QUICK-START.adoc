@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = PMPL v1.0 Quick Start Guide
 :toc: macro
 :toclevels: 2
@@ -40,7 +42,6 @@ Add these two lines to the top of every source file:
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Your Name <your.email@example.com>
 ----
 
@@ -154,7 +155,6 @@ For files with multiple contributors:
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024 Alice Smith <alice@example.com>
 // SPDX-FileCopyrightText: 2025 Bob Jones <bob@example.com>
 ----
@@ -165,7 +165,6 @@ For corporate projects:
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 YourCompany, Inc.
 ----
 

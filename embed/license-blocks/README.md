@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest Licence Blocks
 
 This directory contains ready-to-use HTML and Markdown snippets for displaying Palimpsest License information on your website, documentation, or project.

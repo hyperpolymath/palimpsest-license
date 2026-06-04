@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = PMPL v1.0 Integration Guide
 :toc: macro
 :toclevels: 3
@@ -18,7 +20,6 @@ For all source files:
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Your Name <you@example.com>
 ----
 
@@ -28,7 +29,6 @@ For files with significant creative or cultural content:
 
 [source,javascript]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Your Name <you@example.com>
 //
 // Emotional Lineage: [Brief context - e.g., "Protest song adaptation"]
@@ -40,7 +40,6 @@ For files with significant creative or cultural content:
 **Rust:**
 [source,rust]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Author Name
 ----
 
@@ -284,7 +283,6 @@ go 1.21
 ----
 // Package yourpackage provides...
 //
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2025 Your Name
 package yourpackage
 ----
@@ -402,7 +400,6 @@ echo "✅ Ready to push"
 
 [source,rust]
 ----
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: ${YEAR} ${USER}
 
 #parse("File Header.java")

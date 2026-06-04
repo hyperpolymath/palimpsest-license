@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Legal Vignette: The AI Training Consent Breach
 
 ## Scenario: Clause 1.2 Violation - Interpretive AI Training Without Consent

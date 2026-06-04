@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Video & Presentation Scripts: Palimpsest License Campaign
 
 ## Complete scripts for explainer video, lightning talk, full presentation, and panel discussion

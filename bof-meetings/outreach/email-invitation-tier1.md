@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Email Template: Tier 1 Personal Invitation
 
 **Use for**: Key stakeholders, potential organizers, critical allies

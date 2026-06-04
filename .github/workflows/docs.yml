@@ -22,6 +22,7 @@ jobs:
   build-docs:
     name: Build AsciiDoc docs
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -39,6 +40,7 @@ jobs:
   link-check:
     name: Check external links (best-effort)
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6

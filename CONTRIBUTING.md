@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # How to Contribute to the Palimpsest License
 
 > **Note:** This Markdown version is maintained for backwards compatibility. The canonical version is now [CONTRIBUTING.adoc](./CONTRIBUTING.adoc) (AsciiDoc format) for RSR Gold compliance.

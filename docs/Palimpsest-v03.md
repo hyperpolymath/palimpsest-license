@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # 🌀 Palimpsest License v0.3
 
 > *"There are moments we cross from what was to what might be. This license is built for that moment."*  

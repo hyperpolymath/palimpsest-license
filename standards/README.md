@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # CWCF Standards Documentation
 
 This directory contains comprehensive standards documentation for the **Creative Works Consent Framework (CWCF)**, a machine-readable protocol for expressing creator consent for AI and automated systems.

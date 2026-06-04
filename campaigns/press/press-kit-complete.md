@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest License Press Kit
 
 ## Complete media resources for journalists covering consent-layer licensing, ethical AI, and creator rights

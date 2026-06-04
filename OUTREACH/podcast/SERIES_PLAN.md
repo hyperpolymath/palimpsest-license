@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Palimpsest Podcast Series
 
 **Working Title:** "Layers" — Conversations on Creativity, Consent, and the Machine Age

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = Palimpsest License Security Architecture
 Palimpsest Stewardship Council
 v1.0, 2025-11-28
@@ -7,7 +9,6 @@ v1.0, 2025-11-28
 :icons: font
 :source-highlighter: rouge
 
-// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 
 == Introduction
