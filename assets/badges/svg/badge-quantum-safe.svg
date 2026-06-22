@@ -1,0 +1,26 @@
+<!-- Quantum-Safe Provenance Badge — pairs with badge-standard.svg (PMPL Exhibit B) -->
+<svg width="128" height="32" viewBox="0 0 128 32" xmlns="http://www.w3.org/2000/svg" aria-label="Quantum-Safe Provenance Badge">
+  <title>Quantum-Safe Provenance (PMPL Exhibit B)</title>
+  <style>
+    .bg { fill: #f6f8fa; }
+    .border { stroke: #d1d5da; stroke-width: 1; }
+    .orbit { fill: none; stroke: #8957e5; stroke-width: 1.3; }
+    .nucleus { fill: #8957e5; stroke: none; }
+    .text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 11px; fill: #24292e; font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #21262d; }
+      .border { stroke: #444c56; }
+      .orbit { stroke: #a371f7; }
+      .nucleus { fill: #a371f7; }
+      .text { fill: #c9d1d9; }
+    }
+  </style>
+  <rect class="bg border" x="0.5" y="0.5" width="127" height="31" rx="6" fill="none"/>
+  <g transform="translate(16, 16)">
+    <ellipse class="orbit" cx="0" cy="0" rx="7.5" ry="3"/>
+    <ellipse class="orbit" cx="0" cy="0" rx="7.5" ry="3" transform="rotate(60)"/>
+    <ellipse class="orbit" cx="0" cy="0" rx="7.5" ry="3" transform="rotate(120)"/>
+    <circle class="nucleus" cx="0" cy="0" r="2"/>
+  </g>
+  <text x="30" y="20" class="text">Quantum-Safe</text>
+</svg>
