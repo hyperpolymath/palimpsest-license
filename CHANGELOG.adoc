@@ -7,6 +7,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+== [1.0.0] - 2026-06-25
+
+=== Added
+- First stable release: Palimpsest-MPL License 1.0 (PMPL-1.0) declared canonical (MPL-2.0 base + ethical-use/provenance Exhibits A & B).
+
+=== Note
+- 2.0 is in DRAFT (unreleased): revises toward OSD-compatibility (ethical use -> optional Community Covenant). See legal/PALIMPSEST-MPL-2.0.txt and legal/PALIMPSEST-MPL-2.0-DRAFT.txt.
+- Version metadata reconciled: STATE.a2ml/CHANGELOG/README now agree on 1.0 as current stable.
+
+
 == [0.4.0] - 2025-12-09
 
 === Added
