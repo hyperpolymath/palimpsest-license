@@ -161,7 +161,7 @@ palimpsest-license/
 │
 ├── README.adoc                     ← MAIN ENTRY POINT
 ├── LICENSE                         ← Current license text
-├── CONTRIBUTING.adoc               ← Contribution guidelines
+├── .github/CONTRIBUTING.md               ← Contribution guidelines
 ├── GOVERNANCE.adoc                 ← Governance structure
 ├── VERSIONING.adoc                 ← Versioning policy (deprecated)
 ├── VERSIONING_POLICY.adoc          ← Current versioning policy
@@ -427,4 +427,4 @@ Or use the structure validation script:
 * link:VERSIONING_POLICY.adoc[] - How versions are managed
 * link:scripts/README.adoc[] - Automation scripts
 * link:GOVERNANCE.adoc[] - Decision-making process
-* link:CONTRIBUTING.adoc[] - How to contribute
+* link:.github/CONTRIBUTING.md[] - How to contribute

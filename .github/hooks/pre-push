@@ -27,8 +27,8 @@ if [ "$BROKEN_LINKS" -eq 1 ]; then
 fi
 
 # 3. Validate exhibits
-if [ -f ".githooks/validate-exhibit" ]; then
-  .githooks/validate-exhibit || exit 1
+if [ -f ".github/hooks/validate-exhibit" ]; then
+  .github/hooks/validate-exhibit || exit 1
 fi
 
 echo "Pre-push checks passed."

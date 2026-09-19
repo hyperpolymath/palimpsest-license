@@ -47,7 +47,7 @@ palimpsest-license/
 │
 ├── LICENSE                     # PMPL-1.0-or-later + Palimpsest
 ├── README.md                   # Project overview
-├── CONTRIBUTING.adoc           # Contribution guidelines
+├── .github/CONTRIBUTING.md           # Contribution guidelines
 ├── GOVERNANCE.md               # Decision-making
 ├── CHANGELOG.adoc              # Version history
 ├── SECURITY.md                 # Security policy

@@ -27,7 +27,7 @@ These principles guide all contributions, whether legal, technical, or editorial
 Run:
 
 ----
-git config core.hooksPath .githooks
+git config core.hooksPath .github/hooks
 ----
 
 
@@ -73,7 +73,7 @@ Work on:
 . Open an issue using the appropriate template  
 . Discuss the proposal with maintainers  
 . Draft changes in a feature branch  
-. Ensure `.githooks` checks pass  
+. Ensure `.github/hooks` checks pass  
 . Submit a pull request  
 . Address review feedback  
 . Await Council approval (if required)  

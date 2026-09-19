@@ -294,7 +294,7 @@ package yourpackage
 [source,bash]
 ----
 #!/usr/bin/env bash
-# .githooks/pre-commit
+# .github/hooks/pre-commit
 # SPDX-License-Identifier: PMPL-1.0-or-later
 
 set -e
@@ -320,10 +320,10 @@ echo "✅ All files have SPDX headers"
 [source,bash]
 ----
 # Make executable
-chmod +x .githooks/pre-commit
+chmod +x .github/hooks/pre-commit
 
 # Configure git to use .githooks
-git config core.hooksPath .githooks
+git config core.hooksPath .github/hooks
 ----
 
 === Pre-Push Hook (with signing)
@@ -331,7 +331,7 @@ git config core.hooksPath .githooks
 [source,bash]
 ----
 #!/usr/bin/env bash
-# .githooks/pre-push
+# .github/hooks/pre-push
 # SPDX-License-Identifier: PMPL-1.0-or-later
 
 set -e
