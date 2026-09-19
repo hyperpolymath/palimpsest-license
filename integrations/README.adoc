@@ -358,7 +358,7 @@ jobs:
 === Contributing
 
 We welcome contributions! Please see: -
-link:../CONTRIBUTING.md[Contributing Guidelines] -
+link:../.github/CONTRIBUTING.md[Contributing Guidelines] -
 link:../CODE_OF_PRACTICE.md[Code of Practice] -
 link:../GOVERNANCE.md[Governance]
 
