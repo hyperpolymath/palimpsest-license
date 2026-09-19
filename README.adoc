@@ -227,7 +227,7 @@ We welcome contributions to:
 
 Before contributing:
 
-1. Read link:CONTRIBUTING.adoc[]
+1. Read link:.github/CONTRIBUTING.md[]
 2. Open an issue for proposals
 3. Join https://github.com/hyperpolymath/palimpsest-license/discussions[GitHub Discussions]
 

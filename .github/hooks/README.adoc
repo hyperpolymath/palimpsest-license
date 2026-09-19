@@ -3,7 +3,7 @@
 = Git Hooks – Palimpsest Governance Layer
 :toc: macro
 
-The `.githooks/` directory implements the minimal viable governance layer for the Palimpsest‑MPL License repository.  
+The `.github/hooks/` directory implements the minimal viable governance layer for the Palimpsest‑MPL License repository.  
 These hooks enforce provenance, SPDX compliance, narrative clarity, and cross‑repository auditability.
 
 toc::[]
@@ -25,7 +25,7 @@ The hooks ensure:
 Run:
 
 ----
-git config core.hooksPath .githooks
+git config core.hooksPath .github/hooks
 ----
 
 

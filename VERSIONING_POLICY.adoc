@@ -342,5 +342,5 @@ See link:GOVERNANCE.adoc[] for full decision-making process.
 
 - link:CHANGELOG.adoc[CHANGELOG.adoc] - Version history
 - link:GOVERNANCE.adoc[GOVERNANCE.adoc] - Decision-making process
-- link:CONTRIBUTING.adoc[CONTRIBUTING.adoc] - How to propose changes
+- link:.github/CONTRIBUTING.md[.github/CONTRIBUTING.md] - How to propose changes
 - link:scripts/README.adoc[scripts/README.adoc] - Script documentation

@@ -40,7 +40,7 @@ Does this PR require:
 - [ ] AsciiDoc validated  
 - [ ] Cross‑links checked  
 - [ ] Commit messages follow schema  
-- [ ] `.githooks` checks pass  
+- [ ] `.github/hooks` checks pass  
 
 ## Additional Context
 Anything else reviewers should know.
