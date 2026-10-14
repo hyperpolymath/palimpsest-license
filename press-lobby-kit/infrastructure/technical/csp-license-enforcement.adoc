@@ -323,7 +323,7 @@ When a Palimpsest policy is violated, browsers should send:
       "timestamp": "2025-11-22T12:34:56Z",
       "client-ip": "192.0.2.1",
       "metadata": {
-        "work-id": "urn:uuid:12345678-1234-1234-1234-123456789abc",
+        "work-id": "urn:uuid:12345678-1234-8234-9234-123456789abc",
         "creator-id": "creator@example.org"
       }
     }
