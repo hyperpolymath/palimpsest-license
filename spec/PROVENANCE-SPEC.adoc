@@ -200,7 +200,7 @@ record containing t, not that the signature was made at time t.
 [cols="1,1,2,3,2,1",options="header"]
 |===
 | Rule | Concludes | Consumes | Assumption (explicit parameter) | Proof | Status
-| `signature-verify` | `signed-by` | `signature`, `signature-chain` | EUF-CMA security of the signature algorithm named in each signature | `proofs/agda/Provenance/Warrant.agda` | DESIGNED
+| `signature-verify` | `signed-by` | `signature`, `signature-chain` | EUF-CMA security of the signature algorithm named in each signature | `proofs/agda/Provenance/Warrant.agda` | PROVEN
 |===
 
 The entailment is the assumption applied to a signature that verifies, so

@@ -42,7 +42,7 @@ let rule_table = {
     consumes = ["signature", "signature-chain"],
     assumption = "EUF-CMA security of the signature algorithm named in each signature",
     proof = "proofs/agda/Provenance/Warrant.agda",
-    status = "designed",
+    status = "proven",
   },
 }
 in

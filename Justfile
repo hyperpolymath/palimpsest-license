@@ -74,3 +74,11 @@ crg-badge:
 # Warrant-level provenance records against formats/warrant.ncl (spec/PROVENANCE-SPEC.adoc §7)
 warrant-records:
     bash scripts/check-warrant-records.sh
+
+# Fetch pinned sibling proof repos (epistemic-types) into _build/dependencies
+fetch-siblings:
+    bash scripts/fetch-siblings.sh
+
+# Agda kernel module and expected rejections (proofs/agda, tests/reject)
+agda: fetch-siblings
+    bash scripts/check-agda.sh
