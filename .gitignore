@@ -118,3 +118,6 @@ htmlcov/
 _build/
 deps/
 .elixir_ls/
+
+# Agda interface files
+*.agdai
