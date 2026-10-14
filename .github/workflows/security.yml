@@ -44,30 +44,9 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@05b1a5d28f8763fd11e77388fe57846f1ba8e766 # v3
 
-  scorecard:
-    name: OpenSSF Scorecard
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    permissions:
-      contents: read
-      id-token: write
-      security-events: write
-      actions: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Run Scorecard
-        uses: ossf/scorecard-action@4eaacf0543bb3f2c246792bd56e8cdeffafb205a # v2.4.3
-        with:
-          results_file: results.sarif
-          results_format: sarif
-          publish_results: true
-
-      - name: Upload SARIF to code scanning
-        uses: github/codeql-action/upload-sarif@05b1a5d28f8763fd11e77388fe57846f1ba8e766 # v3
-        with:
-          sarif_file: results.sarif
+  # OpenSSF Scorecard is not run here: scorecard.yml calls the estate
+  # scorecard-reusable, which owns SARIF publication. A second, direct
+  # publisher is retired (governance / Check Workflow Staleness).
 
   dependency-review:
     name: Dependency Review
