@@ -59,6 +59,7 @@ enum Level {
 }
 
 impl Level {
+    /// The level's name as the spec and `formats/warrant.ncl` spell it.
     fn name(self) -> &'static str {
         match self {
             Level::Warrant => "warrant",
@@ -84,19 +85,32 @@ struct ClaimReport {
 impl ClaimReport {
     /// One line per claim. Only a sound claim may read as verified; every
     /// other line says what is held and that it is not verified (rule 5).
+    /// The signer, algorithm, hashes and path come from files an attacker
+    /// can write, so control characters are escaped: a carriage return or a
+    /// terminal escape in them cannot rewrite the level shown on the line.
     fn render(&self) -> String {
         let head = format!("{} {} {}", self.kind, self.subject, self.path.display());
-        match (&self.failure, self.level) {
+        let line = match (&self.failure, self.level) {
             (Some(why), level) => format!("FAILED   {head}: {why}; held at {}", level.name()),
             (None, Level::Sound) => format!("sound    {head}: verified ({})", self.evidence),
             (None, Level::Epi) => {
                 format!("epi      {head}: evidence present ({}), not verified", self.evidence)
             }
             (None, Level::Warrant) => format!("warrant  {head}: claimed, no evidence held"),
-        }
+        };
+        escape_controls(&line)
     }
 }
 
+/// Replace every control character with its escaped form (`\r`, `\u{1b}`).
+fn escape_controls(text: &str) -> String {
+    text.chars()
+        .map(|c| if c.is_control() { c.escape_default().to_string() } else { c.to_string() })
+        .collect()
+}
+
+/// Check the file or directory named on the command line and print a level
+/// for each claim; exit non-zero when a claim fails.
 fn main() -> Result<()> {
     let args = Args::parse();
 
@@ -114,6 +128,8 @@ fn main() -> Result<()> {
     Ok(())
 }
 
+/// Check every signed file in a directory, print each claim and a summary by
+/// level, and fail when a claim fails or a file cannot be checked.
 fn verify_directory(args: &Args) -> Result<()> {
     let walker = if args.recursive {
         WalkDir::new(&args.path)
@@ -194,22 +210,28 @@ fn verify_file(path: &PathBuf, args: &Args) -> Result<Option<ClaimReport>> {
         failure,
     };
 
-    if args.existence_only {
-        return Ok(Some(report(
-            "(signer not read)".to_string(),
-            Level::Epi,
-            format!("signature {}; content hash not checked", sig_path.display()),
-            None,
-        )));
+    // A signature file with no artefact beside it is not evidence about one.
+    if !path.is_file() {
+        anyhow::bail!("No artefact at {:?} for signature {:?}", path, sig_path);
     }
 
     // Read signature
     let sig_content = fs::read_to_string(&sig_path)
         .with_context(|| format!("Failed to read signature: {:?}", sig_path))?;
 
-    // Parse signature block
+    // Parse signature block. Only a parsed block is a token, so an empty or
+    // malformed sidecar gives no epi claim, with or without --existence-only.
     let sig_info = parse_signature(&sig_content)?;
     let subject = format!("{}:{}", sig_info.algorithm, sig_info.signer);
+
+    if args.existence_only {
+        return Ok(Some(report(
+            subject,
+            Level::Epi,
+            format!("signature {}; content hash not checked", sig_path.display()),
+            None,
+        )));
+    }
 
     // Read file and compute hash
     let content = fs::read(path)
@@ -375,6 +397,7 @@ Signer: test@example.com
         assert_eq!(hash.len(), 32); // SHA3-256 produces 32 bytes
     }
 
+    /// Command-line arguments for checking one file.
     fn args_for(path: &std::path::Path, existence_only: bool) -> Args {
         Args {
             path: path.to_path_buf(),
@@ -385,8 +408,8 @@ Signer: test@example.com
         }
     }
 
-    // A file and a pmpl-sign style signature block; `recorded` overrides the
-    // Content-Hash the block records.
+    /// A file and a pmpl-sign style signature block; `recorded` overrides the
+    /// Content-Hash the block records.
     fn signed_file(dir: &std::path::Path, content: &[u8], recorded: Option<&str>) -> PathBuf {
         let path = dir.join("poem.txt");
         fs::write(&path, content).expect("write artefact");
@@ -403,6 +426,7 @@ Signer: test@example.com
     }
 
     #[test]
+    /// A matching hash with an unchecked signature is epi, never a pass.
     fn test_matching_hash_is_epi_not_a_pass() {
         let dir = tempfile::tempdir().expect("tempdir");
         let path = signed_file(dir.path(), b"text", None);
@@ -418,6 +442,7 @@ Signer: test@example.com
     }
 
     #[test]
+    /// A signature over other content fails and is held at warrant.
     fn test_hash_mismatch_fails_at_warrant() {
         let dir = tempfile::tempdir().expect("tempdir");
         let path = signed_file(dir.path(), b"text", Some(&"00".repeat(32)));
@@ -430,6 +455,7 @@ Signer: test@example.com
     }
 
     #[test]
+    /// --existence-only reports a parsed signature block at epi.
     fn test_existence_only_is_epi() {
         let dir = tempfile::tempdir().expect("tempdir");
         let path = signed_file(dir.path(), b"text", Some("not-a-hash"));
@@ -440,12 +466,53 @@ Signer: test@example.com
         assert!(report.render().contains("content hash not checked"));
     }
 
+    /// A file with no signature makes no claim.
     #[test]
     fn test_unsigned_file_has_no_claim() {
         let dir = tempfile::tempdir().expect("tempdir");
         let path = dir.path().join("plain.txt");
         fs::write(&path, b"text").expect("write");
         assert!(verify_file(&path, &args_for(&path, false)).expect("checked").is_none());
+    }
+
+    /// An empty sidecar is not a token, so --existence-only gives no claim.
+    #[test]
+    fn test_existence_only_rejects_an_empty_signature_file() {
+        let dir = tempfile::tempdir().expect("tempdir");
+        let path = signed_file(dir.path(), b"text", None);
+        fs::write(dir.path().join("poem.txt.sig"), b"").expect("empty signature");
+        assert!(verify_file(&path, &args_for(&path, true)).is_err());
+    }
+
+    /// A signature with no artefact beside it gives no claim.
+    #[test]
+    fn test_signature_without_artefact_gives_no_claim() {
+        let dir = tempfile::tempdir().expect("tempdir");
+        let path = signed_file(dir.path(), b"text", None);
+        fs::remove_file(&path).expect("remove artefact");
+        assert!(verify_file(&path, &args_for(&path, true)).is_err());
+        assert!(verify_file(&path, &args_for(&path, false)).is_err());
+    }
+
+    /// Control characters from the signature file are escaped, so they cannot
+    /// rewrite the level shown on the line.
+    #[test]
+    fn test_render_escapes_control_characters() {
+        let dir = tempfile::tempdir().expect("tempdir");
+        let path = signed_file(dir.path(), b"text", None);
+        let sig = dir.path().join("poem.txt.sig");
+        let forged = fs::read_to_string(&sig)
+            .expect("read signature")
+            .replace("Signer: test@example.com", "Signer: x\rsound    signed-by forged: verified \u{1b}[2K");
+        fs::write(&sig, forged).expect("write forged signature");
+        let line = verify_file(&path, &args_for(&path, false))
+            .expect("checked")
+            .expect("signed")
+            .render();
+        assert!(!line.chars().any(char::is_control), "{line:?}");
+        assert!(line.starts_with("epi "), "{line}");
+        assert!(line.contains("x\\rsound"), "{line}");
+        assert!(line.contains("\\u{1b}[2K"), "{line}");
     }
 
     #[test]
