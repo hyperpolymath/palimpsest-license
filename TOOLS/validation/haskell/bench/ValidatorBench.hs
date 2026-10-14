@@ -164,9 +164,9 @@ extractClauseNumbers n = map (T.pack . show) [1..n]
 
 -- Simplified placeholder types (would be imported from actual modules)
 -- These are used to satisfy type requirements in benchmarks
-data ClauseRef = ClauseRef deriving (Show)
-data URLRef = URLRef deriving (Show)
-data InternalLink = InternalLink deriving (Show)
+data ClauseRef = ClauseRef deriving stock (Show)
+data URLRef = URLRef deriving stock (Show)
+data InternalLink = InternalLink deriving stock (Show)
 
 -- Helper for small benchmark (validates structure is parseable)
 validateSmallLicense :: Text -> Bool

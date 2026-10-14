@@ -1,1 +1,2 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 We protect symbols, stitch emotional truth, and license meaning.

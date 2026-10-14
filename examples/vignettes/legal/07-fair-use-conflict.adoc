@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Legal Vignette: Fair Use vs. License Conflict
 
 === Scenario: Documentary Fair Dealing vs. Palimpsest Cultural Restrictions

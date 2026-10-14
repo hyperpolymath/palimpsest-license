@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Technical Deep Dive: "`Implementing Palimpsest Licence Infrastructure`" (30 Minutes)
 
 *For Developer Audience: Architecture, Protocols, and Integration*
@@ -36,7 +37,8 @@ By the end of this deep dive, developers will be able to:
 . *Understand* the technical architecture of Palimpsest consent
 infrastructure
 . *Implement* licence metadata in Protocol Buffers schemas
-. *Deploy* Haskell validators for consent verification
+. *Deploy* Haskell validators that report each consent claim at its
+warrant level (a declared consent is evidence, never verified consent)
 . *Integrate* ReScript components for web-based consent requests
 . *Build* CI/CD pipelines that respect Palimpsest licences
 . *Contribute* to open-source Palimpsest tooling
@@ -484,7 +486,7 @@ validateParsedMetadata meta now = do
 
       case aiTrainingPolicy of
         CONSENT_GRANTED -> pure $ Granted
-          { reason = "Creator has granted consent for AI training"
+          { reason = "Metadata declares consent for AI training (evidence, not verified)"
           , timestamp = now
           }
 
@@ -523,8 +525,10 @@ metadata as a ByteString, returns an `+IO ConsentDecision+`.`" > >
 `+Invalid+` with an error message.`" > > "`Step 2: Validate the parsed
 metadata. Check the version—if it’s not v0.4, return `+Invalid+`.`" > >
 "`Step 3: Examine the consent policy. Specifically, `+aiTraining+`
-field.`" > > "`If `+CONSENT_GRANTED+`: Return `+Granted+`. The creator
-allows AI training.`" > > "`If `+CONSENT_DENIED+`: Return `+Denied+`. No
+field.`" > > "`If `+CONSENT_GRANTED+`: Return `+Granted+`. The metadata
+declares that the creator allows AI training. That declaration is
+evidence, not verification: the validator reports it as '`evidence present,
+not verified`', never as verified consent.`" > > "`If `+CONSENT_DENIED+`: Return `+Denied+`. No
 AI training permitted.`" > > "`If `+CONSENT_REQUIRED+`: Call
 `+checkConsentRegistry+`. This queries the registry to see if consent
 has been explicitly granted.`" > > "`If unspecified: Default to

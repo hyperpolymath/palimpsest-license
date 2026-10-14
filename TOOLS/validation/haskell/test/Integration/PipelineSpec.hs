@@ -8,7 +8,6 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 module Integration.PipelineSpec (pipelineSpec) where
 
 import Test.Hspec
-import Data.Text (Text)
 import qualified Data.Text as T
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.License
@@ -217,12 +216,12 @@ pipelineSpec = describe "Integration: Full Validation Pipeline" $ do
     it "handles large license documents" $ do
       let largeLicense = T.unlines $
             ["# Palimpsest License v0.4"] ++
-            concatMap (\n -> ["## Clause " <> T.pack (show n) <> " — Section", "Content"]) [1..100]
+            concatMap (\n -> ["## Clause " <> T.pack (show n) <> " — Section", "Content"]) [1..100 :: Int]
       let structure = parseLicenseStructure largeLicense
       length (licenseClauses structure) `shouldBe` 100
 
     it "handles documents with many references" $ do
-      let manyRefs = T.unlines $ map (\n -> "See Clause " <> T.pack (show n)) [1..100]
+      let manyRefs = T.unlines $ map (\n -> "See Clause " <> T.pack (show n)) [1..100 :: Int]
       let numberedLines = zip [1..] (T.lines manyRefs)
       let refs = concatMap (extractClauseRefs "test.md") numberedLines
       length refs `shouldBe` 100

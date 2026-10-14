@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Creative Vignette: The Game Developer’s Mythological Inheritance
 
 === Scenario: Indie Game Developer with Cultural Mythology

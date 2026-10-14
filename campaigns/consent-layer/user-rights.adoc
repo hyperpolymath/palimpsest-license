@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == User Rights and Benefits: The Consent Layer for Everyone
 
 === Introduction
@@ -146,7 +147,7 @@ request permission), not who reads it (readers don’t).
 
 *Privacy safeguards:* - Registries use end-to-end encryption for consent
 details - Only creator and requester see terms (not public) -
-Zero-knowledge proofs: Verify "`consent exists`" without revealing
+Zero-knowledge proofs: show that a consent record exists without revealing
 details
 
 *User benefit:* *Consent infrastructure doesn’t surveil—it documents

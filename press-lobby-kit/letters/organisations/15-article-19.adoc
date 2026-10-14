@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Outreach Letter: Article 19
 
 *Date:* 22 November 2025 *To:* Article 19 *From:* Palimpsest Stewardship

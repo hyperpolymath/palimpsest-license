@@ -12,15 +12,20 @@ module Palimpsest.Validator.Bilingual
   , checkStructuralParity
   , BilingualMapping(..)
   , loadBilingualMap
+    -- * Parsing helpers (exported for the test suite)
+  , defaultBilingualMap
+  , parseBilingualMap
+  , parseTableRow
+  , titleMatches
   ) where
 
 import Control.Monad (when, unless, forM_)
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ask)
+import Data.Char (isDigit)
 import Data.Text (Text)
 import qualified Data.Text as T
-import Data.Maybe (mapMaybe, isNothing, fromMaybe)
-import Data.List (sort)
+import Data.Maybe (mapMaybe, isNothing)
 import qualified Data.Map.Strict as Map
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.Utils
@@ -31,7 +36,7 @@ data BilingualMapping = BilingualMapping
   { mappingClauseNumber :: Text
   , mappingEnglishTitle :: Text
   , mappingDutchTitle   :: Text
-  } deriving (Show, Eq)
+  } deriving stock (Show, Eq)
 
 -- | Expected bilingual mappings (from bilingual-map.md)
 defaultBilingualMap :: [BilingualMapping]
@@ -85,10 +90,16 @@ parseTableRow line =
       -- Table format: | Clause No. | English | Dutch |
   in case cells of
        (_ : num : eng : dut : _) ->
-         if T.null num || num == "Clause No."
+         if T.null num || num == "Clause No." || not (isClauseNumber num)
            then Nothing
            else Just $ BilingualMapping num eng dut
        _ -> Nothing
+  where
+    -- The first cell of a data row is a clause number such as "1" or "1.2"
+    -- (only those can match a clause extracted from a license text). This
+    -- rejects separator rows ("---") and other malformed rows.
+    isClauseNumber n =
+      maybe False (isDigit . fst) (T.uncons n) && T.all (\c -> isDigit c || c == '.') n
 
 -- | Validate bilingual consistency between English and Dutch versions
 validateBilingualConsistency :: FilePath -> FilePath -> FilePath -> ValidatorM ()
@@ -207,11 +218,11 @@ titleMatches expected actual =
   normalise expected `T.isInfixOf` normalise actual ||
   normalise actual `T.isInfixOf` normalise expected
   where
-    normalise = T.toLower . T.strip . T.filter (/= '—') . T.filter (/= ':')
+    normalise = T.unwords . T.words . T.toLower . T.filter (/= '—') . T.filter (/= ':')
 
 -- | Check version consistency between languages
 checkVersionConsistency :: FilePath -> FilePath -> Text -> Text -> ValidatorM ()
-checkVersionConsistency enPath nlPath enVersion nlVersion = do
+checkVersionConsistency _enPath _nlPath enVersion nlVersion = do
   when (enVersion /= nlVersion && enVersion /= "unknown" && nlVersion /= "unknown") $
     validationError Error "bilingual-consistency"
       (T.pack $ "Version mismatch: English is " ++ T.unpack enVersion ++

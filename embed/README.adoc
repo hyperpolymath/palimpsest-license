@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == 🌀 Palimpsest License Embeddable Assets
 
 This directory contains copy-pasteable snippets to help you easily apply

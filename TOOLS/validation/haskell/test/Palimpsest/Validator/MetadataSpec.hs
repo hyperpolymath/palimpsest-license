@@ -4,18 +4,21 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Palimpsest.Validator.MetadataSpec (metadataSpec) where
 
 import Test.Hspec
 import Test.QuickCheck
-import Data.Aeson (Value(..), Object, encode, decode)
+import Data.Aeson (Value(..), Object, decode)
 import qualified Data.Aeson as Aeson
-import qualified Data.HashMap.Strict as HM
+import qualified Data.Aeson.KeyMap as KM
+import qualified Data.Vector as V
 import qualified Data.ByteString.Lazy as BL
 import Data.Text (Text)
 import qualified Data.Text as T
 import Palimpsest.Validator.Metadata
+import Palimpsest.Validator.Types (MetadataFormat (..))
 import Palimpsest.Validator.Utils
 
 metadataSpec :: Spec
@@ -37,16 +40,16 @@ metadataSpec = describe "Metadata Validator" $ do
 
   describe "Context extraction from JSON-LD" $ do
     it "extracts string context" $ do
-      let json = Object $ HM.fromList [("@context", String "http://schema.org")]
+      let json = Object $ KM.fromList [("@context", String "http://schema.org")]
       extractContext json `shouldBe` Just "http://schema.org"
 
     it "handles embedded object context" $ do
-      let ctx = Object $ HM.fromList [("name", String "Person")]
-      let json = Object $ HM.fromList [("@context", ctx)]
+      let ctx = Object $ KM.fromList [("name", String "Person")]
+      let json = Object $ KM.fromList [("@context", ctx)]
       extractContext json `shouldBe` Just "embedded"
 
     it "returns Nothing for missing context" $ do
-      let json = Object $ HM.fromList [("someKey", String "value")]
+      let json = Object $ KM.fromList [("someKey", String "value")]
       extractContext json `shouldBe` Nothing
 
     it "returns Nothing for non-Object JSON" $ do
@@ -54,52 +57,52 @@ metadataSpec = describe "Metadata Validator" $ do
 
   describe "License ID extraction" $ do
     it "extracts license ID from licenses array" $ do
-      let license = Object $ HM.fromList [("licenseId", String "Palimpsest-0.4")]
-      let json = Object $ HM.fromList [("licenses", Array [license])]
+      let license = Object $ KM.fromList [("licenseId", String "Palimpsest-0.4")]
+      let json = Object $ KM.fromList [("licenses", Array (V.fromList [license]))]
       extractLicenseId json `shouldBe` Just "Palimpsest-0.4"
 
     it "returns Nothing for empty licenses array" $ do
-      let json = Object $ HM.fromList [("licenses", Array [])]
+      let json = Object $ KM.fromList [("licenses", Array (V.fromList []))]
       extractLicenseId json `shouldBe` Nothing
 
     it "returns Nothing when licenses field missing" $ do
-      let json = Object $ HM.fromList [("other", String "value")]
+      let json = Object $ KM.fromList [("other", String "value")]
       extractLicenseId json `shouldBe` Nothing
 
     it "returns Nothing for malformed license entry" $ do
-      let json = Object $ HM.fromList [("licenses", Array [String "invalid"])]
+      let json = Object $ KM.fromList [("licenses", Array (V.fromList [String "invalid"]))]
       extractLicenseId json `shouldBe` Nothing
 
   describe "Metadata version extraction" $ do
     it "extracts licenseListVersion" $ do
-      let json = Object $ HM.fromList [("licenseListVersion", String "3.20")]
+      let json = Object $ KM.fromList [("licenseListVersion", String "3.20")]
       extractMetadataVersion json `shouldBe` Just "3.20"
 
     it "returns Nothing when version missing" $ do
-      let json = Object $ HM.fromList [("other", String "value")]
+      let json = Object $ KM.fromList [("other", String "value")]
       extractMetadataVersion json `shouldBe` Nothing
 
   describe "JSON-LD structure validation" $ do
     it "validates object with @context and @type" $ do
-      let json = Object $ HM.fromList
+      let json = Object $ KM.fromList
             [ ("@context", String "http://schema.org")
             , ("@type", String "SoftwareLicense")
             ]
       -- This would normally be tested through validateJSONLDStructure
-      HM.member "@context" (case json of Object o -> o; _ -> HM.empty) `shouldBe` True
-      HM.member "@type" (case json of Object o -> o; _ -> HM.empty) `shouldBe` True
+      KM.member "@context" (case json of Object o -> o; _ -> KM.empty) `shouldBe` True
+      KM.member "@type" (case json of Object o -> o; _ -> KM.empty) `shouldBe` True
 
     it "identifies missing @context field" $ do
-      let json = Object $ HM.fromList [("@type", String "License")]
-      HM.member "@context" (case json of Object o -> o; _ -> HM.empty) `shouldBe` False
+      let json = Object $ KM.fromList [("@type", String "License")]
+      KM.member "@context" (case json of Object o -> o; _ -> KM.empty) `shouldBe` False
 
     it "identifies missing @type field" $ do
-      let json = Object $ HM.fromList [("@context", String "http://schema.org")]
-      HM.member "@type" (case json of Object o -> o; _ -> HM.empty) `shouldBe` False
+      let json = Object $ KM.fromList [("@context", String "http://schema.org")]
+      KM.member "@type" (case json of Object o -> o; _ -> KM.empty) `shouldBe` False
 
   describe "SPDX license validation" $ do
     it "validates license with required fields" $ do
-      let licenseJson = Object $ HM.fromList
+      let licenseJson = Object $ KM.fromList
             [ ("licenseId", String "Palimpsest-0.4")
             , ("name", String "Palimpsest License v0.4")
             , ("isOsiApproved", Bool False)
@@ -111,7 +114,7 @@ metadataSpec = describe "Metadata Validator" $ do
         Aeson.Error err -> expectationFailure $ "Failed to parse: " ++ err
 
     it "handles optional fields" $ do
-      let licenseJson = Object $ HM.fromList
+      let licenseJson = Object $ KM.fromList
             [ ("licenseId", String "MIT")
             , ("reference", String "https://spdx.org/licenses/MIT.html")
             ]
@@ -122,7 +125,7 @@ metadataSpec = describe "Metadata Validator" $ do
         Aeson.Error err -> expectationFailure $ "Failed to parse: " ++ err
 
     it "accepts licenses without optional fields" $ do
-      let licenseJson = Object $ HM.fromList []
+      let licenseJson = Object $ KM.fromList []
       case Aeson.fromJSON licenseJson of
         Aeson.Success (license :: SPDXLicense) -> do
           spdxLicenseId license `shouldBe` Nothing
@@ -132,7 +135,7 @@ metadataSpec = describe "Metadata Validator" $ do
   describe "XML structure validation" $ do
     it "identifies elements by name" $ do
       -- Test the helper function
-      let xmlText = "<root><creator>Alice</creator></root>"
+      let _xmlText = "<root><creator>Alice</creator></root>" :: Text
       -- This is tested indirectly through XML parsing
       True `shouldBe` True
 
@@ -147,25 +150,25 @@ metadataSpec = describe "Metadata Validator" $ do
 
   describe "Dublin Core validation" $ do
     it "checks for required Dublin Core elements" $ do
-      let dcElements = ["dc:title", "dc:creator", "dc:date", "dc:rights", "dc:identifier"]
+      let dcElements = ["dc:title", "dc:creator", "dc:date", "dc:rights", "dc:identifier"] :: [Text]
       length dcElements `shouldBe` 5
 
     it "validates complete Dublin Core metadata" $ do
-      let json = Object $ HM.fromList
+      let json = Object $ KM.fromList
             [ ("dc:title", String "Palimpsest License")
             , ("dc:creator", String "Palimpsest Stewardship Council")
             , ("dc:date", String "2024-01-01")
             , ("dc:rights", String "https://palimpsest.org/licenses/v0.4")
             , ("dc:identifier", String "Palimpsest-0.4")
             ]
-      HM.member "dc:title" (case json of Object o -> o; _ -> HM.empty) `shouldBe` True
-      HM.member "dc:creator" (case json of Object o -> o; _ -> HM.empty) `shouldBe` True
+      KM.member "dc:title" (case json of Object o -> o; _ -> KM.empty) `shouldBe` True
+      KM.member "dc:creator" (case json of Object o -> o; _ -> KM.empty) `shouldBe` True
 
     it "detects missing Dublin Core elements" $ do
-      let json = Object $ HM.fromList
+      let json = Object $ KM.fromList
             [ ("dc:title", String "Test")
             ]
-      HM.member "dc:creator" (case json of Object o -> o; _ -> HM.empty) `shouldBe` False
+      KM.member "dc:creator" (case json of Object o -> o; _ -> KM.empty) `shouldBe` False
 
   describe "Malformed metadata handling" $ do
     it "handles invalid JSON syntax" $ do
@@ -174,33 +177,33 @@ metadataSpec = describe "Metadata Validator" $ do
       result `shouldBe` Nothing
 
     it "handles empty JSON object" $ do
-      let emptyJson = Object HM.empty
+      let emptyJson = Object KM.empty
       extractLicenseId emptyJson `shouldBe` Nothing
       extractContext emptyJson `shouldBe` Nothing
 
     it "handles null values in JSON" $ do
-      let json = Object $ HM.fromList [("@context", Null)]
+      let json = Object $ KM.fromList [("@context", Null)]
       extractContext json `shouldBe` Nothing
 
   describe "Property-based tests" $ do
     it "license ID extraction should never crash" $ property $
-      \obj -> let json = Object HM.empty
-              in extractLicenseId json `elem` [Nothing]
+      \(_obj :: Object) -> let json = Object KM.empty
+                           in extractLicenseId json `elem` [Nothing]
 
   describe "Edge cases" $ do
     it "handles deeply nested license structure" $ do
-      let innerLicense = Object $ HM.fromList [("licenseId", String "TEST")]
-      let json = Object $ HM.fromList [("licenses", Array [innerLicense])]
+      let innerLicense = Object $ KM.fromList [("licenseId", String "TEST")]
+      let json = Object $ KM.fromList [("licenses", Array (V.fromList [innerLicense]))]
       extractLicenseId json `shouldBe` Just "TEST"
 
     it "handles license array with multiple entries" $ do
-      let license1 = Object $ HM.fromList [("licenseId", String "First")]
-      let license2 = Object $ HM.fromList [("licenseId", String "Second")]
-      let json = Object $ HM.fromList [("licenses", Array [license1, license2])]
+      let license1 = Object $ KM.fromList [("licenseId", String "First")]
+      let license2 = Object $ KM.fromList [("licenseId", String "Second")]
+      let json = Object $ KM.fromList [("licenses", Array (V.fromList [license1, license2]))]
       extractLicenseId json `shouldBe` Just "First"
 
     it "handles non-array licenses field" $ do
-      let json = Object $ HM.fromList [("licenses", String "not-an-array")]
+      let json = Object $ KM.fromList [("licenses", String "not-an-array")]
       extractLicenseId json `shouldBe` Nothing
 
   describe "Palimpsest-specific validation" $ do

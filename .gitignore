@@ -121,3 +121,6 @@ deps/
 
 # Agda interface files
 *.agdai
+
+# Estate gitleaks baseline, staged by the secret scanner (see .gitleaks.toml)
+.gitleaks-estate.toml

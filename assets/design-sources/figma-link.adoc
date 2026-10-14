@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest License Figma Project
 
 This document provides the official link to the Palimpsest License

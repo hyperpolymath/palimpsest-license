@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Legal Vignette: The AI Training Consent Breach
 
 === Scenario: Clause 1.2 Violation - Interpretive AI Training Without Consent

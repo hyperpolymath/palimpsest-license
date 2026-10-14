@@ -1,2 +1,3 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 https://palimpsestlicense.org[image:https://your-domain.com/assets/branding/badge.svg[Protected
 by Palimpsest License v0.3]]

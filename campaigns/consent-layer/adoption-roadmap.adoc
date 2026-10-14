@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Industry Adoption Roadmap: The Consent Layer for the Internet
 
 === Executive Summary
@@ -322,7 +323,7 @@ companies browse)
 * Pricing: Market rates emerge (£50-£500 per work, depending on quality)
 . *Dataset Certification:*
 * "`Ethically Sourced AI`" label (like Fair Trade for coffee)
-* Auditors verify consent (third-party organizations)
+* Auditors check consent records (third-party organizations); a record is evidence of consent, not verification of it
 * Consumers prefer certified AI (enterprises pay premium)
 . *Industry Consortium:*
 * Formation: AI companies, platforms, creator organizations
