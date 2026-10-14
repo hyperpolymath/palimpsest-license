@@ -126,11 +126,11 @@ no-transfer transfer =
 -- The parameters of SignatureVerify can be supplied, so the rule is not
 -- vacuous.  This toy algorithm is not a signature scheme: here a
 -- "signature" verifies when it equals pk + m, and unforgeability holds by
--- definition of SignedBy.  Nothing about Ed25519 or any real algorithm is
--- proved here; that remains the assumption.
--- ToySignedBy (SignedBy in this model) is defined to equal Verified, so
--- toy-unforgeable is an identity construction and the model does not
--- distinguish verification from signing by a key holder.
+-- definition of SignedBy.  In this model ToySignedBy (SignedBy here) is
+-- defined to equal Verified, so toy-unforgeable is an identity construction
+-- and the model does not distinguish verification from signing by a key
+-- holder.  Nothing about Ed25519 or any real algorithm is proved here; that
+-- remains the assumption.
 
 module ToyModel where
 
