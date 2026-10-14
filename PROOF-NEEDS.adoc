@@ -53,6 +53,6 @@ A row moves only with the artefact named beside it.
 | WL-6 | the provenance dashboard displays levels | OPEN | the dashboard is not in this repository
 | WL-7 | a level does not transfer between claims (§7.3 rule 6) | PROVEN | `no-transfer`; `tests/reject/SignatureToConsent.agda` is refused
 | WL-8 | an unchecked signature is not a token for `signed-by` (§7.3 rule 7) | TESTED | `tests/reject/UnverifiedSignature.agda` is refused
-| WL-9 | `pmpl-verify` reports a level for every claim, and never a bare pass below `sound` | DESIGNED | follow-up PR
+| WL-9 | `pmpl-verify` reports a level for every claim, and never a bare pass below `sound` | TESTED | `tools/pmpl-verify` unit tests: a matching content hash is `epi` and renders "not verified" (it does not yet check the signature itself), a mismatch fails at `warrant`, `--existence-only` is `epi`
 | WL-10 | the validator's Ed25519 check (the crypton library) implements `verify` in `SignatureVerify` | ASSUMED | a trusted library; the fixture's OpenSSL-made signatures verify under it, which is agreement between two implementations, not a proof
 |===

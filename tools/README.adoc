@@ -14,7 +14,7 @@ toc::[]
 The suite currently includes:
 
 * `pmpl-sign/` – Create cryptographic signatures and embed provenance metadata.
-* `pmpl-verify/` – Verify signatures and validate provenance chains.
+* `pmpl-verify/` – Check provenance signatures and report each claim's warrant level (spec/PROVENANCE-SPEC.adoc §7). It recomputes the content hash; it does not yet verify the cryptographic signature, so a signed-by claim is reported at `epi`, never as a pass.
 * `pmpl-audit/` – Perform repository‑level audits (SPDX, manifests, provenance).
 * `integrations/` – Templates and examples for integrating PMPL tools into CI/CD.
 
