@@ -48,7 +48,7 @@ courts) - Slow (years of litigation) - Jurisdiction-bound (US law ≠ EU
 law)
 
 *Creative Commons licenses:* - Not machine-enforceable (just legal text)
-- No consent tracking (can’t verify "`permission granted`") - No
+- No consent tracking (no record that "`permission granted`") - No
 propagation infrastructure (metadata lost in sharing)
 
 *Terms of Service (ToS):* - Platform-specific (every site different) -
@@ -75,7 +75,7 @@ capabilities, just legal permissions)
 A *Consent Layer* is infrastructure that makes permission statements: 1.
 *Machine-readable* (computers can parse them) 2. *Cryptographically
 verifiable* (can’t be forged) 3. *Propagatable* (travel with content as
-it moves) 4. *Auditable* (can verify "`Did they have permission?`") 5.
+it moves) 4. *Auditable* (can check "`Is there a record of permission?`") 5.
 *Revocable* (permission can be withdrawn)
 
 ==== 2.2 Analogy: HTTPS for Consent
@@ -178,11 +178,13 @@ Registry API:
 *Option B:* Denies → Registry logs denial, OpenAI cannot use work -
 *Option C:* Negotiates → "`I want $500, not $100`"
 
-*Step 5: Verification and Audit* - OpenAI trains GPT-5, includes consent
+*Step 5: Audit* - OpenAI trains GPT-5, includes consent
 log in dataset documentation - Auditors (regulators, researchers,
-advocacy groups) can verify: "`Did OpenAI have permission for all
-training data?`" - Registry provides proof: "`Yes, Jane consented on
-[date], terms [link]`"
+advocacy groups) can check: "`Is there a consent record for all
+training data?`" - Registry provides a signed record: "`Jane consented
+on [date], terms [link]`". The signature shows the registry issued the
+record; the record is evidence of Jane's consent, not verification of
+it.
 
 *Step 6: Revocation (If Needed)* - Jane later decides to revoke consent
 - Updates Registry: "`Consent withdrawn as of [date]`" - OpenAI must

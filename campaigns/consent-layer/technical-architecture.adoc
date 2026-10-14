@@ -146,7 +146,7 @@ X-Consent-Registry: https://consent-registry.example.org/work/789
 Link: <https://palimpsest.license/v0.4>; rel="license"
 ----
 
-===== Consent Verification Header (for API requests)
+===== Consent Receipt Header (for API requests)
 
 [source,http]
 ----
@@ -154,7 +154,11 @@ GET /dataset/download HTTP/1.1
 X-Consent-Token: Bearer eyJhbGciOiJFZDI1NTE5...
 ----
 
-Server validates token against consent registry before serving content.
+Server checks the token's signature against the consent registry before
+serving content. A valid signature shows the registry issued the receipt.
+The consent the receipt records is still evidence, not verified consent:
+under `spec/PROVENANCE-SPEC.adoc` §7 a receipt is `epi` for
+`consented-for-training`.
 
 '''''
 
@@ -351,7 +355,7 @@ contract ConsentRegistry {
         });
     }
 
-    function verifyConsent(
+    function hasConsentRecord(
         bytes32 workHash,
         bytes32 requesterHash
     ) external view returns (bool) {
@@ -474,11 +478,11 @@ Response:
 
 '''''
 
-==== 4.4 Verify Consent
+==== 4.4 Look Up a Consent Record
 
 [source,http]
 ----
-GET /consent/verify?workId=urn:uuid:a1b2c3d4&requester=OpenAI
+GET /consent/record?workId=urn:uuid:a1b2c3d4&requester=OpenAI
 
 Response:
 {
@@ -494,6 +498,12 @@ Response:
   }
 }
 ----
+
+The `proof` signature lets the requester check that the registry issued
+this record. It does not verify the consent itself: `"status":
+"granted"` is the registry's record of what the creator declared, so a
+consumer reports it as evidence (`epi` under `spec/PROVENANCE-SPEC.adoc`
+§7), never as verified consent.
 
 '''''
 
@@ -757,7 +767,7 @@ GET /api/works/123
 
 '''''
 
-==== 6.4 API Access (Consent Verification)
+==== 6.4 API Access (Consent Receipts)
 
 *AI company scrapes platform:*
 
