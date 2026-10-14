@@ -112,3 +112,19 @@ jobs:
       - name: Test
         working-directory: TOOLS/validation/haskell
         run: /usr/bin/cabal test --test-show-details=direct
+
+  # ci.yml runs the Rust tools' tests only for PRs into main; this job runs
+  # pmpl-verify's level tests on every PR, including stacked ones.
+  pmpl-verify:
+    name: pmpl-verify reports a level per claim
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Test
+        working-directory: tools/pmpl-verify
+        run: cargo test
