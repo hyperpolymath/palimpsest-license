@@ -209,8 +209,9 @@ X-Palimpsest-Lineage-ID: urn:uuid:550e8400-e29b-81d4-a716-446655440000
 X-Palimpsest-Lineage-ID: lineage:protest-song:we-shall-overcome
 ----
 
-*Usage:* - MUST be globally unique - SHOULD use UUID format (RFC 9562, version 8) -
-MAY use semantic URN for cultural significance
+*Usage:* - MUST be globally unique - SHOULD be a UUID version 8 (RFC 9562) in the
+time-ordered layout ("profile T", as for `+X-Palimpsest-Trace-ID+`) - MAY use
+semantic URN for cultural significance
 
 ===== 8. `+X-Palimpsest-DAO-Contract+`
 
@@ -273,7 +274,11 @@ X-Palimpsest-Trace-ID: 550e8400-e29b-81d4-a716-446655440000
 ----
 
 *Usage:* - Generated per request - Logged throughout infrastructure -
-Enables end-to-end compliance tracking
+Enables end-to-end compliance tracking - SHOULD be a UUID version 8 (RFC 9562)
+in the time-ordered layout ("profile T"): a version 7 UUID whose version digit
+is set to `+8+`, as the application examples below generate it - Proxies and
+CDNs that cannot mint one MAY pass through an opaque request identifier, or
+one the origin already set
 
 ==== Composite Header
 
@@ -453,8 +458,16 @@ server {
 ----
 const express = require('express');
 const crypto = require('crypto');
+const { v7: uuidv7 } = require('uuid'); // npm package `uuid`, version 10 or later
 
 const app = express();
+
+// Trace IDs are UUID version 8, profile T: a version 7 UUID with its version
+// digit (character 14) set to 8.
+function traceIdV8() {
+  const id = uuidv7();
+  return id.slice(0, 14) + '8' + id.slice(15);
+}
 
 // Middleware: Add Palimpsest license headers
 function palimpsestHeaders(options = {}) {
@@ -487,7 +500,7 @@ function palimpsestHeaders(options = {}) {
     }
 
     // Generate trace ID
-    const traceId = crypto.randomUUID();
+    const traceId = traceIdV8();
     res.setHeader('X-Palimpsest-Trace-ID', traceId);
 
     // Log request with trace ID
@@ -576,6 +589,12 @@ import uuid
 import hashlib
 from django.utils.deprecation import MiddlewareMixin
 
+def trace_id_v8():
+    """Trace IDs are UUID version 8, profile T: a version 7 UUID with its
+    version digit set to 8. uuid.uuid7() needs Python 3.14 or later."""
+    u = uuid.uuid7()
+    return str(uuid.UUID(int=(u.int & ~(0xF << 76)) | (0x8 << 76)))
+
 class PalimpsestHeadersMiddleware(MiddlewareMixin):
     """Add Palimpsest license headers to all responses."""
 
@@ -590,7 +609,7 @@ class PalimpsestHeadersMiddleware(MiddlewareMixin):
         response['X-Palimpsest-Metadata-URL'] = f"{request.scheme}://{request.get_host()}/.well-known/license"
 
         # Generate trace ID
-        trace_id = str(uuid.uuid4())
+        trace_id = trace_id_v8()
         response['X-Palimpsest-Trace-ID'] = trace_id
 
         # Path-specific headers
@@ -651,11 +670,17 @@ import hashlib
 
 app = Flask(__name__)
 
+def trace_id_v8():
+    """Trace IDs are UUID version 8, profile T: a version 7 UUID with its
+    version digit set to 8. uuid.uuid7() needs Python 3.14 or later."""
+    u = uuid.uuid7()
+    return str(uuid.UUID(int=(u.int & ~(0xF << 76)) | (0x8 << 76)))
+
 @app.before_request
 def setup_palimpsest():
     """Set up Palimpsest licensing for request."""
     # Generate trace ID
-    g.trace_id = str(uuid.uuid4())
+    g.trace_id = trace_id_v8()
 
     # Check client purpose
     client_purpose = request.headers.get('X-Palimpsest-Client-Purpose')
@@ -708,19 +733,28 @@ if __name__ == '__main__':
 
 [source,javascript]
 ----
+import { v7 as uuidv7 } from 'uuid'; // npm package `uuid`, bundled by wrangler
+
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
+// Trace IDs are UUID version 8, profile T: a version 7 UUID with its version
+// digit (character 14) set to 8.
+function traceIdV8() {
+  const id = uuidv7();
+  return id.slice(0, 14) + '8' + id.slice(15);
+}
+
 async function handleRequest(request) {
+  const url = new URL(request.url);
+
   // Block AI scrapers at edge
   const userAgent = request.headers.get('user-agent') || '';
   const aiScrapers = ['GPTBot', 'ChatGPT', 'CCBot', 'ClaudeBot'];
 
   if (aiScrapers.some(bot => userAgent.includes(bot))) {
     // Check if path requires NI consent
-    const url = new URL(request.url);
-
     if (url.pathname.startsWith('/creative/')) {
       return new Response('403 Forbidden: Non-interpretive consent required', {
         status: 403,
@@ -747,7 +781,7 @@ async function handleRequest(request) {
   }
 
   // Generate trace ID
-  newResponse.headers.set('X-Palimpsest-Trace-ID', crypto.randomUUID());
+  newResponse.headers.set('X-Palimpsest-Trace-ID', traceIdV8());
 
   return newResponse;
 }
@@ -769,10 +803,12 @@ function handler(event) {
         value: 'https://example.org/.well-known/license'
     };
 
-    // Generate trace ID
-    headers['x-palimpsest-trace-id'] = {
-        value: generateUUID()
-    };
+    // Trace ID: keep a UUID the origin already minted; otherwise pass
+    // through CloudFront's own request ID. The edge does not mint UUIDs
+    // itself, because a trace UUID needs a cryptographic random source.
+    if (!headers['x-palimpsest-trace-id']) {
+        headers['x-palimpsest-trace-id'] = { value: event.context.requestId };
+    }
 
     // Block AI scrapers
     var userAgent = request.headers['user-agent'] ? request.headers['user-agent'].value : '';
@@ -794,14 +830,6 @@ function handler(event) {
     }
 
     return response;
-}
-
-function generateUUID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0;
-        var v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
 }
 ----
 
