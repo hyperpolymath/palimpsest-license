@@ -43,7 +43,7 @@ rejected() {
     return 1
   fi
   sig="$(grep -n '^ *invalid :' "$file" | head -1 | cut -d: -f1)"
-  at="$(grep -oE "/$name\.agda:[0-9]+," "$log" | head -1 | grep -oE '[0-9]+' || true)"
+  at="$(grep -F "$(realpath -- "$file"):" "$log" | head -1 | grep -oE ':[0-9]+,' | grep -oE '[0-9]+' || true)"
   if [[ -z "$sig" || -z "$at" ]] || (( at < sig )) ||
      ! grep -q 'when checking that' "$log" ||
      grep -Eq 'Not in scope|Failed to find|Unsolved|Parse error' "$log"; then

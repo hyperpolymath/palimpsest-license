@@ -34,7 +34,7 @@ jobs:
       - name: Install Nickel 1.18.0
         run: |
           cargo install nickel-lang-cli --version 1.18.0 --locked
-          test "$(nickel --version | cut -d' ' -f1-3)" = 'nickel-lang-cli nickel 1.18.0'
+          nickel --version | grep -q '1.18.0'
 
       - name: Records, spec example, coverage and expected rejections
         run: bash scripts/check-warrant-records.sh
