@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
 # TEMPORARY: builds .github/workflows/actions.lock with the estate's lock
-# repair chain and prints it. Removed in the next commit; it deletes itself
-# before generating so it is not locked.
+# repair chain, using the gh-actions-lock version and standards scripts the
+# governance gate at standards b26d3fb uses, and prints it. Removed in the
+# next commit; it deletes itself before generating so it is not locked.
 name: TEMP generate actions.lock
 on:
   push:
@@ -19,20 +20,12 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           repository: hyperpolymath/standards
-          ref: fad242d35291de1898242d6737ba02b74a59a2f2
-          path: .standards-gate
-          persist-credentials: false
-          sparse-checkout: |
-            scripts/check-actions-lock-gate.sh
-            scripts/update-actions-lock.sh
-          sparse-checkout-cone-mode: false
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-        with:
-          repository: hyperpolymath/standards
           ref: b26d3fb548fa2c4a7920cc69128821811d4e3222
           path: .standards-chain
           persist-credentials: false
           sparse-checkout: |
+            scripts/check-actions-lock-gate.sh
+            scripts/update-actions-lock.sh
             scripts/relock-sha-keys.sh
             scripts/complete-job-refs.sh
             scripts/close-lock.sh
@@ -44,10 +37,10 @@ jobs:
         run: |
           set +e -uo pipefail
           T="$RUNNER_TEMP"
-          cp .standards-gate/scripts/*.sh .standards-chain/scripts/*.sh "$T/"
-          rm -rf .standards-gate .standards-chain .github/workflows/zz-generate-actions-lock.yml
+          cp .standards-chain/scripts/*.sh "$T/"
+          rm -rf .standards-chain .github/workflows/zz-generate-actions-lock.yml
           mkdir -p "$T/orig" && cp .github/workflows/*.yml "$T/orig/"
-          gh extension install github/gh-actions-lock
+          gh extension install github/gh-actions-lock --pin v0.1.6
           gh extension list
           echo "=== 1. gh actions-lock"; gh actions-lock --no-interactive; echo "exit=$?"
           echo "=== 2. restore the SHA-pinned workflows"; cp "$T"/orig/*.yml .github/workflows/
@@ -55,7 +48,7 @@ jobs:
           echo "=== 4. complete-job-refs"; bash "$T/complete-job-refs.sh" .github/workflows; echo "exit=$?"
           echo "=== 5. close-lock"; bash "$T/close-lock.sh" .github/workflows; echo "exit=$?"
           echo "=== 6. prune-stale"; bash "$T/prune-stale.sh" .github/workflows; echo "exit=$?"
-          echo "=== gate (fad242d, exactly as governance runs it)"
+          echo "=== gate (b26d3fb, exactly as governance runs it)"
           ACTIONS_LOCK_VERIFIER="$T/update-actions-lock.sh" bash "$T/check-actions-lock-gate.sh" .github/workflows; echo "gate exit=$?"
           echo "=== full verification (network)"; gh actions-lock --verify --json=valid,findings; echo "verify exit=$?"
           echo "=== workflow diff (must be empty)"; git diff --stat -- .github/workflows
