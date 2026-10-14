@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Creative Works Consent Framework: Implementation Guide
 
 *Version*: 1.0 *Date*: 2025-11-22 *Status*: Draft

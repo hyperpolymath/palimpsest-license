@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == 🌀 Welkom bij Palimpsest Licentie v0.3 | Welcome to Palimpsest License v0.3
 
 ____

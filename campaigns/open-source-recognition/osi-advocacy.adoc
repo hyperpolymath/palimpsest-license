@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Why OSI Should Recognise Consent-Layer Licenses: An Advocacy Brief
 
 === Executive Summary

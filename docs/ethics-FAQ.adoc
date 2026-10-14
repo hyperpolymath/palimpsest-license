@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == 🧭 Ethics in the Palimpsest License
 
 The Palimpsest License is not just a legal framework—it’s a moral

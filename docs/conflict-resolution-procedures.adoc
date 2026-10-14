@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest License Conflict Resolution Procedures
 
 *Version:* 1.0 *Last Updated:* 2025-11-23 *Status:* Active *Governing

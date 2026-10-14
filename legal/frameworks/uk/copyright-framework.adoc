@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == United Kingdom Copyright Framework
 
 === Palimpsest License Legal Reference

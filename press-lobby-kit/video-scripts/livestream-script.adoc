@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Livestream Panel: "`The Future of Creative Licensing in the AI Era`" (90 Minutes)
 
 *Panel Discussion & Community Q&A Event*

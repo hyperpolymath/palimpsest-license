@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Component Documentation
 
 This document provides detailed documentation for all components in the
