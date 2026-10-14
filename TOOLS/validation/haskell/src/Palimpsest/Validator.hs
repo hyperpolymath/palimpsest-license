@@ -18,8 +18,7 @@ module Palimpsest.Validator
 import Control.Monad (when)
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ask)
-import Data.Text (Text)
-import qualified Data.Text as T
+import Data.List (isInfixOf)
 import System.FilePath ((</>))
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.License
@@ -39,15 +38,15 @@ validateProject = do
 
   -- Validate v0.4 license (primary)
   liftIO $ putStrLn "Validating v0.4 license..."
-  v04Result <- validateLicenseVersion root "v0.4"
+  validateLicenseVersion root "v0.4"
 
   -- Validate v0.3 licenses if they exist
   liftIO $ putStrLn "\nValidating v0.3 licenses..."
-  v03Result <- validateLicenseVersion root "v0.3"
+  validateLicenseVersion root "v0.3"
 
   -- Validate metadata
   liftIO $ putStrLn "\nValidating metadata..."
-  metadataResult <- validateProjectMetadata root
+  validateProjectMetadata root
 
   -- Validate bilingual consistency (if enabled)
   when (configCheckBilingual config) $ do
@@ -139,7 +138,7 @@ validateProjectReferences root = do
 -- | Check if document is important for validation
 isImportantDoc :: FilePath -> Bool
 isImportantDoc path =
-  any (`elem` path)
+  any (`isInfixOf` path)
     [ "LICENSES/"
     , "GUIDES_"
     , "TOOLKIT_"

@@ -18,14 +18,12 @@ module Palimpsest.Validator.Utils
   , relativePath
   ) where
 
-import Control.Monad.IO.Class (liftIO)
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import System.Directory (doesFileExist, listDirectory, doesDirectoryExist)
 import System.FilePath ((</>), takeExtension, makeRelative)
 import Text.Regex.TDFA ((=~))
-import Data.List (isSuffixOf)
 
 -- | Read file contents as Text
 readFileText :: FilePath -> IO (Maybe Text)
@@ -42,7 +40,7 @@ normaliseText = T.toLower . T.strip
 -- | Extract clause number from text (e.g., "Clause 1.2" -> "1.2")
 extractClauseNumber :: Text -> Maybe Text
 extractClauseNumber text =
-  let pattern = "Clause[[:space:]]+([0-9]+\\.?[0-9]*)" :: String
+  let pattern = "[Cc]lause[[:space:]]+([0-9]+(\\.[0-9]*)*)" :: String
       matches = T.unpack text =~ pattern :: [[String]]
   in case matches of
        ((_ : num : _) : _) -> Just (T.pack num)

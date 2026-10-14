@@ -4,24 +4,19 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module E2E.ValidationE2ESpec (e2eSpec) where
 
 import Test.Hspec
-import Test.Hspec.QuickCheck
-import Test.QuickCheck
-import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import System.IO.Temp
 import System.Directory
 import System.FilePath
-import Control.Exception (bracket)
+import qualified Control.Exception
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.License
-import Palimpsest.Validator.Metadata
-import Palimpsest.Validator.Bilingual
-import Palimpsest.Validator.Reference
 import Palimpsest.Validator.Utils
 
 -- | End-to-end tests for complete validation workflows
@@ -155,7 +150,7 @@ e2eSpec = describe "E2E: Full Validation Pipeline" $ do
               , "Content line 2 for clause " <> T.pack (show n)
               , "Content line 3 for clause " <> T.pack (show n)
               , ""
-              ]) [1..500]
+              ]) [1..500 :: Int]
 
       let structure = parseLicenseStructure largeContent
 
@@ -219,7 +214,7 @@ e2eSpec = describe "E2E: Full Validation Pipeline" $ do
     it "validates single file structure extraction" $ do
       let content = T.unlines $
             [ "# Palimpsest License v0.4" ] ++
-            concatMap (\n -> ["## Clause " <> T.pack (show n), "Content"]) [1..100]
+            concatMap (\n -> ["## Clause " <> T.pack (show n), "Content"]) [1..100 :: Int]
 
       let structure = parseLicenseStructure content
       length (licenseClauses structure) `shouldBe` 100
@@ -258,7 +253,7 @@ e2eSpec = describe "E2E: Full Validation Pipeline" $ do
       licenseVersion structure `shouldBe` "0.4"
       licenseHasHeader structure `shouldBe` True
       length (licenseClauses structure) `shouldBe` 2
-      any (T.isInfixOf "Non-Interpretive") (map clauseHeading (licenseClauses structure)) `shouldBe` True
+      any (T.isInfixOf "Non-Interpretive") (map clauseContent (licenseClauses structure)) `shouldBe` True
 
 -- Helper function for exception handling
 catch :: IO a -> (IOError -> IO a) -> IO a

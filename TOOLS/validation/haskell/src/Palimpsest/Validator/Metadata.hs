@@ -13,19 +13,27 @@ module Palimpsest.Validator.Metadata
   , validateXML
   , validateDublinCore
   , MetadataStructure(..)
+    -- * Parsing helpers (exported for the test suite)
+  , SPDXLicense(..)
+  , extractContext
+  , extractLicenseId
+  , extractMetadataVersion
   ) where
 
 import Control.Monad (when, unless)
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ask)
-import Data.Aeson (Value(..), Object, FromJSON, parseJSON, withObject, (.:), (.:?))
+import Data.Aeson (Value(..), FromJSON, parseJSON, withObject, (.:?))
 import qualified Data.Aeson as Aeson
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import qualified Data.ByteString.Lazy as BL
-import Data.Maybe (isNothing, isJust, fromMaybe)
-import qualified Data.HashMap.Strict as HM
+import Data.Maybe (isNothing)
+import qualified Data.Aeson.Key as Key
+import qualified Data.Aeson.KeyMap as KM
+import qualified Data.Text.Lazy as TL
+import qualified Data.Vector as V
 import GHC.Generics (Generic)
 import Text.XML (Document, parseText_, def, Element(..), Node(..), Name(..))
 import qualified Text.XML as XML
@@ -39,7 +47,7 @@ data MetadataStructure = MetadataStructure
   , metaVersion    :: Maybe Text
   , metaContext    :: Maybe Text
   , metaValid      :: Bool
-  } deriving (Show, Eq, Generic)
+  } deriving stock (Show, Eq, Generic)
 
 -- | SPDX License structure
 data SPDXLicense = SPDXLicense
@@ -50,7 +58,7 @@ data SPDXLicense = SPDXLicense
   , spdxDetailsUrl     :: Maybe Text
   , spdxReference      :: Maybe Text
   , spdxSeeAlso        :: Maybe [Text]
-  } deriving (Show, Eq, Generic)
+  } deriving stock (Show, Eq, Generic)
 
 instance FromJSON SPDXLicense where
   parseJSON = withObject "SPDXLicense" $ \v -> SPDXLicense
@@ -110,8 +118,8 @@ validateJSONLD path content = do
 validateJSONLDStructure :: FilePath -> Value -> ValidatorM ()
 validateJSONLDStructure path (Object obj) = do
   -- Check for required SPDX fields
-  let hasContext = HM.member "@context" obj
-      hasType = HM.member "@type" obj
+  let hasContext = KM.member "@context" obj
+      hasType = KM.member "@type" obj
 
   unless hasContext $
     validationWarning Warning (T.pack path)
@@ -122,7 +130,7 @@ validateJSONLDStructure path (Object obj) = do
       "@type field missing"
 
   -- Validate SPDX license structure if present
-  case HM.lookup "licenses" obj of
+  case KM.lookup "licenses" obj of
     Just (Array licenses) -> do
       when (null licenses) $
         validationWarning Warning (T.pack path)
@@ -168,7 +176,7 @@ validateSPDXLicense path val = do
 -- | Extract @context from JSON-LD
 extractContext :: Value -> Maybe Text
 extractContext (Object obj) =
-  case HM.lookup "@context" obj of
+  case KM.lookup "@context" obj of
     Just (String ctx) -> Just ctx
     Just (Object _) -> Just "embedded"
     _ -> Nothing
@@ -177,23 +185,21 @@ extractContext _ = Nothing
 -- | Extract license ID from metadata
 extractLicenseId :: Value -> Maybe Text
 extractLicenseId (Object obj) =
-  case HM.lookup "licenses" obj of
+  case KM.lookup "licenses" obj of
     Just (Array licenses) ->
-      case licenses !!? 0 of
+      case licenses V.!? 0 of
         Just (Object licObj) ->
-          case HM.lookup "licenseId" licObj of
+          case KM.lookup "licenseId" licObj of
             Just (String lid) -> Just lid
             _ -> Nothing
         _ -> Nothing
     _ -> Nothing
-  where
-    xs !!? n = if n >= 0 && n < length xs then Just (xs !! n) else Nothing
 extractLicenseId _ = Nothing
 
 -- | Extract version from metadata
 extractMetadataVersion :: Value -> Maybe Text
 extractMetadataVersion (Object obj) =
-  case HM.lookup "licenseListVersion" obj of
+  case KM.lookup "licenseListVersion" obj of
     Just (String v) -> Just v
     _ -> Nothing
 extractMetadataVersion _ = Nothing
@@ -204,7 +210,7 @@ validateXML path content = do
   let xmlText = TE.decodeUtf8 $ BL.toStrict content
 
   -- Parse XML
-  let doc = parseText_ def xmlText
+  let doc = parseText_ def (TL.fromStrict xmlText)
 
   -- Validate structure
   validateXMLStructure path doc
@@ -292,10 +298,10 @@ validateDublinCore path (Object obj) = do
         , "dc:identifier"
         ]
 
-  mapM_ (\elem ->
-    unless (HM.member elem obj) $
+  mapM_ (\dcElement ->
+    unless (KM.member (Key.fromText dcElement) obj) $
       validationWarning Warning (T.pack path)
-        ("Missing Dublin Core element: " <> elem)
+        ("Missing Dublin Core element: " <> dcElement)
     ) dcElements
 
 validateDublinCore _ _ = pure ()

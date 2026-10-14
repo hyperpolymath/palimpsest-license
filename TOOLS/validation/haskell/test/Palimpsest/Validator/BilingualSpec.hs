@@ -11,6 +11,7 @@ import Test.Hspec
 import Test.QuickCheck
 import Data.Text (Text)
 import qualified Data.Text as T
+import Data.Maybe (isJust)
 import Palimpsest.Validator.Bilingual
 
 bilingualSpec :: Spec
@@ -173,9 +174,6 @@ bilingualSpec = describe "Bilingual Validator" $ do
     it "parseTableRow should never crash" $ property $
       \text -> let result = parseTableRow (T.pack text)
                in result `elem` [Nothing] || isJust result
-      where
-        isJust (Just _) = True
-        isJust Nothing = False
 
   describe "Edge cases" $ do
     it "handles empty titles in mapping" $ do
@@ -201,17 +199,17 @@ bilingualSpec = describe "Bilingual Validator" $ do
 
   describe "Version consistency checks" $ do
     it "detects matching versions" $ do
-      let v1 = "0.4"
+      let v1 = "0.4" :: Text
       let v2 = "0.4"
       v1 == v2 `shouldBe` True
 
     it "detects mismatched versions" $ do
-      let v1 = "0.3"
+      let v1 = "0.3" :: Text
       let v2 = "0.4"
       v1 == v2 `shouldBe` False
 
     it "handles unknown version" $ do
-      let v1 = "unknown"
+      let v1 = "unknown" :: Text
       let v2 = "0.4"
       (v1 /= v2 && v1 /= "unknown") `shouldBe` False
 

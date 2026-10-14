@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# cabal build output
+dist-newstyle/
+# HPC coverage data written by the test suite (it is built with -fhpc)
+*.tix

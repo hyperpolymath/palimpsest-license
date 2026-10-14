@@ -156,12 +156,12 @@ licenseSpec = describe "License Validator" $ do
 
   describe "Clause numbering validation (find duplicates)" $ do
     it "detects duplicate clause numbers" $ do
-      let numbers = ["1", "2", "2", "3"]
+      let numbers = ["1", "2", "2", "3"] :: [Text]
       let dups = findDuplicates numbers
       dups `shouldContain` ["2"]
 
     it "returns empty list for unique numbers" $ do
-      let numbers = ["1", "2", "3"]
+      let numbers = ["1", "2", "3"] :: [Text]
       findDuplicates numbers `shouldBe` []
 
   describe "Property-based tests" $ do

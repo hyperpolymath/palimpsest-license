@@ -66,3 +66,48 @@ jobs:
         run: |
           test "$(agda --version)" = 'Agda version 2.6.4.3'
           bash scripts/check-agda.sh
+
+  # The Haskell validator in TOOLS/validation/haskell, built with Ubuntu's own
+  # GHC and Haskell libraries and no Hackage: cabal resolves every dependency
+  # from the apt-installed global package database.
+  validator:
+    name: Haskell validator builds and its tests pass
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      # GHC 9.4.7 and cabal-install 3.8.1, plus the libraries named in the
+      # build-depends of the library, executable and test suite that do not
+      # ship with GHC (base, bytestring, containers, directory, filepath, mtl
+      # and text do).
+      - name: Install GHC, cabal-install and Haskell libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ghc cabal-install \
+            libghc-aeson-dev libghc-hspec-dev libghc-optparse-applicative-dev \
+            libghc-quickcheck2-dev libghc-regex-tdfa-dev libghc-temporary-dev \
+            libghc-vector-dev libghc-xml-conduit-dev
+
+      # A cabal config with no package repository, so cabal uses only the apt
+      # packages.  The runner image may also carry a GHC and cabal (ghcup)
+      # earlier on PATH, hence with-compiler and /usr/bin/cabal.
+      - name: Configure cabal without a package repository
+        run: |
+          mkdir -p ~/.cabal
+          printf '%s\n' "remote-repo-cache: $HOME/.cabal/packages" \
+            'with-compiler: /usr/bin/ghc' > ~/.cabal/config
+          /usr/bin/cabal --version
+          /usr/bin/ghc --version
+
+      - name: Build
+        working-directory: TOOLS/validation/haskell
+        run: /usr/bin/cabal build all --enable-tests
+
+      - name: Test
+        working-directory: TOOLS/validation/haskell
+        run: /usr/bin/cabal test --test-show-details=direct
