@@ -112,6 +112,23 @@ palimpsest-validate references \
   TOOLKIT_v0.4/*.md
 ----
 
+==== Report Provenance Claims at Their Warrant Level
+
+[source,bash]
+----
+palimpsest-validate provenance tests/warrant/fixture/poem.txt.provenance.json
+palimpsest-validate provenance tests/warrant/fixture/poem.txt.provenance.json --json
+----
+
+Each claim in a provenance file is reported at its warrant level
+(`spec/PROVENANCE-SPEC.adoc` §7). A `signed-by` claim is `sound` only when
+its Ed25519 signature verifies here, under the rule `signature-verify`.
+Licence and consent claims are at most `epi`: the header that declares
+them is evidence, and the output says "not verified". `--json` prints the
+records in the shape `formats/warrant.ncl` checks. The exit status is
+non-zero only when a check fails (a changed artefact, a signature that
+does not verify, a broken chain link).
+
 === Command-Line Options
 
 * `+--root PATH+` - Root path of the project (default: current

@@ -91,7 +91,8 @@ jobs:
             ghc cabal-install \
             libghc-aeson-dev libghc-hspec-dev libghc-optparse-applicative-dev \
             libghc-quickcheck2-dev libghc-regex-tdfa-dev libghc-temporary-dev \
-            libghc-vector-dev libghc-xml-conduit-dev
+            libghc-vector-dev libghc-xml-conduit-dev \
+            libghc-crypton-dev libghc-memory-dev libghc-aeson-pretty-dev
 
       # A cabal config with no package repository, so cabal uses only the apt
       # packages.  The runner image may also carry a GHC and cabal (ghcup)

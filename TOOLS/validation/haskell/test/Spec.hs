@@ -11,6 +11,7 @@ import Palimpsest.Validator.LicenseSpec
 import Palimpsest.Validator.MetadataSpec
 import Palimpsest.Validator.BilingualSpec
 import Palimpsest.Validator.ReferenceSpec
+import Palimpsest.Validator.ProvenanceSpec
 import Palimpsest.Validator.UtilsSpec
 import Integration.PipelineSpec
 import E2E.ValidationE2ESpec
@@ -32,6 +33,7 @@ spec = do
       metadataSpec
       bilingualSpec
       referenceSpec
+      provenanceSpec
       utilsSpec
 
     describe "Integration Tests" $ do
