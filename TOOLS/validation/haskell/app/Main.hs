@@ -5,14 +5,12 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 
 {-# LANGUAGE OverloadedStrings #-}
 
-module Main where
+module Main (main) where
 
 import Control.Monad (when)
-import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import Options.Applicative
 import System.Exit (exitFailure, exitSuccess)
-import System.FilePath ((</>))
 import Palimpsest.Validator
 
 -- | Command line options

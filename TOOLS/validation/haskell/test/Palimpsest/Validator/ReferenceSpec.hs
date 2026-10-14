@@ -9,7 +9,6 @@ module Palimpsest.Validator.ReferenceSpec (referenceSpec) where
 
 import Test.Hspec
 import Test.QuickCheck
-import Data.Text (Text)
 import qualified Data.Text as T
 import Palimpsest.Validator.Reference
 

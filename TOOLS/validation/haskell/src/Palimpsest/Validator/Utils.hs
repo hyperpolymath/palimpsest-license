@@ -18,14 +18,12 @@ module Palimpsest.Validator.Utils
   , relativePath
   ) where
 
-import Control.Monad.IO.Class (liftIO)
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import System.Directory (doesFileExist, listDirectory, doesDirectoryExist)
 import System.FilePath ((</>), takeExtension, makeRelative)
 import Text.Regex.TDFA ((=~))
-import Data.List (isSuffixOf)
 
 -- | Read file contents as Text
 readFileText :: FilePath -> IO (Maybe Text)

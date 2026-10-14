@@ -9,7 +9,6 @@ module Palimpsest.Validator.UtilsSpec (utilsSpec) where
 
 import Test.Hspec
 import Test.QuickCheck
-import Data.Text (Text)
 import qualified Data.Text as T
 import Palimpsest.Validator.Utils
 
@@ -73,7 +72,7 @@ utilsSpec = describe "Utility Functions" $ do
 
     it "parses clause reference without title" $ do
       case parseClauseReference "Clause 3" of
-        Just (num, maybeTitle) -> num `shouldBe` "3"
+        Just (num, _maybeTitle) -> num `shouldBe` "3"
         _ -> expectationFailure "Failed to parse clause reference"
 
     it "returns Nothing for invalid input" $ do
@@ -146,7 +145,7 @@ utilsSpec = describe "Utility Functions" $ do
 
     it "file type detectors should be mutually exclusive for common types" $ property $
       \path -> let isMd = isMarkdownFile path
-                   isJson = isJSONLDFile path
+                   _isJson = isJSONLDFile path
                    isXml = isXMLFile path
                in not (isMd && isXml)  -- Can't be both .md and .xml
 

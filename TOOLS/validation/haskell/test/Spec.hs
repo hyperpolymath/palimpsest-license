@@ -3,7 +3,7 @@ SPDX-License-Identifier: PMPL-1.0-or-later
 SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 
-module Main where
+module Main (main) where
 
 import Test.Hspec
 import Palimpsest.Validator.LicenseSpec

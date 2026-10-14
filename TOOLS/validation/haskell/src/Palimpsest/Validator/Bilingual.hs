@@ -12,6 +12,11 @@ module Palimpsest.Validator.Bilingual
   , checkStructuralParity
   , BilingualMapping(..)
   , loadBilingualMap
+    -- * Parsing helpers (exported for the test suite)
+  , defaultBilingualMap
+  , parseBilingualMap
+  , parseTableRow
+  , titleMatches
   ) where
 
 import Control.Monad (when, unless, forM_)
@@ -19,8 +24,7 @@ import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ask)
 import Data.Text (Text)
 import qualified Data.Text as T
-import Data.Maybe (mapMaybe, isNothing, fromMaybe)
-import Data.List (sort)
+import Data.Maybe (mapMaybe, isNothing)
 import qualified Data.Map.Strict as Map
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.Utils
@@ -31,7 +35,7 @@ data BilingualMapping = BilingualMapping
   { mappingClauseNumber :: Text
   , mappingEnglishTitle :: Text
   , mappingDutchTitle   :: Text
-  } deriving (Show, Eq)
+  } deriving stock (Show, Eq)
 
 -- | Expected bilingual mappings (from bilingual-map.md)
 defaultBilingualMap :: [BilingualMapping]
@@ -211,7 +215,7 @@ titleMatches expected actual =
 
 -- | Check version consistency between languages
 checkVersionConsistency :: FilePath -> FilePath -> Text -> Text -> ValidatorM ()
-checkVersionConsistency enPath nlPath enVersion nlVersion = do
+checkVersionConsistency _enPath _nlPath enVersion nlVersion = do
   when (enVersion /= nlVersion && enVersion /= "unknown" && nlVersion /= "unknown") $
     validationError Error "bilingual-consistency"
       (T.pack $ "Version mismatch: English is " ++ T.unpack enVersion ++

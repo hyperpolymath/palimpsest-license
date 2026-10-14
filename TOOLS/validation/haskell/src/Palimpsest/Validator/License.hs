@@ -9,11 +9,19 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -- Validates markdown structure, clause numbering, and format compliance
 module Palimpsest.Validator.License
   ( validateLicenseFile
-  , validateClauseStructure
   , validateClauseNumbering
   , checkRequiredSections
   , LicenseStructure(..)
   , Clause(..)
+    -- * Parsing helpers (exported for the test suite)
+  , parseLicenseStructure
+  , extractVersion
+  , hasLicenseHeader
+  , detectLanguage
+  , extractGoverningLaw
+  , isClausePattern
+  , parseClauseNumber
+  , findDuplicates
   ) where
 
 import Control.Monad (when, unless, forM_)
@@ -21,8 +29,9 @@ import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ask)
 import Data.Text (Text)
 import qualified Data.Text as T
-import Data.Maybe (isNothing, mapMaybe, catMaybes)
-import Data.List (sort, nub)
+import qualified Data.Text.Read as TR
+import Data.Maybe (isNothing, mapMaybe)
+import Data.List (sort, nub, (\\))
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.Utils
 import Text.Regex.TDFA ((=~))
@@ -33,7 +42,7 @@ data Clause = Clause
   , clauseHeading :: Text
   , clauseContent :: Text
   , clauseLine    :: Int
-  } deriving (Show, Eq)
+  } deriving stock (Show, Eq)
 
 -- | License document structure
 data LicenseStructure = LicenseStructure
@@ -42,7 +51,7 @@ data LicenseStructure = LicenseStructure
   , licenseHasHeader  :: Bool
   , licenseLanguage   :: Maybe Language
   , licenseGoverningLaw :: Maybe Text
-  } deriving (Show, Eq)
+  } deriving stock (Show, Eq)
 
 -- | Validate a complete license file
 validateLicenseFile :: FilePath -> ValidatorM LicenseStructure
@@ -218,24 +227,21 @@ validateClauseNumbering path clauses = do
     validationWarning Warning (T.pack path) "Clause numbers are not in sequential order"
 
   -- Check for gaps in numbering
-  forM_ (zip expected parsed) $ \(exp, actual) ->
-    when (exp /= actual) $
+  forM_ (zip expected parsed) $ \(expectedNum, actual) ->
+    when (expectedNum /= actual) $
       validationWarning Warning (T.pack path)
-        ("Clause numbering gap: expected " <> T.pack (show exp) <> ", found " <> T.pack (show actual))
+        ("Clause numbering gap: expected " <> T.pack (show expectedNum) <> ", found " <> T.pack (show actual))
 
 -- | Parse clause number to integer
 parseClauseNumber :: Text -> Maybe Int
 parseClauseNumber text =
-  case T.decimal text of
+  case TR.decimal text of
     Right (n, _) -> Just n
     Left _ -> Nothing
 
 -- | Find duplicate elements in list
 findDuplicates :: Eq a => [a] -> [a]
 findDuplicates xs = xs \\ nub xs
-  where
-    (\\) :: Eq a => [a] -> [a] -> [a]
-    (\\) = foldr (\x acc -> if x `elem` acc then acc else x : filter (/= x) acc) []
 
 -- | Check for required sections in license
 checkRequiredSections :: FilePath -> LicenseStructure -> ValidatorM ()
