@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Outreach Letter: Index on Censorship
 
 *Date:* 22 November 2025 *To:* Index on Censorship *From:* Palimpsest

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Letter to BT (British Telecom)
 
 *To:* BT Group plc *Attn:* Philip Jansen, Chief Executive *Cc:* BT

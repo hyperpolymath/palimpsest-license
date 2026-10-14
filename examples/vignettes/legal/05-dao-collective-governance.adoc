@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Legal Vignette: The DAO Collective Governance Scenario
 
 === Scenario: Decentralized Autonomous Organization Managing Palimpsest-Licensed Works

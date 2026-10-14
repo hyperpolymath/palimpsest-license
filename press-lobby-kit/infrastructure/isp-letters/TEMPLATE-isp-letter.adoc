@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Template: Letter to [ISP/PROVIDER NAME]
 
 *To:* [Company Name] *Attn:* [CEO/Executive Name], [Title] *Cc:*

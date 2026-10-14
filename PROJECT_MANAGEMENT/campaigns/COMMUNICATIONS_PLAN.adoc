@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest License - Communications & Marketing Plan
 
 *Based on CIM Marketing Planning Framework* *Version:* 1.0 *Date:*

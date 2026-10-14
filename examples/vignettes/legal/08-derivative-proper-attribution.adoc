@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Legal Vignette: Derivative Work with Proper Attribution
 
 === Scenario: Respectful Derivative Creation with Full Palimpsest Compliance

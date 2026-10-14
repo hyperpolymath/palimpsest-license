@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Creator Testimonial Video Template
 
 *Interview Framework for Palimpsest Licence Adopters*
