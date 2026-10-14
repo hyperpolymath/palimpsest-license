@@ -1,0 +1,8 @@
+SPDX-License-Identifier: PMPL-1.0-or-later
+SPDX-FileCopyrightText: 2026 Fixture Author
+AI-Training: permitted, with documentation (PMPL-1.0 Exhibit A)
+
+Under the palimpsest an older hand
+still shows through the ink:
+what was written stays written,
+and what is claimed is only claimed.

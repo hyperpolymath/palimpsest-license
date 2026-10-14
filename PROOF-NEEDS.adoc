@@ -49,8 +49,10 @@ A row moves only with the artefact named beside it.
 | WL-2 | every licence-bearing metadata block under `examples/` has conforming records; none is above `epi`, since no example carries a signature | TESTED | `scripts/check-warrant-records.sh`: positive set and coverage diff
 | WL-3 | `signature-verify` entails `signed-by`, with EUF-CMA an explicit parameter | PROVEN | `Provenance.Warrant.SignatureVerify.signature-sound` in `proofs/agda/Provenance/Warrant.agda` (epistemic-types pinned at `6a68de3`), checked by `scripts/check-agda.sh`; `ToyModel.example` shows the parameters can be supplied. Dropping the assumption is refused: `tests/reject/AssumptionDropped.agda`
 | WL-4 | `consented-for-training` cannot be extracted from a licence-header token | PROVEN | `no-consent-sound` (no uniform soundness map); the falsifier `tests/reject/ConsentFromToken.agda` is refused; at the data level, WL-1's `ConsentAtSound`
-| WL-5 | the validator and `pmpl-verify` report a level for every claim, and never a bare pass below `sound` | DESIGNED | follow-up PRs
+| WL-5 | the validator reports a level for every claim: on one artefact the fixture's signature chain is `sound` and its consent claim `epi`, and no licence or consent claim reaches `sound` | TESTED | `ProvenanceSpec` in `TOOLS/validation/haskell` (tamper, forgery, wrong signer, broken link, unknown algorithm, missing header, and a QuickCheck property); `tests/warrant/fixture/expected.json` is reproduced exactly by the validator and checked against `formats/warrant.ncl` by `scripts/check-warrant-records.sh`
 | WL-6 | the provenance dashboard displays levels | OPEN | the dashboard is not in this repository
 | WL-7 | a level does not transfer between claims (§7.3 rule 6) | PROVEN | `no-transfer`; `tests/reject/SignatureToConsent.agda` is refused
 | WL-8 | an unchecked signature is not a token for `signed-by` (§7.3 rule 7) | TESTED | `tests/reject/UnverifiedSignature.agda` is refused
+| WL-9 | `pmpl-verify` reports a level for every claim, and never a bare pass below `sound` | DESIGNED | follow-up PR
+| WL-10 | the validator's Ed25519 check (the crypton library) implements `verify` in `SignatureVerify` | ASSUMED | a trusted library; the fixture's OpenSSL-made signatures verify under it, which is agreement between two implementations, not a proof
 |===

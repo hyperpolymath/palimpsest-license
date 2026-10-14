@@ -6,7 +6,8 @@
 # Nickel contract formats/warrant.ncl:
 #   1. every record under examples/provenance/ conforms;
 #   2. the worked example in spec §7.6 conforms (the positive `sound` case),
-#      and the contract's rule registry matches the spec §7.5 table;
+#      the validator fixture's expected output conforms, and the contract's
+#      rule registry matches the spec §7.5 table;
 #   3. coverage: the metadata blocks under examples/ that declare a licence
 #      and the blocks the records cite are the same set;
 #   4. every fixture under tests/warrant/reject/ is refused, with the message
@@ -66,6 +67,22 @@ if [[ "$levels" != "sound,epi" ]]; then
   exit 1
 fi
 echo 'PASS: spec §7.6 example conforms (sound signature claim, epi consent claim)'
+
+# 2a. The validator's output on its fixture (tests/warrant/fixture), which the
+#     Haskell test suite requires the validator to reproduce exactly: the
+#     signature chain at sound and the consent claim at epi, on one artefact.
+fixture=tests/warrant/fixture/expected.json
+if ! check "$fixture" >/dev/null 2>"$out/fixture.err"; then
+  cat "$out/fixture.err" >&2
+  echo "ERROR: $fixture does not conform" >&2
+  exit 1
+fi
+claims="$("$nickel" export --format raw <<<"std.string.join \",\" (std.array.map (fun r => \"%{r.claim.kind}=%{r.level}\") (import \"$PWD/$fixture\"))")"
+if [[ "$claims" != "signed-by=sound,signed-by=sound,licensed-under=epi,consented-for-training=epi" ]]; then
+  echo "ERROR: $fixture should hold the chain at sound and licence and consent at epi, got: $claims" >&2
+  exit 1
+fi
+echo "PASS: validator fixture conforms ($claims)"
 
 # 2b. The rule registry in the contract and the §7.5 table agree: same rules,
 #     same assumption text, same proof path and status.  A rule at "proven"

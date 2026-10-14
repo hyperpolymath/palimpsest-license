@@ -8,10 +8,14 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 module Main (main) where
 
 import Control.Monad (when)
+import qualified Data.ByteString.Lazy as BL
 import qualified Data.Text.IO as TIO
 import Options.Applicative
 import System.Exit (exitFailure, exitSuccess)
+import System.IO (hSetEncoding, stderr, stdout, utf8)
 import Palimpsest.Validator
+import Palimpsest.Validator.Provenance
+  ( checkProvenanceFile, recordsJSON, renderClaim, renderFailedCheck, renderSummary )
 
 -- | Command line options
 data Options = Options
@@ -30,6 +34,7 @@ data Command
   | ValidateMetadata FilePath
   | ValidateBilingual FilePath FilePath FilePath
   | ValidateReferences [FilePath]
+  | ValidateProvenance FilePath Bool
 
 -- | Main entry point
 main :: IO ()
@@ -96,6 +101,11 @@ commandParser = subparser
   <> command "references"
       (info (ValidateReferences <$> some (argument str (metavar "FILES...")))
         (progDesc "Validate cross-references in files"))
+  <> command "provenance"
+      (info (ValidateProvenance
+              <$> argument str (metavar "PROVENANCE_FILE")
+              <*> switch (long "json" <> help "Print the records as formats/warrant.ncl expects them"))
+        (progDesc "Report each provenance claim at its warrant level (spec/PROVENANCE-SPEC.adoc section 7)"))
   )
   <|> pure ValidateProject  -- Default command
 
@@ -125,6 +135,9 @@ runValidation opts = do
 
     ValidateReferences paths ->
       runValidator config (validateAllReferences paths >> pure (validationSuccess "References validated"))
+
+    ValidateProvenance path asJSON ->
+      runProvenance path asJSON
 
   -- Process results
   case result of
@@ -156,6 +169,29 @@ runValidation opts = do
           putStrLn "\n✅ Validation PASSED\n"
           TIO.putStrLn $ validationSummary valResult
           exitSuccess
+
+-- | Report every claim in a provenance file at its warrant level.  Only a
+-- sound claim reads as verified.  The exit status is non-zero when a check
+-- fails, never because a claim is held below sound.
+runProvenance :: FilePath -> Bool -> IO a
+runProvenance path asJSON = do
+  hSetEncoding stdout utf8
+  hSetEncoding stderr utf8
+  checked <- checkProvenanceFile path
+  case checked of
+    Left err -> do
+      putStrLn ("Cannot read provenance file " ++ path ++ ": " ++ err)
+      exitFailure
+    Right (records, failures) -> do
+      if asJSON
+        then do
+          BL.putStr (recordsJSON records) >> putStrLn ""
+          mapM_ (TIO.hPutStrLn stderr . renderFailedCheck) failures
+        else do
+          mapM_ (TIO.putStrLn . renderClaim) records
+          mapM_ (TIO.putStrLn . renderFailedCheck) failures
+          TIO.putStrLn (renderSummary records failures)
+      if null failures then exitSuccess else exitFailure
 
 -- | Display a validation warning
 displayWarning :: ValidationWarning -> IO ()

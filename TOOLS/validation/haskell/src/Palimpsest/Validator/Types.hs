@@ -17,6 +17,7 @@ module Palimpsest.Validator.Types
   , Language(..)
   , MetadataFormat(..)
   , ValidationConfig(..)
+  , WarrantLevel(..)
   , ValidatorM
   , runValidator
   , validationError
@@ -98,6 +99,14 @@ data ValidationConfig = ValidationConfig
   , configCheckReferences :: Bool  -- ^ Enable cross-reference validation
   , configVerbose         :: Bool
   } deriving stock (Show, Eq, Generic)
+
+-- | Warrant level of a provenance claim (spec/PROVENANCE-SPEC.adoc §7):
+-- epistemic-types' Warrant, Epi and SoundWarrant, as data.
+data WarrantLevel
+  = LevelWarrant  -- ^ the claim is made; no evidence token is held
+  | LevelEpi      -- ^ a token is held; nothing here proves it entails the claim
+  | LevelSound    -- ^ a token, checked by a registered rule under its named assumption
+  deriving stock (Show, Eq, Ord, Generic)
 
 -- | Validator monad stack
 type ValidatorM = ReaderT ValidationConfig (WriterT [ValidationWarning] (ExceptT ValidationError IO))
