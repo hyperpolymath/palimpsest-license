@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Bilingual Alignment Map
 
 === Dutch ↔ English Legal Translation for Palimpsest License

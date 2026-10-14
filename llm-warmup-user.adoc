@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == LLM Warmup — palimpsest-license (User)
 
 === What is palimpsest-license?

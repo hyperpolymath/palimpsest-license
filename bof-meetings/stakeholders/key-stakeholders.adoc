@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Key Stakeholders for Palimpsest License BoF Sessions
 
 This document identifies individuals, organisations, and groups to

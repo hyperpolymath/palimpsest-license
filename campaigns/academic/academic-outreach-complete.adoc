@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Academic Outreach: Palimpsest License Research Programme
 
 === Complete academic engagement materials including CFP, research agenda, technical questions, grant templates, and partnership programme

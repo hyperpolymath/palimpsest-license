@@ -10,7 +10,7 @@
     "level": "epi",
     "evidence": [ { "kind": "provenance-metadata", "ref": "license" } ],
     "sound_by": null,
-    "source": { "file": "examples/vignettes/legal/08-derivative-proper-attribution.adoc", "line": 186, "field": "license" }
+    "source": { "file": "examples/vignettes/legal/08-derivative-proper-attribution.adoc", "line": 187, "field": "license" }
   },
   {
     "artefact": "Ya Layl (O Night) - Choral Arrangement",
@@ -23,6 +23,6 @@
     "level": "epi",
     "evidence": [ { "kind": "provenance-metadata", "ref": "original_song" } ],
     "sound_by": null,
-    "source": { "file": "examples/vignettes/legal/08-derivative-proper-attribution.adoc", "line": 186, "field": "original_song" }
+    "source": { "file": "examples/vignettes/legal/08-derivative-proper-attribution.adoc", "line": 187, "field": "original_song" }
   }
 ]

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == HTTP Headers for License Declaration
 
 === Technical Advisory Document
