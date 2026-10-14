@@ -41,7 +41,7 @@ protect creators`"
 
 *EU AI Act (2024):* - Requires transparency in training data (which
 works were used?) - Mandates copyright compliance for AI systems -
-Platforms hosting training data may need to verify consent
+Platforms hosting training data may need to document consent
 
 *UK Online Safety Bill (2023):* - Duty of care for user-generated
 content - Must prevent "`illegal content`" (including copyright
@@ -91,7 +91,7 @@ Transaction fees (Bandcamp, Etsy) - Advertising (Medium, Wattpad)
 . *API:*
 * Include consent metadata in API responses
 * Return 403 error if consent required but not granted
-* Support `+X-Consent-Token+` header for verified access
+* Support `+X-Consent-Token+` header so a requester can present a consent receipt
 . *Metadata Preservation:*
 * Don’t strip EXIF/XMP/ID3 tags
 * Include consent info in HTTP headers
@@ -112,7 +112,7 @@ training`"
 * Creator dashboard: Review and respond to requests
 * Automated workflows (e.g., "`Auto-deny commercial AI companies`")
 . *Enforcement:*
-* Block API access if consent not verified
+* Block API access unless a valid consent receipt is presented
 * Watermark downloads with consent status
 * DMCA-style takedown for metadata stripping
 
@@ -312,7 +312,7 @@ positioning, user goodwill
 
 *Phase 2 (Months 4-6): API Integration* - Include consent metadata in
 API responses - Block access for works requiring consent (unless
-verified) - *Cost:* £30,000 | *Benefit:* Legal protection from scrapers
+a consent receipt is presented) - *Cost:* £30,000 | *Benefit:* Legal protection from scrapers
 
 *Phase 3 (Months 7-12): Full Consent Layer* - Connect to Consent
 Registry - Consent request/grant UI - Creator dashboard - *Cost:*
