@@ -11,6 +11,8 @@ set -euo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 deps=_build/dependencies
 
+# Fetch $2 (owner/repository) into $deps/$1 (dependency name) at $3 (pinned
+# commit SHA), verify the checkout matches the pin, and print the name and SHA.
 fetch() {
   local name=$1 repo=$2 sha=$3 dir
   dir=$deps/$name
