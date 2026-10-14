@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest Validator
 
 A functional programming-based validation suite for the Palimpsest

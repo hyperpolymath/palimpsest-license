@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest License Validation Tools
 
 This directory contains the validation toolkit for the Palimpsest

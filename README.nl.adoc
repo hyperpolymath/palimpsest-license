@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest Licentie
 
 https://www.bestpractices.dev/en/projects/new?repo_url=https://github.com/hyperpolymath/palimpsest-license[image:https://img.shields.io/badge/OpenSSF-Best_Practices-green?logo=openssourcesecurity[OpenSSF

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Why ISPs Should Care About Creative Licensing
 
 === Educational Guide for Infrastructure Providers

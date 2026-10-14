@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Netherlands Statutory References
 
 === Annex: Dutch Copyright and Related Legislation Supporting Palimpsest License

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Mail Merge Guide
 
 Use outreach templates with Word’s Mailings tab: 1. Prepare a .csv or

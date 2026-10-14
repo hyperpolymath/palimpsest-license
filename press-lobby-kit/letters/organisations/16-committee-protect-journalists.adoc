@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Outreach Letter: Committee to Protect Journalists
 
 *Date:* 22 November 2025 *To:* Committee to Protect Journalists (CPJ)

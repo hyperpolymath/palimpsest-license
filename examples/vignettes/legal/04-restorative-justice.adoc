@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Legal Vignette: The Restorative Justice Resolution
 
 === Scenario: License Violation Resolved Through Restorative Practices

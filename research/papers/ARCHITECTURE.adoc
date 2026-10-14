@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Neurosymbolic SLM Architecture
 
 *Status:* FIRST PASS / RESEARCH *Purpose:* Trustworthy AI for

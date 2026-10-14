@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Tri-Perimeter Contribution Framework (TPCF)
 
 === Palimpsest License Project - Perimeter Classification
