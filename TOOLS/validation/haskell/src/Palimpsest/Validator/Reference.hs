@@ -79,10 +79,14 @@ extractReferences sourcePath text =
       internalRefs = concatMap (extractInternalLinks sourcePath) numberedLines
   in clauseRefs ++ fileRefs ++ urlRefs ++ internalRefs
 
--- | Extract clause references from a line
+-- | Extract clause references from a line ("Clause 2", "clause 2.3",
+-- "CLAUSE 4").  A markdown heading defines a clause rather than referring
+-- to one, so heading lines yield no references.
 extractClauseRefs :: FilePath -> (Int, Text) -> [Reference]
-extractClauseRefs path (lineNum, line) =
-  let pattern = "[Cc]lause[[:space:]]+([0-9]+\\.?[0-9]*)" :: String
+extractClauseRefs path (lineNum, line)
+  | T.isPrefixOf "#" (T.stripStart line) = []
+  | otherwise =
+  let pattern = "[Cc][Ll][Aa][Uu][Ss][Ee][[:space:]]+([0-9]+\\.?[0-9]*)" :: String
       matches = T.unpack line =~ pattern :: [[String]]
   in [ Reference
             { refType = ClauseReference
@@ -111,18 +115,27 @@ extractFileRefs path (lineNum, line) =
          _ -> Nothing
       ) matches
 
--- | Extract URL references from a line
+-- | Extract URL references from a line: markdown links, then bare URLs in
+-- what remains once those links are removed (so a link is counted once).
 extractURLRefs :: FilePath -> (Int, Text) -> [Reference]
 extractURLRefs path (lineNum, line) =
-  let pattern = "\\[([^]]+)\\]\\((https?://[^)]+)\\)" :: String
-      matches = T.unpack line =~ pattern :: [[String]]
-  in [ Reference
+  let linkPattern = "\\[([^]]+)\\]\\((https?://[^)]+)\\)" :: String
+      barePattern = "https?://[^][[:space:]()<>\"']+" :: String
+      links = T.unpack line =~ linkPattern :: [[String]]
+      bare = withoutLinks (T.unpack line) =~ barePattern :: [[String]]
+      withoutLinks s = case s =~ linkPattern :: (String, String, String) of
+        (before, "", _) -> before
+        (before, _, after) -> before ++ " " ++ withoutLinks after
+      trimmed = T.dropWhileEnd (`elem` (".,;:!?" :: String)) . T.pack
+      ref url context = Reference
             { refType = URLReference
-            , refTarget = T.pack url
+            , refTarget = url
             , refSource = path
             , refLine = lineNum
-            , refContext = T.pack linkText
-            } | (_:linkText:url:_) <- matches ]
+            , refContext = context
+            }
+  in [ ref (T.pack url) (T.pack linkText) | (_:linkText:url:_) <- links ]
+     ++ [ ref (trimmed url) (trimmed url) | (url:_) <- bare ]
 
 -- | Extract internal markdown links
 extractInternalLinks :: FilePath -> (Int, Text) -> [Reference]

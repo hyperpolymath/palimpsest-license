@@ -148,19 +148,23 @@ extractClauseContent allLines startLine =
       contentLines = takeWhile (\(_, line) -> not (isClausePattern line || T.isPrefixOf "##" line)) relevantLines
   in T.unlines $ map snd contentLines
 
--- | Extract version from text
+-- | Extract version from text: "Version 0.4" (any case), then "v0.4", then
+-- a bare number after "License" ("Palimpsest License 0.4").
 extractVersion :: Text -> Text
 extractVersion text =
-  let pattern = "[Vv]ersion[[:space:]]+([0-9]+\\.[0-9]+)" :: String
-      matches = T.unpack text =~ pattern :: [[String]]
-  in case matches of
-       ((_ : v : _) : _) -> T.pack v
-       _ -> -- Try "v0.3" format
-         let altPattern = "v([0-9]+\\.[0-9]+)" :: String
-             altMatches = T.unpack text =~ altPattern :: [[String]]
-         in case altMatches of
-              ((_ : v : _) : _) -> T.pack v
-              _ -> "unknown"
+  case mapMaybe firstGroup patterns of
+    (v : _) -> T.pack v
+    [] -> "unknown"
+  where
+    patterns =
+      [ "[Vv][Ee][Rr][Ss][Ii][Oo][Nn][[:space:]]+([0-9]+\\.[0-9]+)"
+      , "v([0-9]+\\.[0-9]+)"
+      , "License[[:space:]]+([0-9]+\\.[0-9]+)"
+      ] :: [String]
+    firstGroup :: String -> Maybe String
+    firstGroup pattern = case T.unpack text =~ pattern :: [[String]] of
+      ((_ : v : _) : _) -> Just v
+      _ -> Nothing
 
 -- | Check if document has proper header
 hasLicenseHeader :: Text -> Bool
@@ -172,8 +176,8 @@ hasLicenseHeader text =
 -- | Detect document language
 detectLanguage :: Text -> Maybe Language
 detectLanguage text
-  | T.isInfixOf "Governing Law" text || T.isInfixOf "Definitions" text = Just English
-  | T.isInfixOf "Toepasselijk Recht" text || T.isInfixOf "Definities" text = Just Dutch
+  | any (`T.isInfixOf` text) ["Governing Law", "Definitions", "Permissions", "Attribution"] = Just English
+  | any (`T.isInfixOf` text) ["Toepasselijk Recht", "Definities", "Toestemmingen", "Naamgeving"] = Just Dutch
   | otherwise = Nothing
 
 -- | Extract governing law from document
