@@ -55,7 +55,7 @@ jobs:
           LYCHEE_VERSION=0.24.2
           SHA256=1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a
           asset=lychee-x86_64-unknown-linux-gnu
-          curl -fsSL -o lychee.tar.gz \
+          curl --proto "=https" --tlsv1.2 -fsSL -o lychee.tar.gz \
             "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/${asset}.tar.gz"
           echo "${SHA256}  lychee.tar.gz" | sha256sum -c -
           tar -xzf lychee.tar.gz "${asset}/lychee"
