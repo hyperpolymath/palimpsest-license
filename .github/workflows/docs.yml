@@ -8,12 +8,14 @@ on:
       - 'docs/**'
       - '*.adoc'
       - 'legal/**'
+      - '.github/workflows/docs.yml'
   pull_request:
     branches: [ main ]
     paths:
       - 'docs/**'
       - '*.adoc'
       - 'legal/**'
+      - '.github/workflows/docs.yml'
 
 permissions:
   actions: read
