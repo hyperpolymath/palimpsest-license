@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# TEMPORARY: generates .github/workflows/actions.lock with the authoritative
+# tool and prints it, then the governance gate's own check against it. Removed
+# in the next commit; it deletes itself before generating so it is not locked.
+name: TEMP generate actions.lock
+on:
+  push:
+    branches: [claude/new-session-8bfbi9-ci-actions-lock]
+permissions:
+  contents: read
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: hyperpolymath/standards
+          ref: fad242d35291de1898242d6737ba02b74a59a2f2
+          path: .standards-lock
+          persist-credentials: false
+          sparse-checkout: |
+            scripts/check-actions-lock-gate.sh
+            scripts/update-actions-lock.sh
+          sparse-checkout-cone-mode: false
+      - name: Generate and verify
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          cp .standards-lock/scripts/check-actions-lock-gate.sh .standards-lock/scripts/update-actions-lock.sh "$RUNNER_TEMP/"
+          rm -rf .standards-lock .github/workflows/zz-generate-actions-lock.yml
+          gh extension install github/gh-actions-lock
+          gh actions-lock --version || gh extension list
+          echo "=== update"
+          bash "$RUNNER_TEMP/update-actions-lock.sh" .github/workflows; echo "update exit=$?"
+          echo "=== gate (exactly as governance runs it)"
+          ACTIONS_LOCK_VERIFIER="$RUNNER_TEMP/update-actions-lock.sh" bash "$RUNNER_TEMP/check-actions-lock-gate.sh" .github/workflows; echo "gate exit=$?"
+          echo "=== git status"; git status --short
+          echo "=== workflow diff (tool-authored changes, if any)"; git diff -- .github/workflows
+          echo "=== sha256"; sha256sum .github/workflows/actions.lock; wc -l .github/workflows/actions.lock
+          echo "=== BEGIN actions.lock"; cat .github/workflows/actions.lock; echo "=== END actions.lock"
+          echo "=== BEGIN base64"; base64 -w 120 .github/workflows/actions.lock; echo "=== END base64"
