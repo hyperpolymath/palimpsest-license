@@ -6,7 +6,7 @@ description:        Functional programming-based validation suite for legal docu
                     validation, metadata schema validation, and bilingual consistency
                     checking for the Palimpsest License project.
 homepage:           https://github.com/palimpsest-license
-license:            MIT
+license:            LicenseRef-PMPL-1.0-or-later
 license-file:       LICENSE
 author:             Palimpsest Stewardship Council
 maintainer:         stewardship@palimpsest.org
