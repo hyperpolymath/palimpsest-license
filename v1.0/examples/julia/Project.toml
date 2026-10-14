@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2025 Palimpsest Stewardship Council
 
 name = "PMPLJuliaExample"
-uuid = "12345678-1234-5678-1234-567812345678"
+uuid = "12345678-1234-8678-9234-567812345678"
 authors = ["Palimpsest Stewardship Council"]
 version = "0.1.0"
 
