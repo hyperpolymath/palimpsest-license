@@ -1,0 +1,1 @@
+[{"artefact": "poem.txt", "claim": {"kind": "signed-by", "standpoint": "verifier", "subject": "ed25519:key", "statement": "the key holder signed poem.txt"}, "level": "epi", "evidence": [{"kind": "licence-header", "ref": "poem.txt:1"}], "sound_by": null}]

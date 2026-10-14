@@ -98,8 +98,9 @@ provenance:
 * confirm hash matches artefact  
 * validate metadata schema  
 * check SPDX identifiers  
-* reconstruct provenance chain  
-* detect tampering or missing links  
+* reconstruct provenance chain
+* detect tampering or missing links
+* report the warrant level of every claim it checks (§7), and never report a bare pass for a claim below `sound`
 
 == 6. Repository‑Level Audit
 
@@ -110,9 +111,170 @@ provenance:
 * detect missing provenance metadata  
 * generate a compliance report  
 
-== 7. Future Extensions
+== 7. Warrant Levels
 
-* multi‑author signatures  
-* cross‑repository lineage graphs  
-* machine‑verifiable provenance proofs  
-* PQ‑only mode  
+This section states the "machine-verifiable provenance proofs" extension
+(§8) as a data model. It is normative for `pmpl-verify`, the validator under
+`TOOLS/validation/` and any dashboard that displays provenance records.
+
+The model is three records from epistemic-types,
+`src/EpistemicTypes/Warrant.agda` at commit `6a68de3`: `Warrant`, `Epi` and
+`SoundWarrant`. They are consumed by pin and never re-declared here.
+
+=== 7.1 Why a single verdict is not enough
+
+A signature chain is evidence, and evidence for one proposition is not
+evidence for another. A sound warrant for "artefact X carries a valid
+signature by key K" is not a warrant for "consent to train on X was given".
+The second claim has tokens (a licence header, an AIBDP declaration) but no
+verification rule proved to entail it. A pass/fail verdict over both shows
+the consent claim as if it had been verified. The levels below keep the two
+apart.
+
+=== 7.2 Terms
+
+Claim (`A`):: the proposition a provenance record purports to support. The
+kinds are `signed-by`, `licensed-under`, `consented-for-training` and
+`derived-from` (§7.4).
+Standpoint (`κ`):: whose warrant it is: `author`, `licensor`, `verifier` or
+`consumer`.
+Evidence:: the type of token that counts for a claim: signature chain
+entries, provenance metadata (§4), declarations. §7.4 lists the admissible
+kinds for each claim.
+Token:: one piece of evidence actually held: an entry of `evidence`.
+Verification rule:: a check proved to entail a claim from a token. The
+assumption the proof relies on is an explicit parameter of the rule, never a
+postulate.
+
+=== 7.3 The three levels
+
+[cols="1,2,2,2",options="header"]
+|===
+| `level` | Record | What is held | What a tool may display
+| `warrant` | `Warrant K κ A` | the claim and its evidence type; no token | claimed
+| `epi` | `Epi K κ A` | a token of that evidence type | evidence present, not verified
+| `sound` | `SoundWarrant K κ A` with a token (`sound-epi`) | a token, and a registered rule proved to entail `A` | verified, under the rule's named assumption
+|===
+
+Holding an `epi` record does not give `A`. Only a `sound` record, together
+with its token, gives `A`, and then only under the rule's assumption.
+
+A provenance record MUST satisfy these rules:
+
+. A record at `warrant` holds no token: `evidence` is empty and `sound_by`
+  is null.
+. A record at `epi` holds at least one token, and `sound_by` is null.
+. A record at `sound` holds at least one token of a kind its rule consumes.
+  `sound_by` names a registered rule (§7.5) and states that rule's
+  assumption verbatim.
+. No rule entails `consented-for-training`. A consent claim is at most
+  `epi`, whatever tokens it holds. This is by design (an AIBDP declaration
+  is `epi`), not a gap waiting for tooling.
+. A tool MUST NOT print "pass", "OK", "verified" or any other bare success
+  for a claim at `warrant` or `epi`.
+. A level does not transfer between claims. A `sound` record of
+  `signed-by` for X says nothing about `consented-for-training` for X, even
+  when the signed bytes include the licence header that declares consent.
+  The signature makes "K signed bytes that contain this declaration" sound.
+  That is a `signed-by` claim, not consent.
+. A token that fails its check is not a token. A `signed-by` claim whose
+  signature does not verify is reported as failed, and is displayed at the
+  level its remaining tokens support (usually `warrant`).
+
+=== 7.4 Claims and admissible evidence
+
+[cols="1,3,2,1",options="header"]
+|===
+| Claim | Statement | Admissible evidence | Rule
+| `signed-by` | the holder of K's secret key signed a record that binds the hash of X and a timestamp t | `signature`, `signature-chain` | `signature-verify`
+| `licensed-under` | the standpoint offers X under licence L | `spdx-header`, `licence-file`, `provenance-metadata` | none: at most `epi`
+| `consented-for-training` | consent to train on X was given | `licence-header`, `aibdp-declaration`, `consent-record`, `provenance-metadata` | none, by design (rule 4)
+| `derived-from` | X derives from a parent Y | `lineage-reference`, `provenance-metadata`, `signature-chain` | none: at most `epi`
+|===
+
+The timestamp in `signed-by` is a signed field. The claim is that K signed a
+record containing t, not that the signature was made at time t.
+
+=== 7.5 Registered verification rules
+
+[cols="1,1,2,3,2,1",options="header"]
+|===
+| Rule | Concludes | Consumes | Assumption (explicit parameter) | Proof | Status
+| `signature-verify` | `signed-by` | `signature`, `signature-chain` | EUF-CMA security of the signature algorithm named in each signature | `proofs/agda/Provenance/Warrant.agda` | DESIGNED
+|===
+
+The entailment is the assumption applied to a signature that verifies, so
+the rule is sound relative to its assumption by construction. The Status
+column tracks the machine-checked proof of that, which moves to PROVEN only
+with the module it names.
+
+The rule is stated for any algorithm in §3.1. A tool that cannot verify the
+named algorithm holds the signature as a token and reports `epi`.
+
+If the assumption fails, for example through key compromise or a break of
+the algorithm, the record falls back to `epi`. A revoked key is a
+retraction. residual-evidence-types (`src/ResidualEvidence/Revision.agda`,
+`survives-retraction`) says which dependent records survive one.
+
+=== 7.6 Record format
+
+Records conform to the Nickel contract `formats/warrant.ncl`
+(`Record`, or `Records` for an array). A record has:
+
+* `artefact`: the artefact the claim is about
+* `claim`: `kind`, `standpoint`, `subject` (the key, licence, parent or
+  consenting party) and `statement` (the claim in words)
+* `level`: `warrant`, `epi` or `sound`
+* `evidence`: the tokens held, each with a `kind` and a `ref`
+* `sound_by`: `{rule, assumption}` at `sound`, otherwise `null`
+* `source` (optional): `file`, `line` and `field` of the metadata a record
+  was read from
+
+The same artefact can carry a `sound` signature claim and an `epi` consent
+claim:
+
+[source,json]
+----
+[
+  {
+    "artefact": "poem.txt",
+    "claim": {
+      "kind": "signed-by",
+      "standpoint": "verifier",
+      "subject": "ed25519:<public key>",
+      "statement": "the key holder signed a record binding the hash of poem.txt"
+    },
+    "level": "sound",
+    "evidence": [ { "kind": "signature-chain", "ref": "poem.txt.chain.json" } ],
+    "sound_by": {
+      "rule": "signature-verify",
+      "assumption": "EUF-CMA security of the signature algorithm named in each signature"
+    }
+  },
+  {
+    "artefact": "poem.txt",
+    "claim": {
+      "kind": "consented-for-training",
+      "standpoint": "licensor",
+      "subject": "poem.txt",
+      "statement": "consent to train on poem.txt was given"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "licence-header", "ref": "poem.txt:1" } ],
+    "sound_by": null
+  }
+]
+----
+
+`scripts/check-warrant-records.sh` checks every record under
+`examples/provenance/` against the contract. It also checks that every
+metadata block under `examples/` that declares a licence has records, and
+that each fixture under `tests/warrant/reject/` is refused for the rule it
+names.
+
+== 8. Future Extensions
+
+* multi‑author signatures
+* cross‑repository lineage graphs
+* machine‑verifiable provenance proofs (data model: §7)
+* PQ‑only mode

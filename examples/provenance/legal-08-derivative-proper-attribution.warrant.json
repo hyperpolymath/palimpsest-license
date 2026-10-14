@@ -1,0 +1,28 @@
+[
+  {
+    "artefact": "Ya Layl (O Night) - Choral Arrangement",
+    "claim": {
+      "kind": "licensed-under",
+      "standpoint": "licensor",
+      "subject": "Palimpsest-0.4",
+      "statement": "The Harmony Collective offers the arrangement under Palimpsest-0.4"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "license" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/legal/08-derivative-proper-attribution.adoc", "line": 186, "field": "license" }
+  },
+  {
+    "artefact": "Ya Layl (O Night) - Choral Arrangement",
+    "claim": {
+      "kind": "derived-from",
+      "standpoint": "licensor",
+      "subject": "Somali lullaby from Dadaab refugee camp, recorded by Amara Osman",
+      "statement": "the arrangement derives from the recorded lullaby"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "original_song" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/legal/08-derivative-proper-attribution.adoc", "line": 186, "field": "original_song" }
+  }
+]

@@ -70,3 +70,7 @@ crg-badge:
       D) color="orange" ;; E) color="red" ;; F) color="critical" ;; \
       *) color="lightgrey" ;; esac; \
     echo "[![CRG $$grade](https://img.shields.io/badge/CRG-$$grade-$$color?style=flat-square)](https://github.com/hyperpolymath/standards/tree/main/component-readiness-grades)"
+
+# Warrant-level provenance records against formats/warrant.ncl (spec/PROVENANCE-SPEC.adoc §7)
+warrant-records:
+    bash scripts/check-warrant-records.sh

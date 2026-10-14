@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
+#
+# Warrant levels (spec/PROVENANCE-SPEC.adoc §7).  pull_request has no branch
+# filter so that stacked PRs, whose base is another PR's branch, are checked.
+name: Warrant levels
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  records:
+    name: Warrant records against formats/warrant.ncl
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      # Built from crates.io at a pinned version with its lockfile; this is
+      # the slow step (several minutes), there being no packaged Nickel.
+      - name: Install Nickel 1.18.0
+        run: |
+          cargo install nickel-lang-cli --version 1.18.0 --locked
+          test "$(nickel --version | cut -d' ' -f1-3)" = 'nickel-lang-cli nickel 1.18.0'
+
+      - name: Records, spec example, coverage and expected rejections
+        run: bash scripts/check-warrant-records.sh

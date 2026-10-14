@@ -16,5 +16,6 @@ Subdirectories:
 
 Files:
 * explainme-accessible.md
+* warrant.ncl: Nickel contract for warrant-level provenance records (spec/PROVENANCE-SPEC.adoc §7)
 
 See INDEX.adoc for a minimal listing.
