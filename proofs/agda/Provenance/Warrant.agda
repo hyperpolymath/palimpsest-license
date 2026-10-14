@@ -128,6 +128,9 @@ no-transfer transfer =
 -- "signature" verifies when it equals pk + m, and unforgeability holds by
 -- definition of SignedBy.  Nothing about Ed25519 or any real algorithm is
 -- proved here; that remains the assumption.
+-- ToySignedBy (SignedBy in this model) is defined to equal Verified, so
+-- toy-unforgeable is an identity construction and the model does not
+-- distinguish verification from signing by a key holder.
 
 module ToyModel where
 
