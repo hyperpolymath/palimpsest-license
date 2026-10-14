@@ -1,0 +1,1 @@
+[{"artefact": "poem.txt", "claim": {"kind": "derived-from", "standpoint": "author", "subject": "draft.txt", "statement": "poem.txt derives from draft.txt"}, "level": "warrant", "evidence": [{"kind": "lineage-reference", "ref": "draft.txt"}], "sound_by": null}]

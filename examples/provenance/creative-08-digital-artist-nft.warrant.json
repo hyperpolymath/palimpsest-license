@@ -1,0 +1,15 @@
+[
+  {
+    "artefact": "Diaspora Dreams #427",
+    "claim": {
+      "kind": "licensed-under",
+      "standpoint": "licensor",
+      "subject": "Palimpsest-0.4",
+      "statement": "Zara Osman offers Diaspora Dreams #427 under Palimpsest-0.4"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "license" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/creative/08-digital-artist-nft.adoc", "line": 60, "field": "license" }
+  }
+]

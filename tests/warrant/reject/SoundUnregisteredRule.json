@@ -1,0 +1,1 @@
+[{"artefact": "poem.txt", "claim": {"kind": "licensed-under", "standpoint": "licensor", "subject": "PMPL-1.0-or-later", "statement": "poem.txt is offered under PMPL-1.0-or-later"}, "level": "sound", "evidence": [{"kind": "spdx-header", "ref": "poem.txt:1"}], "sound_by": {"rule": "header-present", "assumption": "the header was written by the licensor"}}]

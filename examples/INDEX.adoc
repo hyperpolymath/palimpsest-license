@@ -5,6 +5,7 @@
 :toclevels: 2
 
 Subdirectories
+* provenance: warrant-level records (spec/PROVENANCE-SPEC.adoc §7) for the licence-bearing metadata blocks in the vignettes
 * vignettes
 
 Files

@@ -35,3 +35,20 @@ correctness. The sign/verify pair should be proven as inverses.
 *LOW* — License tooling. While correctness matters, the blast radius of
 bugs is limited to incorrect license reports rather than security or
 data integrity failures.
+
+=== Warrant levels (PMP-01, issue #162)
+
+Status of the warrant-level provenance model (spec/PROVENANCE-SPEC.adoc §7).
+A row moves only with the artefact named beside it.
+
+[cols="1,4,1,4",options="header"]
+|===
+| ID | Claim | Status | Artefact
+| E-1 | `Warrant`, `Epi`, `SoundWarrant`, `sound-epi`: zero postulates, `--safe` | PROVEN upstream | epistemic-types `6a68de3`, `src/EpistemicTypes/Warrant.agda`
+| WL-1 | `formats/warrant.ncl` refuses records that break §7.3 rules 1-4 and 6, and unknown levels, standpoints and evidence kinds | TESTED | `scripts/check-warrant-records.sh`: each fixture in `tests/warrant/reject/` is refused with its rule's message
+| WL-2 | every licence-bearing metadata block under `examples/` has conforming records; none is above `epi`, since no example carries a signature | TESTED | `scripts/check-warrant-records.sh`: positive set and coverage diff
+| WL-3 | `signature-verify` entails `signed-by`, with EUF-CMA an explicit parameter | DESIGNED | `proofs/agda/Provenance/Warrant.agda` (follow-up PR)
+| WL-4 | `consented-for-training` cannot be extracted from a licence-header token | DESIGNED | `tests/reject/ConsentFromToken.agda` (follow-up PR); at the data level, WL-1's `ConsentAtSound`
+| WL-5 | the validator and `pmpl-verify` report a level for every claim, and never a bare pass below `sound` | DESIGNED | follow-up PRs
+| WL-6 | the provenance dashboard displays levels | OPEN | the dashboard is not in this repository
+|===

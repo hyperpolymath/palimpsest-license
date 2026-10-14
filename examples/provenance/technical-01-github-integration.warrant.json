@@ -1,0 +1,41 @@
+[
+  {
+    "artefact": "CulturalNLP Training Data & Documentation",
+    "claim": {
+      "kind": "licensed-under",
+      "standpoint": "licensor",
+      "subject": "https://palimpsest.license/v0.4",
+      "statement": "Dr. Kwame Asante offers the dataset under Palimpsest v0.4"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": ".palimpsest.json: license" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/technical/01-github-integration.adoc", "line": 106, "field": "license" }
+  },
+  {
+    "artefact": "CulturalNLP Training Data & Documentation",
+    "claim": {
+      "kind": "consented-for-training",
+      "standpoint": "licensor",
+      "subject": "Ghana Association of Writers",
+      "statement": "the Ghana Association of Writers consented to the Akan corpus being used as training data"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": ".palimpsest.json: culturalSources[0].consent" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/technical/01-github-integration.adoc", "line": 106, "field": "culturalSources[0].consent" }
+  },
+  {
+    "artefact": "CulturalNLP Training Data & Documentation",
+    "claim": {
+      "kind": "consented-for-training",
+      "standpoint": "licensor",
+      "subject": "University of Ibadan Digital Archive",
+      "statement": "the University of Ibadan Digital Archive consented to the Yoruba texts being used as training data"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": ".palimpsest.json: culturalSources[1].consent" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/technical/01-github-integration.adoc", "line": 106, "field": "culturalSources[1].consent" }
+  }
+]

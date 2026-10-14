@@ -1,0 +1,80 @@
+[
+  {
+    "artefact": "ArtisanAI v2.1 image (prompt: African geometric patterns)",
+    "claim": {
+      "kind": "derived-from",
+      "standpoint": "author",
+      "subject": "Kwame Osei, Akan Adinkra Symbols",
+      "statement": "the generated image derives from Akan Adinkra Symbols"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "source_attributions[0]" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/ai/02-image-generator-attribution.adoc", "line": 212, "field": "source_attributions[0]" }
+  },
+  {
+    "artefact": "ArtisanAI v2.1 image (prompt: African geometric patterns)",
+    "claim": {
+      "kind": "derived-from",
+      "standpoint": "author",
+      "subject": "Nomsa Dlamini, Ndebele House Painting",
+      "statement": "the generated image derives from Ndebele House Painting"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "source_attributions[1]" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/ai/02-image-generator-attribution.adoc", "line": 212, "field": "source_attributions[1]" }
+  },
+  {
+    "artefact": "Kwame Osei, Akan Adinkra Symbols",
+    "claim": {
+      "kind": "consented-for-training",
+      "standpoint": "author",
+      "subject": "Kwame Osei",
+      "statement": "Kwame Osei consented to training on Akan Adinkra Symbols"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "source_attributions[0].ai_consent" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/ai/02-image-generator-attribution.adoc", "line": 212, "field": "source_attributions[0].ai_consent" }
+  },
+  {
+    "artefact": "Nomsa Dlamini, Ndebele House Painting",
+    "claim": {
+      "kind": "consented-for-training",
+      "standpoint": "author",
+      "subject": "Nomsa Dlamini",
+      "statement": "Nomsa Dlamini consented to training on Ndebele House Painting"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "source_attributions[1].ai_consent" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/ai/02-image-generator-attribution.adoc", "line": 212, "field": "source_attributions[1].ai_consent" }
+  },
+  {
+    "artefact": "Kwame Osei, Akan Adinkra Symbols",
+    "claim": {
+      "kind": "licensed-under",
+      "standpoint": "author",
+      "subject": "Palimpsest-0.4",
+      "statement": "Akan Adinkra Symbols is offered under Palimpsest-0.4"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "source_attributions[0].license" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/ai/02-image-generator-attribution.adoc", "line": 212, "field": "source_attributions[0].license" }
+  },
+  {
+    "artefact": "Nomsa Dlamini, Ndebele House Painting",
+    "claim": {
+      "kind": "licensed-under",
+      "standpoint": "author",
+      "subject": "Palimpsest-0.4",
+      "statement": "Ndebele House Painting is offered under Palimpsest-0.4"
+    },
+    "level": "epi",
+    "evidence": [ { "kind": "provenance-metadata", "ref": "source_attributions[1].license" } ],
+    "sound_by": null,
+    "source": { "file": "examples/vignettes/ai/02-image-generator-attribution.adoc", "line": 212, "field": "source_attributions[1].license" }
+  }
+]
