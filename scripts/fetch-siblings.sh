@@ -11,6 +11,10 @@ set -euo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 deps=_build/dependencies
 
+# Fetch commit $3 (full SHA) from GitHub $2 (owner/repo) into $deps/$1,
+# creating the repository if needed and checking out the commit detached.
+# Existing repositories use their configured origin. Print the name and SHA
+# on success; Git failures or a revision mismatch terminate the script.
 fetch() {
   local name=$1 repo=$2 sha=$3 dir
   dir=$deps/$name
