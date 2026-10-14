@@ -253,7 +253,8 @@ validator:
 
 === Licence
 
-MIT Licence (see `+haskell/LICENSE+`)
+PMPL-1.0-or-later (see `+haskell/LICENSE+`, a link to
+`+legal/PALIMPSEST-MPL-1.0.txt+`)
 
 '''''
 

@@ -235,7 +235,8 @@ Termination
 
 === Licence
 
-MIT Licence (same as Palimpsest tooling)
+PMPL-1.0-or-later. `+LICENSE+` links to the licence text in
+`+legal/PALIMPSEST-MPL-1.0.txt+`.
 
 === Contributing
 
