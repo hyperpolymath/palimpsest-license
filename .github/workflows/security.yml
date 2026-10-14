@@ -25,7 +25,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript', 'python', 'rust' ]
+        # No 'python': the repository has no Python (CLAUDE.md bans it), and
+        # CodeQL fails a language with nothing to extract as a configuration
+        # error ("could not process any code written in Python").
+        language: [ 'javascript', 'rust' ]
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
