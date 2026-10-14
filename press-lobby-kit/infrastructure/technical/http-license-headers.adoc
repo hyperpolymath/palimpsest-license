@@ -205,11 +205,11 @@ X-Palimpsest-Lineage-ID: <uuid> | <urn>
 
 [source,http]
 ----
-X-Palimpsest-Lineage-ID: urn:uuid:550e8400-e29b-41d4-a716-446655440000
+X-Palimpsest-Lineage-ID: urn:uuid:550e8400-e29b-81d4-a716-446655440000
 X-Palimpsest-Lineage-ID: lineage:protest-song:we-shall-overcome
 ----
 
-*Usage:* - MUST be globally unique - SHOULD use UUID format (RFC 4122) -
+*Usage:* - MUST be globally unique - SHOULD use UUID format (RFC 9562, version 8) -
 MAY use semantic URN for cultural significance
 
 ===== 8. `+X-Palimpsest-DAO-Contract+`
@@ -269,7 +269,7 @@ X-Palimpsest-Trace-ID: <trace-id>
 
 [source,http]
 ----
-X-Palimpsest-Trace-ID: 550e8400-e29b-41d4-a716-446655440000
+X-Palimpsest-Trace-ID: 550e8400-e29b-81d4-a716-446655440000
 ----
 
 *Usage:* - Generated per request - Logged throughout infrastructure -
@@ -997,7 +997,7 @@ Enable end-to-end tracking:
 
 [source,http]
 ----
-X-Palimpsest-Trace-ID: 550e8400-e29b-41d4-a716-446655440000
+X-Palimpsest-Trace-ID: 550e8400-e29b-81d4-a716-446655440000
 ----
 
 ==== 3. Preserve Headers Through Caching
