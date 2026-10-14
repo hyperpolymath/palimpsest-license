@@ -30,23 +30,25 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          set -uo pipefail
+          set +e -uo pipefail
           cp .standards-lock/scripts/check-actions-lock-gate.sh .standards-lock/scripts/update-actions-lock.sh "$RUNNER_TEMP/"
           rm -rf .standards-lock .github/workflows/zz-generate-actions-lock.yml
-          # Generate with v0.1.6, the version standards pins for lock regeneration
-          # (dependabot-lock-regen.yml); it keeps SHA-pinned uses: lines as they are.
+          show() {
+            echo "=== $1: workflow diff stat"; git diff --stat -- .github/workflows ':!.github/workflows/actions.lock'
+            echo "=== $1: sample uses lines"; grep -h "uses: actions/checkout" .github/workflows/*.yml | sort | uniq -c
+            echo "=== $1: lock"; sha256sum .github/workflows/actions.lock 2>/dev/null
+            echo "=== BEGIN $1 actions.lock"; cat .github/workflows/actions.lock 2>/dev/null; echo "=== END $1 actions.lock"
+          }
+          echo "=== step 1: generate with v0.1.6"
           gh extension install github/gh-actions-lock --pin v0.1.6
-          gh actions-lock --version || gh extension list
-          echo "=== update (v0.1.6)"
-          bash "$RUNNER_TEMP/update-actions-lock.sh" .github/workflows; echo "update exit=$?"
-          # Verify with the latest release, which is what the governance gate installs.
+          bash "$RUNNER_TEMP/update-actions-lock.sh" .github/workflows; echo "v0.1.6 update exit=$?"
+          show "after-v0.1.6"
+          echo "=== step 2: latest release in fix mode on top (locked pins are sticky)"
           gh extension remove actions-lock
           gh extension install github/gh-actions-lock
-          gh actions-lock --version || gh extension list
-          echo "=== gate (exactly as governance runs it)"
+          gh extension list
+          bash "$RUNNER_TEMP/update-actions-lock.sh" .github/workflows; echo "latest update exit=$?"
+          show "after-latest"
+          echo "=== step 3: the gate, exactly as governance runs it"
           ACTIONS_LOCK_VERIFIER="$RUNNER_TEMP/update-actions-lock.sh" bash "$RUNNER_TEMP/check-actions-lock-gate.sh" .github/workflows; echo "gate exit=$?"
-          echo "=== git status"; git status --short
-          echo "=== workflow diff (tool-authored changes, if any)"; git diff -- .github/workflows
-          echo "=== sha256"; sha256sum .github/workflows/actions.lock; wc -l .github/workflows/actions.lock
-          echo "=== BEGIN actions.lock"; cat .github/workflows/actions.lock; echo "=== END actions.lock"
-          echo "=== BEGIN base64"; base64 -w 120 .github/workflows/actions.lock; echo "=== END base64"
+          echo "=== full workflow diff"; git diff -- .github/workflows ':!.github/workflows/actions.lock'
