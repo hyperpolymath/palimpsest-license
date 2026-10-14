@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == PKP Integration Research
 
 *Status:* FIRST PASS / RESEARCH *Purpose:* Integration with Public

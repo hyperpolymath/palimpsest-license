@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Outreach Letter: Writers’ Guild of Great Britain
 
 *Date:* 22 November 2025 *To:* Writers’ Guild of Great Britain *From:*

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Creative Vignette: The Digital Artist’s NFT Sovereignty
 
 === Scenario: Digital Artist Creating Culturally-Rooted NFTs

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest-MPL Coverage Register
 
 This register lists Hyperpolymath repositories covered by Palimpsest-MPL

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Legal Vignette: Cross-Border Enforcement (Dutch Law, Scottish Courts)
 
 === Scenario: International License Violation, Jurisdictional Complexity

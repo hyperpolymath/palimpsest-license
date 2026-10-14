@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Dutch Version (Nederlandse Vertaling)
 
 Hieronder volgt een onafhankelijk manifest in JSON-formaat, dat alle

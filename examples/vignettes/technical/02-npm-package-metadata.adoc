@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Technical Vignette: NPM Package with Palimpsest Metadata
 
 === Scenario: JavaScript Package Using Palimpsest for Cultural Data

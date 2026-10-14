@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Outreach Letter: Electronic Frontier Foundation
 
 *Date:* 22 November 2025 *To:* Electronic Frontier Foundation *From:*

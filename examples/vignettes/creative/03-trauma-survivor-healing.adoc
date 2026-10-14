@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Creative Vignette: The Trauma Survivor’s Healing Story
 
 === Scenario: Trauma Survivor Sharing Healing Story
