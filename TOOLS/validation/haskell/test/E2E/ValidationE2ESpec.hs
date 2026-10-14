@@ -253,7 +253,7 @@ e2eSpec = describe "E2E: Full Validation Pipeline" $ do
       licenseVersion structure `shouldBe` "0.4"
       licenseHasHeader structure `shouldBe` True
       length (licenseClauses structure) `shouldBe` 2
-      any (T.isInfixOf "Non-Interpretive") (map clauseHeading (licenseClauses structure)) `shouldBe` True
+      any (T.isInfixOf "Non-Interpretive") (map clauseContent (licenseClauses structure)) `shouldBe` True
 
 -- Helper function for exception handling
 catch :: IO a -> (IOError -> IO a) -> IO a

@@ -102,7 +102,8 @@ propertySpec = describe "Property-Based Tests" $ do
         parseClauseNumber (T.pack $ show n) == Just n
 
     it "invalid clause numbers always return Nothing" $ property $
-      forAll (listOf1 arbitrary `suchThat` (not . all (\c -> c `elem` ("0123456789" :: String)))) $
+      forAll (listOf1 arbitrary `suchThat` (\s -> not (all (\c -> c `elem` ("0123456789" :: String)) s)
+                                                && not (isDecimalClauseNumber s))) $
         \str -> parseClauseNumber (T.pack str) == Nothing
 
     it "clause number parsing is deterministic" $ property $
@@ -253,3 +254,13 @@ nubOrd = go []
   where
     go _ [] = []
     go seen (x:xs) = if x `elem` seen then go seen xs else x : go (x:seen) xs
+
+-- | "1.2", "3." etc.: valid decimal clause numbers, which parse to their
+-- integer part (see "decimal clause numbers parse the integer part"), so they
+-- are not "invalid clause numbers".
+isDecimalClauseNumber :: String -> Bool
+isDecimalClauseNumber s = case break (== '.') s of
+  (ds@(_:_), '.' : frac) -> all isDigitChar ds && all isDigitChar frac
+  _ -> False
+  where
+    isDigitChar c = c `elem` ("0123456789" :: String)

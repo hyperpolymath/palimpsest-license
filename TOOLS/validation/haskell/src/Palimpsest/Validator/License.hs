@@ -27,6 +27,7 @@ module Palimpsest.Validator.License
 import Control.Monad (when, unless, forM_)
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ask)
+import Data.Char (isDigit)
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Read as TR
@@ -232,11 +233,15 @@ validateClauseNumbering path clauses = do
       validationWarning Warning (T.pack path)
         ("Clause numbering gap: expected " <> T.pack (show expectedNum) <> ", found " <> T.pack (show actual))
 
--- | Parse clause number to integer
+-- | Parse clause number to integer: "3" -> 3, and the integer part of a
+-- decimal clause number ("3.5" -> 3, "3." -> 3). Anything else is Nothing.
 parseClauseNumber :: Text -> Maybe Int
 parseClauseNumber text =
   case TR.decimal text of
-    Right (n, _) -> Just n
+    Right (n, rest) -> case T.uncons rest of
+      Nothing -> Just n
+      Just ('.', frac) | T.all isDigit frac -> Just n
+      _ -> Nothing
     Left _ -> Nothing
 
 -- | Find duplicate elements in list

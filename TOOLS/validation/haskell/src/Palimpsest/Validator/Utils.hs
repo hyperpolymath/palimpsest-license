@@ -40,7 +40,7 @@ normaliseText = T.toLower . T.strip
 -- | Extract clause number from text (e.g., "Clause 1.2" -> "1.2")
 extractClauseNumber :: Text -> Maybe Text
 extractClauseNumber text =
-  let pattern = "Clause[[:space:]]+([0-9]+\\.?[0-9]*)" :: String
+  let pattern = "[Cc]lause[[:space:]]+([0-9]+(\\.[0-9]*)*)" :: String
       matches = T.unpack text =~ pattern :: [[String]]
   in case matches of
        ((_ : num : _) : _) -> Just (T.pack num)
