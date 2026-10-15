@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest License Validation Tools
 
 This directory contains the validation toolkit for the Palimpsest
@@ -252,7 +253,8 @@ validator:
 
 === Licence
 
-MIT Licence (see `+haskell/LICENSE+`)
+PMPL-1.0-or-later (see `+haskell/LICENSE+`, a link to
+`+legal/PALIMPSEST-MPL-1.0.txt+`)
 
 '''''
 

@@ -17,6 +17,7 @@ module Palimpsest.Validator.Types
   , Language(..)
   , MetadataFormat(..)
   , ValidationConfig(..)
+  , WarrantLevel(..)
   , ValidatorM
   , runValidator
   , validationError
@@ -28,7 +29,6 @@ import Control.Monad.Except (ExceptT, runExceptT, throwError)
 import Control.Monad.Reader (ReaderT, runReaderT)
 import Control.Monad.Writer (WriterT, runWriterT, tell)
 import Data.Text (Text)
-import qualified Data.Text as T
 import GHC.Generics (Generic)
 
 -- | Severity levels for validation issues
@@ -37,7 +37,7 @@ data Severity
   | Error     -- ^ Serious issue, should be fixed
   | Warning   -- ^ Minor issue, recommended to fix
   | Info      -- ^ Informational notice
-  deriving (Show, Eq, Ord, Generic)
+  deriving stock (Show, Eq, Ord, Generic)
 
 -- | Validation errors with detailed context
 data ValidationError = ValidationError
@@ -45,14 +45,14 @@ data ValidationError = ValidationError
   , errorLocation :: Text  -- ^ File path or clause reference
   , errorMessage  :: Text
   , errorDetails  :: Maybe Text
-  } deriving (Show, Eq, Generic)
+  } deriving stock (Show, Eq, Generic)
 
 -- | Validation warnings (non-fatal issues)
 data ValidationWarning = ValidationWarning
   { warningSeverity :: Severity
   , warningLocation :: Text
   , warningMessage  :: Text
-  } deriving (Show, Eq, Generic)
+  } deriving stock (Show, Eq, Generic)
 
 -- | Overall validation result
 data ValidationResult = ValidationResult
@@ -60,28 +60,28 @@ data ValidationResult = ValidationResult
   , validationErrors :: [ValidationError]
   , validationWarnings :: [ValidationWarning]
   , validationSummary :: Text
-  } deriving (Show, Eq, Generic)
+  } deriving stock (Show, Eq, Generic)
 
 -- | Clause reference for cross-validation
 data ClauseReference = ClauseReference
   { clauseNumber :: Text
   , clauseTitle  :: Text
   , clauseFile   :: FilePath
-  } deriving (Show, Eq, Generic)
+  } deriving stock (Show, Eq, Generic)
 
 -- | License version identifier
 data LicenseVersion
   = V0_3
   | V0_4
   | Custom Text
-  deriving (Show, Eq, Generic)
+  deriving stock (Show, Eq, Generic)
 
 -- | Supported languages for bilingual validation
 data Language
   = English
   | Dutch
   | OtherLanguage Text
-  deriving (Show, Eq, Generic)
+  deriving stock (Show, Eq, Generic)
 
 -- | Metadata format types
 data MetadataFormat
@@ -89,7 +89,7 @@ data MetadataFormat
   | XML
   | DublinCore
   | NDJSON
-  deriving (Show, Eq, Generic)
+  deriving stock (Show, Eq, Generic)
 
 -- | Validation configuration
 data ValidationConfig = ValidationConfig
@@ -98,7 +98,15 @@ data ValidationConfig = ValidationConfig
   , configCheckBilingual  :: Bool  -- ^ Enable bilingual consistency checks
   , configCheckReferences :: Bool  -- ^ Enable cross-reference validation
   , configVerbose         :: Bool
-  } deriving (Show, Eq, Generic)
+  } deriving stock (Show, Eq, Generic)
+
+-- | Warrant level of a provenance claim (spec/PROVENANCE-SPEC.adoc §7):
+-- epistemic-types' Warrant, Epi and SoundWarrant, as data.
+data WarrantLevel
+  = LevelWarrant  -- ^ the claim is made; no evidence token is held
+  | LevelEpi      -- ^ a token is held; nothing here proves it entails the claim
+  | LevelSound    -- ^ a token, checked by a registered rule under its named assumption
+  deriving stock (Show, Eq, Ord, Generic)
 
 -- | Validator monad stack
 type ValidatorM = ReaderT ValidationConfig (WriterT [ValidationWarning] (ExceptT ValidationError IO))

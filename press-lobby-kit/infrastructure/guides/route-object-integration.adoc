@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Route Object Integration for License Metadata
 
 === Implementation Guide
@@ -75,7 +76,7 @@ remarks:        metadata-preservation: mandatory
 remarks:        emotional-lineage: protected
 remarks:        dao-governed: true
 remarks:        dao-contract: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1
-remarks:        lineage-id: urn:uuid:550e8400-e29b-41d4-a716-446655440000
+remarks:        lineage-id: urn:uuid:550e8400-e29b-81d4-a716-446655440000
 remarks:        contact-email: licensing@example.org
 remarks:        contact-url: https://example.org/licensing
 remarks:        last-updated: 2025-11-22
@@ -140,7 +141,7 @@ remarks:        palimpsest:derivative-policy=prohibited
 remarks:        palimpsest:emotional-lineage=protected
 remarks:        palimpsest:dao-governed=true
 remarks:        palimpsest:dao-contract=ethereum:0xabc123...
-remarks:        palimpsest:lineage-id=urn:uuid:12345678-1234-1234-1234-123456789abc
+remarks:        palimpsest:lineage-id=urn:uuid:12345678-1234-8234-9234-123456789abc
 remarks:        palimpsest:metadata-url=https://archive.example/.well-known/license
 remarks:        palimpsest:contact=rights@archive.example
 remarks:        palimpsest:updated=2025-11-22

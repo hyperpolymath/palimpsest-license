@@ -8,12 +8,14 @@ on:
       - 'docs/**'
       - '*.adoc'
       - 'legal/**'
+      - '.github/workflows/docs.yml'
   pull_request:
     branches: [ main ]
     paths:
       - 'docs/**'
       - '*.adoc'
       - 'legal/**'
+      - '.github/workflows/docs.yml'
 
 permissions:
   actions: read
@@ -46,11 +48,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Install lychee
+      - name: Install lychee (pinned, checksum-verified)
         run: |
-          curl -sSfL https://github.com/lycheeverse/lychee/releases/latest/download/lychee-linux-x86_64.tar.gz \
-            | tar xz
-          sudo mv lychee /usr/local/bin
+          set -euo pipefail
+          # Pinned: `releases/latest/download/lychee-linux-x86_64.tar.gz`
+          # began returning 404 when lychee renamed its release assets to
+          # target triples, which failed this job before any link was checked.
+          LYCHEE_VERSION=0.24.2
+          SHA256=1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a
+          asset=lychee-x86_64-unknown-linux-gnu
+          curl --proto "=https" --tlsv1.2 -fsSL -o lychee.tar.gz \
+            "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/${asset}.tar.gz"
+          echo "${SHA256}  lychee.tar.gz" | sha256sum -c -
+          tar -xzf lychee.tar.gz "${asset}/lychee"
+          sudo mv "${asset}/lychee" /usr/local/bin/lychee
+          rm -rf lychee.tar.gz "${asset}"
+          lychee --version
 
       - name: Run link checker
         run: |

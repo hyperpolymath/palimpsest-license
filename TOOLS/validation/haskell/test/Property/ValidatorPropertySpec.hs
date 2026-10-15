@@ -4,18 +4,15 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -}
 
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Property.ValidatorPropertySpec (propertySpec) where
 
 import Test.Hspec
-import Test.Hspec.QuickCheck
 import Test.QuickCheck
-import Data.Text (Text)
 import qualified Data.Text as T
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.License
-import Palimpsest.Validator.Metadata
-import Palimpsest.Validator.Bilingual
 import Palimpsest.Validator.Reference
 import Palimpsest.Validator.Utils
 
@@ -105,7 +102,8 @@ propertySpec = describe "Property-Based Tests" $ do
         parseClauseNumber (T.pack $ show n) == Just n
 
     it "invalid clause numbers always return Nothing" $ property $
-      forAll (listOf1 arbitrary `suchThat` (not . all (\c -> c `elem` ("0123456789" :: String)))) $
+      forAll (listOf1 arbitrary `suchThat` (\s -> not (all (\c -> c `elem` ("0123456789" :: String)) s)
+                                                && not (isDecimalClauseNumber s))) $
         \str -> parseClauseNumber (T.pack str) == Nothing
 
     it "clause number parsing is deterministic" $ property $
@@ -162,7 +160,7 @@ propertySpec = describe "Property-Based Tests" $ do
       forAll (listOf1 (choose ('a', 'z'))) $ \chars ->
         let text = T.pack chars
             normalized = normaliseText text
-        in T.all (`elem` text) normalized || T.length normalized == 0
+        in T.all (`elem` chars) normalized || T.length normalized == 0
 
   describe "Clause reference validation properties" $ do
     it "valid clause references always extract successfully" $ property $
@@ -203,7 +201,7 @@ propertySpec = describe "Property-Based Tests" $ do
 
   describe "Duplicate finding properties" $ do
     it "no duplicates in unique list" $ property $
-      forAll (listOf1 (arbitrary :: Gen Text) `suchThat` allUnique) $
+      forAll (listOf1 (T.pack <$> arbitrary) `suchThat` allUnique) $
         \items -> findDuplicates items == []
 
     it "all duplicates are found" $ property $
@@ -213,9 +211,9 @@ propertySpec = describe "Property-Based Tests" $ do
                   in length dups == counts
 
     it "duplicate finding is deterministic" $ property $
-      \items -> let d1 = findDuplicates items
-                    d2 = findDuplicates items
-                in d1 == d2
+      \(items :: [String]) -> let d1 = findDuplicates items
+                                  d2 = findDuplicates items
+                              in d1 == d2
 
   describe "Round-trip property tests" $ do
     it "parse -> format -> parse should preserve structure" $ property $
@@ -256,3 +254,13 @@ nubOrd = go []
   where
     go _ [] = []
     go seen (x:xs) = if x `elem` seen then go seen xs else x : go (x:seen) xs
+
+-- | "1.2", "3." etc.: valid decimal clause numbers, which parse to their
+-- integer part (see "decimal clause numbers parse the integer part"), so they
+-- are not "invalid clause numbers".
+isDecimalClauseNumber :: String -> Bool
+isDecimalClauseNumber s = case break (== '.') s of
+  (ds@(_:_), '.' : frac) -> all isDigitChar ds && all isDigitChar frac
+  _ -> False
+  where
+    isDigitChar c = c `elem` ("0123456789" :: String)

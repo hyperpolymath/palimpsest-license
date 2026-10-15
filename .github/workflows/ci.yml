@@ -24,7 +24,9 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@6d9817901c499d6b02debbb57edb38d33daa680b # stable
+        uses: dtolnay/rust-toolchain@e2a55d2ffb04f378e9626c28d38b36d230d1e12f # v1
+        with:
+          toolchain: stable
 
       - name: Build pmpl-sign
         run: |
@@ -116,8 +118,12 @@ jobs:
         run: |
           set -e
           echo "Checking for PMPL SPDX headers..."
-          # Example: check a few key directories; you can refine the patterns.
-          files=$(git ls-files '*.rs' '*.ex' '*.exs' '*.adoc' '*.scm' || true)
+          # Archived snapshots keep the identifiers they were published under
+          # (earlier licence texts in legal/historical/ and LICENSE_CORE/archive/,
+          # retired material in ARCHIVE/); stamping PMPL-1.0-or-later on them
+          # would misstate their history.
+          files=$(git ls-files '*.rs' '*.ex' '*.exs' '*.adoc' '*.scm' \
+            ':!:ARCHIVE/**' ':!:legal/historical/**' ':!:LICENSE_CORE/archive/**' || true)
           missing=0
           for f in $files; do
             if ! grep -q "SPDX-License-Identifier: PMPL-1.0-or-later" "$f"; then
@@ -141,7 +147,9 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@6d9817901c499d6b02debbb57edb38d33daa680b # stable
+        uses: dtolnay/rust-toolchain@e2a55d2ffb04f378e9626c28d38b36d230d1e12f # v1
+        with:
+          toolchain: stable
 
       - name: Install cargo-fuzz
         run: cargo install cargo-fuzz || true

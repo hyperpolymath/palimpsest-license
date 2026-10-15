@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Palimpsest License - Legal Strategy Document v0.4
 
 === Executive Summary

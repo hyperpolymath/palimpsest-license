@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Legal Vignette: The Metadata Stripping Violation
 
 === Scenario: Clause 2.3 Breach - Metadata Preservation Violation

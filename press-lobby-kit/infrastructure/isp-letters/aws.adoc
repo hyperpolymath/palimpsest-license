@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Letter to Amazon Web Services (AWS)
 
 *To:* Amazon Web Services, Inc. *Attn:* Adam Selipsky, CEO *Cc:* AWS

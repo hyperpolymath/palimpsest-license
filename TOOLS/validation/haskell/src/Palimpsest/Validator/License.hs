@@ -9,20 +9,30 @@ SPDX-FileCopyrightText: 2024-2025 Palimpsest Stewardship Council
 -- Validates markdown structure, clause numbering, and format compliance
 module Palimpsest.Validator.License
   ( validateLicenseFile
-  , validateClauseStructure
   , validateClauseNumbering
   , checkRequiredSections
   , LicenseStructure(..)
   , Clause(..)
+    -- * Parsing helpers (exported for the test suite)
+  , parseLicenseStructure
+  , extractVersion
+  , hasLicenseHeader
+  , detectLanguage
+  , extractGoverningLaw
+  , isClausePattern
+  , parseClauseNumber
+  , findDuplicates
   ) where
 
 import Control.Monad (when, unless, forM_)
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Reader (ask)
+import Data.Char (isDigit)
 import Data.Text (Text)
 import qualified Data.Text as T
-import Data.Maybe (isNothing, mapMaybe, catMaybes)
-import Data.List (sort, nub)
+import qualified Data.Text.Read as TR
+import Data.Maybe (isNothing, mapMaybe)
+import Data.List (sort, nub, (\\))
 import Palimpsest.Validator.Types
 import Palimpsest.Validator.Utils
 import Text.Regex.TDFA ((=~))
@@ -33,7 +43,7 @@ data Clause = Clause
   , clauseHeading :: Text
   , clauseContent :: Text
   , clauseLine    :: Int
-  } deriving (Show, Eq)
+  } deriving stock (Show, Eq)
 
 -- | License document structure
 data LicenseStructure = LicenseStructure
@@ -42,7 +52,7 @@ data LicenseStructure = LicenseStructure
   , licenseHasHeader  :: Bool
   , licenseLanguage   :: Maybe Language
   , licenseGoverningLaw :: Maybe Text
-  } deriving (Show, Eq)
+  } deriving stock (Show, Eq)
 
 -- | Validate a complete license file
 validateLicenseFile :: FilePath -> ValidatorM LicenseStructure
@@ -138,19 +148,23 @@ extractClauseContent allLines startLine =
       contentLines = takeWhile (\(_, line) -> not (isClausePattern line || T.isPrefixOf "##" line)) relevantLines
   in T.unlines $ map snd contentLines
 
--- | Extract version from text
+-- | Extract version from text: "Version 0.4" (any case), then "v0.4", then
+-- a bare number after "License" ("Palimpsest License 0.4").
 extractVersion :: Text -> Text
 extractVersion text =
-  let pattern = "[Vv]ersion[[:space:]]+([0-9]+\\.[0-9]+)" :: String
-      matches = T.unpack text =~ pattern :: [[String]]
-  in case matches of
-       ((_ : v : _) : _) -> T.pack v
-       _ -> -- Try "v0.3" format
-         let altPattern = "v([0-9]+\\.[0-9]+)" :: String
-             altMatches = T.unpack text =~ altPattern :: [[String]]
-         in case altMatches of
-              ((_ : v : _) : _) -> T.pack v
-              _ -> "unknown"
+  case mapMaybe firstGroup patterns of
+    (v : _) -> T.pack v
+    [] -> "unknown"
+  where
+    patterns =
+      [ "[Vv][Ee][Rr][Ss][Ii][Oo][Nn][[:space:]]+([0-9]+\\.[0-9]+)"
+      , "v([0-9]+\\.[0-9]+)"
+      , "License[[:space:]]+([0-9]+\\.[0-9]+)"
+      ] :: [String]
+    firstGroup :: String -> Maybe String
+    firstGroup pattern = case T.unpack text =~ pattern :: [[String]] of
+      ((_ : v : _) : _) -> Just v
+      _ -> Nothing
 
 -- | Check if document has proper header
 hasLicenseHeader :: Text -> Bool
@@ -162,8 +176,8 @@ hasLicenseHeader text =
 -- | Detect document language
 detectLanguage :: Text -> Maybe Language
 detectLanguage text
-  | T.isInfixOf "Governing Law" text || T.isInfixOf "Definitions" text = Just English
-  | T.isInfixOf "Toepasselijk Recht" text || T.isInfixOf "Definities" text = Just Dutch
+  | any (`T.isInfixOf` text) ["Governing Law", "Definitions", "Permissions", "Attribution"] = Just English
+  | any (`T.isInfixOf` text) ["Toepasselijk Recht", "Definities", "Toestemmingen", "Naamgeving"] = Just Dutch
   | otherwise = Nothing
 
 -- | Extract governing law from document
@@ -218,24 +232,25 @@ validateClauseNumbering path clauses = do
     validationWarning Warning (T.pack path) "Clause numbers are not in sequential order"
 
   -- Check for gaps in numbering
-  forM_ (zip expected parsed) $ \(exp, actual) ->
-    when (exp /= actual) $
+  forM_ (zip expected parsed) $ \(expectedNum, actual) ->
+    when (expectedNum /= actual) $
       validationWarning Warning (T.pack path)
-        ("Clause numbering gap: expected " <> T.pack (show exp) <> ", found " <> T.pack (show actual))
+        ("Clause numbering gap: expected " <> T.pack (show expectedNum) <> ", found " <> T.pack (show actual))
 
--- | Parse clause number to integer
+-- | Parse clause number to integer: "3" -> 3, and the integer part of a
+-- decimal clause number ("3.5" -> 3, "3." -> 3). Anything else is Nothing.
 parseClauseNumber :: Text -> Maybe Int
 parseClauseNumber text =
-  case T.decimal text of
-    Right (n, _) -> Just n
+  case TR.decimal text of
+    Right (n, rest) -> case T.uncons rest of
+      Nothing -> Just n
+      Just ('.', frac) | T.all isDigit frac -> Just n
+      _ -> Nothing
     Left _ -> Nothing
 
 -- | Find duplicate elements in list
 findDuplicates :: Eq a => [a] -> [a]
 findDuplicates xs = xs \\ nub xs
-  where
-    (\\) :: Eq a => [a] -> [a] -> [a]
-    (\\) = foldr (\x acc -> if x `elem` acc then acc else x : filter (/= x) acc) []
 
 -- | Check for required sections in license
 checkRequiredSections :: FilePath -> LicenseStructure -> ValidatorM ()

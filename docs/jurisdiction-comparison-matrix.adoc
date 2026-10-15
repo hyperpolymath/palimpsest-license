@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Comprehensive Jurisdiction Comparison Matrix
 
 === UK, Scotland, Netherlands, and EU Legal Frameworks for Palimpsest License

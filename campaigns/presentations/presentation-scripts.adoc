@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == Video & Presentation Scripts: Palimpsest License Campaign
 
 === Complete scripts for explainer video, lightning talk, full presentation, and panel discussion

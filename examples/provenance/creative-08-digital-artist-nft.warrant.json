@@ -10,6 +10,6 @@
     "level": "epi",
     "evidence": [ { "kind": "provenance-metadata", "ref": "license" } ],
     "sound_by": null,
-    "source": { "file": "examples/vignettes/creative/08-digital-artist-nft.adoc", "line": 60, "field": "license" }
+    "source": { "file": "examples/vignettes/creative/08-digital-artist-nft.adoc", "line": 61, "field": "license" }
   }
 ]

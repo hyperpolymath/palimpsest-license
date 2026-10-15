@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 Below is the merged, standalone manifest that covers all the areas
 addressed in the Palimpsest License v0.3 document—including collective
 licensing, AI governance audits, cultural heritage compliance, and

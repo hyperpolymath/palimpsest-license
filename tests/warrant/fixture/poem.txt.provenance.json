@@ -1,0 +1,37 @@
+{
+  "artefact": "poem.txt",
+  "chain": [
+    {
+      "standpoint": "author",
+      "algorithm": "ed25519",
+      "pk": "0d41795062feb06b4c90eea92b389de3d2a8309235d7138502d1e4b9da03fd30",
+      "artefact_sha256": "d56560e45fd0deb60bd02fda6d4fb15bb5bc815f91fc6f3455f7b83cf7fcdbc1",
+      "timestamp": "2026-10-14T00:00:00Z",
+      "parent": null,
+      "signature": "d2bc27ff650fa7e18d0aa8eca92d2bae59843fa8bbc45768d5d6daca80b9d8ea6f702b6a2d9a9c752a70c934f104cbdfd6093816cbea2b6b64fd52a53d52cf01"
+    },
+    {
+      "standpoint": "licensor",
+      "algorithm": "ed25519",
+      "pk": "9cee09c840e7c063a2f680b0634fd472c0661c11715d57a510c5ec0b9d80520f",
+      "artefact_sha256": "d56560e45fd0deb60bd02fda6d4fb15bb5bc815f91fc6f3455f7b83cf7fcdbc1",
+      "timestamp": "2026-10-14T00:05:00Z",
+      "parent": "9118ce3889497a87d89876e39048201025b653789320101ea73b967643a16f03",
+      "signature": "751362255ce35b5435c87f2b1a012b23486a1153ec8146f1410946d6d7dfacd69c4d07b7f37a26a80c59568d8f2375d8346b7c1ca97f64a7e82c53bca4874202"
+    }
+  ],
+  "claims": [
+    {
+      "kind": "licensed-under",
+      "standpoint": "licensor",
+      "subject": "PMPL-1.0-or-later",
+      "statement": "the licensor offers poem.txt under PMPL-1.0-or-later"
+    },
+    {
+      "kind": "consented-for-training",
+      "standpoint": "licensor",
+      "subject": "poem.txt",
+      "statement": "consent to train on poem.txt was given"
+    }
+  ]
+}

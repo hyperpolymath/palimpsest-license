@@ -1,0 +1,76 @@
+[
+    {
+        "artefact": "poem.txt",
+        "claim": {
+            "kind": "signed-by",
+            "standpoint": "verifier",
+            "subject": "ed25519:0d41795062feb06b4c90eea92b389de3d2a8309235d7138502d1e4b9da03fd30",
+            "statement": "the author's key signed the record binding the hash of poem.txt and the timestamp 2026-10-14T00:00:00Z"
+        },
+        "level": "sound",
+        "evidence": [
+            {
+                "kind": "signature-chain",
+                "ref": "poem.txt.provenance.json#chain[0]"
+            }
+        ],
+        "sound_by": {
+            "rule": "signature-verify",
+            "assumption": "EUF-CMA security of the signature algorithm named in each signature"
+        }
+    },
+    {
+        "artefact": "poem.txt",
+        "claim": {
+            "kind": "signed-by",
+            "standpoint": "verifier",
+            "subject": "ed25519:9cee09c840e7c063a2f680b0634fd472c0661c11715d57a510c5ec0b9d80520f",
+            "statement": "the licensor's key signed the record binding the hash of poem.txt and the timestamp 2026-10-14T00:05:00Z"
+        },
+        "level": "sound",
+        "evidence": [
+            {
+                "kind": "signature-chain",
+                "ref": "poem.txt.provenance.json#chain[1]"
+            }
+        ],
+        "sound_by": {
+            "rule": "signature-verify",
+            "assumption": "EUF-CMA security of the signature algorithm named in each signature"
+        }
+    },
+    {
+        "artefact": "poem.txt",
+        "claim": {
+            "kind": "licensed-under",
+            "standpoint": "licensor",
+            "subject": "PMPL-1.0-or-later",
+            "statement": "the licensor offers poem.txt under PMPL-1.0-or-later"
+        },
+        "level": "epi",
+        "evidence": [
+            {
+                "kind": "spdx-header",
+                "ref": "poem.txt:1"
+            }
+        ],
+        "sound_by": null
+    },
+    {
+        "artefact": "poem.txt",
+        "claim": {
+            "kind": "consented-for-training",
+            "standpoint": "licensor",
+            "subject": "poem.txt",
+            "statement": "consent to train on poem.txt was given"
+        },
+        "level": "epi",
+        "evidence": [
+            {
+                "kind": "licence-header",
+                "ref": "poem.txt:3"
+            }
+        ],
+        "sound_by": null
+    }
+]

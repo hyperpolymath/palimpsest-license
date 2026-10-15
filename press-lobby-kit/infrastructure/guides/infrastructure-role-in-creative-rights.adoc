@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PMPL-1.0-or-later
 == The Role of Infrastructure in Protecting Creative Rights
 
 === Educational Guide
