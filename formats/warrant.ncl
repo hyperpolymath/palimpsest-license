@@ -51,6 +51,8 @@ let member = fun x xs => std.array.elem x xs in
 
 let fail = fun msg => 'Error { message = msg } in
 
+# Validate a claim's kind and standpoint, returning 'Ok or an
+# 'Error { message = ... } for the first unrecognised value.
 let check_claim = fun c =>
   if !(std.record.has_field c.kind admissible_evidence) then
     fail "claim.kind must be one of: %{std.string.join ", " (std.record.fields admissible_evidence)}"
@@ -60,6 +62,9 @@ let check_claim = fun c =>
     'Ok
 in
 
+# For a registered claim kind, return 'Ok if every evidence kind is admissible
+# (including an empty array), or 'Error for the first mismatch. Referenced
+# tokens are not checked.
 let check_evidence = fun kind evidence =>
   let allowed = admissible_evidence."%{kind}" in
   let bad = std.array.filter (fun e => !(member e.kind allowed)) evidence in
@@ -69,6 +74,10 @@ let check_evidence = fun kind evidence =>
     'Ok
 in
 
+# Validate token presence and sound_by after Shape and check_claim succeed.
+# Return 'Ok or the first 'Error; sound requires a matching registered rule,
+# its verbatim assumption and a consumed evidence kind, and is refused for
+# consented-for-training. Only metadata is checked, not cryptographic validity.
 let check_level = fun r =>
   let kind = r.claim.kind in
   if !(member r.level level_names) then
@@ -119,6 +128,8 @@ let SoundBy = {
 }
 in
 
+# Accept null unchanged; apply C to non-null values using the caller's blame
+# label. Contract failures from C propagate rather than becoming null.
 let Nullable = fun C =>
   std.contract.custom (fun label value =>
     if value == null then 'Ok value else 'Ok (std.contract.apply C label value)

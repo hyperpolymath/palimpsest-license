@@ -62,6 +62,8 @@ module SignatureVerify
   Verified : PublicKey → Message → Set
   Verified pk m = Σ Signature (λ σ → verify pk m σ ≡ true)
 
+  -- Warrant for standpoint κ whose evidence is a verified signature for pk
+  -- and m; constructing it requires no signature token.
   signed-by : (κ : Standpoint) (pk : PublicKey) (m : Message) →
               Warrant {wℓ = lzero} Standpoint κ (SignedBy pk m)
   signed-by κ pk m = mkWarrant (Verified pk m)
@@ -87,10 +89,14 @@ module ConsentFromHeader
   (LicenceHeader        : Artefact → Set)  -- a header that declares consent
   where
 
+  -- Licensor's consent warrant for x, with LicenceHeader x as its evidence
+  -- type; constructing it requires neither a header nor proof of consent.
   consent : (x : Artefact) →
             Warrant {wℓ = lzero} Standpoint licensor (ConsentedForTraining x)
   consent x = mkWarrant (LicenceHeader x)
 
+  -- Package a header token with the licensor's warrant for x. The result
+  -- records evidence held without proving ConsentedForTraining x.
   consent-epi : (x : Artefact) → LicenceHeader x →
                 Epi {wℓ = lzero} Standpoint licensor (ConsentedForTraining x)
   consent-epi x header = epi (consent x) header
