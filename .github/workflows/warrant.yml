@@ -34,7 +34,10 @@ jobs:
       - name: Install Nickel 1.18.0
         run: |
           cargo install nickel-lang-cli --version 1.18.0 --locked
-          test "$(nickel --version | awk '{print $NF}')" = '1.18.0'
+          # The version is the third field; the output ends with "(rev <sha>)",
+          # so the last field is never the version. MEASURED on #179: asserting
+          # on $NF failed every run after the install itself had succeeded.
+          test "$(nickel --version | awk '{print $3}')" = '1.18.0'
 
       - name: Records, spec example, coverage and expected rejections
         run: bash scripts/check-warrant-records.sh
