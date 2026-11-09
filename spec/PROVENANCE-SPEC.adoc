@@ -118,7 +118,7 @@ This section states the "machine-verifiable provenance proofs" extension
 `TOOLS/validation/` and any dashboard that displays provenance records.
 
 The model is three records from epistemic-types,
-`src/EpistemicTypes/Warrant.agda` at commit `6a68de3`: `Warrant`, `Epi` and
+`src/EpistemicTypes/Warrant.agda` at commit `dcd4648`: `Warrant`, `Epi` and
 `SoundWarrant`. They are consumed by pin and never re-declared here.
 
 === 7.1 Why a single verdict is not enough

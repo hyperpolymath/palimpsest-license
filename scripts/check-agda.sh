@@ -2,9 +2,14 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
 # SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
 #
-# Agda proof gate for proofs/agda (kernel flags: --safe --without-K
-# --no-libraries --double-check).  Run scripts/fetch-siblings.sh first.
-#   1. the positive set typechecks against the pinned epistemic-types;
+# Agda proof gate for proofs/agda.  Run scripts/fetch-siblings.sh first.
+# Flags: the estate theory profile (standards 3-practice/PROOF-POLICY.adoc
+# §2.1, --safe --without-K --cubical-compatible) with epistemic-types' module
+# options (--exact-split --no-sized-types --no-guardedness), and
+# --no-libraries --ignore-interfaces --double-check -W error.
+#   1. the positive set typechecks against the pinned epistemic-types, and
+#      its import cone raises UnsupportedIndexedMatch at exactly the audited
+#      upstream spans below and nowhere else;
 #   2. every module under tests/reject is refused at its `invalid`
 #      declaration by a type error (not a missing import, parse error or hole);
 #   3. control: the harness itself reports a fixture that typechecks.
@@ -13,22 +18,45 @@ cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 export LC_ALL=C.UTF-8 LANG=C.UTF-8
 prover="${AGDA:-agda}"
 epistemic=_build/dependencies/epistemic-types
-pin=6a68de3141a981d766fd006b312f0919ade334bf
+pin=dcd464839333bc83e55c7ddf44ade7cc83426a99
 
 "$prover" --version
 if [[ "$(git -C "$epistemic" rev-parse HEAD 2>/dev/null)" != "$pin" ]]; then
   echo "ERROR: $epistemic is not at the pinned $pin; run scripts/fetch-siblings.sh" >&2
   exit 1
 fi
-flags=(--safe --without-K --no-libraries --ignore-interfaces --double-check -W error
-       -i proofs/agda -i "$epistemic/src")
+profile=(--safe --without-K --cubical-compatible --exact-split --no-sized-types
+         --no-guardedness --no-libraries --ignore-interfaces --double-check
+         -i proofs/agda -i "$epistemic/src")
+flags=("${profile[@]}" -W error -W noUnsupportedIndexedMatch)
 logs=_build/agda-logs
 mkdir -p "$logs"
+
+# Agda cannot yet compute these indexed matches under transport.  The proofs
+# still check; no Cubical transport-computation claim is made for them.  They
+# are epistemic-types' own reviewed spans (its tests/check-proofs.sh manifest);
+# none is in this repository.  A new, moved or vanished span fails the gate.
+audited=(
+  "$epistemic/src/EpistemicTypes/EchoBridge.agda:156,1-157,49"
+  "$epistemic/src/EpistemicTypes/EchoBridge.agda:168,1-169,58"
+)
 
 # 1. Positive set first: missing imports or broken tooling must not turn
 #    into successful expected-rejection tests.
 "$prover" "${flags[@]}" proofs/agda/Provenance/Warrant.agda
-echo 'PASS: proofs/agda/Provenance/Warrant.agda'
+# Audit pass: every warning left after the strict pass is an
+# UnsupportedIndexedMatch, so the set of warned spans must equal the manifest.
+"$prover" "${profile[@]}" -W noerror proofs/agda/Provenance/Warrant.agda >"$logs/audit.log" 2>&1
+observed="$(grep -oE '^/[^:]+\.agda:[0-9]+,[0-9]+-[0-9,]+' "$logs/audit.log" |
+            sed "s#^$PWD/##" | sort -u)"
+expected="$(printf '%s\n' "${audited[@]}" | sort -u)"
+if [[ "$observed" != "$expected" ]]; then
+  cat "$logs/audit.log"
+  printf 'ERROR: UnsupportedIndexedMatch spans differ from the audited manifest\nexpected:\n%s\nobserved:\n%s\n' \
+    "$expected" "$observed" >&2
+  exit 1
+fi
+echo "PASS: proofs/agda/Provenance/Warrant.agda; UnsupportedIndexedMatch confined to ${#audited[@]} audited upstream spans"
 
 # Succeeds when $1 is refused by a type error at or after its `invalid :`
 # signature; prints why and fails otherwise.
