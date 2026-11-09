@@ -1,59 +1,307 @@
 // SPDX-License-Identifier: PMPL-1.0-or-later
-== PROOF-NEEDS.md — palimpsest-license
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
+= Proof ledger — palimpsest-license
+:toc:
 
-=== Current State
+This is the repository's proof-status file. It follows
+https://github.com/hyperpolymath/standards/blob/b8f60511e76c9015d86990317162dce653c92fe1/3-practice/PROOF-POLICY.adoc[PROOF-POLICY at `b8f6051`]
+(owner rulings of 2026-10-26, 2026-11-04 and 2026-11-07). Status tokens are
+the closed §5 vocabulary (`PROVEN`, `PROVEN-WITH-AXIOMS`, `TESTED`,
+`ASSUMED`, `OPEN`); correspondence states are §2.2's; grades are §8's Proof
+Witness Grades, derived from the receipts named here and never asserted
+without them.
 
-* **src/abi/*.idr**: NO
-* *Dangerous patterns*: 1 `+unwrap()+` in Rust tools
-* *LOC*: ~11,800 (Rust tools + license text)
-* *ABI layer*: Missing
+== 1. What is proved where
 
-=== What Needs Proving
-
-[width="100%",cols="51%,27%,22%",options="header",]
+[cols="2,2,3",options="header"]
 |===
-|Component |What |Why
-|pmpl-verify |Signature verification is correct (no false positives or
-negatives) |False positive verification accepts tampered licenses
+|Obligation |Verifier (§1) |Where
 
-|pmpl-sign |Signing produces valid, verifiable signatures |Invalid
-signatures break downstream verification
+|Warrant-level model of spec/PROVENANCE-SPEC.adoc §7: theory, because its
+statements quantify over every signature scheme and every artefact, and name
+no type, function or wire format of this repository
+|Agda, rechecked in Rocq and Lean
+|`proofs/agda/Provenance/Warrant.agda`, `proofs/rocq/Warrant.v`,
+`proofs/lean/Warrant.lean`
 
-|pmpl-audit |Audit correctly identifies all license violations |Missed
-violations create legal exposure
+|Rust tools (`tools/pmpl-sign`, `tools/pmpl-verify`, `tools/pmpl-audit`)
+|Creusot with Pearlite contracts, and Verus (§1.2)
+|none yet; see §5
 
-|License text parsing |Parser correctly extracts SPDX identifiers |Wrong
-SPDX extraction causes compliance errors
+|Signature-file format shared by pmpl-sign and pmpl-verify
+|Idris2 (interface contract)
+|none yet; see §5
+
+|Haskell validator (`TOOLS/validation/haskell`)
+|no mapped verifier for Haskell; tests only
+|§4
 |===
 
-=== Recommended Prover
+== 2. Theory theorems (§8.5 records)
 
-*Idris2* — Create `+src/abi/+` with types for signature verification
-correctness. The sign/verify pair should be proven as inverses.
+All six are re-proved by hand in both targets (route `re-proved`, §2):
+Agda2Dedukti has no released Lean exporter, and the epistemic-types records
+are restated, not transported. No theorem rests on an axiom in any prover;
+`unforgeable` is a hypothesis of the statement, present identically in all
+three.
 
-=== Priority
+[cols="2,3,1,1,1",options="header"]
+|===
+|Agda name |Statement |Agda |Rocq leg |Lean leg
 
-*LOW* — License tooling. While correctness matters, the blast radius of
-bugs is limited to incorrect license reports rather than security or
-data integrity failures.
+|`SignatureVerify.signature-sound-evidence`
+|Under `unforgeable`, signature-sound is a sound warrant for signed-by whose
+evidence is exactly a verified signature
+|`PROVEN`
+|`PROVEN`, `RECONCILED`
+|`OPEN`, `BRIDGE-PENDING`
 
-=== Warrant levels (PMP-01, issue #162)
+|`SignatureVerify.verified-signed-by`
+|Under `unforgeable`, a signature that verifies gives signed-by (rule
+signature-verify, §7.5)
+|`PROVEN`
+|`PROVEN`, `RECONCILED`
+|`OPEN`, `BRIDGE-PENDING`
 
-Status of the warrant-level provenance model (spec/PROVENANCE-SPEC.adoc §7).
-A row moves only with the artefact named beside it.
+|`no-signature-sound`
+|Without `unforgeable`, no map from a verified signature to signed-by exists
+uniformly (§7.3 rule 3)
+|`PROVEN`
+|`PROVEN`, `RECONCILED`
+|`OPEN`, `BRIDGE-PENDING`
+
+|`no-consent-sound`
+|No map from a licence-header token to consented-for-training exists
+uniformly (§7.3 rule 4)
+|`PROVEN`
+|`PROVEN`, `RECONCILED`
+|`OPEN`, `BRIDGE-PENDING`
+
+|`no-transfer`
+|A sound warrant for one claim and a token for another do not give the
+other (§7.3 rule 6)
+|`PROVEN`
+|`PROVEN`, `RECONCILED`
+|`OPEN`, `BRIDGE-PENDING`
+
+|`ToyModel.example`
+|The hypotheses of SignatureVerify are jointly satisfiable, so the rule is
+not vacuous
+|`PROVEN`
+|`PROVEN`, `RECONCILED`
+|`OPEN`, `BRIDGE-PENDING`
+|===
+
+`foundation_diverse` is false for all six: Agda, Rocq and Lean are one
+foundational family (§8.3).
+
+=== 2.1 Receipts and grade
+
+Each leg's receipt is its job in the `Warrant levels` workflow on the
+commit in question, with the versions and invocations of §2.2. The Proof
+Witness Grade (`pwg`) of each theorem is derived from those receipts as
+§8.2 says: `PWG-3` with the Agda job green, `PWG-2i` with one recheck job
+green as well, `PWG-2ii` with both. It is never carried from one commit to
+the next (§8.4), so this file records the derivation, not a grade.
+
+The Rocq leg was kernel-checked when it was written (Coq 8.18.0, all six
+statements closed under the global context). The Lean leg was not: the
+session that wrote it could not run Lean, so its first kernel check is its
+CI job, and it stays `OPEN` and `BRIDGE-PENDING` until that job is green.
+
+Census (§8.4), on `main` before the canonical-profile receipts: 6 theory
+theorems; `PWG-1` 0, `PWG-2ii` 0, `PWG-2i` 0, `PWG-3` 0, `ungraded` 6.
+
+== 2.2 Correspondence (§2.2)
+
+Each target restates the Agda statements; the comparison below was made by
+reading the three sources side by side, not by a round trip.
+
+[cols="1,3",options="header"]
+|===
+|Point |Agda, and how each target matches it
+
+|Source revision
+|The commit of this file. epistemic-types at
+`dcd464839333bc83e55c7ddf44ade7cc83426a99`.
+
+|Checkers
+|Agda 2.6.4.3 (CI; `agda-bin=2.6.4.3-1+b2`), Coq 8.18.0
+(`coq=8.18.0+dfsg-1build2`), Lean 4.35.0.
+
+|Invocation
+|`scripts/check-agda.sh`: `--safe --without-K --cubical-compatible
+--exact-split --no-sized-types --no-guardedness --no-libraries
+--ignore-interfaces --double-check -W error -W noUnsupportedIndexedMatch`,
+plus the span audit. `scripts/check-rocq.sh`: `coqc -q`.
+`scripts/check-lean.sh`: `lean`.
+
+|Records
+|epistemic-types' `Warrant` (one field `Evidence : Set`), `Epi` (`warrant`,
+`evidence`), `SoundWarrant` (`warrant`, `sound : Evidence → A`) and
+`sound-epi` are restated field for field in both targets, since
+epistemic-types has no Rocq or Lean leg. Rocq prefixes `Epi`'s fields
+(`epi_warrant`, `epi_evidence`) because its record fields are global.
+
+|Universes
+|Agda uses `Set` (`wℓ = lzero`), the records living in `Set₁`. Rocq uses
+`Set` with the records in `Type`; Lean uses `Type` with the records in
+`Type 1`. The three `no-…` statements quantify over `Set`/`Type` in every
+prover. That matters: a hypothesis quantified over a larger universe is
+stronger, so the refutation would be weaker.
+
+|Equality
+|Agda's `_≡_` is `Set`-valued; Rocq's `eq` and Lean's `Eq` are `Prop`-valued.
+The statements use equality only on `Bool` (`verify pk m σ ≡ true`), where
+equality is decidable and all three agree on what is inhabited, and between
+types (`Evidence … ≡ Verified pk m`), proved by reflexivity in all three.
+The difference changes no claim made here.
+
+|Σ
+|Agda's `Σ Signature (λ σ → …)`; Rocq's `{ s : Signature & … }` (`sigT`);
+Lean's `Σ' σ : Signature, …` (`PSigma`, its second component being a
+`Prop`).
+
+|Parameters
+|Agda's module parameters are Rocq `Section` variables, abstracted in
+declaration order, and explicit Lean arguments.
+
+|Names
+|`example` is `ToyModel.toyExample` in Lean, where `example` is a keyword.
+Type-valued Lean results are `def`s, `theorem` being for propositions.
+
+|Residual assumptions
+|None beyond the stated hypothesis `unforgeable`. Each gate requires every
+reported statement to be axiom-free and checks a planted escape hatch is
+reported (`Admitted` in Rocq, `sorry` in Lean, a postulate refused by
+`--safe` in Agda).
+|===
+
+== 3. The Agda import cone (§1.1)
+
+epistemic-types is checked, not assumed. Root module
+`proofs/agda/Provenance/Warrant.agda`; cone `EpistemicTypes.Warrant`,
+`EpistemicTypes.EchoBridge`, `EpistemicTypes.Base` at `dcd4648`; flags as in
+§2.2; no standard library (`--no-libraries`); zero postulates (`--safe`
+refuses them).
+
+Agda cannot yet compute two indexed matches in `EchoBridge.agda` (lines
+156–157 and 168–169) under Cubical transport. The proofs check; no Cubical
+transport-computation claim is made for those two definitions. They are
+upstream's own reviewed spans, and `check-agda.sh` fails if the set of
+warned spans changes.
+
+== 4. Engineering obligations
 
 [cols="1,4,1,4",options="header"]
 |===
-| ID | Claim | Status | Artefact
-| E-1 | `Warrant`, `Epi`, `SoundWarrant`, `sound-epi`: zero postulates, `--safe` | PROVEN upstream | epistemic-types `dcd4648`, `src/EpistemicTypes/Warrant.agda`
-| WL-1 | `formats/warrant.ncl` refuses records that break §7.3 rules 1-4 and 6, and unknown levels, standpoints and evidence kinds | TESTED | `scripts/check-warrant-records.sh`: each fixture in `tests/warrant/reject/` is refused with its rule's message
-| WL-2 | every licence-bearing metadata block under `examples/` has conforming records; none is above `epi`, since no example carries a signature | TESTED | `scripts/check-warrant-records.sh`: positive set and coverage diff
-| WL-3 | `signature-verify` entails `signed-by`, with EUF-CMA an explicit parameter | PROVEN | `Provenance.Warrant.SignatureVerify.signature-sound` in `proofs/agda/Provenance/Warrant.agda` (epistemic-types pinned at `dcd4648`), checked by `scripts/check-agda.sh`; `ToyModel.example` shows the parameters can be supplied. Dropping the assumption is refused: `tests/reject/AssumptionDropped.agda`
-| WL-4 | `consented-for-training` cannot be extracted from a licence-header token | PROVEN | `no-consent-sound` (no uniform soundness map); the falsifier `tests/reject/ConsentFromToken.agda` is refused; at the data level, WL-1's `ConsentAtSound`
-| WL-5 | the validator reports a level for every claim: on one artefact the fixture's signature chain is `sound` and its consent claim `epi`, and no licence or consent claim reaches `sound` | TESTED | `ProvenanceSpec` in `TOOLS/validation/haskell` (tamper, forgery, wrong signer, broken link, unknown algorithm, missing header, and a QuickCheck property); `tests/warrant/fixture/expected.json` is reproduced exactly by the validator and checked against `formats/warrant.ncl` by `scripts/check-warrant-records.sh`
-| WL-6 | the provenance dashboard displays levels | OPEN | the dashboard is not in this repository
-| WL-7 | a level does not transfer between claims (§7.3 rule 6) | PROVEN | `no-transfer`; `tests/reject/SignatureToConsent.agda` is refused
-| WL-8 | an unchecked signature is not a token for `signed-by` (§7.3 rule 7) | TESTED | `tests/reject/UnverifiedSignature.agda` is refused
-| WL-9 | `pmpl-verify` reports a level for every claim, and never a bare pass below `sound` | TESTED | `tools/pmpl-verify` unit tests: a matching content hash is `epi` and renders "not verified" (it does not yet check the signature itself), a mismatch fails at `warrant`, `--existence-only` is `epi`
-| WL-10 | the validator's Ed25519 check (the crypton library) implements `verify` in `SignatureVerify` | ASSUMED | a trusted library; the fixture's OpenSSL-made signatures verify under it, which is agreement between two implementations, not a proof
+|ID |Claim |Status |Evidence and bounds
+
+|WL-1
+|`formats/warrant.ncl` refuses records that break §7.3 rules 1–4 and 6, and
+unknown levels, standpoints and evidence kinds
+|`TESTED`
+|`scripts/check-warrant-records.sh`: each fixture in `tests/warrant/reject/`
+is refused with its rule's message. Bounds: those fixtures.
+
+|WL-2
+|Every licence-bearing metadata block under `examples/` has conforming
+records; none is above `epi`
+|`TESTED`
+|`scripts/check-warrant-records.sh`: positive set and coverage diff. Bounds:
+the files under `examples/` at the checked commit.
+
+|WL-5
+|The validator reports a level for every claim; a signature chain is
+`sound` and a consent claim `epi`, and no licence or consent claim reaches
+`sound`
+|`TESTED`
+|`ProvenanceSpec` in `TOOLS/validation/haskell` (tamper, forgery, wrong
+signer, broken link, unknown algorithm, missing header, and a QuickCheck
+property at its default 100 cases); `tests/warrant/fixture/expected.json`
+reproduced exactly.
+
+|WL-6
+|The provenance dashboard displays levels
+|`OPEN`
+|The dashboard is not in this repository.
+
+|WL-8
+|An unchecked signature is not a token for signed-by (§7.3 rule 7)
+|`TESTED`
+|`tests/reject/UnverifiedSignature.agda` is refused. Bounds: that one term.
+
+|WL-9
+|`pmpl-verify` reports a level for every claim, and never a bare pass below
+`sound`
+|`TESTED`
+|13 unit tests in `tools/pmpl-verify/src/main.rs` (#167), run by the
+`pmpl-verify` job. pmpl-verify does not verify a cryptographic signature
+yet, so its highest level is `epi`.
+
+|WL-10
+|The validator's Ed25519 check implements `verify` in `SignatureVerify`
+|`ASSUMED`
+|Dependency `crypton` 0.33 (Ubuntu `libghc-crypton-dev` 0.33-2ubuntu1),
+trusted (§1.1). The fixture's OpenSSL-made signatures verify under it:
+agreement between two implementations, not a proof.
+
+|R-1
+|A signature pmpl-sign writes is accepted by pmpl-verify, and a tampered
+one is refused
+|`OPEN`
+|Creusot/Pearlite and Verus: not applicable yet. Neither tool implements a
+cryptographic signature (their post-quantum dependency is a commented-out
+placeholder). Next action: specify the round trip as a Pearlite contract and
+a Verus proof when the signature is implemented.
+
+|R-2
+|pmpl-verify's content-hash check accepts exactly the artefact whose SHA3
+digest the signature file records
+|`OPEN`
+|Creusot/Pearlite and Verus: not yet run. The behaviour is `TESTED` by the
+hash tests in `tools/pmpl-verify/src/main.rs`. Rests on `sha3` 0.10,
+`ASSUMED`; no `Cargo.lock` is committed, so the patch version is not
+pinned.
+
+|R-3
+|pmpl-audit reports every licence violation in a tree
+|`OPEN`
+|Blocked: "violation" has no written specification to verify against. Unit
+tests in `tools/pmpl-audit/src/main.rs` exercise detection on samples.
+
+|R-4
+|The signature-file format is parsed and written consistently
+|`OPEN`
+|Idris2 interface contract not started. `test_parse_signature_*` in
+pmpl-verify test two inputs.
+|===
+
+== 5. Toolchain deviations (§6)
+
+This repository has no Guix manifest or container for a prover, so every
+prover is installed another way. Each workflow step asserts the version it
+got.
+
+[cols="1,3,1",options="header"]
+|===
+|Leg |Tool, version, digest |State
+
+|Agda
+|`agda-bin=2.6.4.3-1+b2` from Debian, in
+`debian:13-slim@sha256:d7e12182ce18b85b93007c1dedf31f2d29e01ccf3182cc4017c709b6259bc132`.
+Version asserted; the installed binary's digest is not yet recorded.
+|`open`
+
+|Rocq
+|`coq=8.18.0+dfsg-1build2` from Ubuntu 24.04; `/usr/bin/coqc` sha256
+`f14ab0c140bdfdb31c7e7e1f20379703973376480a4eea2d43d0fa56ddae03ec`,
+asserted.
+|`open`
+
+|Lean
+|Lean 4.35.0 release archive `lean-4.35.0-linux.tar.zst`, sha256
+`7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d`,
+asserted.
+|`open`
 |===

@@ -132,6 +132,18 @@ All source files must include:
 - AsciiDoc format
 - Normative requirements
 
+## Proofs
+
+`standards/3-practice/PROOF-POLICY.adoc` is normative; this is a summary.
+Theory (statements true of any implementation) is proved in Agda under
+`--safe --without-K --cubical-compatible` and rechecked in Rocq and Lean,
+core libraries only. Rust code is verified with Creusot (Pearlite contracts)
+and Verus, Ada with SPARK, and interfaces, ABIs and wire formats in Idris2.
+The ledger is `PROOF-NEEDS.adoc`, in the policy's status vocabulary
+(`PROVEN`, `PROVEN-WITH-AXIOMS`, `TESTED`, `ASSUMED`, `OPEN`); grades are
+`PWG-3`/`PWG-2i`/`PWG-2ii`/`PWG-1`, derived from CI receipts. Checks:
+`just agda`, `just rocq`, `just lean`.
+
 ## Technology Stack
 
 - **Primary Implementation:** Rust
