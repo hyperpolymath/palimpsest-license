@@ -114,7 +114,7 @@ jobs:
       - name: Install Lean; elaborates; every declaration is axiom-free; a sorry is reported
         run: |
           archive="lean-${LEAN_VERSION}-linux.tar.zst"
-          curl -fsSL -o "$RUNNER_TEMP/$archive" \
+          curl --proto "=https" --tlsv1.2 -fsSL -o "$RUNNER_TEMP/$archive" \
             "https://github.com/leanprover/lean4/releases/download/v${LEAN_VERSION}/$archive"
           echo "${LEAN_SHA256}  $RUNNER_TEMP/$archive" | sha256sum -c -
           tar --zstd -xf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP"
