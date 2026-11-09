@@ -47,7 +47,7 @@ audited=(
 # Audit pass: every warning left after the strict pass is an
 # UnsupportedIndexedMatch, so the set of warned spans must equal the manifest.
 "$prover" "${profile[@]}" -W noerror proofs/agda/Provenance/Warrant.agda >"$logs/audit.log" 2>&1
-observed="$(grep -oE '^/[^:]+\.agda:[0-9]+,[0-9]+-[0-9,]+' "$logs/audit.log" |
+observed="$({ grep -oE '^/[^:]+\.agda:[0-9]+,[0-9]+-[0-9,]+' "$logs/audit.log" || [[ $? -eq 1 ]]; } |
             sed "s#^$PWD/##" | sort -u)"
 expected="$(printf '%s\n' "${audited[@]}" | sort -u)"
 if [[ "$observed" != "$expected" ]]; then
