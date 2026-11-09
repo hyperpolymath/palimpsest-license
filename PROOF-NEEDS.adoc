@@ -178,10 +178,11 @@ declaration order, and explicit Lean arguments.
 Type-valued Lean results are `def`s, `theorem` being for propositions.
 
 |Residual assumptions
-|None beyond the stated hypothesis `unforgeable`. Each gate requires every
-reported statement to be axiom-free and checks a planted escape hatch is
-reported (`Admitted` in Rocq, `sorry` in Lean, a postulate refused by
-`--safe` in Agda).
+|None beyond the stated hypothesis `unforgeable`. The Rocq and Lean gates
+require every reported statement to be axiom-free and check that a planted
+escape hatch is reported (`Admitted` in Rocq, `sorry` in Lean). In Agda,
+`--safe` refuses a postulate anywhere in the import cone; the Agda gate has
+no planted postulate control of its own yet.
 |===
 
 == 3. The Agda import cone (§1.1)
@@ -249,8 +250,11 @@ yet, so its highest level is `epi`.
 |WL-10
 |The validator's Ed25519 check implements `verify` in `SignatureVerify`
 |`ASSUMED`
-|Dependency `crypton` 0.33 (Ubuntu `libghc-crypton-dev` 0.33-2ubuntu1),
-trusted (§1.1). The fixture's OpenSSL-made signatures verify under it:
+|Dependency `crypton`, trusted (§1.1): whatever Ubuntu 24.04's
+`libghc-crypton-dev` provides when the validator job runs (0.33-2ubuntu1
+when this was written). The cabal file allows `crypton >= 0.32` and the job
+neither pins nor asserts the version. The fixture's OpenSSL-made signatures
+verify under it:
 agreement between two implementations, not a proof.
 
 |R-1
@@ -274,8 +278,11 @@ pinned.
 |R-3
 |pmpl-audit reports every licence violation in a tree
 |`OPEN`
-|Blocked: "violation" has no written specification to verify against. Unit
-tests in `tools/pmpl-audit/src/main.rs` exercise detection on samples.
+|Blocked: "violation" has no written specification to verify against. The
+unit tests in `tools/pmpl-audit/src/main.rs` check string and regex
+fragments in isolation; none calls `audit_repository`,
+`check_license_file` or `check_file_headers`, so detection itself is
+untested.
 
 |R-4
 |The signature-file format is parsed and written consistently
@@ -286,8 +293,10 @@ pmpl-verify test two inputs.
 
 == 5. Toolchain deviations (§6)
 
-This repository has no Guix manifest or container for a prover, so every
-prover is installed another way. Each workflow step asserts the version it
+This repository maintains no Guix manifest or container image for a prover,
+so every prover comes from an upstream archive: Agda from Debian's, inside
+a stock `debian:13-slim` container pinned by digest; Rocq from Ubuntu's;
+Lean from its release archive. Each workflow step asserts the version it
 got.
 
 [cols="1,3,1",options="header"]
