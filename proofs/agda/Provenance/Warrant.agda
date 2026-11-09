@@ -12,9 +12,13 @@
 --                                no-receipt-reflection (E-2) refutes into
 --
 -- One SoundWarrant: signature-verify concludes signed-by.  The cryptographic
--- assumption (EUF-CMA for the algorithm named in the signature) is the
--- parameter `unforgeable` of SignatureVerify, not a postulate, so every use
--- of the rule is given it explicitly.
+-- assumption is the parameter `unforgeable` of SignatureVerify, not a
+-- postulate, so every use of the rule is given it explicitly.  It idealises
+-- EUF-CMA for the algorithm named in the signature: EUF-CMA bounds the
+-- chance that an efficient forger succeeds, and `unforgeable` rules every
+-- forgery out, so a verified signature reads as signed-by outright.  The gap
+-- between the two is part of the assumption, not something proved here.
+-- no-signature-sound shows the assumption cannot be dropped.
 --
 -- One deliberate non-upgrade: a licence-header token warrants
 -- consented-for-training only as Epi.  tests/reject/ConsentFromToken.agda is
@@ -43,8 +47,8 @@ data Standpoint : Set where
 --
 --   verify       the algorithm named in the signature
 --   SignedBy     the claim: the holder of pk's secret key signed m
---   unforgeable  the assumption, EUF-CMA: a signature that verifies under pk
---                for m was made by that key holder
+--   unforgeable  the assumption, EUF-CMA idealised: a signature that
+--                verifies under pk for m was made by that key holder
 --
 -- m is the signed record, which binds the artefact's hash and a timestamp;
 -- the timestamp is a signed field, not a measured one (§7.4).
@@ -74,11 +78,32 @@ module SignatureVerify
   signature-sound κ pk m =
     soundWarrant (signed-by κ pk m) (λ { (σ , ok) → unforgeable pk m σ ok })
 
+  -- The rule's content is which evidence is sound for the claim.  The type
+  -- of signature-sound alone is also met by a warrant whose evidence is the
+  -- claim itself, so this pins its evidence to a verified signature.
+  signature-sound-evidence :
+    (κ : Standpoint) (pk : PublicKey) (m : Message) →
+    Warrant.Evidence (SoundWarrant.warrant (signature-sound κ pk m)) ≡ Verified pk m
+  signature-sound-evidence κ pk m = refl
+
   -- What a verifier holds after checking one signature: the claim, through
   -- sound-epi, under the assumption it was given.
   verified-signed-by : (pk : PublicKey) (m : Message) (σ : Signature) →
                        verify pk m σ ≡ true → SignedBy pk m
   verified-signed-by pk m σ ok = sound-epi (signature-sound verifier pk m) (σ , ok)
+
+-- Rule 3: the assumption is necessary.  Without it no map from a verified
+-- signature to signed-by can be given uniformly: where every signature
+-- verifies and nothing was signed, one would inhabit Impossible.
+no-signature-sound :
+  ((PublicKey Message Signature : Set)
+   (verify   : PublicKey → Message → Signature → Bool)
+   (SignedBy : PublicKey → Message → Set)
+   (pk : PublicKey) (m : Message) →
+     Σ Signature (λ σ → verify pk m σ ≡ true) → SignedBy pk m) →
+  Impossible
+no-signature-sound sound =
+  sound ⊤ ⊤ ⊤ (λ _ _ _ → true) (λ _ _ → Impossible) tt tt (tt , refl)
 
 ------------------------------------------------------------------------
 -- consented-for-training at most Epi (§7.3 rule 4).

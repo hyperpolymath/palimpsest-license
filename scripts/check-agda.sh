@@ -98,8 +98,9 @@ done
 #    one (an Epi from the token) must be reported as accepted.
 control=_build/agda-control/ConsentFromToken.agda
 mkdir -p "$(dirname -- "$control")"
-sed -e 's/SoundWarrant {wℓ = lzero} Standpoint licensor (Consented x)$/Header x → Epi {wℓ = lzero} Standpoint licensor (Consented x)/' \
-    -e 's/soundWarrant (consent x) (λ token → token)$/consent-epi x/' \
+sed -e 's/Σ (SoundWarrant {wℓ = lzero} Standpoint licensor (Consented x))$/Header x → Epi {wℓ = lzero} Standpoint licensor (Consented x)/' \
+    -e '/(λ sw → SoundWarrant.warrant sw ≡ consent x)$/d' \
+    -e 's/soundWarrant (consent x) (λ token → token) , refl$/consent-epi x/' \
     -e 's/using (SoundWarrant; soundWarrant)/using (Epi)/' \
     tests/reject/ConsentFromToken.agda >"$control"
 if cmp -s "$control" tests/reject/ConsentFromToken.agda; then
