@@ -109,19 +109,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install Lean from its release archive
+      # One step, and the binary by its full path: nothing is added to PATH
+      # or to the environment of later steps.
+      - name: Install Lean; elaborates; every declaration is axiom-free; a sorry is reported
         run: |
           archive="lean-${LEAN_VERSION}-linux.tar.zst"
           curl -fsSL -o "$RUNNER_TEMP/$archive" \
             "https://github.com/leanprover/lean4/releases/download/v${LEAN_VERSION}/$archive"
           echo "${LEAN_SHA256}  $RUNNER_TEMP/$archive" | sha256sum -c -
           tar --zstd -xf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP"
-          echo "$RUNNER_TEMP/lean-${LEAN_VERSION}-linux/bin" >> "$GITHUB_PATH"
-
-      - name: Elaborates; every declaration is axiom-free; a sorry is reported
-        run: |
-          lean --version | grep -q "version ${LEAN_VERSION},"
-          bash scripts/check-lean.sh
+          LEAN="$RUNNER_TEMP/lean-${LEAN_VERSION}-linux/bin/lean"
+          "$LEAN" --version | grep -q "version ${LEAN_VERSION},"
+          LEAN="$LEAN" bash scripts/check-lean.sh
 
   # The Haskell validator in TOOLS/validation/haskell, built with Ubuntu's own
   # GHC and Haskell libraries and no Hackage: cabal resolves every dependency
