@@ -14,7 +14,7 @@
 #      declaration by a type error (not a missing import, parse error or hole);
 #   3. control: the harness itself reports a fixture that typechecks.
 set -euo pipefail
-cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
+cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 export LC_ALL=C.UTF-8 LANG=C.UTF-8
 prover="${AGDA:-agda}"
 epistemic=_build/dependencies/epistemic-types
