@@ -54,42 +54,42 @@ three.
 evidence is exactly a verified signature
 |`PROVEN`
 |`PROVEN`, `RECONCILED`
-|`OPEN`, `BRIDGE-PENDING`
+|`PROVEN`, `RECONCILED`
 
 |`SignatureVerify.verified-signed-by`
 |Under `unforgeable`, a signature that verifies gives signed-by (rule
 signature-verify, §7.5)
 |`PROVEN`
 |`PROVEN`, `RECONCILED`
-|`OPEN`, `BRIDGE-PENDING`
+|`PROVEN`, `RECONCILED`
 
 |`no-signature-sound`
 |Without `unforgeable`, no map from a verified signature to signed-by exists
 uniformly (§7.3 rule 3)
 |`PROVEN`
 |`PROVEN`, `RECONCILED`
-|`OPEN`, `BRIDGE-PENDING`
+|`PROVEN`, `RECONCILED`
 
 |`no-consent-sound`
 |No map from a licence-header token to consented-for-training exists
 uniformly (§7.3 rule 4)
 |`PROVEN`
 |`PROVEN`, `RECONCILED`
-|`OPEN`, `BRIDGE-PENDING`
+|`PROVEN`, `RECONCILED`
 
 |`no-transfer`
 |A sound warrant for one claim and a token for another do not give the
 other (§7.3 rule 6)
 |`PROVEN`
 |`PROVEN`, `RECONCILED`
-|`OPEN`, `BRIDGE-PENDING`
+|`PROVEN`, `RECONCILED`
 
 |`ToyModel.example`
 |The hypotheses of SignatureVerify are jointly satisfiable, so the rule is
 not vacuous
 |`PROVEN`
 |`PROVEN`, `RECONCILED`
-|`OPEN`, `BRIDGE-PENDING`
+|`PROVEN`, `RECONCILED`
 |===
 
 `foundation_diverse` is false for all six: Agda, Rocq and Lean are one
@@ -104,13 +104,20 @@ Witness Grade (`pwg`) of each theorem is derived from those receipts as
 green as well, `PWG-2ii` with both. It is never carried from one commit to
 the next (§8.4), so this file records the derivation, not a grade.
 
-The Rocq leg was kernel-checked when it was written (Coq 8.18.0, all six
-statements closed under the global context). The Lean leg was not: the
-session that wrote it could not run Lean, so its first kernel check is its
-CI job, and it stays `OPEN` and `BRIDGE-PENDING` until that job is green.
+First receipts: `Warrant levels` run 42623338797, on #190's merge commit
+`b6614d2f63d4adb49b38318a9c7a8e12b6af6b34`. Agda 2.6.4.3 under the §2.2
+invocation: the module, four expected rejections and the control. Coq
+8.18.0 (`/usr/bin/coqc` digest verified): six statements closed under the
+global context; the `Admitted` control reported. Lean 4.35.0 (commit
+`eb6cafb7290e8bd5f2937522d8d804f58f02bafc`, archive digest verified): six
+declarations with no axioms; the `sorry` control reported. On that commit
+each of the six theorems derives `PWG-2ii`, with no axioms. The Lean leg's
+first kernel check was this CI run: the session that wrote it could not run
+Lean.
 
-Census (§8.4), on `main` before the canonical-profile receipts: 6 theory
-theorems; `PWG-1` 0, `PWG-2ii` 0, `PWG-2i` 0, `PWG-3` 0, `ungraded` 6.
+Census (§8.4), on `main` before these changes merge: 6 theory theorems;
+`PWG-1` 0, `PWG-2ii` 0, `PWG-2i` 0, `PWG-3` 0, `ungraded` 6. It moves only
+with a receipt on `main`.
 
 == 2.2 Correspondence (§2.2)
 
