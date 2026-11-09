@@ -82,3 +82,10 @@ fetch-siblings:
 # Agda kernel module and expected rejections (proofs/agda, tests/reject)
 agda: fetch-siblings
     bash scripts/check-agda.sh
+
+# Rocq and Lean legs of the warrant proofs (proofs/rocq, proofs/lean)
+rocq:
+    bash scripts/check-rocq.sh
+
+lean:
+    bash scripts/check-lean.sh

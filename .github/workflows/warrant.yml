@@ -70,6 +70,59 @@ jobs:
           test "$(agda --version)" = 'Agda version 2.6.4.3'
           bash scripts/check-agda.sh
 
+  # PROOF-POLICY §2: the theory proofs are rechecked in Rocq and in Lean.
+  # Toolchain deviation (PROOF-POLICY §6): Rocq comes from Ubuntu's archive,
+  # not a Guix manifest or container, because this repository has neither
+  # for a prover. The step asserts the version and the digest of coqc.
+  rocq:
+    name: Rocq leg of Provenance.Warrant
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Install Coq 8.18.0 from Ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends coq=8.18.0+dfsg-1build2
+          coqc --version | grep -q 'version 8.18.0$'
+          echo 'f14ab0c140bdfdb31c7e7e1f20379703973376480a4eea2d43d0fa56ddae03ec  /usr/bin/coqc' | sha256sum -c -
+
+      - name: Compiles; every statement is axiom-free; an Admitted is reported
+        run: bash scripts/check-rocq.sh
+
+  # Toolchain deviation (PROOF-POLICY §6): Lean comes from its upstream
+  # release archive, verified by digest, for the same reason as Rocq.
+  lean:
+    name: Lean leg of Provenance.Warrant
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      LEAN_VERSION: 4.35.0
+      LEAN_SHA256: 7289597a44543246c9227b8cae501767e095ce17f6d448b95fc4a8dc97268f6d
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Install Lean from its release archive
+        run: |
+          archive="lean-${LEAN_VERSION}-linux.tar.zst"
+          curl -fsSL -o "$RUNNER_TEMP/$archive" \
+            "https://github.com/leanprover/lean4/releases/download/v${LEAN_VERSION}/$archive"
+          echo "${LEAN_SHA256}  $RUNNER_TEMP/$archive" | sha256sum -c -
+          tar --zstd -xf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/lean-${LEAN_VERSION}-linux/bin" >> "$GITHUB_PATH"
+
+      - name: Elaborates; every declaration is axiom-free; a sorry is reported
+        run: |
+          lean --version | grep -q "version ${LEAN_VERSION},"
+          bash scripts/check-lean.sh
+
   # The Haskell validator in TOOLS/validation/haskell, built with Ubuntu's own
   # GHC and Haskell libraries and no Hackage: cabal resolves every dependency
   # from the apt-installed global package database.
