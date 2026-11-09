@@ -1,4 +1,4 @@
-{-# OPTIONS --safe --without-K #-}
+{-# OPTIONS --safe --without-K --cubical-compatible --exact-split --no-sized-types --no-guardedness #-}
 -- SPDX-License-Identifier: PMPL-1.0-or-later
 -- SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
 --
@@ -6,7 +6,7 @@
 -- epistemic-types' records.  The sibling is consumed by pin, fetched by
 -- scripts/fetch-siblings.sh; nothing from it is re-declared here:
 --
---   epistemic-types  6a68de3141a981d766fd006b312f0919ade334bf
+--   epistemic-types  dcd464839333bc83e55c7ddf44ade7cc83426a99
 --     EpistemicTypes.Warrant     Warrant, Epi, SoundWarrant, sound-epi (E-1)
 --     EpistemicTypes.EchoBridge  Impossible, the empty type that
 --                                no-receipt-reflection (E-2) refutes into

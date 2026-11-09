@@ -4,7 +4,7 @@
 # Warrant-level provenance records: spec/PROVENANCE-SPEC.adoc §7.
 #
 # The three levels are epistemic-types' records (src/EpistemicTypes/Warrant.agda
-# at 6a68de3), stated as data:
+# at dcd4648), stated as data:
 #
 #   warrant   Warrant K κ A        a claim and its evidence type; no token held
 #   epi       Epi K κ A            a token held; holding it does not give A

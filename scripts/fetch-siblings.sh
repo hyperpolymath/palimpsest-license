@@ -30,4 +30,4 @@ fetch() {
 
 mkdir -p "$deps"
 # Warrant / Epi / SoundWarrant (E-1); Impossible, as used by no-receipt-reflection (E-2).
-fetch epistemic-types hyperpolymath/epistemic-types 6a68de3141a981d766fd006b312f0919ade334bf
+fetch epistemic-types hyperpolymath/epistemic-types dcd464839333bc83e55c7ddf44ade7cc83426a99

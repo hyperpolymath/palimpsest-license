@@ -1,4 +1,4 @@
-{-# OPTIONS --safe --without-K #-}
+{-# OPTIONS --safe --without-K --cubical-compatible --exact-split --no-sized-types --no-guardedness #-}
 -- SPDX-License-Identifier: PMPL-1.0-or-later
 -- SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
 
