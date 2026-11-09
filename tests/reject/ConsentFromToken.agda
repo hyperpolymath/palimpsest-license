@@ -5,6 +5,8 @@
 module ConsentFromToken where
 
 open import Agda.Primitive using (lzero)
+open import Agda.Builtin.Equality using (_≡_; refl)
+open import Agda.Builtin.Sigma using (Σ; _,_)
 open import EpistemicTypes.Warrant using (SoundWarrant; soundWarrant)
 open import Provenance.Warrant
 
@@ -13,6 +15,10 @@ module _ (Artefact : Set) (Consented Header : Artefact → Set) where
 
   -- Must fail: consented-for-training is extracted from a licence-header
   -- token.  The token is evidence only as Epi; making the warrant sound needs
-  -- a map from the header to consent, and the header is not consent.
-  invalid : (x : Artefact) → SoundWarrant {wℓ = lzero} Standpoint licensor (Consented x)
-  invalid x = soundWarrant (consent x) (λ token → token)
+  -- a map from the header to consent, and the header is not consent.  The
+  -- warrant is pinned to consent x, because a warrant whose evidence is the
+  -- claim itself would meet a bare SoundWarrant type.
+  invalid : (x : Artefact) →
+            Σ (SoundWarrant {wℓ = lzero} Standpoint licensor (Consented x))
+              (λ sw → SoundWarrant.warrant sw ≡ consent x)
+  invalid x = soundWarrant (consent x) (λ token → token) , refl
