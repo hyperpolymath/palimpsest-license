@@ -132,6 +132,22 @@ All source files must include:
 - AsciiDoc format
 - Normative requirements
 
+## Proofs
+
+`3-practice/PROOF-POLICY.adoc` in the `hyperpolymath/standards` repository
+is normative (`PROOF-NEEDS.adoc` links the commit it follows); this is a
+summary. Theory (statements true of any implementation) is proved in Agda
+under `--safe --without-K --cubical-compatible`, here against the pinned
+epistemic-types sibling, and rechecked in Rocq and Lean using their core
+libraries only. The policy assigns Rust code to Creusot (Pearlite contracts)
+and Verus, Ada to SPARK, and interfaces, ABIs and wire formats to Idris2;
+none of this repository's Rust or wire-format obligations is verified yet
+(they are `OPEN` in `PROOF-NEEDS.adoc` §4).
+The ledger is `PROOF-NEEDS.adoc`, in the policy's status vocabulary
+(`PROVEN`, `PROVEN-WITH-AXIOMS`, `TESTED`, `ASSUMED`, `OPEN`); grades are
+`PWG-3`/`PWG-2i`/`PWG-2ii`/`PWG-1`, derived from CI receipts. Checks:
+`just agda`, `just rocq`, `just lean`.
+
 ## Technology Stack
 
 - **Primary Implementation:** Rust
