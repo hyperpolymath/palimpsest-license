@@ -26,11 +26,11 @@ no type, function or wire format of this repository
 
 |Rust tools (`tools/pmpl-sign`, `tools/pmpl-verify`, `tools/pmpl-audit`)
 |Creusot with Pearlite contracts, and Verus (§1.2)
-|none yet; see §5
+|none yet; see §4
 
 |Signature-file format shared by pmpl-sign and pmpl-verify
 |Idris2 (interface contract)
-|none yet; see §5
+|none yet; see §4
 
 |Haskell validator (`TOOLS/validation/haskell`)
 |no mapped verifier for Haskell; tests only
@@ -179,8 +179,11 @@ Type-valued Lean results are `def`s, `theorem` being for propositions.
 
 |Residual assumptions
 |None beyond the stated hypothesis `unforgeable`. The Rocq and Lean gates
-require every reported statement to be axiom-free and check that a planted
-escape hatch is reported (`Admitted` in Rocq, `sorry` in Lean). In Agda,
+require every reported statement to be axiom-free, refuse an escape hatch
+(`Admitted`, `admit` or an axiom in Rocq; `sorry` or an axiom in Lean) in
+any declaration of the file, reported or not, and check that one planted in a
+reported proof and one planted in an unreported definition are both
+reported. In Agda,
 `--safe` refuses a postulate anywhere in the import cone; the Agda gate has
 no planted postulate control of its own yet.
 |===

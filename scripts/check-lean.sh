@@ -3,10 +3,12 @@
 # SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
 #
 # Lean leg of the warrant proofs (standards 3-practice/PROOF-POLICY.adoc §2):
-#   1. proofs/lean/Warrant.lean elaborates with no error, and every
-#      declaration it reports with #print axioms depends on no axiom (so no
-#      sorry, which is the axiom sorryAx);
-#   2. control: the same file with one proof replaced by sorry is reported.
+#   1. proofs/lean/Warrant.lean elaborates with no error, every declaration
+#      it reports with #print axioms depends on no axiom (so no sorry, which
+#      is the axiom sorryAx), no declaration anywhere in it uses sorry,
+#      printed or not, and it declares no axiom;
+#   2. controls: the same file with one printed proof replaced by sorry, and
+#      with one unprinted definition replaced by sorry, is reported.
 set -euo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 export LC_ALL=C.UTF-8 LANG=C.UTF-8
@@ -18,9 +20,11 @@ mkdir -p "$work"
 "$prover" --version
 
 # Elaborate $1; succeed only when every #print axioms line of the source is
-# answered "does not depend on any axioms".
+# answered "does not depend on any axioms", Lean reports no declaration that
+# uses sorry, and the source declares no axiom.  #print axioms covers only
+# the declarations it names; the other two checks cover the rest.
 axiom_free() {
-  local file=$1 log printed clean
+  local file=$1 log printed clean holes
   log="$work/$(basename -- "$(dirname -- "$file")")-$(basename -- "$file" .lean).log"
   if ! "$prover" "$file" >"$log" 2>&1; then
     cat "$log"
@@ -34,7 +38,15 @@ axiom_free() {
     echo "ERROR: $file: $clean of $printed declarations are axiom-free" >&2
     return 1
   fi
-  echo "PASS: $file elaborates; $printed declarations are axiom-free"
+  holes="$({ grep -E "declaration uses .sorry." "$log" || [[ $? -eq 1 ]]; }
+           { grep -nE '^[[:space:]]*(@\[[^]]*\][[:space:]]*)?((private|protected|noncomputable|unsafe|partial)[[:space:]]+)*axiom\>' "$file" || [[ $? -eq 1 ]]; })"
+  if [[ -n "$holes" ]]; then
+    cat "$log"
+    printf '%s\n' "$holes"
+    echo "ERROR: $file uses sorry or declares an axiom" >&2
+    return 1
+  fi
+  echo "PASS: $file elaborates; $printed declarations are axiom-free; no declaration uses sorry; no axiom is declared"
 }
 
 axiom_free "$src"
@@ -52,3 +64,18 @@ if axiom_free "$control" >/dev/null 2>&1; then
   exit 1
 fi
 echo 'PASS: control, a sorry is reported'
+
+# Control: a sorry in a definition that no #print axioms line names must be
+# reported too.
+unprinted="$work/control-unprinted/Warrant.lean"
+mkdir -p "$(dirname -- "$unprinted")"
+sed 's/^  ⟨consent ConsentedForTraining LicenceHeader x, header⟩$/  sorry/' "$src" >"$unprinted"
+if cmp -s "$unprinted" "$src" || grep -q '^#print axioms Provenance.ConsentFromHeader.consentEpi' "$src"; then
+  echo "ERROR: unprinted control was not derived; $src changed shape" >&2
+  exit 1
+fi
+if axiom_free "$unprinted" >/dev/null 2>&1; then
+  echo 'ERROR: control: a sorry outside #print axioms was not reported' >&2
+  exit 1
+fi
+echo 'PASS: control, a sorry outside #print axioms is reported'
