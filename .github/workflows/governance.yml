@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
 # governance.yml — single wrapper calling the shared estate governance bundle
-# in hyperpolymath/standards instead of carrying per-repo copies.
+# in metadatastician/standards instead of carrying per-repo copies.
 #
 # Replaces the per-repo governance scaffolding removed in the same commit:
 #   quality.yml, guix-nix-policy.yml, npm-bun-blocker.yml, ts-blocker.yml,

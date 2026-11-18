@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MPL-2.0
-# Thin wrapper around hyperpolymath/standards hypatia-scan-reusable.yml.
+# Thin wrapper around metadatastician/standards hypatia-scan-reusable.yml.
 # See standards#191 for the reusable's purpose and design.
 
 name: Hypatia Security Scan
