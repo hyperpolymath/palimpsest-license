@@ -12,8 +12,7 @@ workflows:
         - 'actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128'
         - 'actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b'
         - 'haskell-actions/setup@f9150cb1d140e9a9271700670baa38991e6fa25c'
-    '.github/workflows/ci-gate.yml':
-        - 'hyperpolymath/proven-cicd-and-workflows@a0760cea695a815a96b3944f3d03ee015da856d0'
+    '.github/workflows/ci-gate.yml': []
     '.github/workflows/ci.yml':
         - 'actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd'
         - 'dtolnay/rust-toolchain@e2a55d2ffb04f378e9626c28d38b36d230d1e12f'
@@ -230,11 +229,6 @@ dependencies:
         commit: 'sha1-f9150cb1d140e9a9271700670baa38991e6fa25c'
         owner_id: 75048950
         repo_id: 623796603
-    'hyperpolymath/proven-cicd-and-workflows@a0760cea695a815a96b3944f3d03ee015da856d0':
-        ref: 'main'
-        commit: 'sha1-a0760cea695a815a96b3944f3d03ee015da856d0'
-        owner_id: 6759885
-        repo_id: 1326697643
     'hyperpolymath/smtp-notify-action@ede1191ef6ff3ac02c4f4d9efdf837ee517e11d7':
         ref: 'v0.2.0'
         commit: 'sha1-ede1191ef6ff3ac02c4f4d9efdf837ee517e11d7'
