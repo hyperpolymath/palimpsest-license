@@ -19,6 +19,7 @@ https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
 ==== CI
 
+* governance: add CI/gate caller workflow (placeholder pin until the suite profile lands)
 * ci: redistribute concurrency-cancel guard to read-only check workflows
 (#99)
 
