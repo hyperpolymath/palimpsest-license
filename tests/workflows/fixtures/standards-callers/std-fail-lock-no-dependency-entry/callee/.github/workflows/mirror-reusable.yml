@@ -1,0 +1,18 @@
+name: Mirror reusable
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        type: string
+    secrets:
+      GITLAB_SSH_KEY:
+        required: false
+      RADICLE_KEY:
+        required: false
+permissions:
+  contents: read
+jobs:
+  x:
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
