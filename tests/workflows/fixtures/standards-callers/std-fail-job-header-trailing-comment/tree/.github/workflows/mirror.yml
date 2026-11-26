@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+name: Mirror
+on: push
+permissions:
+  contents: read
+jobs:
+  first:
+    uses: metadatastician/standards/.github/workflows/mirror-reusable.yml@main
+  second: # a comment on the job header
+    uses: metadatastician/standards/.github/workflows/mirror-reusable.yml@7641c7fdb01420696b5420ab85d88f599f32f609

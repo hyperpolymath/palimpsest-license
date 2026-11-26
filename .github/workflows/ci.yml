@@ -77,6 +77,22 @@ jobs:
         run: |
           find . -name '*.adoc' -maxdepth 2 -print0 | xargs -0 -n1 asciidoctor -o /dev/null
 
+  standards-callers:
+    name: Check standards reusable-workflow callers
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4
+
+      - name: Run the checker's fixture cases
+        run: bash tests/workflows/standards_callers_test.sh --selftest
+
+      - name: Check this repository's callers
+        run: bash tests/workflows/standards_callers_test.sh
+
   scm-validate:
     name: Validate SCM manifests
     runs-on: ubuntu-latest

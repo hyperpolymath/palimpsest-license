@@ -56,11 +56,13 @@ check_tree() {
       found=$((found + 1))
       local uses="${rec%%|*}" rest="${rec#*|}"
       local keys="${rest%%|*}" inherit="${rest##*|}"
-      local owner="${uses%%/*}" callee ref
-      callee="$(printf '%s' "$uses" | sed -E 's#^[^/]+/standards/\.github/workflows/([^@]+)@.*$#\1#')"
+      # slug is the repo as written (GitHub repo names are case-insensitive, so
+      # `Standards` is still a standards caller); the lock is matched against it.
+      local owner="${uses%%/*}" slug="${uses%%/.github/*}" callee ref
+      callee="${uses#*/.github/workflows/}"; callee="${callee%@*}"
       ref="${uses##*@}"
       if [ "$owner" != "$EXPECTED_OWNER" ]; then
-        echo "ERROR: $name: calls $owner/standards, expected $EXPECTED_OWNER/standards"; bad=1
+        echo "ERROR: $name: calls $slug, expected $EXPECTED_OWNER/standards"; bad=1
       fi
       if ! printf '%s' "$ref" | grep -Eq '^[0-9a-f]{40}$'; then
         echo "ERROR: $name: ref '$ref' is not a 40-character lowercase hex commit SHA"; bad=1
@@ -70,17 +72,17 @@ check_tree() {
         echo "ERROR: $name: uses 'secrets: inherit'; pass named secrets instead"; bad=1
       fi
       if [ ! -f "$lock" ]; then
-        echo "ERROR: $name: no actions.lock to match the pin $owner/standards@$ref"; bad=1
+        echo "ERROR: $name: no actions.lock to match the pin $slug@$ref"; bad=1
       else
-        if ! awk -v key="'$name':" -v want="- '$owner/standards@$ref'" '
+        if ! awk -v key="'$name':" -v want="- '$slug@$ref'" '
               /^[^ ]/ { insec = ($0 ~ /^workflows:/) ; inblk = 0; next }
               insec && $0 ~ /^    '"'"'/ { inblk = (index($0, key) == 5); next }
               insec && inblk { t = $0; sub(/^[ \t]+/, "", t); if (t == want) ok = 1 }
               END { exit ok ? 0 : 1 }' "$lock"; then
-          echo "ERROR: $name: actions.lock has no '$owner/standards@$ref' under $name"; bad=1
+          echo "ERROR: $name: actions.lock has no '$slug@$ref' under $name"; bad=1
         fi
-        if ! grep -Fxq "    '$owner/standards@$ref':" "$lock"; then
-          echo "ERROR: $name: actions.lock has no dependencies entry for $owner/standards@$ref"; bad=1
+        if ! grep -Fxq "    '$slug@$ref':" "$lock"; then
+          echo "ERROR: $name: actions.lock has no dependencies entry for $slug@$ref"; bad=1
         fi
       fi
       if [ -n "$STANDARDS_DIR" ]; then
@@ -95,7 +97,11 @@ check_tree() {
             inwc && /^  [^ ]/ { emit(); inwc = 0 }
             inwc && /^    secrets:/ { insec = 1; next }
             inwc && insec && /^    [^ ]/ { emit(); insec = 0 }
-            inwc && insec && /^      [A-Za-z0-9_]+:/ { emit(); cur = $1; sub(/:$/, "", cur); next }
+            inwc && insec && /^      [A-Za-z0-9_]+:/ {
+              emit(); cur = $1; sub(/:$/, "", cur)
+              if ($0 ~ /required:[ \t]*true/) req = 1   # flow style: NAME: { required: true }
+              next
+            }
             inwc && insec && cur != "" && /^        required:[ \t]*true/ { req = 1 }
             END { emit() }')"
           for k in $keys; do
@@ -116,14 +122,14 @@ check_tree() {
       }
       /^jobs:/ { injobs = 1; next }
       !injobs { next }
-      /^  [A-Za-z0-9_-]+:[ \t]*$/ { flush(); next }
+      /^  [A-Za-z0-9_-]+:[ \t]*(#.*)?$/ { flush(); next }
       /^    uses:[ \t]*/ {
         v = $0; sub(/^    uses:[ \t]*/, "", v); sub(/[ \t]+#.*$/, "", v); gsub(/["\047]/, "", v)
-        if (v ~ /^[^\/ ]+\/standards\/\.github\/workflows\//) uses = v
+        if (tolower(v) ~ /^[^\/ ]+\/standards\/\.github\/workflows\//) uses = v
         next
       }
-      /^    secrets:[ \t]*inherit/ { inh = 1; insec = 0; next }
-      /^    secrets:[ \t]*$/ { insec = 1; next }
+      /^    secrets:[ \t]*["\047]?inherit["\047]?[ \t]*(#.*)?$/ { inh = 1; insec = 0; next }
+      /^    secrets:[ \t]*(#.*)?$/ { insec = 1; next }
       insec && /^    [^ #]/ { insec = 0 }
       insec && /^      [A-Za-z0-9_]+:/ { k = $1; sub(/:$/, "", k); keys = keys (keys == "" ? "" : " ") k }
       END { flush() }' "$file")
