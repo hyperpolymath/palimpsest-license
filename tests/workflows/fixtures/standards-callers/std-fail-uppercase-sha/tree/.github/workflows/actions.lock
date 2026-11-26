@@ -1,0 +1,9 @@
+workflows:
+    '.github/workflows/mirror.yml':
+        - 'metadatastician/standards@7641C7FDB01420696B5420AB85D88F599F32F609'
+dependencies:
+    'metadatastician/standards@7641C7FDB01420696B5420AB85D88F599F32F609':
+        ref: '7641C7FDB01420696B5420AB85D88F599F32F609'
+        commit: 'sha1-7641C7FDB01420696B5420AB85D88F599F32F609'
+    'actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd':
+        ref: 'v6'

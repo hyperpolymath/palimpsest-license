@@ -1,0 +1,9 @@
+workflows:
+    '.github/workflows/mirror.yml':
+        - 'hyperpolymath/standards@7641c7fdb01420696b5420ab85d88f599f32f609'
+dependencies:
+    'hyperpolymath/standards@7641c7fdb01420696b5420ab85d88f599f32f609':
+        ref: '7641c7fdb01420696b5420ab85d88f599f32f609'
+        commit: 'sha1-7641c7fdb01420696b5420ab85d88f599f32f609'
+    'actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd':
+        ref: 'v6'

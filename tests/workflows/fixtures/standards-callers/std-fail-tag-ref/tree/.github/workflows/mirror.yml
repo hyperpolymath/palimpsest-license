@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+name: Mirror
+on: push
+permissions:
+  contents: read
+jobs:
+  mirror:
+    uses: metadatastician/standards/.github/workflows/mirror-reusable.yml@main
+    secrets:
+      GITLAB_SSH_KEY: ${{ secrets.GITLAB_SSH_KEY }}
+      RADICLE_KEY: ${{ secrets.RADICLE_KEY }}
