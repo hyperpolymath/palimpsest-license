@@ -1,1 +1,4 @@
 CLAUDE.md
+
+# ─── JS manifest and locks (LANGUAGE-POLICY §1.4) ───────────────────────────
+deno.lock                  # generated compatibility lock (LANGUAGE-POLICY §1.4)
